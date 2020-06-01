@@ -6,9 +6,11 @@ class TPago10(TBase):
     super().__init__(xslt_file)
   
   def convert_to_columns(self,line):
-    line = line[2:]
-    rows = str(line).split('‡‡')
     lista = list()
+    if len(line) <= 2:
+      return lista
+    line = line[2:]
+    rows = str(line).split('‡‡')    
     for row in rows:
       columns_data = str(row).split('~')
       lista.append(columns_data)

@@ -13,7 +13,7 @@
             xmlns:nomina12="http://www.sat.gob.mx/nomina12" 
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <nomina12:Emisor RegistroPatronal="Z2947781105" />
-            <nomina12:Receptor Curp="VEGA780615HDFLML08" NumSeguridadSocial="01234567890" FechaInicioRelLaboral="2019-01-07" Antigüedad="P34W" TipoContrato="01" Sindicalizado="No" TipoJornada="02" TipoRegimen="02" NumEmpleado="1901311642138B3" RiesgoPuesto="2" PeriodicidadPago="02" SalarioBaseCotApor="238.7" SalarioDiarioIntegrado="228.38" ClaveEntFed="JAL" />
+            <nomina12:Receptor Curp="BADD110313HCMLNS09" NumSeguridadSocial="01234567890" FechaInicioRelLaboral="2019-01-07" Antigüedad="P34W" TipoContrato="01" Sindicalizado="No" TipoJornada="02" TipoRegimen="02" NumEmpleado="1901311642138B3" RiesgoPuesto="2" PeriodicidadPago="02" SalarioBaseCotApor="238.7" SalarioDiarioIntegrado="228.38" ClaveEntFed="JAL" />
             <nomina12:Percepciones TotalSueldos="1598.66" TotalGravado="1598.66" TotalExento="0.00">
                 <nomina12:Percepcion TipoPercepcion="001" Clave="001" Concepto="Sueldos, Salarios  Rayas y Jornales" ImporteGravado="1598.66" ImporteExento="0.00" />
             </nomina12:Percepciones>

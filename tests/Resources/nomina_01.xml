@@ -6,7 +6,7 @@
     <cfdi:Emisor rfc="LAN7008173R5" nombre="CINDEMEX SA DE CV">
         <cfdi:RegimenFiscal Regimen="601" />
     </cfdi:Emisor>
-    <cfdi:Receptor rfc="RASG920318DXA" nombre="JUAN PEREZ" />
+    <cfdi:Receptor rfc="CACX7605101P8" nombre="JUAN PEREZ" />
     <cfdi:Conceptos>
         <cfdi:Concepto cantidad="1" unidad="ACT" descripcion="Pago de nómina" valorUnitario="33000.00" importe="33000.00" />
     </cfdi:Conceptos>
@@ -19,7 +19,7 @@
             xmlns:nomina12="http://www.sat.gob.mx/nomina12" 
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <nomina12:Emisor RegistroPatronal="L123456" />
-            <nomina12:Receptor Curp="RASG920318HJCMLB07" NumSeguridadSocial="12312312312" FechaInicioRelLaboral="2016-01-01" Antigüedad="P69W" TipoContrato="01" TipoRegimen="02" NumEmpleado="1705261004477C9" RiesgoPuesto="1" PeriodicidadPago="99" Banco="072" CuentaBancaria="1234567890123456" SalarioBaseCotApor="100.4" SalarioDiarioIntegrado="100" ClaveEntFed="JAL" />
+            <nomina12:Receptor Curp="BADD110313HCMLNS09" NumSeguridadSocial="12312312312" FechaInicioRelLaboral="2016-01-01" Antigüedad="P69W" TipoContrato="01" TipoRegimen="02" NumEmpleado="1705261004477C9" RiesgoPuesto="1" PeriodicidadPago="99" Banco="072" CuentaBancaria="1234567890123456" SalarioBaseCotApor="100.4" SalarioDiarioIntegrado="100" ClaveEntFed="JAL" />
             <nomina12:Percepciones TotalSueldos="33000.00" TotalGravado="33000.00" TotalExento="0.00">
                 <nomina12:Percepcion TipoPercepcion="001" Clave="001" Concepto="Sueldos, Salarios Rayas y Jornales" ImporteGravado="33000.00" ImporteExento="0.00" />
             </nomina12:Percepciones>

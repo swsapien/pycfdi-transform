@@ -38,8 +38,7 @@
     <xsl:include href="utilerias.xslt"/>
     <!-- variables necesarias -->
     <xsl:key name="Impuestos-Traslados" match="/cfdi:Comprobante/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado" use="@Impuesto" />
-    <xsl:key name="Impuestos-Retenciones" match="/cfdi:Comprobante/cfdi:Impuestos/cfdi:Retenciones/cfdi:Retencion" use="@Impuesto" />
-    <xsl:key name="kElemByNSURI" match="*|@*" use="namespace-uri()"/>
+    <xsl:key name="Impuestos-Retenciones" match="/cfdi:Comprobante/cfdi:Impuestos/cfdi:Retenciones/cfdi:Retencion" use="@Impuesto" />    
 
     <!-- Con el siguiente método se establece que la salida deberá ser en texto -->
     <xsl:output method="text" version="1.0" encoding="UTF-8" indent="no"/>
