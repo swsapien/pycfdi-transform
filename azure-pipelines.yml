@@ -33,3 +33,9 @@ steps:
 - script: |
     python setup.py sdist bdist_wheel    
   displayName: 'python setup'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist/*'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
