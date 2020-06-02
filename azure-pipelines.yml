@@ -27,9 +27,9 @@ steps:
   inputs:
     script: |
       python -m pip install -U setuptools wheel
-      python setup.py sdist bdist_wheel
+      python setup.py sdist bdist_wheel --dist-dir=$(Build.ArtifactStagingDirectory)/dist
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: dist/*'
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/dist/*'
     ArtifactName: 'drop'
     publishLocation: 'Container'
