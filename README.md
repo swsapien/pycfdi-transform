@@ -14,7 +14,7 @@ Queremos compartir la experiencia que tenemos en Facturación Electrónica con l
 ## Build and Release status
 [![Build Status](https://dev.azure.com/smarterwebci/SW%20sapien%20Open%20Source/_apis/build/status/swsapien.pycfdi-transform?branchName=master)](https://dev.azure.com/smarterwebci/SW%20sapien%20Open%20Source/_build/latest?definitionId=219&branchName=master)
 
-
+[![Release Status](https://vsrm.dev.azure.com/smarterwebci/_apis/public/Release/badge/936fc2c5-c28f-4b30-9352-b4605790fdc8/1/1)](https://vsrm.dev.azure.com/smarterwebci/_apis/public/Release/badge/936fc2c5-c28f-4b30-9352-b4605790fdc8/1/1)
 
 ## Installation
 
