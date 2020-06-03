@@ -11,6 +11,11 @@ Cfdi 3.3 y 3.2 con complementos:
 
 Queremos compartir la experiencia que tenemos en Facturación Electrónica con la comunidad. Nuestro objetivo es facilitar la implementación y mantenimiento del Cfdi en México.
 
+## Build and Release status
+[![Build Status](https://dev.azure.com/smarterwebci/SW%20sapien%20Open%20Source/_apis/build/status/swsapien.pycfdi-transform?branchName=master)](https://dev.azure.com/smarterwebci/SW%20sapien%20Open%20Source/_build/latest?definitionId=219&branchName=master)
+
+
+
 ## Installation
 
 Utiliza el package manager [pip](https://pip.pypa.io/en/stable/) para instalar pycfdi-transform.
