@@ -1,0 +1,1 @@
+include pycfdi_transform/xslt/*.xslt
