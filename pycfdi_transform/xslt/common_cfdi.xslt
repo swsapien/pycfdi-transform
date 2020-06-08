@@ -184,4 +184,13 @@
 			<xsl:with-param name="valor" select="./@selloCFD"/>
 		</xsl:call-template>
     </xsl:template>
+    <!-- Manejador de nodos tipo TimbreFiscalDigital -->
+    <xsl:template match="tfd:TimbreFiscalDigital" mode="v11_simple">
+		<xsl:call-template name="ToUpperCase">
+			<xsl:with-param name="valor" select="./@UUID"/>
+		</xsl:call-template>
+		<xsl:call-template name="Requerido">
+			<xsl:with-param name="valor" select="./@FechaTimbrado"/>
+		</xsl:call-template>		
+    </xsl:template>
 </xsl:stylesheet>

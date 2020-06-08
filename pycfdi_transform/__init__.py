@@ -24,6 +24,7 @@ from pycfdi_transform.t_cfdi33 import TCfdi33
 from pycfdi_transform.t_pago10 import TPago10
 from pycfdi_transform.t_nomina12 import TNomina12
 from pycfdi_transform.t_cfdi32 import TCfdi32
+from pycfdi_transform.t_cfdi33_detail import TCfdi33Detail
 
 del absolute_import
 del division
