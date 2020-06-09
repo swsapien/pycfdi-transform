@@ -138,6 +138,12 @@ class TestReportGenerator(unittest.TestCase):
         result_columns = transformer.to_columns_from_file(path_xml)
         self.assertTrue(len(result_columns) == 1026)
         self.assertTrue(len(result_columns[0])==33)
+    def test_cfdi32_detail_01_from_file_ok(self):
+        path_xml = "./tests/Resources/cfdi32_01.xml"
+        transformer = ct.TCfdi32Detail()
+        result_columns = transformer.to_columns_from_file(path_xml)
+        self.assertTrue(len(result_columns) == 2)
+        self.assertTrue(len(result_columns[0])==33)
     
     def test_cfdi33_detail_01_from_bytes_ok(self):
         path_xml = "./tests/Resources/cfd33_detail_01.xml"
