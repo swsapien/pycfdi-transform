@@ -69,7 +69,7 @@
             <xsl:with-param name="valor" select="$positionConcept" />
         </xsl:call-template>
         <!-- CONCEPT DETAIL -->
-        <xsl:call-template name="Requerido">
+        <xsl:call-template name="block-generator">
             <xsl:with-param name="valor" select="./@ClaveProdServ" />
         </xsl:call-template>
         <xsl:call-template name="Requerido">
@@ -78,7 +78,7 @@
         <xsl:call-template name="Requerido">
             <xsl:with-param name="valor" select="./@cantidad" />
         </xsl:call-template>
-        <xsl:call-template name="Requerido">
+        <xsl:call-template name="block-generator">
             <xsl:with-param name="valor" select="./@ClaveUnidad" />
         </xsl:call-template>
         <xsl:call-template name="Requerido">
