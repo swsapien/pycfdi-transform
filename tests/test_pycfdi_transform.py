@@ -136,7 +136,7 @@ class TestReportGenerator(unittest.TestCase):
         path_xml = "./tests/Resources/0B7B5AA2-2443-49A2-810D-C0A9A813F8EF.xml"
         transformer = ct.TCfdi33Detail()
         result_columns = transformer.to_columns_from_file(path_xml)
-        self.assertTrue(len(result_columns) == 1)
+        self.assertTrue(len(result_columns) == 1026)
         self.assertTrue(len(result_columns[0])==33)
     
     def test_cfdi33_detail_01_from_bytes_ok(self):
