@@ -19,7 +19,7 @@ class TBase:
   def to_columns_from_file(self, xml_file):
     if '.xml' in xml_file:
       try:        
-        xml = ET.parse(xml_file, parser=self.parser)
+        xml = ET.parse(xml_file, parser=self.parser_from_str)
         return self.convert_to_columns(str(self.transformer(xml)))
       except Exception as ex:
         print(ex)
@@ -27,7 +27,7 @@ class TBase:
   
   def to_columns_from_bytes(self, bytes_xml):   
     try:        
-      xml = ET.XML(bytes_xml, parser=self.parser)
+      xml = ET.XML(bytes_xml, parser=self.parser_from_str)
       return self.convert_to_columns(str(self.transformer(xml)))
     except Exception as ex:
       print(ex)
