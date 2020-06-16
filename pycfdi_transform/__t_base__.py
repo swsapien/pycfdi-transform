@@ -13,7 +13,6 @@ class TBase:
       raise UnicodeError("Cannot read xslt files. XSLT transformers are empty")
 
     self.transformer = ET.XSLT(xslt)    
-    self.parser = ET.XMLParser(recover=True, encoding='utf-8')
     self.parser_from_str = ET.XMLParser(recover=True)
   
   def to_columns_from_file(self, xml_file):
