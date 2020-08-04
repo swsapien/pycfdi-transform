@@ -1,7 +1,7 @@
 import os
 from pycfdi_transform.__t_base__ import TBase
 
-class TNomina(TBase):
+class TNomina11(TBase):
   def __init__(self,xslt_file = 'nomina.xslt'):
     super().__init__(xslt_file)
   
