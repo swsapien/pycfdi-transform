@@ -1,4 +1,4 @@
-from pycfdi_transform.sax_handlers.base_handler import BaseHandler
+from pycfdi_transform.sax.base_handler import BaseHandler
 
 
 class Base33Handler(BaseHandler):

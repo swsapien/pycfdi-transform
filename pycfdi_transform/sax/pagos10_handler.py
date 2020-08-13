@@ -1,6 +1,6 @@
 import xml.sax
-from pycfdi_transform.sax_handlers.base32_handler import Base32Handler
-from pycfdi_transform.sax_handlers.base33_handler import Base33Handler
+from pycfdi_transform.sax.base32_handler import Base32Handler
+from pycfdi_transform.sax.base33_handler import Base33Handler
 
 class Pagos10Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
     def __init__(self):

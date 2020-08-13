@@ -1,4 +1,4 @@
-from pycfdi_transform.sax_handlers.base_handler import BaseHandler
+from pycfdi_transform.sax.base_handler import BaseHandler
 
 
 class Base32Handler(BaseHandler):
@@ -6,7 +6,7 @@ class Base32Handler(BaseHandler):
         self._start_emisor = False
         BaseHandler.__init__(self)
 
-    def transform_comprobant(self, tag, attrs):
+    def transform_comprobante(self, tag, attrs):
         self._version = attrs['version']
         if ('serie' in attrs):
             self._serie = attrs['serie']

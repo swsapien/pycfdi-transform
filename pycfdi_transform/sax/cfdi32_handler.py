@@ -1,5 +1,5 @@
 import xml.sax
-from pycfdi_transform.sax_handlers.base32_handler import Base32Handler
+from pycfdi_transform.sax.base32_handler import Base32Handler
 
 
 class CFDI32Handler (xml.sax.ContentHandler, Base32Handler):
@@ -104,7 +104,7 @@ class CFDI32Handler (xml.sax.ContentHandler, Base32Handler):
         return value
     
     def get_result(self):
-        return [
+        return [[
             self._version,
             self._serie,
             self._folio,
@@ -143,4 +143,4 @@ class CFDI32Handler (xml.sax.ContentHandler, Base32Handler):
             self._fecha_timbrado,
             self._rfc_prov_cert,
             self._sello_cfd
-            ]
+            ]]

@@ -1,5 +1,5 @@
 import xml.sax
-from pycfdi_transform.sax_handlers.base33_handler import Base33Handler
+from pycfdi_transform.sax.base33_handler import Base33Handler
 
 
 class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
@@ -94,7 +94,7 @@ class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
     
     
     def get_result(self):
-        return [
+        return [[
             self._version,
             self._serie,
             self._folio,
@@ -133,12 +133,4 @@ class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
             self._fecha_timbrado,
             self._rfc_prov_cert,
             self._sello_cfd
-            ]
-
-
-filename = "example.xml"
-parser = xml.sax.make_parser()
-handler = CFDI33Handler()
-parser.setContentHandler(handler)
-parser.parse(filename)
-print(handler.get_result())
+            ]]
