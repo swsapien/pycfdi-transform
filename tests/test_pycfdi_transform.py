@@ -3,7 +3,7 @@ import os
 import io
 import pycfdi_transform as ct
 
-class TestReportGenerator(unittest.TestCase):
+class TestPycfdiTransform(unittest.TestCase):
     def test_cfdi33_01_from_file_ok(self):
         path_xml = "./tests/Resources/cfdi33_01.xml"
         transformer = ct.TCfdi33()
