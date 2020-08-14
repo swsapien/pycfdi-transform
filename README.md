@@ -4,7 +4,7 @@ PyCfdi Transform es un paquete de python que te permite convertir un Xml CFDI MÃ
 
 Cfdi 3.3 y 3.2 con complementos:
     Nomina12 ( cfdi 3.3 )
-    Nomina ( cfdi 3.2 )}
+    Nomina ( cfdi 3.2 )
     Pagos10 ( cfdi 3.3)
 
 # SW sapien
