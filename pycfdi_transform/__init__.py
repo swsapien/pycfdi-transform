@@ -27,6 +27,13 @@ from pycfdi_transform.t_nomina11 import TNomina11
 from pycfdi_transform.t_cfdi32 import TCfdi32
 from pycfdi_transform.t_cfdi33_detail import TCfdi33Detail
 from pycfdi_transform.t_cfdi32_detail import TCfdi32Detail
+from pycfdi_transform.t_sax_cfdi33 import TSaxCfdi33
+from pycfdi_transform.t_sax_cfdi32 import TSaxCfdi32
+from pycfdi_transform.t_sax_pagos10 import TSaxPagos10
+from pycfdi_transform.t_sax_nomina11 import TSaxNomina11
+from pycfdi_transform.t_sax_nomina12 import TSaxNomina12
+from pycfdi_transform.t_sax_cfdi32_detail import TSaxCfdi32Detail
+from pycfdi_transform.t_sax_cfdi33_detail import TSaxCfdi33Detail
 
 del absolute_import
 del division
