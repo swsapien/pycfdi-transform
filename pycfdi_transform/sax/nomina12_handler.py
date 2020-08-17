@@ -230,8 +230,8 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
                 importe_gravado = attrs['ImporteGravado']
             if (tipo_percepcion in self._percepciones):
                 percepcion = self._percepciones[tipo_percepcion]
-                importe_excento = Base33Handler.sum(percepcion[1], importe_excento)
-                importe_gravado = Base33Handler.sum(percepcion[2], importe_gravado)
+                importe_excento = Base33Handler.sum(self, percepcion[1], importe_excento)
+                importe_gravado = Base33Handler.sum(self, percepcion[2], importe_gravado)
             self._percepciones[tipo_percepcion] = [tipo_percepcion,
                                                    importe_excento, importe_gravado]
     
@@ -272,7 +272,7 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
                 importe = attrs['Importe']
             if (tipo_deduccion in self._deducciones):
                 deduccion= self._deducciones[tipo_deduccion]
-                importe = Base33Handler.sum(deduccion[1], importe)
+                importe = Base33Handler.sum(self, deduccion[1], importe)
 
             self._deducciones[tipo_deduccion] = [tipo_deduccion, importe]
 
