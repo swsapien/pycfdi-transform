@@ -51,7 +51,7 @@ class CFDI33DetailHandler (xml.sax.ContentHandler, Base33Handler):
         if ('ValorUnitario' in attrs):
             concepto['valor_unitario'] = attrs['ValorUnitario']
         if ('Descuento' in attrs):
-            concepto['descuento'] = attrs['descuDescuentoento']
+            concepto['descuento'] = attrs['Descuento']
         if ('Importe' in attrs):
             concepto['importe'] = attrs['Importe']
         self._concepts.append(concepto)
