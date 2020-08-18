@@ -80,7 +80,9 @@ class CFDI32Handler (xml.sax.ContentHandler, Base32Handler):
                 self._iva_retenido = self.__sum(self._iva_retenido, attrs['importe'])
 
     def __transform_complementos(self, tag):
-        complement_name = tag[tag.rindex(':') + 1:]
+        complement_name = tag
+        if (':' in tag):
+            complement_name = tag[tag.rindex(':') + 1:]
         self._complementos = self.__concatenate(self._complementos, complement_name)
     
     def __transform_imploc(self, tag, attrs):

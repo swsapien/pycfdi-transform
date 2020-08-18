@@ -81,7 +81,9 @@ class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
                     self._ieps_retenido, attrs['Impuesto'])
 
     def __transform_complementos(self, tag):
-        complement_name = tag[tag.rindex(':') + 1:]
+        complement_name = tag
+        if (':' in tag):
+            complement_name = tag[tag.rindex(':') + 1:]
         self._complementos = Base33Handler.concatenate(self, self._complementos, complement_name)
 
     def __transform_imploc(self, tag, attrs):
