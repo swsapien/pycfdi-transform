@@ -54,55 +54,49 @@ class CFDI32Handler (xml.sax.ContentHandler, Base32Handler):
 
     def __transform_conceptos(self, tag, attrs):
         if ('noIdentificacion' in attrs):
-            self._clave_prod_serv = self.__concatenate(
+            self._clave_prod_serv = Base32Handler.concatenate(self, 
                 self._clave_prod_serv, attrs['noIdentificacion'].replace('|', ''))
 
     def __transform_impuestos(self, tag, attrs):
         if ('totalImpuestosTrasladados' in attrs):
-            self._total_impuestos_traslado = self.__sum(
+            self._total_impuestos_traslado = Base32Handler.sum(self, 
                 self._total_impuestos_traslado, attrs['totalImpuestosTrasladados'])
         if ('totalImpuestosRetenidos' in attrs):
-            self._total_impuestos_retenidos = self.__sum(
+            self._total_impuestos_retenidos = Base32Handler.sum(self, 
                 self._total_impuestos_retenidos, attrs['totalImpuestosRetenidos'])
         
     def __transform_impuestos_traslados(self, tag, attrs):
         if ('impuesto' in attrs and 'importe' in attrs):
             if (attrs['impuesto'] == 'IVA'):
-                self._iva_traslado = self.__sum(self._iva_traslado, attrs['importe'])
+                self._iva_traslado = Base32Handler.sum(self, self._iva_traslado, attrs['importe'])
             elif (attrs['impuesto'] == 'IEPS'):
-                self._ieps_traslado = self.__sum(self._ieps_traslado, attrs['importe'])
+                self._ieps_traslado = Base32Handler.sum(self, self._ieps_traslado, attrs['importe'])
     
     def __transform_impuestos_retenciones(self, tag, attrs):
         if ('impuesto' in attrs and 'importe' in attrs):
             if(attrs['impuesto'] == 'ISR'):
-                self._isr_retenido = self.__sum(self._isr_retenido , attrs['importe'])
+                self._isr_retenido = Base32Handler.sum(self, self._isr_retenido , attrs['importe'])
             elif (attrs['impuesto'] == 'IVA'):
-                self._iva_retenido = self.__sum(self._iva_retenido, attrs['importe'])
+                self._iva_retenido = Base32Handler.sum(self, self._iva_retenido, attrs['importe'])
 
     def __transform_complementos(self, tag):
         complement_name = tag
         if (':' in tag):
             complement_name = tag[tag.rindex(':') + 1:]
-        self._complementos = self.__concatenate(self._complementos, complement_name)
+        self._complementos = Base32Handler.concatenate(self, self._complementos, complement_name)
     
     def __transform_imploc(self, tag, attrs):
         if ('TotaldeTraslados' in attrs):
-            self._total_traslados_impuestos_locales = self.__sum(self._total_traslados_impuestos_locales, attrs['TotaldeTraslados'])
+            self._total_traslados_impuestos_locales = Base32Handler.sum(self, self._total_traslados_impuestos_locales, attrs['TotaldeTraslados'])
         if ('TotaldeRetenciones' in attrs):
-            self._total_retenciones_impuestos_locales = self.__sum(self._total_retenciones_impuestos_locales, attrs['TotaldeRetenciones'])
+            self._total_retenciones_impuestos_locales = Base32Handler.sum(self, self._total_retenciones_impuestos_locales, attrs['TotaldeRetenciones'])
     
     def __concatenate(self, text, add):
         if (text == '' or text == '-'):
             text = add
         else:
             text = f'{text}, {add}'
-        return text
-    
-    def __sum(self, value, add):
-        if (value == '' or value == '-'):
-            value = add
-        else:
-            value = str(float(value) + float(add))
+        return text(float(value) + float(add))
         return value
     
     def get_result(self):

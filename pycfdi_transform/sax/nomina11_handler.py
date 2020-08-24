@@ -250,7 +250,7 @@ class Nomina11Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
                 importe = attrs['ImporteGravado']
             if (tipo_deduccion in self._deducciones):
                 deduccion = self._deducciones[tipo_deduccion]
-                importe = Base32Handler.sum(deduccion[1], importe)
+                importe = Base32Handler.sum(self, deduccion[1], importe)
             self._deducciones[tipo_deduccion] = [tipo_deduccion, importe]
 
     def __transform_incapacidad(self, tag, attrs):
