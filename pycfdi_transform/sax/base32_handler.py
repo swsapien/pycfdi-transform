@@ -49,7 +49,7 @@ class Base32Handler(BaseHandler):
             self._nombre_receptor = attrs['nombre']
     
     def transform_tfd(self, tag, attrs):
-        self._uuid = attrs['UUID']
+        self._uuid = str(attrs['UUID']).upper()
         self._fecha_timbrado = attrs['FechaTimbrado']
         if ('RfcProvCertif' in attrs):
             self._rfc_prov_cert = attrs['RfcProvCertif']
