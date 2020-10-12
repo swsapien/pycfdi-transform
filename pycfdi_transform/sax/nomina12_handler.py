@@ -27,11 +27,11 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
         self._rfc_patron_origen = '-'
 
         #Datos nodo percepciones
-        self._total_sueldos = '-'
+        self._total_sueldos = 0
         self._total_separacion_indemnizacion = '-'
         self._total_jubilacion_pension_retiro = '-'
-        self._total_gravado = '-'
-        self._total_excento = '-'
+        self._total_gravado = 0
+        self._total_excento = 0
 
         #Datos nodo receptor
         self._curp_receptor = '-'
@@ -209,15 +209,15 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
 
     def __transform_nomina12_percepciones(self, tag, attrs):
         if ('TotalSueldos' in attrs):
-            self._total_sueldos = attrs['TotalSueldos']
+            self._total_sueldos += float(attrs['TotalSueldos'])
         if ('TotalSeparacionIndemnizacion' in attrs):
             self._total_separacion_indemnizacion = attrs['TotalSeparacionIndemnizacion']
         if ('TotalJubilacionPensionRetiro' in attrs):
             self._total_jubilacion_pension_retiro = attrs['TotalJubilacionPensionRetiro']
         if ('TotalGravado' in attrs):
-            self._total_gravado = attrs['TotalGravado']
+            self._total_gravado += float(attrs['TotalGravado'])
         if ('TotalExento' in attrs):
-            self._total_excento = attrs['TotalExento']
+            self._total_excento += float(attrs['TotalExento'])
     
     def __transform_nomina12_percepcion(self, tag, attrs):
         if ('TipoPercepcion' in attrs):
@@ -307,6 +307,9 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
             self._o004_remanente_saldo_favor = attrs['RemanenteSalFav']
 
     def get_result(self):
+        self._total_sueldos = str(self._total_sueldos)
+        self._total_gravado = str(self._total_gravado)
+        self._total_excento = str(self._total_excento)
         result = [
             self._version,
             self._serie,
