@@ -30,7 +30,6 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns) == 1)
         self.assertTrue(len(result_columns[0]) == 38)
-        print(result_columns[0][1])
         self.assertTrue(result_columns[0][14] == 'ZAPOPAN,JALISCO')
         self.assertFalse(result_columns[0][1] == 'VF')
     
@@ -60,11 +59,13 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertTrue(result_columns[36] == 'CTABENEFICIARIO')
     
     def test_sax_nomina12_01_from_file_ok(self):
-        path_xml = './tests/Resources/nomina12_01.xml'
+        path_xml = './tests/Resources/nomina12_02.xml'
         transformer = ct.TSaxNomina12()
         result_columns = transformer.to_columns_from_file(path_xml)
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns) == 1)
+        self.assertTrue(result_columns[0][57] == '87703.08')
+        self.assertTrue(result_columns[0][58] == '27835.199999999997')
         self.assertTrue(len(result_columns[0]) == 438)
     
     def test_sax_nomina12_get_column_names_ok(self):
