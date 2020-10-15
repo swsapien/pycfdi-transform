@@ -17,9 +17,9 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
         self._fecha_inicial_pago = '-'
         self._fecha_final_pago = '-'
         self._num_dias_pagados = '-'
-        self._total_percepciones = '-'
-        self._total_deducciones = '-'
-        self._total_otros_pagos = '-'
+        self._total_percepciones = 0
+        self._total_deducciones = 0
+        self._total_otros_pagos = 0
 
         #Datos nodo emisor
         self._curp_emisor = '-'
@@ -28,8 +28,8 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
 
         #Datos nodo percepciones
         self._total_sueldos = 0
-        self._total_separacion_indemnizacion = '-'
-        self._total_jubilacion_pension_retiro = '-'
+        self._total_separacion_indemnizacion = 0
+        self._total_jubilacion_pension_retiro = 0
         self._total_gravado = 0
         self._total_excento = 0
 
@@ -70,8 +70,8 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
         self._p39_total_parcialidad = '-'
 
         #Datos nodo deducciones
-        self._total_otras_deducciones = '-'
-        self._total_impuestos_retenidos = '-'
+        self._total_otras_deducciones = 0
+        self._total_impuestos_retenidos = 0
 
         #datos nodos deduccion
         self._deducciones = {}
@@ -155,11 +155,11 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
         self._fecha_final_pago = attrs['FechaFinalPago']
         self._num_dias_pagados = attrs['NumDiasPagados']
         if ('TotalPercepciones' in attrs):
-            self._total_percepciones = attrs['TotalPercepciones']
+            self._total_percepciones += float(attrs['TotalPercepciones'])
         if ('TotalDeducciones' in attrs):
-            self._total_deducciones = attrs['TotalDeducciones']
+            self._total_deducciones += float(attrs['TotalDeducciones'])
         if ('TotalOtrosPagos' in attrs):
-            self._total_otros_pagos = attrs['TotalOtrosPagos']
+            self._total_otros_pagos += float(attrs['TotalOtrosPagos'])
     
     def __transform_nomina12_emisor(self, tag, attrs):
         if ('Curp' in attrs):
@@ -211,9 +211,9 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
         if ('TotalSueldos' in attrs):
             self._total_sueldos += float(attrs['TotalSueldos'])
         if ('TotalSeparacionIndemnizacion' in attrs):
-            self._total_separacion_indemnizacion = attrs['TotalSeparacionIndemnizacion']
+            self._total_separacion_indemnizacion += float(attrs['TotalSeparacionIndemnizacion'])
         if ('TotalJubilacionPensionRetiro' in attrs):
-            self._total_jubilacion_pension_retiro = attrs['TotalJubilacionPensionRetiro']
+            self._total_jubilacion_pension_retiro += float(attrs['TotalJubilacionPensionRetiro'])
         if ('TotalGravado' in attrs):
             self._total_gravado += float(attrs['TotalGravado'])
         if ('TotalExento' in attrs):
@@ -260,9 +260,9 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
     
     def __transform_nomina12_deducciones(self, tag, attrs):
         if ('TotalOtrasDeducciones' in attrs):
-            self._total_otras_deducciones = attrs['TotalOtrasDeducciones']
+            self._total_otras_deducciones += float(attrs['TotalOtrasDeducciones'])
         if ('TotalImpuestosRetenidos' in attrs):
-            self._total_impuestos_retenidos = attrs['TotalImpuestosRetenidos']
+            self._total_impuestos_retenidos += float(attrs['TotalImpuestosRetenidos'])
 
     def __transform_nomina12_deduccion(self, tag, attrs):
         if ('TipoDeduccion' in attrs):
@@ -310,6 +310,13 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
         self._total_sueldos = str(self._total_sueldos)
         self._total_gravado = str(self._total_gravado)
         self._total_excento = str(self._total_excento)
+        self._total_separacion_indemnizacion = str(self._total_separacion_indemnizacion)
+        self._total_jubilacion_pension_retiro = str(self._total_jubilacion_pension_retiro)
+        self._total_percepciones = str(self._total_percepciones)
+        self._total_deducciones = str(self._total_deducciones )
+        self._total_otros_pagos = str(self._total_otros_pagos)
+        self._total_otras_deducciones = str(self._total_otras_deducciones)
+        self._total_impuestos_retenidos = str(self._total_impuestos_retenidos)
         result = [
             self._version,
             self._serie,
