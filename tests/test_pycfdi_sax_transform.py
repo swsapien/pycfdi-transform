@@ -4,6 +4,7 @@ import io
 import pycfdi_transform as ct
 
 
+
 class TestPycfdiSaxTransform(unittest.TestCase):
 
     def test_sax_cfdi33_01_from_file_ok(self):
@@ -66,13 +67,13 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertTrue(len(result_columns) == 1)
         self.assertTrue(result_columns[0][57] == '87703.08')
         self.assertTrue(result_columns[0][58] == '27835.199999999997')
-        self.assertTrue(len(result_columns[0]) == 438)
+        self.assertTrue(len(result_columns[0]) == 440)
     
     def test_sax_nomina12_get_column_names_ok(self):
         transformer = ct.TSaxNomina12()
         result_columns = transformer.get_column_names()
         self.assertFalse(result_columns is None)
-        self.assertTrue(len(result_columns) == 438)
+        self.assertTrue(len(result_columns) == 439)
         self.assertFalse(result_columns[0] == 'FOLIO')
         self.assertTrue(result_columns[12] == 'FORMAPAGO')
         self.assertTrue(result_columns[36] == 'CURPRECEPTOR')
@@ -83,13 +84,13 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         result_columns = transformer.to_columns_from_file(path_xml)
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns) == 1)
-        self.assertTrue(len(result_columns[0]) == 438)
+        self.assertTrue(len(result_columns[0]) == 440)
 
     def test_sax_nomina11_get_column_names_ok(self):
         transformer = ct.TSaxNomina11()
         result_columns = transformer.get_column_names()
         self.assertFalse(result_columns is None)
-        self.assertTrue(len(result_columns) == 438)
+        self.assertTrue(len(result_columns) == 439)
         self.assertFalse(result_columns[0] == 'FOLIO')
         self.assertTrue(result_columns[12] == 'FORMAPAGO')
         self.assertTrue(result_columns[36] == 'CURPRECEPTOR')
