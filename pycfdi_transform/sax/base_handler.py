@@ -45,6 +45,8 @@ class BaseHandler():
         self._rfc_prov_cert = '-'
         self._sello_cfd = '-'
 
+        self._addendas = '-'
+
     def concatenate(self, text, to_add):
         if (text == '' or text == '-'):
             text = to_add
