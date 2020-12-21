@@ -75,7 +75,7 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         transformer = ct.TSaxNomina12()
         result_columns = transformer.get_column_names()
         self.assertFalse(result_columns is None)
-        self.assertTrue(len(result_columns) == 439)
+        self.assertTrue(len(result_columns) == 440)
         self.assertFalse(result_columns[0] == 'FOLIO')
         self.assertTrue(result_columns[12] == 'FORMAPAGO')
         self.assertTrue(result_columns[36] == 'CURPRECEPTOR')
