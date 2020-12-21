@@ -378,7 +378,7 @@
 
       <!-- Call each node of deductions -->
       <xsl:call-template name="DeduccionesBlock">
-          <xsl:with-param name="var" select="106"/>
+          <xsl:with-param name="var" select="107"/>
       </xsl:call-template>
 
       <!-- call each node of otros pagos -->
