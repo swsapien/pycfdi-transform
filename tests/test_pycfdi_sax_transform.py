@@ -62,12 +62,14 @@ class TestPycfdiSaxTransform(unittest.TestCase):
     def test_sax_nomina12_01_from_file_ok(self):
         path_xml = './tests/Resources/nomina12_02.xml'
         transformer = ct.TSaxNomina12()
+        columns = transformer.get_column_names()
         result_columns = transformer.to_columns_from_file(path_xml)
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns) == 1)
         self.assertTrue(result_columns[0][57] == '87703.08')
         self.assertTrue(result_columns[0][58] == '27835.199999999997')
         self.assertTrue(len(result_columns[0]) == 440)
+        self.assertTrue(len(result_columns[0]) == len(columns))
     
     def test_sax_nomina12_get_column_names_ok(self):
         transformer = ct.TSaxNomina12()
