@@ -19,6 +19,16 @@ class TSaxCfdi33(TSaxBase):
                 print(ex)
                 return
 
+    def to_columns_from_string(self, string_xml):
+        try:
+            handler = CFDI33Handler()
+            self.parse_string(handler, string_xml)
+            self.addendas = handler.get_addendas() if not handler.get_addendas() == '-' else None
+            return handler.get_result()
+        except Exception as ex:
+            print(ex)
+            return
+
     def get_addendas(self):
         return self.addendas
     

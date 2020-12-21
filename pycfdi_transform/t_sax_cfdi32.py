@@ -17,5 +17,14 @@ class TSaxCfdi32(TSaxBase):
                 print(ex)
                 return
 
+    def to_columns_from_string(self, string_xml):
+        try:
+            handler = CFDI32Handler()
+            self.parse_string(handler, string_xml)
+            return handler.get_result()
+        except Exception as ex:
+            print(ex)
+            return
+
     def get_column_names(self):
         return ['VERSION', 'SERIE', 'FOLIO', 'FECHA', 'NOCERTIFICADO', 'SUBTOTAL', 'DESCUENTO', 'TOTAL', 'MONEDA', 'TIPOCAMBIO', 'TIPODECOMPROBANTE', 'METODOPAGO', 'FORMAPAGO', 'CONDICIONESDEPAGO', 'LUGAREXPEDICION', 'EMISORRFC', 'EMISORNOMBRE', 'EMISORREGIMENFISCAL', 'RECEPTORRFC', 'RECEPTORNOMBRE', 'RESIDENCIAFISCAL', 'NUMREGIDTRIB', 'RECEPTORUSOCFDI', 'CLAVEPRODSERV', 'IVATRASLADO', 'IEPSTRASLADO', 'TOTALIMPUESTOSTRASLADOS', 'ISRRETENIDO', 'IVARETENIDO', 'IEPSRETENIDO', 'TOTALIMPUESTOSRETENIDOS', 'TOTALTRASLADOSIMPUESTOSLOCALES', 'TOTALRETENCIONESIMPUESTOSLOCALES', 'COMPLEMENTOS', 'UUID', 'FECHATIMBRADO', 'RFCPROVCERTIF', 'SELLOCFD']
