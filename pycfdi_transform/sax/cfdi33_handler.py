@@ -9,6 +9,8 @@ class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
         self._start_concept = False
         self._start_complement = False
         self._complement_profundity = 0
+        self._start_addenda = False
+        self._addenda_profundity = 0
 
     def startElement(self, tag, attrs):
         if (tag == 'cfdi:Comprobante'):
@@ -36,6 +38,10 @@ class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
             self.__transform_imploc(tag, attrs)
         elif (self._start_complement):
             self._complement_profundity += 1
+        elif (tag == 'cfdi:Addenda'):
+            self._start_addenda = True
+        elif (self._start_addenda):
+            self._addenda_profundity += 1
             
     def endElement(self, tag):
         if (tag == 'cfdi:Concepto'):
@@ -46,6 +52,13 @@ class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
             self._complement_profundity -= 1
             if(self._complement_profundity == 0):
                 self.__transform_complementos(tag)
+        elif (tag == 'cfdi:Addenda'):
+            self._start_addenda = False
+        elif (self._start_addenda):
+            self._addenda_profundity -= 1
+            if(self._addenda_profundity == 0):
+                self.__transform_addenda(tag)
+            
     
     def __transform_conceptos(self, tag, attrs):
         if ('ClaveProdServ' in attrs):
@@ -86,6 +99,12 @@ class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
             complement_name = tag[tag.rindex(':') + 1:]
         self._complementos = Base33Handler.concatenate(self, self._complementos, complement_name)
 
+    def __transform_addenda(self, tag):
+        addenda_name = tag
+        if (':' in tag):
+            addenda_name = tag[tag.rindex(':') + 1:]
+        self._addendas = Base33Handler.concatenate(self, self._addendas, addenda_name)
+
     def __transform_imploc(self, tag, attrs):
         if ('TotaldeTraslados' in attrs):
             self._total_traslados_impuestos_locales = Base33Handler.sum(self, 
@@ -94,7 +113,9 @@ class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
             self._total_retenciones_impuestos_locales = Base33Handler.sum(self, 
                 self._total_retenciones_impuestos_locales , attrs['TotaldeRetenciones'])
     
-    
+    def get_addendas(self) -> str:
+        return self._addendas
+
     def get_result(self):
         return [[
             self._version,
