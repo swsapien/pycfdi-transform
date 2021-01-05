@@ -76,22 +76,22 @@ class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
         if ('Impuesto' in attrs and 'Importe' in attrs):
             if (attrs['Impuesto'] == '002'):
                 self._iva_traslado = Base33Handler.sum(self, 
-                    self._iva_traslado, attrs['Impuesto'])
+                    self._iva_traslado, attrs['Importe'])
             elif (attrs['Impuesto'] == '003'):
                 self._ieps_traslado = Base33Handler.sum(self, 
-                    self._ieps_traslado, attrs['Impuesto'])
+                    self._ieps_traslado, attrs['Importe'])
     
     def __transform_impuestos_retenciones(self, tag, attrs):
         if ('Impuesto' in attrs and 'Importe' in attrs):
             if(attrs['Impuesto'] == '001'):
                 self._isr_retenido = Base33Handler.sum(self, 
-                    self._isr_retenido, attrs['Impuesto'])
+                    self._isr_retenido, attrs['Importe'])
             elif (attrs['Impuesto'] == '002'):
                 self._iva_retenido = Base33Handler.sum(self, 
-                    self._iva_retenido, attrs['Impuesto'])
+                    self._iva_retenido, attrs['Importe'])
             elif (attrs['Impuesto'] == '003'):
                 self._ieps_retenido = Base33Handler.sum(self,
-                    self._ieps_retenido, attrs['Impuesto'])
+                    self._ieps_retenido, attrs['Importe'])
 
     def __transform_complementos(self, tag):
         complement_name = tag
