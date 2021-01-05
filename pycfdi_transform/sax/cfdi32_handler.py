@@ -91,14 +91,6 @@ class CFDI32Handler (xml.sax.ContentHandler, Base32Handler):
         if ('TotaldeRetenciones' in attrs):
             self._total_retenciones_impuestos_locales = Base32Handler.sum(self, self._total_retenciones_impuestos_locales, attrs['TotaldeRetenciones'])
     
-    def __concatenate(self, text, add):
-        if (text == '' or text == '-'):
-            text = add
-        else:
-            text = f'{text}, {add}'
-        return text(float(value) + float(add))
-        return value
-    
     def get_result(self):
         return [[
             self._version,
