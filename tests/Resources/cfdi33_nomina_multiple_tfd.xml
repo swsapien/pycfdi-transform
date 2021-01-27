@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd"
+    xmlns:nomina12="http://www.sat.gob.mx/nomina12" Version="3.3" Fecha="2020-06-18T21:58:32" Sello="NVAe5mJ1kpDi+dhFOVI3alhMruI/AqcnpsqgryxGnRiIDIXBRnisQZUjK03L9yQcchuUQgkJg54DquryMRBT0G/AvnM07Ac+Z3EPCTbk50g8SRN4o6NBuRnqs869uDwI6kxSo6tY+e1yZgypwMM1ilJ4i/pOyFWU+IIFW9BVp6+i/zaAj+3FDnU6RiDgcwJofLBmRmyJhVYOvFehRiCfn1mTBXih+LkdmkoGEQt6ewMn8U64oPVVgfeO+lDGMVcSOzH8bZwnOgNM4P6ukWYCm5VTkW5HHDBY491IzZJrWpZuaN6aFmygpTrG4cx78ff/Y7dtm5/q2BnpUAxAE14/4g==" FormaPago="99" NoCertificado="00001000000503896547" Certificado="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" SubTotal="1924.07" Descuento="162.15" Moneda="MXN" Total="1761.92" TipoDeComprobante="N" MetodoPago="PUE" LugarExpedicion="45136"
+    xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <cfdi:Emisor Rfc="SJM840503FQ4" Nombre="Empresa ACME" RegimenFiscal="601"/>
+    <cfdi:Receptor Rfc="AAA010101AAA" Nombre="Pancho Lopez" UsoCFDI="P01"/>
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="84111505" Cantidad="1" ClaveUnidad="ACT" Descripcion="Pago de nómina" ValorUnitario="1924.07" Importe="1924.07" Descuento="162.15"/>
+    </cfdi:Conceptos>
+    <cfdi:Complemento>
+        <nomina12:Nomina Version="1.2" TipoNomina="O" FechaPago="2020-06-19" FechaInicialPago="2020-06-08" FechaFinalPago="2020-06-14" NumDiasPagados="7.000" TotalPercepciones="1924.07" TotalDeducciones="162.15" TotalOtrosPagos="0.00">
+            <nomina12:Emisor RegistroPatronal="H6814012108"/>
+            <nomina12:Receptor Curp="AAA010101HVZRNR08" NumSeguridadSocial="1234321432" FechaInicioRelLaboral="2020-02-04" Antigüedad="P18W" TipoContrato="03" Sindicalizado="No" TipoJornada="01" TipoRegimen="02" NumEmpleado="4015832" Departamento="OPERATIONS ENPHASE" Puesto="Operador de Ensamble 1" RiesgoPuesto="4" PeriodicidadPago="02" SalarioBaseCotApor="166.68" SalarioDiarioIntegrado="136.50" ClaveEntFed="JAL"/>
+            <nomina12:Percepciones TotalSueldos="1924.07" TotalGravado="1590.41" TotalExento="333.66">
+                <nomina12:Percepcion TipoPercepcion="001" Clave="P001" Concepto="Sueldo" ImporteGravado="819.00" ImporteExento="0.00"/>
+                <nomina12:Percepcion TipoPercepcion="001" Clave="P002" Concepto="Septimo Dia" ImporteGravado="136.50" ImporteExento="0.00"/>
+                <nomina12:Percepcion TipoPercepcion="005" Clave="P045" Concepto="Fondo de Ahorro Empresa" ImporteGravado="0.00" ImporteExento="38.22"/>
+                <nomina12:Percepcion TipoPercepcion="010" Clave="P027" Concepto="Bono Puntualidad" ImporteGravado="109.88" ImporteExento="0.00"/>
+                <nomina12:Percepcion TipoPercepcion="019" Clave="P003" Concepto="Tiempo Extra Doble" ImporteGravado="235.56" ImporteExento="115.44">
+                    <nomina12:HorasExtra Dias="2" TipoHoras="01" HorasExtra="9" ImportePagado="351.00"/>
+                </nomina12:Percepcion>
+                <nomina12:Percepcion TipoPercepcion="019" Clave="P004" Concepto="Tiempo Extra Triple" ImporteGravado="179.59" ImporteExento="0.00">
+                    <nomina12:HorasExtra Dias="2" TipoHoras="02" HorasExtra="3" ImportePagado="179.59"/>
+                </nomina12:Percepcion>
+                <nomina12:Percepcion TipoPercepcion="029" Clave="P090" Concepto="Vales de despensa Directos" ImporteGravado="0.00" ImporteExento="180.00"/>
+                <nomina12:Percepcion TipoPercepcion="049" Clave="P020" Concepto="Bono Asistencia" ImporteGravado="109.88" ImporteExento="0.00"/>
+            </nomina12:Percepciones>
+            <nomina12:Deducciones TotalOtrasDeducciones="104.15" TotalImpuestosRetenidos="58.00">
+                <nomina12:Deduccion TipoDeduccion="004" Clave="D041" Concepto="Fondo de Ahorro Empleado" Importe="38.22"/>
+                <nomina12:Deduccion TipoDeduccion="002" Clave="D001" Concepto="ISR" Importe="58.00"/>
+                <nomina12:Deduccion TipoDeduccion="001" Clave="D002" Concepto="Cuota IMSS" Importe="27.71"/>
+                <nomina12:Deduccion TipoDeduccion="004" Clave="I041" Concepto="Fondo de Ahorro Empresa" Importe="38.22"/>
+            </nomina12:Deducciones>
+            <nomina12:OtrosPagos>
+                <nomina12:OtroPago TipoOtroPago="002" Clave="P084" Concepto="Subsidio para el empleo entregado" Importe="0.00">
+                    <nomina12:SubsidioAlEmpleo SubsidioCausado="58.38"/>
+                </nomina12:OtroPago>
+            </nomina12:OtrosPagos>
+        </nomina12:Nomina>
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="8936cb73-2a13-4230-9e01-6e9b0edd7cde" FechaTimbrado="2020-06-19T00:11:13" RfcProvCertif="LSO1306189R5" SelloCFD="NVAe5mJ1kpDi+dhFOVI3alhMruI/AqcnpsqgryxGnRiIDIXBRnisQZUjK03L9yQcchuUQgkJg54DquryMRBT0G/AvnM07Ac+Z3EPCTbk50g8SRN4o6NBuRnqs869uDwI6kxSo6tY+e1yZgypwMM1ilJ4i/pOyFWU+IIFW9BVp6+i/zaAj+3FDnU6RiDgcwJofLBmRmyJhVYOvFehRiCfn1mTBXih+LkdmkoGEQt6ewMn8U64oPVVgfeO+lDGMVcSOzH8bZwnOgNM4P6ukWYCm5VTkW5HHDBY491IzZJrWpZuaN6aFmygpTrG4cx78ff/Y7dtm5/q2BnpUAxAE14/4g==" NoCertificadoSAT="00001000000408254801" SelloSAT="Hn6HB+g156Pa9BQ1EEYQCRNyjFsGb2ppoE9RsbRSHM7mjKl2Udctwf/huumhdzO2e9JXW7pTyewjG6nQe4DF98WYhJr4ea4RzOssWRa6vmYRjEAFqn3QCQtWxQUbXjDabylflMNVaRrTJ0TDUSTPiS3UrfrYnDMvuyZfx6yMWDBOB4E7FFxy46ylJDXoyocaXANNj/HmEv75HI7Csz/c/il/0HIh4oCyB5+plwI4xMPuq0tGGSUGQJF6A+S6rVumrKRbgQqva5Ssg/u+nnfDNgHXbcr77dflHdTtXJXORlyAsecZNTwiOE6E7plCb2v3VWwdCTU7n9N4j6PB9bB9dw=="
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="a89a5f34-7725-46fa-8d25-01d4862c5cd2" FechaTimbrado="2020-06-25T13:01:44" RfcProvCertif="LSO1306189R5" SelloCFD="NVAe5mJ1kpDi+dhFOVI3alhMruI/AqcnpsqgryxGnRiIDIXBRnisQZUjK03L9yQcchuUQgkJg54DquryMRBT0G/AvnM07Ac+Z3EPCTbk50g8SRN4o6NBuRnqs869uDwI6kxSo6tY+e1yZgypwMM1ilJ4i/pOyFWU+IIFW9BVp6+i/zaAj+3FDnU6RiDgcwJofLBmRmyJhVYOvFehRiCfn1mTBXih+LkdmkoGEQt6ewMn8U64oPVVgfeO+lDGMVcSOzH8bZwnOgNM4P6ukWYCm5VTkW5HHDBY491IzZJrWpZuaN6aFmygpTrG4cx78ff/Y7dtm5/q2BnpUAxAE14/4g==" NoCertificadoSAT="00001000000408254801" SelloSAT="ZTNDj7MtHZk0BlhUPPkHnkZN2pwXd3USoZAaxSWHmniDRpNn9FELiTnM98vWVCWD9rsB1T/O7rX6TiJZzYzzu5A+COdRq33onN3uqm73jXEIkzjetkDNkOmjzJuZwj5U0JmRLbKkJk9FYxnJC02djU8bf0hh3zSN5nNZqu4sTEToFayz+9xRwtcQU1o6XsIZgmmji/dg/4LpvOxCSncwDD7eRPTk81R4l+MaYyosd6V1kjwHlFtHGTbH4m++Hk0V/JnJb27tBMag+2X7iPVIL0FZnHerE0q/8B3Mw3Em/lLKtDC26NJPfcibtSruku+6XVYk6TZNF25L8glb/ENknw=="
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+    </cfdi:Complemento>
+</cfdi:Comprobante>
