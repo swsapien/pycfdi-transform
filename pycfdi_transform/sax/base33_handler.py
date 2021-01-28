@@ -46,7 +46,11 @@ class Base33Handler(BaseHandler):
         self._uso_cfdi_receptor = attrs['UsoCFDI']
     
     def transform_tfd(self, tag, attrs):
-        self._uuid = str(attrs['UUID']).upper()
-        self._fecha_timbrado = attrs['FechaTimbrado']
-        self._rfc_prov_cert = attrs['RfcProvCertif']
-        self._sello_cfd = attrs['SelloCFD']
+        self._tfds.append( 
+            {
+            'UUID': str(attrs['UUID']).upper(),
+            'FechaTimbrado': attrs['FechaTimbrado'],
+            'RfcProvCertif': attrs['RfcProvCertif'],
+            'SelloCFD': attrs['SelloCFD']
+            }
+        )

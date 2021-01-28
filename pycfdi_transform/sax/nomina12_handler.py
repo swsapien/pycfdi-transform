@@ -317,119 +317,122 @@ class Nomina12Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
         self._total_otros_pagos = str(self._total_otros_pagos)
         self._total_otras_deducciones = str(self._total_otras_deducciones)
         self._total_impuestos_retenidos = str(self._total_impuestos_retenidos)
-        result = [
-            self._version,
-            self._serie,
-            self._folio,
-            self._fecha,
-            self._no_certificado,
-            self._subtotal,
-            self._descuento,
-            self._total,
-            self._moneda,
-            self._tipo_cambio,
-            self._tipo_comprobante,
-            self._metodo_pago,
-            self._forma_pago,
-            self._condiciones_pago,
-            self._lugar_expedicion,
-            self._rfc_emisor,
-            self._nombre_emisor,
-            self._regimen_fiscal_emisor,
-            self._rfc_receptor,
-            self._nombre_receptor,
-            self._uso_cfdi_receptor,
-            self._uuid,
-            self._fecha_timbrado,
-            self._rfc_prov_cert,
-            self._sello_cfd,
-            self._tipo_nomina,
-            self._fecha_pago,
-            self._fecha_inicial_pago,
-            self._fecha_final_pago,
-            self._num_dias_pagados,
-            self._total_percepciones,
-            self._total_deducciones,
-            self._total_otros_pagos,
-            self._curp_emisor,
-            self._registro_patronal,
-            self._rfc_patron_origen,
-            self._curp_receptor,
-            self._num_seguridad_social,
-            self._fecha_inicio_relacion_laboral,
-            self._sindicalizado,
-            self._tipo_jornada,
-            self._tipo_regimen,
-            self._num_empleado,
-            self._departamento,
-            self._puesto,
-            self._riesgo_puesto,
-            self._banco,
-            self._cuenta_bancaria,
-            self._antiguedad,
-            self._tipo_contrato,
-            self._periodicidad_pago,
-            self._salario_base_cot_apor,
-            self._salario_diario_integrado,
-            self._clave_ent_fed,
-            self._total_sueldos,
-            self._total_separacion_indemnizacion,
-            self._total_jubilacion_pension_retiro,
-            self._total_gravado,
-            self._total_excento
-        ]
+        list_result = list()
+        for tfd in self._tfds:
+            row = [
+                self._version,
+                self._serie,
+                self._folio,
+                self._fecha,
+                self._no_certificado,
+                self._subtotal,
+                self._descuento,
+                self._total,
+                self._moneda,
+                self._tipo_cambio,
+                self._tipo_comprobante,
+                self._metodo_pago,
+                self._forma_pago,
+                self._condiciones_pago,
+                self._lugar_expedicion,
+                self._rfc_emisor,
+                self._nombre_emisor,
+                self._regimen_fiscal_emisor,
+                self._rfc_receptor,
+                self._nombre_receptor,
+                self._uso_cfdi_receptor,
+                tfd['UUID'],
+                tfd['FechaTimbrado'],
+                tfd['RfcProvCertif'],
+                tfd['SelloCFD'],
+                self._tipo_nomina,
+                self._fecha_pago,
+                self._fecha_inicial_pago,
+                self._fecha_final_pago,
+                self._num_dias_pagados,
+                self._total_percepciones,
+                self._total_deducciones,
+                self._total_otros_pagos,
+                self._curp_emisor,
+                self._registro_patronal,
+                self._rfc_patron_origen,
+                self._curp_receptor,
+                self._num_seguridad_social,
+                self._fecha_inicio_relacion_laboral,
+                self._sindicalizado,
+                self._tipo_jornada,
+                self._tipo_regimen,
+                self._num_empleado,
+                self._departamento,
+                self._puesto,
+                self._riesgo_puesto,
+                self._banco,
+                self._cuenta_bancaria,
+                self._antiguedad,
+                self._tipo_contrato,
+                self._periodicidad_pago,
+                self._salario_base_cot_apor,
+                self._salario_diario_integrado,
+                self._clave_ent_fed,
+                self._total_sueldos,
+                self._total_separacion_indemnizacion,
+                self._total_jubilacion_pension_retiro,
+                self._total_gravado,
+                self._total_excento
+            ]
 
-        for percepcion_codigo in catalogs.PERCEPCIONES:
-            if (percepcion_codigo in self._percepciones):
-                percepcion = self._percepciones[percepcion_codigo]
-                result.extend(percepcion)
-            else:
-                result.extend(['-', '-', '-'])
+            for percepcion_codigo in catalogs.PERCEPCIONES:
+                if (percepcion_codigo in self._percepciones):
+                    percepcion = self._percepciones[percepcion_codigo]
+                    row.extend(percepcion)
+                else:
+                    row.extend(['-', '-', '-'])
+                
+                if (percepcion_codigo == '019'):
+                        row.extend([self._p19_dias,
+                                    self._p19_tipo_horas,
+                                    self._p19_horas_extra,
+                                    self._p19_importe_pagado])
+                elif (percepcion_codigo == '039'):
+                        row.extend([self._p39_ingreso_no_acumulable,
+                                    self._p39_ingreso_acumulable,
+                                    self._p39_total_una_exhibicion,
+                                    self._p39_monto_diario,
+                                    self._p39_total_parcialidad])
+                elif (percepcion_codigo == '044'):
+                        row.extend([self._p39_ingreso_no_acumulable,
+                                    self._p39_ingreso_acumulable,
+                                    self._p39_total_una_exhibicion,
+                                    self._p39_monto_diario,
+                                    self._p39_total_parcialidad])
             
-            if (percepcion_codigo == '019'):
-                    result.extend([self._p19_dias,
-                                   self._p19_tipo_horas,
-                                   self._p19_horas_extra,
-                                   self._p19_importe_pagado])
-            elif (percepcion_codigo == '039'):
-                    result.extend([self._p39_ingreso_no_acumulable,
-                                   self._p39_ingreso_acumulable,
-                                   self._p39_total_una_exhibicion,
-                                   self._p39_monto_diario,
-                                   self._p39_total_parcialidad])
-            elif (percepcion_codigo == '044'):
-                    result.extend([self._p39_ingreso_no_acumulable,
-                                   self._p39_ingreso_acumulable,
-                                   self._p39_total_una_exhibicion,
-                                   self._p39_monto_diario,
-                                   self._p39_total_parcialidad])
-        
-        result.append(self._total_otras_deducciones)
-        result.append(self._total_impuestos_retenidos)
+            row.append(self._total_otras_deducciones)
+            row.append(self._total_impuestos_retenidos)
 
-        for deduccion_codigo in catalogs.DEDUCCIONES:
-            if (deduccion_codigo in self._deducciones):
-                deduccion = self._deducciones[deduccion_codigo]
-                result.extend(deduccion)
-            else:
-                result.extend(['-', '-'])
+            for deduccion_codigo in catalogs.DEDUCCIONES:
+                if (deduccion_codigo in self._deducciones):
+                    deduccion = self._deducciones[deduccion_codigo]
+                    row.extend(deduccion)
+                else:
+                    row.extend(['-', '-'])
 
-            if (deduccion_codigo == '006'):
-                result.extend([self._d006_importe_monetario,
-                               self._d006_tipo_incapacidad,
-                               self._d006_dias_incapacidad])
+                if (deduccion_codigo == '006'):
+                    row.extend([self._d006_importe_monetario,
+                                self._d006_tipo_incapacidad,
+                                self._d006_dias_incapacidad])
 
-        for otros_codigo in catalogs.OTROS_PAGOS:
-            if (otros_codigo in self._otros_pagos):
-                otro_pago = self._otros_pagos[otros_codigo]
-                result.extend(otro_pago)
-            else:
-                result.extend(['-', '-'])
-            
-            if (otros_codigo == '002'):
-                result.extend([self._o002_subsidio_causado])
-            elif (otros_codigo == '004'):
-                result.extend([self._o004_remanente_saldo_favor,
-                               self._o004_ano,
-                               self._o004_saldo_favor])
-        return [result]
+            for otros_codigo in catalogs.OTROS_PAGOS:
+                if (otros_codigo in self._otros_pagos):
+                    otro_pago = self._otros_pagos[otros_codigo]
+                    row.extend(otro_pago)
+                else:
+                    row.extend(['-', '-'])
+                
+                if (otros_codigo == '002'):
+                    row.extend([self._o002_subsidio_causado])
+                elif (otros_codigo == '004'):
+                    row.extend([self._o004_remanente_saldo_favor,
+                                self._o004_ano,
+                                self._o004_saldo_favor])
+            list_result.append(row)
+        return list_result
