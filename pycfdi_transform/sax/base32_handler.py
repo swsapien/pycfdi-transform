@@ -49,13 +49,13 @@ class Base32Handler(BaseHandler):
             self._nombre_receptor = attrs['nombre']
     
     def transform_tfd(self, tag, attrs):
-        rfc_prov_cert = attrs['RfcProvCertif'] if attrs['RfcProvCertif'] else None
+        rfc_prov_cert = attrs['RfcProvCertif'] if 'RfcProvCertif' in attrs else None
         self._tfds.append( 
             {
             'UUID': str(attrs['UUID']).upper(),
             'FechaTimbrado': attrs['FechaTimbrado'],
             'RfcProvCertif': rfc_prov_cert,
-            'SelloCFD': attrs['SelloCFD']
+            'SelloCFD': attrs['selloCFD']
             }
         )
     

@@ -44,5 +44,7 @@
                 <nomina:HorasExtra ImportePagado="2653.42" HorasExtra="3" TipoHoras="Dobles" Dias="2"/>
             </nomina:HorasExtras>
         </nomina:Nomina>
+<tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/TimbreFiscalDigital/TimbreFiscalDigital.xsd" selloCFD="MUIy85bMjr2K7CLZcj1PnUU3a56KmrqOvF7ubEnaa0beidmPqi7S0YVznA5EKs76c4sJFBGhR73WA47RVNqUFbGdWrd43Mv326SJ+4eRAiJ/2AzAdMX742cxiZ76K9FavCz9sRYkHJLvRkAOk8JewVRWGglEnJLReBr4SX/zGfg=" FechaTimbrado="2014-04-03T18:17:02" UUID="CD13D35E-2FCF-4A23-ADCA-51F2E48B8018" noCertificadoSAT="20001000000100005761" version="1.0" selloSAT="KzZwap6lXpYzVpFtgaHKkbjzxo0BYxpKRDoxAHXgt5PCvhE4S5r9YU7KRegCHYf4S/K7WeKMtO/4ReAPPCL7oyUiO5JkRisrva3C1mYBcOBBMoLoCgbjjIw1OlHWr3x+U9rQcRT3ENVs9tmFICqL37F66JYnHzpRbeBBkri86wA=" />
+
     </cfdi:Complemento>
 </cfdi:Comprobante>
