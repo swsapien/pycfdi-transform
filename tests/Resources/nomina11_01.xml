@@ -23,7 +23,7 @@
         </cfdi:Traslados>
     </cfdi:Impuestos>
     <cfdi:Complemento>
-        <nomina:Nomina SalarioDiarioIntegrado="696.80" RiesgoPuesto="1" SalarioBaseCotApor="10000.00" PeriodicidadPago="Quincenal" TipoJornada="Diurna" TipoContrato="Base" Puesto="Administración" Antiguedad="228" FechaInicioRelLaboral="2009-06-01" Banco="113" CLABE="012391272912821233" Departamento="Administración" NumDiasPagados="15" FechaFinalPago="2014-11-15" FechaInicialPago="2014-11-01" FechaPago="2013-11-15" NumSeguridadSocial="98765434" TipoRegimen="1" CURP="XEXX010101HNEXXXA4" NumEmpleado="9872" RegistroPatronal="1288192123" Version="1.1">
+        <nomina:Nomina SalarioDiarioIntegrado="696.80" RiesgoPuesto="1" SalarioBaseCotApor="10000.00" PeriodicidadPago="Quincenal" TipoJornada="Diurna" TipoContrato="Base" Puesto="ADMIN" Antiguedad="228" FechaInicioRelLaboral="2009-06-01" Banco="113" CLABE="000000000000000000" Departamento="DPTO" NumDiasPagados="15" FechaFinalPago="2014-11-15" FechaInicialPago="2014-11-01" FechaPago="2013-11-15" NumSeguridadSocial="00000000000" TipoRegimen="1" CURP="XEXX010101HNEXXXA4" NumEmpleado="9872" RegistroPatronal="A0000000000" Version="1.1">
             <nomina:Percepciones TotalExento="379.00" TotalGravado="13000.00">
                 <nomina:Percepcion ImporteExento="0.00" ImporteGravado="10000.00" Concepto="Sueldos, Salarios Rayas y Jornales" Clave="139" TipoPercepcion="001"/>
                 <nomina:Percepcion ImporteExento="0.00" ImporteGravado="1000.00" Concepto="Gratificación Anual (Aguinaldo)" Clave="164" TipoPercepcion="002"/>
