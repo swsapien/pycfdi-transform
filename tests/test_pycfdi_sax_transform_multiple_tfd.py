@@ -12,8 +12,8 @@ class TestPycfdiSaxTransformMultipleTFD(unittest.TestCase):
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns) == 2)
         self.assertTrue(len(result_columns[0]) == 38)
-        self.assertTrue(result_columns[0][34] == '8936CB73-2A13-4230-9E01-6E9B0EDD7CDE') 
-        self.assertTrue(result_columns[1][34] == 'A89A5F34-7725-46FA-8D25-01D4862C5CD2')
+        self.assertTrue(result_columns[0][34] == 'D237D7D1-CFAD-492A-89C1-BF3E6CED9E59') 
+        self.assertTrue(result_columns[1][34] == '1931BBAD-DE49-4703-8F1A-9F4B663495D5')
 
     def test_sax_cfdi32(self):
         path_xml = './tests/Resources/cfdi32_multiple_tfd.xml'
@@ -33,8 +33,8 @@ class TestPycfdiSaxTransformMultipleTFD(unittest.TestCase):
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns) == 2)
         self.assertTrue(len(result_columns[0]) == 440)
-        self.assertTrue(result_columns[0][21] == '8936CB73-2A13-4230-9E01-6E9B0EDD7CDE') 
-        self.assertTrue(result_columns[1][21] == 'A89A5F34-7725-46FA-8D25-01D4862C5CD2')
+        self.assertTrue(result_columns[0][21] == 'D237D7D1-CFAD-492A-89C1-BF3E6CED9E59') 
+        self.assertTrue(result_columns[1][21] == '1931BBAD-DE49-4703-8F1A-9F4B663495D5')
 
     def test_sax_cfdi33_detail(self):
         path_xml = './tests/Resources/cfdi33_multiple_tfd.xml'
