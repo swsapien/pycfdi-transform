@@ -48,9 +48,9 @@
       <xsl:for-each select="/cfdi:Comprobante/cfdi:Complemento/nomina12:Nomina">
         <!-- put separator on line if are the second or > complement in same line -->
         <xsl:if test="position() > 1">
-          <xsl:call-template name="Requerido">
+          <xsl:call-template name="OnlyData">
 			      <xsl:with-param name="valor">
-              <xsl:text>&#124;&#8225;&#124;</xsl:text>
+              <xsl:text>&#8225;</xsl:text>
             </xsl:with-param>
 		      </xsl:call-template>
         </xsl:if>
