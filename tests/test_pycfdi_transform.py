@@ -64,11 +64,18 @@ class TestPycfdiTransform(unittest.TestCase):
         self.assertTrue(len(result_columns[0])==67)
     
     def test_nomina12_03_from_file_ok(self):
-        path_xml = "./tests/Resources/nomina12_03.xml"
+        #two nomina12 at the same file
+        path_xml = "./tests/Resources/nomina12_01.xml"
+        expected_uuid = '65AF1CF9-26FB-40AC-BE08-C63161626D1F'
+        correct = True
         transformer = ct.TNomina12()
         result_columns = transformer.to_columns_from_file(path_xml)
-        self.assertTrue(len(result_columns) == 9)
-        self.assertTrue(len(result_columns[0])==67)
+        self.assertTrue(len(result_columns) == 12)
+        for row in result_columns:
+            correct = row[21] == expected_uuid
+            self.assertTrue(correct)
+        
+        
     
     def test_nomina12_04_from_file_ok(self):
         path_xml = "./tests/Resources/nomina12_04.xml"

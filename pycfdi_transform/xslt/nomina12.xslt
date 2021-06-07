@@ -65,7 +65,7 @@
         </xsl:choose>
         <!-- print data for TFD only first time -->
         <xsl:choose>
-          <xsl:when test="position() = 1">
+          <xsl:when test="position() > 0">
             <xsl:choose>
               <xsl:when test="/cfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital/@version = '1.0'">
                   <xsl:apply-templates select="/cfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital" mode="v10"/>
