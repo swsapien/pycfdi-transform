@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:nomina12="http://www.sat.gob.mx/nomina12" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd" Version="3.3" Folio="3211252120" Fecha="2021-05-24T09:41:16" Sello="GeLz6ZQQuCIH+gwbb9lyRq23Sk+lWv7Qq2M8WtIkr0J+8P0T/pS1Cc8Qp4pdzgAHkJEs9ssAo11kUZ9MdrE4yx2aKM8NC5176hmBNY3s3JLIeUDPG3mne4mU99GbMD5HwYP7VBgRn25rlc8Ny3D1DLmwW5k7/qYi/qVWg1JVBe7EqMRZOvDe71cMadZLz9UUCZX7yEKqFBMtiHVDeoJw2h6lDcvfaxgjhHjYNxdvSlxuVZp10OOiTmrXelGM5newRAtXEX8YRhlJT+Jy7vopajuYrde6CK5M1OfIE/NdN2HWNEmJLRbOkXSM3KjDxzRwX1nXcv9yfx30sHiwo7jBGQ==" FormaPago="99" NoCertificado="0000" Certificado="MIIGAjCCA+qgAwIBAgIUMDAwMDE..." SubTotal="2520.01" Descuento="1822.58" Moneda="MXN" Total="697.43" TipoDeComprobante="N" MetodoPago="PUE" LugarExpedicion="44900">
+    <cfdi:Emisor Rfc="RfcEmisor" Nombre="EMISOR SA DE CV" RegimenFiscal="601" />
+    <cfdi:Receptor Rfc="RFCReceptor" Nombre="Receptor Persona" UsoCFDI="P01" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="84111505" Cantidad="1" ClaveUnidad="ACT" Descripcion="Pago de nómina" ValorUnitario="2520.01" Importe="2520.01" Descuento="1822.58" />
+    </cfdi:Conceptos>
+    <cfdi:Complemento>
+        <nomina12:Nomina Version="1.2" TipoNomina="O" FechaPago="2021-05-21" FechaInicialPago="2021-05-17" FechaFinalPago="2021-05-23" NumDiasPagados="1.000" TotalPercepciones="1828.58" TotalDeducciones="1822.58" TotalOtrosPagos="0.00">
+            <nomina12:Emisor RegistroPatronal="PatronalRegistro"></nomina12:Emisor>
+            <nomina12:Receptor Curp="CurpFalsa" NumSeguridadSocial="00000000" FechaInicioRelLaboral="2019-07-15" Antigüedad="P97W" TipoContrato="01" Sindicalizado="No" TipoJornada="01" TipoRegimen="02" NumEmpleado="178239" Puesto="TECNICO DE MANTENIMIENTO" RiesgoPuesto="5" PeriodicidadPago="02" SalarioBaseCotApor="367.99" SalarioDiarioIntegrado="367.99" ClaveEntFed="JAL"></nomina12:Receptor>
+            <nomina12:Percepciones TotalSueldos="1828.58" TotalGravado="1728.58" TotalExento="100.00">
+                <nomina12:Percepcion TipoPercepcion="001" Clave="P001" Concepto="Sueldo Normal" ImporteGravado="1728.58" ImporteExento="0.00"></nomina12:Percepcion>
+                <nomina12:Percepcion TipoPercepcion="029" Clave="P032" Concepto="Canasta Basica" ImporteGravado="0.00" ImporteExento="100.00"></nomina12:Percepcion>
+            </nomina12:Percepciones>
+            <nomina12:Deducciones TotalOtrasDeducciones="1822.58">
+                <nomina12:Deduccion TipoDeduccion="017" Clave="D097" Concepto="Otros Comp Equipo Terminal" Importe="94.00"></nomina12:Deduccion>
+                <nomina12:Deduccion TipoDeduccion="006" Clave="D003" Concepto="Falta Incapacidad Enfermedad General" Importe="1728.58"></nomina12:Deduccion>
+            </nomina12:Deducciones>
+            <nomina12:OtrosPagos>
+                <nomina12:OtroPago TipoOtroPago="002" Clave="SEAP" Concepto="SUBSIDIO PARA EMPLEO APLICADO" Importe="0.00">
+                    <nomina12:SubsidioAlEmpleo SubsidioCausado="0"></nomina12:SubsidioAlEmpleo>
+                </nomina12:OtroPago>
+            </nomina12:OtrosPagos>
+            <nomina12:Incapacidades>
+                <nomina12:Incapacidad DiasIncapacidad="7" TipoIncapacidad="02" ImporteMonetario="1728.58"></nomina12:Incapacidad>
+            </nomina12:Incapacidades>
+        </nomina12:Nomina>
+        <nomina12:Nomina Version="1.2" TipoNomina="O" FechaPago="2021-05-21" FechaInicialPago="2021-05-17" FechaFinalPago="2021-05-23" NumDiasPagados="1.000" TotalPercepciones="691.43" TotalOtrosPagos="0">
+            <nomina12:Emisor RegistroPatronal="PatronalRegistro"></nomina12:Emisor>
+            <nomina12:Receptor Curp="CurpFalsa" NumSeguridadSocial="00000000" FechaInicioRelLaboral="2019-07-15" Antigüedad="P97W" TipoContrato="01" Sindicalizado="No" TipoJornada="01" TipoRegimen="02" NumEmpleado="178239" Puesto="TECNICO DE MANTENIMIENTO" RiesgoPuesto="5" PeriodicidadPago="02" SalarioBaseCotApor="367.99" SalarioDiarioIntegrado="367.99" ClaveEntFed="JAL"></nomina12:Receptor>
+            <nomina12:Percepciones TotalSueldos="691.43" TotalGravado="0.00" TotalExento="691.43">
+                <nomina12:Percepcion TipoPercepcion="014" Clave="P003" Concepto="Pago Incapacidad por Enfermedad" ImporteGravado="0.00" ImporteExento="691.43"></nomina12:Percepcion>
+            </nomina12:Percepciones>
+            <nomina12:OtrosPagos>
+                <nomina12:OtroPago TipoOtroPago="002" Clave="SEAP" Concepto="SUBSIDIO PARA EMPLEO APLICADO" Importe="0.00">
+                    <nomina12:SubsidioAlEmpleo SubsidioCausado="0.00"></nomina12:SubsidioAlEmpleo>
+                </nomina12:OtroPago>
+            </nomina12:OtrosPagos>
+            <nomina12:Incapacidades>
+                <nomina12:Incapacidad DiasIncapacidad="7" TipoIncapacidad="02" ImporteMonetario="691.43"></nomina12:Incapacidad>
+            </nomina12:Incapacidades>
+        </nomina12:Nomina>
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="00000000" FechaTimbrado="2021-05-24T10:45:09" RfcProvCertif="RFC" SelloCFD="GeLz6ZQQuCIH+gw..." NoCertificadoSAT="00000000" SelloSAT="i5d3ncF9ix8..." xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    </cfdi:Complemento>
+</cfdi:Comprobante>

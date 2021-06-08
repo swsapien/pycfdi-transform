@@ -57,11 +57,13 @@ class TestPycfdiTransform(unittest.TestCase):
         self.assertTrue(len(result_columns)==54)
     
     def test_nomina12_01_from_file_ok(self):
+        #two nomina12
         path_xml = "./tests/Resources/nomina12_01.xml"
         transformer = ct.TNomina12()
         result_columns = transformer.to_columns_from_file(path_xml)
         self.assertTrue(len(result_columns) == 4)
         self.assertTrue(len(result_columns[0])==67)
+        
     
     def test_nomina12_03_from_file_ok(self):
         path_xml = "./tests/Resources/nomina12_03.xml"
@@ -69,6 +71,8 @@ class TestPycfdiTransform(unittest.TestCase):
         result_columns = transformer.to_columns_from_file(path_xml)
         self.assertTrue(len(result_columns) == 9)
         self.assertTrue(len(result_columns[0])==67)
+        
+        
     
     def test_nomina12_04_from_file_ok(self):
         path_xml = "./tests/Resources/nomina12_04.xml"
