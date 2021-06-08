@@ -63,10 +63,7 @@
             <xsl:apply-templates select="/cfdi:Comprobante[1]" mode="v32"/>
           </xsl:otherwise>
         </xsl:choose>
-        <!-- print data for TFD only first time -->
         <xsl:choose>
-          <xsl:when test="position() > 0">
-            <xsl:choose>
               <xsl:when test="/cfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital/@version = '1.0'">
                   <xsl:apply-templates select="/cfdi:Comprobante/cfdi:Complemento/tfd:TimbreFiscalDigital" mode="v10"/>
               </xsl:when>
@@ -78,13 +75,6 @@
                       <xsl:with-param name="N" select="4"/>
                   </xsl:call-template>
               </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:call-template name="block-generator">
-              <xsl:with-param name="N" select="4"/>
-            </xsl:call-template>
-          </xsl:otherwise>
         </xsl:choose>
         <!-- call template for nomina -->
         <xsl:apply-templates select="." />
