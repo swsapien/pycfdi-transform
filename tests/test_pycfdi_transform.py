@@ -59,22 +59,18 @@ class TestPycfdiTransform(unittest.TestCase):
     def test_nomina12_01_from_file_ok(self):
         #two nomina12
         path_xml = "./tests/Resources/nomina12_01.xml"
-        expected_uuid = '65AF1CF9-26FB-40AC-BE08-C63161626D1F'
-        correct = True
         transformer = ct.TNomina12()
         result_columns = transformer.to_columns_from_file(path_xml)
-        self.assertTrue(len(result_columns) == 12)
-        for row in result_columns:
-            correct = row[21] == expected_uuid
-            self.assertTrue(correct)
+        self.assertTrue(len(result_columns) == 4)
+        self.assertTrue(len(result_columns[0])==67)
         
     
     def test_nomina12_03_from_file_ok(self):
-        #two nomina12 at the same file
         path_xml = "./tests/Resources/nomina12_03.xml"
         transformer = ct.TNomina12()
         result_columns = transformer.to_columns_from_file(path_xml)
         self.assertTrue(len(result_columns) == 9)
+        self.assertTrue(len(result_columns[0])==67)
         
         
     
@@ -165,7 +161,7 @@ class TestPycfdiTransform(unittest.TestCase):
         path_xml = "./tests/Resources/nomina12_01.xml"
         transformer = ct.TNomina12()
         result_columns = transformer.to_columns_from_file(path_xml)
-        self.assertTrue(len(result_columns) == 12)
+        self.assertTrue(len(result_columns) == 28)
     
     def test_nomina12_01_from_bytes_ok(self):
         path_xml = "./tests/Resources/nomina12_01.xml"
@@ -176,7 +172,7 @@ class TestPycfdiTransform(unittest.TestCase):
         transformer = ct.TNomina12()
         result_columns = transformer.to_columns_from_bytes(xml_bytes)
         self.assertFalse(result_columns is None)
-        self.assertTrue(len(result_columns) == 12)
+        self.assertTrue(len(result_columns) == 28)
 
     def test_nomina12_get_column_names_ok(self):
         transformer = ct.TNomina12()
