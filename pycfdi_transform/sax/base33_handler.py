@@ -32,7 +32,7 @@ class Base33Handler(BaseHandler):
     def transform_emisor(self, tag, attrs):
         self._rfc_emisor = attrs['Rfc']
         if ('Nombre' in attrs):
-            self._nombre_emisor = attrs['Nombre']
+            self._nombre_emisor = attrs['Nombre'].replace('"','')
         self._regimen_fiscal_emisor = attrs['RegimenFiscal']
 
     def transform_receptor(self, tag, attrs):
