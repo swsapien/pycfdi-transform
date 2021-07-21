@@ -49,6 +49,12 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns) == 1)
         self.assertTrue(len(result_columns[0]) == 54)
+    def test_sax_pago10_01_non_dr_from_file_ok(self):
+        path_xml = './tests/Resources/pago10NonDr.xml'
+        transformer = ct.TSaxPagos10()
+        result_columns = transformer.to_columns_from_file(path_xml)
+        self.assertFalse(result_columns is None)
+        self.assertTrue(len(result_columns) == 1)
     
     def test_sax_pago10_get_column_names_ok(self):
         transformer = ct.TSaxPagos10()
