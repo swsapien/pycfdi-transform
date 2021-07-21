@@ -161,12 +161,12 @@ class Pagos10Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
                             'p_dr_serie': "",
                             'p_dr_folio': "",
                             'p_dr_monedadr': "",
-                            'p_dr_tipo_cambiodr': "",
+                            'p_dr_tipo_cambiodr': 0,
                             'p_dr_metodo_pagodr': "",
-                            'p_dr_num_parcialidaddr': "",
-                            'p_dr_imp_saldo_ant': "",
-                            'p_dr_imp_pagado': "",
-                            'p_dr_imp_saldo_insoluto': ""
+                            'p_dr_num_parcialidaddr': 0,
+                            'p_dr_imp_saldo_ant': 0,
+                            'p_dr_imp_pagado': 0,
+                            'p_dr_imp_saldo_insoluto': 0
                             }
                     self._doctos_relacionados.append(docto_empty)
             for docto in self._doctos_relacionados:
