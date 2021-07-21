@@ -152,6 +152,23 @@ class Pagos10Handler (xml.sax.ContentHandler, Base32Handler, Base33Handler):
     def get_result(self):
         list_result = list()
         for tfd in self._tfds:
+            if len(self._doctos_relacionados) < 1:
+                for p in range(len(self._pagos)):
+                    docto_empty = {
+                            'pago': p + 1,
+                            'p_identificador_pago': "",
+                            'p_dr_id_documento': "00000000-0000-0000-0000-000000000000",
+                            'p_dr_serie': "",
+                            'p_dr_folio': "",
+                            'p_dr_monedadr': "",
+                            'p_dr_tipo_cambiodr': 0,
+                            'p_dr_metodo_pagodr': "",
+                            'p_dr_num_parcialidaddr': 0,
+                            'p_dr_imp_saldo_ant': 0,
+                            'p_dr_imp_pagado': 0,
+                            'p_dr_imp_saldo_insoluto': 0
+                            }
+                    self._doctos_relacionados.append(docto_empty)
             for docto in self._doctos_relacionados:
                 pago = self._pagos[docto['pago'] - 1]
                 list_result.append([
