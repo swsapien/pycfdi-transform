@@ -23,6 +23,30 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertTrue(len(result_columns) == 38)
         self.assertTrue(result_columns[4] == 'NOCERTIFICADO')
         self.assertFalse(result_columns[17] == 'SERIE')
+    def test_sax_cfdi33_01_description_from_file_ok(self):
+        path_xml = './tests/Resources/cfdi33_01.xml'
+        transformer = ct.TSaxCfdi33Description()
+        result_columns = transformer.to_columns_from_file(path_xml)
+        self.assertFalse(result_columns is None)
+        self.assertTrue(len(result_columns)==1)
+        self.assertTrue(len(result_columns[0])==39)
+        self.assertTrue(result_columns[0][24] == 'Detalle factura')
+    def test_sax_cfdi33_01_description_from_file_ok_2(self):
+        path_xml = './tests/Resources/cfd33_description_01.xml'
+        transformer = ct.TSaxCfdi33Description()
+        result_columns = transformer.to_columns_from_file(path_xml)
+        self.assertFalse(result_columns is None)
+        self.assertTrue(len(result_columns)==1)
+        self.assertTrue(len(result_columns[0])==39)
+        self.assertTrue(result_columns[0][24] == 'Cigarros Correcto')
+    
+    def test_sax_cfdi33_description_get_column_names_ok(self):
+        transformer = ct.TSaxCfdi33Description()
+        result_columns = transformer.get_column_names()
+        self.assertFalse(result_columns is None)
+        self.assertTrue(len(result_columns) == 39)
+        self.assertTrue(result_columns[4] == 'NOCERTIFICADO')
+        self.assertTrue(result_columns[24] == 'C_DESCRIPTION')
 
     def test_sax_cfdi32_01_from_file_ok(self):
         path_xml = './tests/Resources/cfdi32_01.xml'
