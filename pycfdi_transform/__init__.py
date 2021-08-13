@@ -34,6 +34,7 @@ from pycfdi_transform.t_sax_nomina11 import TSaxNomina11
 from pycfdi_transform.t_sax_nomina12 import TSaxNomina12
 from pycfdi_transform.t_sax_cfdi32_detail import TSaxCfdi32Detail
 from pycfdi_transform.t_sax_cfdi33_detail import TSaxCfdi33Detail
+from pycfdi_transform.t_sax_cfdi33_c_description import TSaxCfdi33Description
 
 del absolute_import
 del division
