@@ -46,7 +46,7 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns) == 39)
         self.assertTrue(result_columns[4] == 'NOCERTIFICADO')
-        self.assertTrue(result_columns[24] == 'C_DESCRIPTION')
+        self.assertTrue(result_columns[24] == 'C_DESCRIPCION')
 
     def test_sax_cfdi32_01_from_file_ok(self):
         path_xml = './tests/Resources/cfdi32_01.xml'
