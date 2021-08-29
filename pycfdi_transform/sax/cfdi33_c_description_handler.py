@@ -63,7 +63,7 @@ class CFDI33HandlerDescription (xml.sax.ContentHandler, Base33Handler):
     
     def __transform_conceptos(self, tag, attrs):
         if('Descripcion' in attrs and self._c_description is None):
-            self._c_description = attrs['Descripcion']
+            self._c_description = Base33Handler.remove_breaks(attrs['Descripcion'])
         if ('ClaveProdServ' in attrs):
             self._clave_prod_serv = Base33Handler.concatenate(self, self._clave_prod_serv, attrs['ClaveProdServ'])
 

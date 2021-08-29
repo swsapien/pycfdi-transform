@@ -15,7 +15,7 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertTrue(len(result_columns)==1)
         self.assertTrue(len(result_columns[0])==38)
         self.assertTrue(result_columns[0][1] == 'VF')
-    
+
     def test_sax_cfdi33_get_column_names_ok(self):
         transformer = ct.TSaxCfdi33()
         result_columns = transformer.get_column_names()
@@ -31,6 +31,14 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertTrue(len(result_columns)==1)
         self.assertTrue(len(result_columns[0])==39)
         self.assertTrue(result_columns[0][24] == 'Detalle factura')
+    def test_sax_cfdi33_01_description_ascii_lf_from_file_ok(self):
+        path_xml = './tests/Resources/cfdi33_01_ascii_lf.xml'
+        transformer = ct.TSaxCfdi33Description()
+        result_columns = transformer.to_columns_from_file(path_xml)
+        self.assertFalse(result_columns is None)
+        self.assertTrue(len(result_columns)==1)
+        self.assertTrue(len(result_columns[0])==39)
+        self.assertTrue(result_columns[0][24] == 'VENTA INTERCOMPAÑIA DE MOTOCICLETA:MARCA: HONDA TIPO: CGL 125 TOOLMODELO:  2018SERIE:  3H1JA4173JD712369NUMERO DE MOTOR: JA47E5017593USADA EN LAS CONDICIONES EN LAS QUE SE ENCUENTRE')
     def test_sax_cfdi33_01_description_from_file_ok_2(self):
         path_xml = './tests/Resources/cfd33_description_01.xml'
         transformer = ct.TSaxCfdi33Description()

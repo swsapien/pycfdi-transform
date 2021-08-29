@@ -54,7 +54,9 @@ class BaseHandler():
         else:
             text = f'{text}, {to_add}'
         return text
-
+    @staticmethod
+    def remove_breaks(value):
+        return value.strip().replace("\n","").replace("&#xA;","").replace("~","")
     def sum(self, value, to_add):
         if (value == '' or value == '-'):
             value = to_add
