@@ -38,7 +38,10 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns)==1)
         self.assertTrue(len(result_columns[0])==39)
-        self.assertTrue(result_columns[0][24] == 'VENTA INTERCOMPAÑIA DE MOTOCICLETA:MARCA: HONDA TIPO: CGL 125 TOOLMODELO:  2018SERIE:  3H1JA4173JD712369NUMERO DE MOTOR: JA47E5017593USADA EN LAS CONDICIONES EN LAS QUE SE ENCUENTRE')
+        self.assertTrue(result_columns[0][13] == 'Servicios Zacatecas Cuadrillas de apoyo.Semana del 30 de agosto al 5 de septiembre 2021.')
+        self.assertTrue(result_columns[0][16] == 'ESCUELA KEMPER URGATE SA DE CV')
+        self.assertTrue(result_columns[0][19] == 'PUBLICO EN GENERAL')
+        self.assertTrue(result_columns[0][24] == 'RENTA DE ESPACIO PUBLICITARIORENTA MENSUAL DE UNIPOLAR CARRET. FEDERAL CANCUN-PLAYA DEL CARMEN No. 307VISTA NATURALMEDIDA 12 X 7 MTS. A, B, C ZCP0885')
     def test_sax_cfdi33_01_description_from_file_ok_2(self):
         path_xml = './tests/Resources/cfd33_description_01.xml'
         transformer = ct.TSaxCfdi33Description()
