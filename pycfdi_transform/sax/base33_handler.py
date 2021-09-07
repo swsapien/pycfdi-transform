@@ -2,8 +2,8 @@ from pycfdi_transform.sax.base_handler import BaseHandler
 
 
 class Base33Handler(BaseHandler):
-    def __init__(self):
-        BaseHandler.__init__(self)
+    def __init__(self,empty_char = '-'):
+        BaseHandler.__init__(self,empty_char)
     
     def transform_comprobante(self, tag, attrs):
         self._version = attrs['Version']

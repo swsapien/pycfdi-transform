@@ -3,9 +3,9 @@ from pycfdi_transform.sax.base33_handler import Base33Handler
 
 
 class CFDI33Handler (xml.sax.ContentHandler, Base33Handler):
-    def __init__(self):
+    def __init__(self,empty_char = '-'):
         xml.sax.ContentHandler.__init__(self)
-        Base33Handler.__init__(self)
+        Base33Handler.__init__(self,empty_char)
         self._start_concept = False
         self._start_complement = False
         self._complement_profundity = 0

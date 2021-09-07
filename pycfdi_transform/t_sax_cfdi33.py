@@ -4,16 +4,17 @@ from pycfdi_transform.sax.cfdi33_handler import CFDI33Handler
 
 
 class TSaxCfdi33(TSaxBase):
-    def __init__(self):
+    def __init__(self,empty_char = '-'):
         super().__init__()
         self.addendas = None
+        self._empty_char = empty_char
 
     def to_columns_from_file(self, xml_file):
         if ('.xml' in xml_file):
             try:
-                handler = CFDI33Handler()
+                handler = CFDI33Handler(self._empty_char)
                 self.parse_file(handler, xml_file)
-                self.addendas = handler.get_addendas() if not handler.get_addendas() == '-' else None
+                self.addendas = handler.get_addendas() if not handler.get_addendas() == self._empty_char or not handler.get_addendas() == '' else None
                 return handler.get_result()
             except Exception as ex:
                 print(ex)
@@ -23,7 +24,7 @@ class TSaxCfdi33(TSaxBase):
         try:
             handler = CFDI33Handler()
             self.parse_string(handler, string_xml)
-            self.addendas = handler.get_addendas() if not handler.get_addendas() == '-' else None
+            self.addendas = handler.get_addendas() if not handler.get_addendas() == self._empty_char or not handler.get_addendas() == ''  else None
             return handler.get_result()
         except Exception as ex:
             print(ex)

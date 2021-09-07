@@ -174,6 +174,16 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertTrue(len(result_columns[0])==38)
         self.assertTrue(transformer.has_addendas())
         self.assertTrue(transformer.get_addendas() == 'NombreAdenda, xmlAtt')
+    
+    def test_sax_cfdi33_01_from_file_ok_with_empty_char(self):
+        path_xml = './tests/Resources/cfdi33_01.xml'
+        transformer = ct.TSaxCfdi33(empty_char='#')
+        result_columns = transformer.to_columns_from_file(path_xml)
+        self.assertFalse(result_columns is None)
+        self.assertTrue(len(result_columns)==1)
+        self.assertTrue(len(result_columns[0])==38)
+        self.assertTrue(result_columns[0][1] == 'VF')
+        self.assertTrue(result_columns[0][6] == '#')
 
 if __name__ == '__main__':
     unittest.main()
