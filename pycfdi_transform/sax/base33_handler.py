@@ -26,19 +26,19 @@ class Base33Handler(BaseHandler):
         if ('FormaPago' in attrs):
             self._forma_pago = attrs['FormaPago']
         if ('CondicionesDePago' in attrs):
-            self._condiciones_pago = attrs['CondicionesDePago']
+            self._condiciones_pago = BaseHandler.remove_breaks(attrs['CondicionesDePago'])
         self._lugar_expedicion = attrs['LugarExpedicion']
     
     def transform_emisor(self, tag, attrs):
         self._rfc_emisor = attrs['Rfc']
         if ('Nombre' in attrs):
-            self._nombre_emisor = attrs['Nombre']
+            self._nombre_emisor = BaseHandler.remove_breaks(attrs['Nombre'])
         self._regimen_fiscal_emisor = attrs['RegimenFiscal']
 
     def transform_receptor(self, tag, attrs):
         self._rfc_receptor = attrs['Rfc']
         if ('Nombre' in attrs):
-            self._nombre_receptor = attrs['Nombre']
+            self._nombre_receptor = BaseHandler.remove_breaks(attrs['Nombre'])
         if ('ResidenciaFiscal' in attrs):
             self._residencia_fiscal_emisor = attrs['ResidenciaFiscal']
         if ('NumRegIdTrib' in attrs):
