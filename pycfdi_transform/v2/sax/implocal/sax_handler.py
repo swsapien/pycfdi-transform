@@ -1,0 +1,31 @@
+from __future__ import annotations
+from pycfdi_transform.v2.sax.implocal.base_handler import BaseHandler
+from lxml import etree
+import logging
+
+class ImpLocalSAXHandler(BaseHandler):
+    def __init__(self, empty_char='', safe_numerics=False) -> ImpLocalSAXHandler:
+        super().__init__(empty_char, safe_numerics)
+        self._logger = logging.getLogger('ImpLocalSAXHandler')
+    
+    def transform_from_string(self, xml_str:str) -> object:
+        try:
+            xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
+            tree = etree.XML(xml_str, parser=xml_parser)
+            context = etree.iterwalk(tree, events=("start", "end"))
+            self.__handle_events(context)
+            return self._data
+        except Exception as ex:
+            self._logger.exception(f'Caugth Exception at tranforming xml string.')
+            raise ex
+
+    def __handle_events(self, context:etree.iterwalk) -> None:
+        for action, elem in context:
+            if action == 'start':
+                if elem.tag == '{http://www.sat.gob.mx/implocal}ImpuestosLocales':
+                    self.__transform_implocal(elem)
+                else:
+                    context.skip_subtree()
+    def __transform_implocal(self, element:etree._Element):
+        self._data['total_traslados_impuestos_locales'] = element.attrib['TotaldeTraslados']
+        self._data['total_retenciones_impuestos_locales'] = element.attrib['TotaldeRetenciones']
