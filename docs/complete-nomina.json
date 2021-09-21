@@ -1,0 +1,127 @@
+{
+    "version": "",
+    "tipo_nomina": "",
+    "fecha_pago": "",
+    "fecha_inicial_pago": "",
+    "fecha_final_pago": "",
+    "num_dias_pagados": "",
+    "total_percepciones": "",
+    "total_deducciones": "",
+    "total_otros_pagos": "",
+    "emisor": {
+        "curp": "",
+        "registro_patronal": "",
+        "rfc_patron_origen": "",
+        "entidad_SNCF": {
+            "origen_recurso": "",
+            "monto_recurso_propio": ""
+        }
+    },
+    "receptor": {
+        "curp": "",
+        "num_seguridad_social": "",
+        "fecha_inicio_rel_laboral": "",
+        "antigüedad": "",
+        "tipo_contrato": "",
+        "sindicalizado": "",
+        "tipo_jornada": "",
+        "tipo_regimen": "",
+        "num_empleado": "",
+        "departamento": "",
+        "puesto": "",
+        "riesgo_puesto": "",
+        "periodicidad_pago": "",
+        "banco": "",
+        "cuenta_bancaria": "",
+        "salario_base_cot_apor": "",
+        "salario_diario_integrado": "",
+        "clave_ent_fed": "",
+        "subcontratacion": [
+            {
+                "rfc_labora": "",
+                "porcentaje_tiempo": ""
+            }
+        ]
+    },
+    "percepciones": {
+        "total_sueldos": "",
+        "total_separacion_indemnizacion": "",
+        "total_jubilacion_pension_retiro": "",
+        "total_gravado": "",
+        "total_exento": "",
+        "percepcion": [
+            {
+                "tipo_percepcion": "",
+                "clave": "",
+                "concepto": "",
+                "importe_gravado": "",
+                "importe_exento": "",
+                "acciones_o_titulos": {
+                    "valor_mercado": "",
+                    "precio_al_otorgarse": ""
+                },
+                "horas_extra": [
+                    {
+                        "dias": "",
+                        "tipo_horas": "",
+                        "horas_extra": "",
+                        "importe_pagado": ""
+                    }
+                ]
+            }
+        ],
+        "jubilacion_pension_retiro": {
+            "total_una_exhibicion": "",
+            "total_parcialidad": "",
+            "monto_diario": "",
+            "ingreso_acumulable": "",
+            "ingreso_no_acumulable": ""
+        },
+        "separacion_indemnizacion": {
+            "total_pagado": "",
+            "num_años_servicio": "",
+            "ultimo_sueldo_mens_ord": "",
+            "ingreso_acumulable": "",
+            "ingreso_no_acumulable": ""
+        }
+    },
+    "deducciones": {
+        "TotalOtrasDeducciones": "",
+        "TotalImpuestosRetenidos": "",
+        "deduccion": [
+            {
+                "tipo_deduccion": "",
+                "clave": "",
+                "concepto": "",
+                "importe": ""
+            }
+        ]
+    },
+    "otros_pagos": {
+        "otro_pago": [
+            {
+                "tipo_otro_pago": "",
+                "clave": "",
+                "concepto": "",
+                "importe": "",
+                "subsidio_al_empleo": {
+                    "subsidio_causado": ""
+                },
+                "compensacion_saldos_a_favor": {
+                    "saldo_a_favor": "",
+                    "año": "",
+                    "remanente_sal_fav": ""
+                }
+            }
+        ]
+    },
+    "incapacidades": {
+        "incapcidad": [
+            {
+                "dias_incapacidad": "",
+                "tipo_incapacidad": "",
+                "importe_monetario": ""
+            }
+        ]
+    }
+}

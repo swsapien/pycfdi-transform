@@ -27,5 +27,5 @@ class ImpLocalSAXHandler(BaseHandler):
                 else:
                     context.skip_subtree()
     def __transform_implocal(self, element:etree._Element):
-        self._data['total_traslados_impuestos_locales'] = element.attrib['TotaldeTraslados']
-        self._data['total_retenciones_impuestos_locales'] = element.attrib['TotaldeRetenciones']
+        self._data['total_traslados_impuestos_locales'] = element.attrib.get('TotaldeTraslados')
+        self._data['total_retenciones_impuestos_locales'] = element.attrib.get('TotaldeRetenciones')

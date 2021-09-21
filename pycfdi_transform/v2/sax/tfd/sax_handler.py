@@ -4,8 +4,8 @@ from lxml import etree
 from pycfdi_transform.v2.sax.tfd.base_handler import BaseHandler
 
 class TFDSAXHandler(BaseHandler):
-    def __init__(self) -> TFDSAXHandler:
-        super().__init__()
+    def __init__(self, empty_char = '', safe_numerics = False) -> TFDSAXHandler:
+        super().__init__(empty_char, safe_numerics)
         self._logger = logging.getLogger('TFDSAXHandler')
     
     def transform_from_string(self, xml_str:str) -> object:
@@ -28,7 +28,7 @@ class TFDSAXHandler(BaseHandler):
                     context.skip_subtree()
     
     def __transform_tfd(self, element:etree._Element) -> None:
-        self._data['uuid'] = str(element.attrib['UUID']).upper()
-        self._data['fecha_timbrado'] = element.attrib['FechaTimbrado']
-        self._data['rfc_prov_cert'] = element.attrib['RfcProvCertif']
-        self._data['sello_cfd'] = element.attrib['SelloCFD']
+        self._data['uuid'] = str(element.attrib.get('UUID')).upper()
+        self._data['fecha_timbrado'] = element.attrib.get('FechaTimbrado')
+        self._data['rfc_prov_cert'] = element.attrib.get('RfcProvCertif')
+        self._data['sello_cfd'] = element.attrib.get('SelloCFD')

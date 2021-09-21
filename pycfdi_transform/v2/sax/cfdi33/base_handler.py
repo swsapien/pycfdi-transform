@@ -7,6 +7,11 @@ from pycfdi_transform.v2.sax.nomina12.sax_handler import Nomina12SAXHandler
 class BaseHandler(object):
     def __init__(self, empty_char = '', safe_numerics = False) -> BaseHandler:
         super().__init__()
+        self._config = {
+            'concepts': False,
+            'empty_char': empty_char,
+            'safe_numerics': safe_numerics
+        }
         self._complements = {
             '{http://www.sat.gob.mx/TimbreFiscalDigital}TimbreFiscalDigital': {
                 'class': TFDSAXHandler,
@@ -16,11 +21,6 @@ class BaseHandler(object):
                 'class': ImpLocalSAXHandler,
                 'key': 'implocal'
             }
-        }
-        self._config = {
-            'concepts': False,
-            'empty_char': empty_char,
-            'safe_numerics': safe_numerics
         }
         self._data = {
             'cfdi33': {
@@ -69,7 +69,7 @@ class BaseHandler(object):
     
     def use_nomina12(self) -> BaseHandler:
         if not '{http://www.sat.gob.mx/nomina12}Nomina12' in self._complements:
-            self._complements['{http://www.sat.gob.mx/nomina12}Nomina12'] = {
+            self._complements['{http://www.sat.gob.mx/nomina12}Nomina'] = {
                 'class': Nomina12SAXHandler,
                 'key': 'nomina12'
             }

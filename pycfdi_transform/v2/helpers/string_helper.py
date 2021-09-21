@@ -8,6 +8,8 @@ class StringHelper:
             return file.read()
     @staticmethod
     def compact_string(string) -> str:
+        if not string:
+            return string
         new_str = string.translate(str.maketrans('', '', '\n\t\r'))
         while '  ' in new_str:
             new_str = new_str.replace('  ', ' ')
