@@ -120,7 +120,7 @@ class SAXHandler(BaseHandler):
             elif child.tag == '{http://www.sat.gob.mx/cfd/3}Retenciones':
                 self.__transform_taxes_retenciones(child.getchildren())
 
-    def __transform_taxes_traslados(self, list_elements:list) -> None:
+    def __transform_taxes_traslados(self, list_elements:list[etree._Element]) -> None:
         self._data['cfdi33']['impuestos']['traslados'] = []
         for traslado in list_elements:
             self._data['cfdi33']['impuestos']['traslados'].append(
@@ -132,7 +132,7 @@ class SAXHandler(BaseHandler):
                 }
             )
 
-    def __transform_taxes_retenciones(self, list_elements:list) -> None:
+    def __transform_taxes_retenciones(self, list_elements:list[etree._Element]) -> None:
         self._data['cfdi33']['impuestos']['retenciones'] = []
         for retencion in list_elements:
             self._data['cfdi33']['impuestos']['retenciones'].append(
@@ -153,6 +153,7 @@ class SAXHandler(BaseHandler):
                 if not self._complements[complement.tag]['key'] in self._data:
                     self._data[self._complements[complement.tag]['key']] = []
                 self._data[self._complements[complement.tag]['key']].append(complement_data)
+                del transformer, complement_data
             # Annotate in complement list
             try:
                 qname = etree.QName(complement.tag)

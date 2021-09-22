@@ -8,8 +8,6 @@ class BaseHandler(object):
             'safe_numerics': safe_numerics
         }
         self._data = {
-            'uuid': empty_char,
-            'fecha_timbrado': empty_char,
-            'rfc_prov_cert': empty_char,
-            'sello_cfd': empty_char
+            'pago': [],
+            'version': empty_char
         }
