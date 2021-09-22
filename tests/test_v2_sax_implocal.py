@@ -37,13 +37,17 @@ class TestHanderCfdi33ImpLocalTests(unittest.TestCase):
                 },
                 'conceptos': [],
                 'impuestos': {
-                    'iva_traslado': '206.400000',
-                    'ieps_traslado': '',
-                    'isr_retenido': '',
-                    'iva_retenido': '',
-                    'ieps_retenido': '',
-                    'total_impuestos_traslados': '206.40',
-                    'total_impuestos_retenidos': '',
+                    'retenciones': [], 
+                    'traslados': [
+                        {
+                            'impuesto': '002', 
+                            'tipo_factor': 'Tasa', 
+                            'tasa_o_cuota': '0.160000', 
+                            'importe': '206.400000'
+                        }
+                    ], 
+                    'total_impuestos_traslados': '206.40', 
+                    'total_impuestos_retenidos': ''
                 },
                 'complementos': 'ImpuestosLocales',
                 'addendas': '',

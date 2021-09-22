@@ -45,11 +45,15 @@ class TestHanderCfdi33Tests(unittest.TestCase):
                 },
                 'conceptos': [],
                 'impuestos': {
-                    'iva_traslado': '1.60',
-                    'ieps_traslado': '',
-                    'isr_retenido': '',
-                    'iva_retenido': '',
-                    'ieps_retenido': '',
+                    'retenciones': [],
+                    'traslados': [
+                        {
+                            'impuesto': '002', 
+                            'tipo_factor': 'Tasa', 
+                            'tasa_o_cuota': '0.160000', 
+                            'importe': '1.60'
+                        }
+                    ],
                     'total_impuestos_traslados': '1.60',
                     'total_impuestos_retenidos': '',
                 },
@@ -103,11 +107,15 @@ class TestHanderCfdi33Tests(unittest.TestCase):
                 },
                 'conceptos': [],
                 'impuestos': {
-                    'iva_traslado': '1.60',
-                    'ieps_traslado': '0.00',
-                    'isr_retenido': '0.00',
-                    'iva_retenido': '0.00',
-                    'ieps_retenido': '0.00',
+                    'retenciones': [],
+                    'traslados': [
+                        {
+                            'impuesto': '002', 
+                            'tipo_factor': 'Tasa', 
+                            'tasa_o_cuota': '0.160000', 
+                            'importe': '1.60'
+                        }
+                    ],
                     'total_impuestos_traslados': '1.60',
                     'total_impuestos_retenidos': '0.00',
                 },
@@ -174,11 +182,15 @@ class TestHanderCfdi33Tests(unittest.TestCase):
                     }
                 ],
                 'impuestos': {
-                    'iva_traslado': '1.60',
-                    'ieps_traslado': '',
-                    'isr_retenido': '',
-                    'iva_retenido': '',
-                    'ieps_retenido': '',
+                    'retenciones': [],
+                    'traslados': [
+                        {
+                            'impuesto': '002', 
+                            'tipo_factor': 'Tasa', 
+                            'tasa_o_cuota': '0.160000', 
+                            'importe': '1.60'
+                        }
+                    ],
                     'total_impuestos_traslados': '1.60',
                     'total_impuestos_retenidos': '',
                 },

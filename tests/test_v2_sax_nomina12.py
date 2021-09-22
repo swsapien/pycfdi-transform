@@ -37,11 +37,28 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                 },
                 'conceptos': [],
                 'impuestos': {
-                    'iva_traslado': '',
-                    'ieps_traslado': '',
-                    'isr_retenido': '1900460.234906',
-                    'iva_retenido': '8425580.234906',
-                    'ieps_retenido': '6550940.234906',
+                    'retenciones': [
+                        {
+                            'impuesto': '001', 
+                            'importe': '1900460.234906'
+                        }, 
+                        {
+                            'impuesto': '002', 
+                            'importe': '8425580.234906'
+                        }, 
+                        {
+                            'impuesto': '003', 
+                            'importe': '6550940.234906'
+                        }
+                    ],
+                    'traslados': [
+                        {
+                            'impuesto': '001', 
+                            'tipo_factor': 'Cuota', 
+                            'tasa_o_cuota': '5992320.234906', 
+                            'importe': '3311220.234906'
+                        }
+                    ], 
                     'total_impuestos_traslados': '5553360.234906',
                     'total_impuestos_retenidos': '8065990.234906'
                 },
@@ -347,11 +364,28 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                 },
                 'conceptos': [],
                 'impuestos': {
-                    'iva_traslado': '0.00',
-                    'ieps_traslado': '0.00',
-                    'isr_retenido': '1900460.234906',
-                    'iva_retenido': '8425580.234906',
-                    'ieps_retenido': '6550940.234906',
+                    'retenciones': [
+                        {
+                            'impuesto': '001', 
+                            'importe': '1900460.234906'
+                        }, 
+                        {
+                            'impuesto': '002', 
+                            'importe': '8425580.234906'
+                        }, 
+                        {
+                            'impuesto': '003', 
+                            'importe': '6550940.234906'
+                        }
+                    ],
+                    'traslados': [
+                        {
+                            'impuesto': '001', 
+                            'tipo_factor': 'Cuota', 
+                            'tasa_o_cuota': '5992320.234906', 
+                            'importe': '3311220.234906'
+                        }
+                    ], 
                     'total_impuestos_traslados': '5553360.234906',
                     'total_impuestos_retenidos': '8065990.234906'
                 },
@@ -657,11 +691,28 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                 },
                 'conceptos': [],
                 'impuestos': {
-                    'iva_traslado': '0.00',
-                    'ieps_traslado': '0.00',
-                    'isr_retenido': '1900460.234906',
-                    'iva_retenido': '8425580.234906',
-                    'ieps_retenido': '6550940.234906',
+                    'retenciones': [
+                        {
+                            'impuesto': '001', 
+                            'importe': '1900460.234906'
+                        }, 
+                        {
+                            'impuesto': '002', 
+                            'importe': '8425580.234906'
+                        }, 
+                        {
+                            'impuesto': '003', 
+                            'importe': '6550940.234906'
+                        }
+                    ],
+                    'traslados': [
+                        {
+                            'impuesto': '001', 
+                            'tipo_factor': 'Cuota', 
+                            'tasa_o_cuota': '5992320.234906', 
+                            'importe': '3311220.234906'
+                        }
+                    ], 
                     'total_impuestos_traslados': '5553360.234906',
                     'total_impuestos_retenidos': '8065990.234906'
                 },

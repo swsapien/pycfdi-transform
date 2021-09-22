@@ -53,13 +53,8 @@ class BaseHandler(object):
                 },
                 'conceptos': [],
                 'impuestos': {
-                    'iva_traslado': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                    'ieps_traslado': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                    'isr_retenido': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                    'iva_retenido': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                    'ieps_retenido': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                    'total_impuestos_traslados': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                    'total_impuestos_retenidos': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                    'retenciones': [],
+                    'traslados': []
                 },
                 'complementos': empty_char,
                 'addendas': empty_char

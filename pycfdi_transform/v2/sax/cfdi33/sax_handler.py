@@ -121,25 +121,26 @@ class SAXHandler(BaseHandler):
                 self.__transform_taxes_retenciones(child.getchildren())
 
     def __transform_taxes_traslados(self, list_elements:list) -> None:
+        self._data['cfdi33']['impuestos']['traslados'] = []
         for traslado in list_elements:
-            if traslado.attrib['Impuesto'] == '002':
-                #IVA
-                self._data['cfdi33']['impuestos']['iva_traslado'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['iva_traslado'], traslado.attrib.get('Importe'))
-            elif traslado.attrib['Impuesto'] == '003':
-                #IEPS
-                self._data['cfdi33']['impuestos']['ieps_traslado'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['ieps_traslado'], traslado.attrib.get('Importe'))
+            self._data['cfdi33']['impuestos']['traslados'].append(
+                {
+                    'impuesto': traslado.attrib.get('Impuesto'),
+                    'tipo_factor': traslado.attrib.get('TipoFactor'),
+                    'tasa_o_cuota': traslado.attrib.get('TasaOCuota'),
+                    'importe': traslado.attrib.get('Importe')
+                }
+            )
 
     def __transform_taxes_retenciones(self, list_elements:list) -> None:
+        self._data['cfdi33']['impuestos']['retenciones'] = []
         for retencion in list_elements:
-            if retencion.attrib['Impuesto'] == '001':
-                #ISR
-                self._data['cfdi33']['impuestos']['isr_retenido'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['isr_retenido'], retencion.attrib.get('Importe'))
-            elif retencion.attrib['Impuesto'] == '002':
-                #IVA
-                self._data['cfdi33']['impuestos']['iva_retenido'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['iva_retenido'], retencion.attrib.get('Importe'))
-            elif retencion.attrib['Impuesto'] == '003':
-                #IEPS
-                self._data['cfdi33']['impuestos']['ieps_retenido'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['ieps_retenido'], retencion.attrib.get('Importe'))
+            self._data['cfdi33']['impuestos']['retenciones'].append(
+                {
+                    'impuesto': retencion.attrib.get('Impuesto'),
+                    'importe': retencion.attrib.get('Importe')
+                }
+            )
     
     def __transform_complement(self, element:etree._Element) -> None:
         complements = []
