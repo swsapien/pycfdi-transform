@@ -1,4 +1,4 @@
-
+from decimal import Decimal
 class StringHelper:
     DEFAULT_SAFE_NUMBER_CERO = '0.00'
     DEFAULT_SAFE_NUMBER_ONE = '1.00'
@@ -20,4 +20,4 @@ class StringHelper:
             return second_val
         elif second_val == '':
             return first_val
-        return f'{(float(first_val) + float(second_val)):.2f}'
+        return str(Decimal(first_val) + Decimal(second_val))
