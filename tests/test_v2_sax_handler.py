@@ -14,101 +14,186 @@ class TestHanderCfdi33Tests(unittest.TestCase):
         sax_handler = ct.SAXHandler()
         cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33_01.xml")
         self.assertIsNotNone(cfdi_data)
-        self.assertTrue(cfdi_data['cfdi33']['version'] == '3.3')
-        self.assertTrue(cfdi_data['cfdi33']['serie'] == 'VF')
-        self.assertTrue(cfdi_data['cfdi33']['folio'] == '001002004')
-        self.assertTrue(cfdi_data['cfdi33']['fecha'] == '2020-04-30T22:36:13')
-        self.assertTrue(cfdi_data['cfdi33']['no_certificado'] == '30001000000400002434')
-        self.assertTrue(cfdi_data['cfdi33']['subtotal'] == '10.00')
-        self.assertTrue(cfdi_data['cfdi33']['descuento'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['total'] == '11.60')
-        self.assertTrue(cfdi_data['cfdi33']['moneda'] == 'MXN')
-        self.assertTrue(cfdi_data['cfdi33']['tipo_cambio'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['tipo_comprobante'] == 'I')
-        self.assertTrue(cfdi_data['cfdi33']['metodo_pago'] == 'PPD')
-        self.assertTrue(cfdi_data['cfdi33']['forma_pago'] == '01')
-        self.assertTrue(cfdi_data['cfdi33']['condiciones_pago'] == 'NET15')
-        self.assertTrue(cfdi_data['cfdi33']['lugar_expedicion'] == '84094')
-        self.assertTrue(cfdi_data['cfdi33']['rfc_emisor'] == 'EKU9003173C9')
-        self.assertTrue(cfdi_data['cfdi33']['nombre_emisor'] == 'ESCUELA KEMPER URGATE SA DE CV')
-        self.assertTrue(cfdi_data['cfdi33']['regimen_fiscal_emisor'] == '601')
-        self.assertTrue(cfdi_data['cfdi33']['rfc_receptor'] == 'XAXX010101000')
-        self.assertTrue(cfdi_data['cfdi33']['nombre_receptor'] == 'PUBLICO EN GENERAL')
-        self.assertTrue(cfdi_data['cfdi33']['residencia_fiscal_receptor'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['num_reg_id_trib_receptor'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['uso_cfdi_receptor'] == 'G03')
-        self.assertTrue(len(cfdi_data['cfdi33']['conceptos']) == 0)
-        self.assertTrue(cfdi_data['cfdi33']['iva_traslado'] == '1.60')
-        self.assertTrue(cfdi_data['cfdi33']['ieps_traslado'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['isr_retenido'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['iva_retenido'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['ieps_retenido'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['total_impuestos_traslados'] == '1.60')
-        self.assertTrue(cfdi_data['cfdi33']['total_impuestos_retenidos'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['complementos'] == 'TimbreFiscalDigital')
-        self.assertTrue(cfdi_data['cfdi33']['addendas'] == '')
-        self.assertTrue(len(cfdi_data['tfd']) == 1)
-        self.assertTrue(cfdi_data['tfd'][0]['uuid'] == '9D81C696-0401-4F85-B703-6E0D3AFD6056')
-        self.assertTrue(cfdi_data['tfd'][0]['fecha_timbrado'] == '2020-05-02T00:36:50')
-        self.assertTrue(cfdi_data['tfd'][0]['rfc_prov_cert'] == 'AAA010101AAA')
-        self.assertTrue(cfdi_data['tfd'][0]['sello_cfd'] == 'SKndhzlakx2g1ykM73KJ8O0F02/ibJxmNqpEG6/878pu/8BUX/cgxWyh9O2EHhtITNlBZHD73Qgq9E7fuNOO/1xKuM9tgtzKrXqUmQ5bxhz2OfvynQ6Tmq6nzO+2FF6lyPmi2yxoeoGNtKjDIjnXNPAVYTS7n9V94dsciZaSmSGtT5LTIGTmA5QJQ5t3NzxL5+mkKqxc57W9PO9GRWybzsWnQwvG0XBoMU0n00qXMiVjGfCdzGcdku80qRtNTbL5OWPSgiR5Sc45X5V7Y8lUpaHk7a3zgQ/+haITyAlqux7bJtVGK4Zo78leiex3YbpcLH/gJ12jCqvPmFVJNAPZhw==')
+        expected_dict = {
+            'cfdi33': {
+                'version': '3.3',
+                'serie': 'VF',
+                'folio': '001002004',
+                'fecha': '2020-04-30T22:36:13',
+                'no_certificado': '30001000000400002434',
+                'subtotal': '10.00',
+                'descuento': '',
+                'total': '11.60',
+                'moneda': 'MXN',
+                'tipo_cambio': '',
+                'tipo_comprobante': 'I',
+                'metodo_pago': 'PPD',
+                'forma_pago': '01',
+                'condiciones_pago': 'NET15',
+                'lugar_expedicion': '84094',
+                'emisor': {
+                    'rfc': 'EKU9003173C9',
+                    'nombre': 'ESCUELA KEMPER URGATE SA DE CV',
+                    'regimen_fiscal': '601',
+                },
+                'receptor': {
+                    'rfc': 'XAXX010101000',
+                    'nombre': 'PUBLICO EN GENERAL',
+                    'residencia_fiscal': '',
+                    'num_reg_id_trib': '',
+                    'uso_cfdi': 'G03',
+                },
+                'conceptos': [],
+                'impuestos': {
+                    'iva_traslado': '1.60',
+                    'ieps_traslado': '',
+                    'isr_retenido': '',
+                    'iva_retenido': '',
+                    'ieps_retenido': '',
+                    'total_impuestos_traslados': '1.60',
+                    'total_impuestos_retenidos': '',
+                },
+                'complementos': 'TimbreFiscalDigital',
+                'addendas': '',
+            },
+            'tfd': [
+                {
+                    'uuid': '9D81C696-0401-4F85-B703-6E0D3AFD6056',
+                    'fecha_timbrado': '2020-05-02T00:36:50',
+                    'rfc_prov_cert': 'AAA010101AAA',
+                    'sello_cfd': 'SKndhzlakx2g1ykM73KJ8O0F02/ibJxmNqpEG6/878pu/8BUX/cgxWyh9O2EHhtITNlBZHD73Qgq9E7fuNOO/1xKuM9tgtzKrXqUmQ5bxhz2OfvynQ6Tmq6nzO+2FF6lyPmi2yxoeoGNtKjDIjnXNPAVYTS7n9V94dsciZaSmSGtT5LTIGTmA5QJQ5t3NzxL5+mkKqxc57W9PO9GRWybzsWnQwvG0XBoMU0n00qXMiVjGfCdzGcdku80qRtNTbL5OWPSgiR5Sc45X5V7Y8lUpaHk7a3zgQ/+haITyAlqux7bJtVGK4Zo78leiex3YbpcLH/gJ12jCqvPmFVJNAPZhw=='
+                }
+            ],
+            'implocal': []
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
     
     def test_transform_file_safe_numerics(self):
         sax_handler = ct.SAXHandler(safe_numerics=True)
         cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33_01.xml")
         self.assertIsNotNone(cfdi_data)
-        self.assertTrue(cfdi_data['cfdi33']['version'] == '3.3')
-        self.assertTrue(cfdi_data['cfdi33']['serie'] == 'VF')
-        self.assertTrue(cfdi_data['cfdi33']['folio'] == '001002004')
-        self.assertTrue(cfdi_data['cfdi33']['fecha'] == '2020-04-30T22:36:13')
-        self.assertTrue(cfdi_data['cfdi33']['no_certificado'] == '30001000000400002434')
-        self.assertTrue(cfdi_data['cfdi33']['subtotal'] == '10.00')
-        self.assertTrue(cfdi_data['cfdi33']['descuento'] == '0.00')
-        self.assertTrue(cfdi_data['cfdi33']['total'] == '11.60')
-        self.assertTrue(cfdi_data['cfdi33']['moneda'] == 'MXN')
-        self.assertTrue(cfdi_data['cfdi33']['tipo_cambio'] == '1.00')
-        self.assertTrue(cfdi_data['cfdi33']['tipo_comprobante'] == 'I')
-        self.assertTrue(cfdi_data['cfdi33']['metodo_pago'] == 'PPD')
-        self.assertTrue(cfdi_data['cfdi33']['forma_pago'] == '01')
-        self.assertTrue(cfdi_data['cfdi33']['condiciones_pago'] == 'NET15')
-        self.assertTrue(cfdi_data['cfdi33']['lugar_expedicion'] == '84094')
-        self.assertTrue(cfdi_data['cfdi33']['rfc_emisor'] == 'EKU9003173C9')
-        self.assertTrue(cfdi_data['cfdi33']['nombre_emisor'] == 'ESCUELA KEMPER URGATE SA DE CV')
-        self.assertTrue(cfdi_data['cfdi33']['regimen_fiscal_emisor'] == '601')
-        self.assertTrue(cfdi_data['cfdi33']['rfc_receptor'] == 'XAXX010101000')
-        self.assertTrue(cfdi_data['cfdi33']['nombre_receptor'] == 'PUBLICO EN GENERAL')
-        self.assertTrue(cfdi_data['cfdi33']['residencia_fiscal_receptor'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['num_reg_id_trib_receptor'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['uso_cfdi_receptor'] == 'G03')
-        self.assertTrue(len(cfdi_data['cfdi33']['conceptos']) == 0)
-        self.assertTrue(cfdi_data['cfdi33']['iva_traslado'] == '1.60')
-        self.assertTrue(cfdi_data['cfdi33']['ieps_traslado'] == '0.00')
-        self.assertTrue(cfdi_data['cfdi33']['isr_retenido'] == '0.00')
-        self.assertTrue(cfdi_data['cfdi33']['iva_retenido'] == '0.00')
-        self.assertTrue(cfdi_data['cfdi33']['ieps_retenido'] == '0.00')
-        self.assertTrue(cfdi_data['cfdi33']['total_impuestos_traslados'] == '1.60')
-        self.assertTrue(cfdi_data['cfdi33']['total_impuestos_retenidos'] == '0.00')
-        self.assertTrue(cfdi_data['cfdi33']['complementos'] == 'TimbreFiscalDigital')
-        self.assertTrue(cfdi_data['cfdi33']['addendas'] == '')
-        self.assertTrue(len(cfdi_data['tfd']) == 1)
-        self.assertTrue(cfdi_data['tfd'][0]['uuid'] == '9D81C696-0401-4F85-B703-6E0D3AFD6056')
-        self.assertTrue(cfdi_data['tfd'][0]['fecha_timbrado'] == '2020-05-02T00:36:50')
-        self.assertTrue(cfdi_data['tfd'][0]['rfc_prov_cert'] == 'AAA010101AAA')
-        self.assertTrue(cfdi_data['tfd'][0]['sello_cfd'] == 'SKndhzlakx2g1ykM73KJ8O0F02/ibJxmNqpEG6/878pu/8BUX/cgxWyh9O2EHhtITNlBZHD73Qgq9E7fuNOO/1xKuM9tgtzKrXqUmQ5bxhz2OfvynQ6Tmq6nzO+2FF6lyPmi2yxoeoGNtKjDIjnXNPAVYTS7n9V94dsciZaSmSGtT5LTIGTmA5QJQ5t3NzxL5+mkKqxc57W9PO9GRWybzsWnQwvG0XBoMU0n00qXMiVjGfCdzGcdku80qRtNTbL5OWPSgiR5Sc45X5V7Y8lUpaHk7a3zgQ/+haITyAlqux7bJtVGK4Zo78leiex3YbpcLH/gJ12jCqvPmFVJNAPZhw==')
+        expected_dict = {
+            'cfdi33': {
+                'version': '3.3',
+                'serie': 'VF',
+                'folio': '001002004',
+                'fecha': '2020-04-30T22:36:13',
+                'no_certificado': '30001000000400002434',
+                'subtotal': '10.00',
+                'descuento': '0.00',
+                'total': '11.60',
+                'moneda': 'MXN',
+                'tipo_cambio': '1.00',
+                'tipo_comprobante': 'I',
+                'metodo_pago': 'PPD',
+                'forma_pago': '01',
+                'condiciones_pago': 'NET15',
+                'lugar_expedicion': '84094',
+                'emisor': {
+                    'rfc': 'EKU9003173C9',
+                    'nombre': 'ESCUELA KEMPER URGATE SA DE CV',
+                    'regimen_fiscal': '601',
+                },
+                'receptor': {
+                    'rfc': 'XAXX010101000',
+                    'nombre': 'PUBLICO EN GENERAL',
+                    'residencia_fiscal': '',
+                    'num_reg_id_trib': '',
+                    'uso_cfdi': 'G03',
+                },
+                'conceptos': [],
+                'impuestos': {
+                    'iva_traslado': '1.60',
+                    'ieps_traslado': '0.00',
+                    'isr_retenido': '0.00',
+                    'iva_retenido': '0.00',
+                    'ieps_retenido': '0.00',
+                    'total_impuestos_traslados': '1.60',
+                    'total_impuestos_retenidos': '0.00',
+                },
+                'complementos': 'TimbreFiscalDigital',
+                'addendas': '',
+            },
+            'tfd': [
+                {
+                    'uuid': '9D81C696-0401-4F85-B703-6E0D3AFD6056',
+                    'fecha_timbrado': '2020-05-02T00:36:50',
+                    'rfc_prov_cert': 'AAA010101AAA',
+                    'sello_cfd': 'SKndhzlakx2g1ykM73KJ8O0F02/ibJxmNqpEG6/878pu/8BUX/cgxWyh9O2EHhtITNlBZHD73Qgq9E7fuNOO/1xKuM9tgtzKrXqUmQ5bxhz2OfvynQ6Tmq6nzO+2FF6lyPmi2yxoeoGNtKjDIjnXNPAVYTS7n9V94dsciZaSmSGtT5LTIGTmA5QJQ5t3NzxL5+mkKqxc57W9PO9GRWybzsWnQwvG0XBoMU0n00qXMiVjGfCdzGcdku80qRtNTbL5OWPSgiR5Sc45X5V7Y8lUpaHk7a3zgQ/+haITyAlqux7bJtVGK4Zo78leiex3YbpcLH/gJ12jCqvPmFVJNAPZhw=='
+                }
+            ],
+            'implocal': []
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
 
     
     def test_transform_file_with_concepts(self):
         sax_handler = ct.SAXHandler().use_concepts_cfdi33()
         cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33_01.xml")
         self.assertIsNotNone(cfdi_data)
-        self.assertTrue(len(cfdi_data['cfdi33']['conceptos']) == 1)
-        self.assertTrue(cfdi_data['cfdi33']['conceptos'][0]['clave_prod_serv'] == '01010101')
-        self.assertTrue(cfdi_data['cfdi33']['conceptos'][0]['no_identificacion'] == 'productoInventario')
-        self.assertTrue(cfdi_data['cfdi33']['conceptos'][0]['cantidad'] == '1.0000')
-        self.assertTrue(cfdi_data['cfdi33']['conceptos'][0]['clave_unidad'] == '3G')
-        self.assertTrue(cfdi_data['cfdi33']['conceptos'][0]['unidad'] == '')
-        self.assertTrue(cfdi_data['cfdi33']['conceptos'][0]['descripcion'] == 'Detalle factura')
-        self.assertTrue(cfdi_data['cfdi33']['conceptos'][0]['valor_unitario'] == '10.0000')
-        self.assertTrue(cfdi_data['cfdi33']['conceptos'][0]['importe'] == '10.00')
-        self.assertTrue(cfdi_data['cfdi33']['conceptos'][0]['descuento'] == '')
+        expected_dict = {
+            'cfdi33': {
+                'version': '3.3',
+                'serie': 'VF',
+                'folio': '001002004',
+                'fecha': '2020-04-30T22:36:13',
+                'no_certificado': '30001000000400002434',
+                'subtotal': '10.00',
+                'descuento': '',
+                'total': '11.60',
+                'moneda': 'MXN',
+                'tipo_cambio': '',
+                'tipo_comprobante': 'I',
+                'metodo_pago': 'PPD',
+                'forma_pago': '01',
+                'condiciones_pago': 'NET15',
+                'lugar_expedicion': '84094',
+                'emisor': {
+                    'rfc': 'EKU9003173C9',
+                    'nombre': 'ESCUELA KEMPER URGATE SA DE CV',
+                    'regimen_fiscal': '601',
+                },
+                'receptor': {
+                    'rfc': 'XAXX010101000',
+                    'nombre': 'PUBLICO EN GENERAL',
+                    'residencia_fiscal': '',
+                    'num_reg_id_trib': '',
+                    'uso_cfdi': 'G03',
+                },
+                'conceptos': [
+                    {
+                        'clave_prod_serv': '01010101',
+                        'no_identificacion': 'productoInventario',
+                        'cantidad': '1.0000',
+                        'clave_unidad': '3G',
+                        'unidad': '',
+                        'descripcion': 'Detalle factura',
+                        'valor_unitario': '10.0000',
+                        'importe': '10.00',
+                        'descuento': '',
+                    }
+                ],
+                'impuestos': {
+                    'iva_traslado': '1.60',
+                    'ieps_traslado': '',
+                    'isr_retenido': '',
+                    'iva_retenido': '',
+                    'ieps_retenido': '',
+                    'total_impuestos_traslados': '1.60',
+                    'total_impuestos_retenidos': '',
+                },
+                'complementos': 'TimbreFiscalDigital',
+                'addendas': '',
+            },
+            'tfd': [
+                {
+                    'uuid': '9D81C696-0401-4F85-B703-6E0D3AFD6056',
+                    'fecha_timbrado': '2020-05-02T00:36:50',
+                    'rfc_prov_cert': 'AAA010101AAA',
+                    'sello_cfd': 'SKndhzlakx2g1ykM73KJ8O0F02/ibJxmNqpEG6/878pu/8BUX/cgxWyh9O2EHhtITNlBZHD73Qgq9E7fuNOO/1xKuM9tgtzKrXqUmQ5bxhz2OfvynQ6Tmq6nzO+2FF6lyPmi2yxoeoGNtKjDIjnXNPAVYTS7n9V94dsciZaSmSGtT5LTIGTmA5QJQ5t3NzxL5+mkKqxc57W9PO9GRWybzsWnQwvG0XBoMU0n00qXMiVjGfCdzGcdku80qRtNTbL5OWPSgiR5Sc45X5V7Y8lUpaHk7a3zgQ/+haITyAlqux7bJtVGK4Zo78leiex3YbpcLH/gJ12jCqvPmFVJNAPZhw=='
+                }
+            ],
+            'implocal': []
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
         

@@ -39,27 +39,28 @@ class BaseHandler(object):
                 'forma_pago': empty_char,
                 'condiciones_pago': empty_char,
                 'lugar_expedicion': empty_char,
-
-                
-                'rfc_emisor': empty_char,
-                'nombre_emisor': empty_char,
-                'regimen_fiscal_emisor': empty_char,
-
-                'rfc_receptor': empty_char,
-                'nombre_receptor': empty_char,
-                'residencia_fiscal_receptor': empty_char,
-                'num_reg_id_trib_receptor': empty_char,
-                'uso_cfdi_receptor': empty_char,
-
-                'iva_traslado': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                'ieps_traslado': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                'isr_retenido': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                'iva_retenido': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                'ieps_retenido': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                'emisor': {
+                    'rfc': empty_char,
+                    'nombre': empty_char,
+                    'regimen_fiscal': empty_char
+                },
+                'receptor': {
+                    'rfc': empty_char,
+                    'nombre': empty_char,
+                    'residencia_fiscal': empty_char,
+                    'num_reg_id_trib': empty_char,
+                    'uso_cfdi': empty_char,
+                },
                 'conceptos': [],
-                'total_impuestos_traslados': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                'total_impuestos_retenidos': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-
+                'impuestos': {
+                    'iva_traslado': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                    'ieps_traslado': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                    'isr_retenido': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                    'iva_retenido': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                    'ieps_retenido': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                    'total_impuestos_traslados': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                    'total_impuestos_retenidos': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                },
                 'complementos': empty_char,
                 'addendas': empty_char
             },
@@ -68,7 +69,7 @@ class BaseHandler(object):
         }
     
     def use_nomina12(self) -> BaseHandler:
-        if not '{http://www.sat.gob.mx/nomina12}Nomina12' in self._complements:
+        if not '{http://www.sat.gob.mx/nomina12}Nomina' in self._complements:
             self._complements['{http://www.sat.gob.mx/nomina12}Nomina'] = {
                 'class': Nomina12SAXHandler,
                 'key': 'nomina12'

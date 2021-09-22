@@ -82,16 +82,20 @@ class SAXHandler(BaseHandler):
         self._data['cfdi33']['lugar_expedicion'] = element.attrib.get('LugarExpedicion')
     
     def __transform_emisor(self, element:etree._Element) -> None:
-        self._data['cfdi33']['rfc_emisor'] = element.attrib.get('Rfc')
-        self._data['cfdi33']['nombre_emisor'] = StringHelper.compact_string(element.attrib.get('Nombre', self._config['empty_char']))
-        self._data['cfdi33']['regimen_fiscal_emisor'] = element.attrib.get('RegimenFiscal')
+        self._data['cfdi33']['emisor'] = {
+            'rfc': element.attrib.get('Rfc'),
+            'nombre': StringHelper.compact_string(element.attrib.get('Nombre', self._config['empty_char'])),
+            'regimen_fiscal': element.attrib.get('RegimenFiscal')
+        }
 
     def __transform_receptor(self, element:etree._Element) -> None:
-        self._data['cfdi33']['rfc_receptor'] = element.attrib.get('Rfc')
-        self._data['cfdi33']['nombre_receptor'] = StringHelper.compact_string(element.attrib.get('Nombre', self._config['empty_char']))
-        self._data['cfdi33']['residencia_fiscal_receptor'] = element.attrib.get('ResidenciaFiscal', self._config['empty_char'])
-        self._data['cfdi33']['num_reg_id_trib_receptor'] = element.attrib.get('NumRegIdTrib', self._config['empty_char'])
-        self._data['cfdi33']['uso_cfdi_receptor'] = element.attrib.get('UsoCFDI')
+        self._data['cfdi33']['receptor'] = {
+            'rfc': element.attrib.get('Rfc'),
+            'nombre': StringHelper.compact_string(element.attrib.get('Nombre', self._config['empty_char'])),
+            'residencia_fiscal': element.attrib.get('ResidenciaFiscal', self._config['empty_char']),
+            'num_reg_id_trib': element.attrib.get('NumRegIdTrib', self._config['empty_char']),
+            'uso_cfdi': element.attrib.get('UsoCFDI'),
+        }
     
     def __transform_concept(self, element:etree._Element) -> None:
         concept = {
@@ -108,8 +112,8 @@ class SAXHandler(BaseHandler):
         self._data['cfdi33']['conceptos'].append(concept)
     
     def __transform_general_taxes(self, element:etree._Element) -> None:
-        self._data['cfdi33']['total_impuestos_traslados'] = element.attrib.get('TotalImpuestosTrasladados', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
-        self._data['cfdi33']['total_impuestos_retenidos'] = element.attrib.get('TotalImpuestosRetenidos', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
+        self._data['cfdi33']['impuestos']['total_impuestos_traslados'] = element.attrib.get('TotalImpuestosTrasladados', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
+        self._data['cfdi33']['impuestos']['total_impuestos_retenidos'] = element.attrib.get('TotalImpuestosRetenidos', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
         for child in element.getchildren():
             if child.tag == '{http://www.sat.gob.mx/cfd/3}Traslados':
                 self.__transform_taxes_traslados(child.getchildren())
@@ -120,22 +124,22 @@ class SAXHandler(BaseHandler):
         for traslado in list_elements:
             if traslado.attrib['Impuesto'] == '002':
                 #IVA
-                self._data['cfdi33']['iva_traslado'] = StringHelper.sum_strings(self._data['cfdi33']['iva_traslado'], traslado.attrib.get('Importe'))
+                self._data['cfdi33']['impuestos']['iva_traslado'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['iva_traslado'], traslado.attrib.get('Importe'))
             elif traslado.attrib['Impuesto'] == '003':
                 #IEPS
-                self._data['cfdi33']['ieps_traslado'] = StringHelper.sum_strings(self._data['cfdi33']['ieps_traslado'], traslado.attrib.get('Importe'))
+                self._data['cfdi33']['impuestos']['ieps_traslado'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['ieps_traslado'], traslado.attrib.get('Importe'))
 
     def __transform_taxes_retenciones(self, list_elements:list) -> None:
         for retencion in list_elements:
             if retencion.attrib['Impuesto'] == '001':
                 #ISR
-                self._data['cfdi33']['isr_retenido'] = StringHelper.sum_strings(self._data['cfdi33']['isr_retenido'], retencion.attrib.get('Importe'))
+                self._data['cfdi33']['impuestos']['isr_retenido'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['isr_retenido'], retencion.attrib.get('Importe'))
             elif retencion.attrib['Impuesto'] == '002':
                 #IVA
-                self._data['cfdi33']['iva_retenido'] = StringHelper.sum_strings(self._data['cfdi33']['iva_retenido'], retencion.attrib.get('Importe'))
+                self._data['cfdi33']['impuestos']['iva_retenido'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['iva_retenido'], retencion.attrib.get('Importe'))
             elif retencion.attrib['Impuesto'] == '003':
                 #IEPS
-                self._data['cfdi33']['ieps_retenido'] = StringHelper.sum_strings(self._data['cfdi33']['ieps_retenido'], retencion.attrib.get('Importe'))
+                self._data['cfdi33']['impuestos']['ieps_retenido'] = StringHelper.sum_strings(self._data['cfdi33']['impuestos']['ieps_retenido'], retencion.attrib.get('Importe'))
     
     def __transform_complement(self, element:etree._Element) -> None:
         complements = []
