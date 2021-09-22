@@ -11,7 +11,7 @@ class SAXHandler(BaseHandler):
         self._logger = logging.getLogger('SAXHandler')
         self._inside_concepts = False
     
-    def transform_from_file(self, file_path:str) -> object:
+    def transform_from_file(self, file_path:str) -> dict:
         if ('.xml' in file_path):
             try:
                 xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
@@ -24,7 +24,7 @@ class SAXHandler(BaseHandler):
                 raise ex
         else:
             raise ValueError('Incorrect type of document, only support XML files')
-    def transform_from_string(self, xml_str:str) -> object:
+    def transform_from_string(self, xml_str:str) -> dict:
         try:
             xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
             tree = etree.XML(xml_str.encode(), parser=xml_parser)

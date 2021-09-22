@@ -9,7 +9,7 @@ class Pagos10SAXHandler(BaseHandler):
         super().__init__(empty_char, safe_numerics)
         self._logger = logging.getLogger('Pagos10SAXHandler')
     
-    def transform_from_string(self, xml_str:str) -> object:
+    def transform_from_string(self, xml_str:str) -> dict:
         try:
             xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
             tree = etree.XML(xml_str, parser=xml_parser)
@@ -71,6 +71,8 @@ class Pagos10SAXHandler(BaseHandler):
                 )
             elif child.tag == '{http://www.sat.gob.mx/Pagos}Impuestos':
                 pago['impuestos'].append(self.__transform_impuestos(child))
+        self._data['pago'].append(pago)
+
     def __transform_impuestos(self, element:etree._Element) -> object:
         impuestos = {
             'retenciones': [],
@@ -81,7 +83,7 @@ class Pagos10SAXHandler(BaseHandler):
         for child in element.getchildren():
             if child.tag == '{http://www.sat.gob.mx/Pagos}Retenciones':
                 impuestos['retenciones'] = self.__transform_retencion(child.getchildren())
-            elif child.tag == '{http://www.sat.gob.mx/Pagos}Retenciones':
+            elif child.tag == '{http://www.sat.gob.mx/Pagos}Traslados':
                 impuestos['traslados'] = self.__transform_traslado(child.getchildren())
         return impuestos
 

@@ -9,7 +9,7 @@ class Nomina12SAXHandler(BaseHandler):
         super().__init__(empty_char, safe_numerics)
         self._logger = logging.getLogger('Nomina12SAXHandler')
     
-    def transform_from_string(self, xml_str:str) -> object:
+    def transform_from_string(self, xml_str:str) -> dict:
         try:
             xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
             tree = etree.XML(xml_str, parser=xml_parser)
