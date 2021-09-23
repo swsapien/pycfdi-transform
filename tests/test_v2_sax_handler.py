@@ -12,7 +12,7 @@ class TestHanderCfdi33Tests(unittest.TestCase):
     
     def test_transform_file(self):
         sax_handler = ct.SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33_01.xml")
+        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33/cfdi33_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -76,7 +76,7 @@ class TestHanderCfdi33Tests(unittest.TestCase):
     
     def test_transform_file_safe_numerics(self):
         sax_handler = ct.SAXHandler(safe_numerics=True)
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33_01.xml")
+        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33/cfdi33_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -141,7 +141,7 @@ class TestHanderCfdi33Tests(unittest.TestCase):
     
     def test_transform_file_with_concepts(self):
         sax_handler = ct.SAXHandler().use_concepts_cfdi33()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33_01.xml")
+        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33/cfdi33_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {

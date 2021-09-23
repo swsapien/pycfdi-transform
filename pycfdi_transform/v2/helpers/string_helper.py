@@ -13,7 +13,7 @@ class StringHelper:
         new_str = string.translate(str.maketrans('', '', '\n\t\r'))
         while '  ' in new_str:
             new_str = new_str.replace('  ', ' ')
-        return new_str
+        return new_str.strip()
     @staticmethod
     def sum_strings(first_val, second_val) -> str:
         if first_val == '':

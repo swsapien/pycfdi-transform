@@ -66,8 +66,8 @@ class SAXHandler(BaseHandler):
         if not 'Version' in element.attrib or element.attrib['Version'] != '3.3':
             raise ValueError('Incorrect type of CFDI, this handler only support CFDI version 3.3')
         self._data['cfdi33']['version'] = element.attrib.get('Version')
-        self._data['cfdi33']['serie'] = element.attrib.get('Serie', self._config['empty_char'])
-        self._data['cfdi33']['folio'] = element.attrib.get('Folio', self._config['empty_char'])
+        self._data['cfdi33']['serie'] = StringHelper.compact_string(element.attrib.get('Serie', self._config['empty_char']))
+        self._data['cfdi33']['folio'] = StringHelper.compact_string(element.attrib.get('Folio', self._config['empty_char']))
         self._data['cfdi33']['fecha'] = element.attrib.get('Fecha')
         self._data['cfdi33']['no_certificado'] = element.attrib.get('NoCertificado')
         self._data['cfdi33']['subtotal'] = element.attrib.get('SubTotal')
@@ -93,17 +93,17 @@ class SAXHandler(BaseHandler):
             'rfc': element.attrib.get('Rfc'),
             'nombre': StringHelper.compact_string(element.attrib.get('Nombre', self._config['empty_char'])),
             'residencia_fiscal': element.attrib.get('ResidenciaFiscal', self._config['empty_char']),
-            'num_reg_id_trib': element.attrib.get('NumRegIdTrib', self._config['empty_char']),
+            'num_reg_id_trib': StringHelper.compact_string(element.attrib.get('NumRegIdTrib', self._config['empty_char'])),
             'uso_cfdi': element.attrib.get('UsoCFDI'),
         }
     
     def __transform_concept(self, element:etree._Element) -> None:
         concept = {
             'clave_prod_serv': element.attrib.get('ClaveProdServ'),
-            'no_identificacion': element.attrib.get('NoIdentificacion', self._config['empty_char']),
+            'no_identificacion': StringHelper.compact_string(element.attrib.get('NoIdentificacion', self._config['empty_char'])),
             'cantidad': element.attrib.get('Cantidad'),
             'clave_unidad': element.attrib.get('ClaveUnidad'),
-            'unidad': element.attrib.get('Unidad', self._config['empty_char']),
+            'unidad': StringHelper.compact_string(element.attrib.get('Unidad', self._config['empty_char'])),
             'descripcion': StringHelper.compact_string(element.attrib.get('Descripcion')),
             'valor_unitario': element.attrib.get('ValorUnitario'),
             'importe': element.attrib.get('Importe'),
