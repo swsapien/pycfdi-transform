@@ -62,6 +62,8 @@ class TestHanderCfdi33Tests(unittest.TestCase):
             },
             'tfd': [
                 {
+                    'version': '1.1',
+                    'no_certificado_sat': '20001000000300022323',
                     'uuid': '9D81C696-0401-4F85-B703-6E0D3AFD6056',
                     'fecha_timbrado': '2020-05-02T00:36:50',
                     'rfc_prov_cert': 'AAA010101AAA',
@@ -124,6 +126,8 @@ class TestHanderCfdi33Tests(unittest.TestCase):
             },
             'tfd': [
                 {
+                    'version': '1.1',
+                    'no_certificado_sat': '20001000000300022323',
                     'uuid': '9D81C696-0401-4F85-B703-6E0D3AFD6056',
                     'fecha_timbrado': '2020-05-02T00:36:50',
                     'rfc_prov_cert': 'AAA010101AAA',
@@ -199,6 +203,8 @@ class TestHanderCfdi33Tests(unittest.TestCase):
             },
             'tfd': [
                 {
+                    'version': '1.1',
+                    'no_certificado_sat': '20001000000300022323',
                     'uuid': '9D81C696-0401-4F85-B703-6E0D3AFD6056',
                     'fecha_timbrado': '2020-05-02T00:36:50',
                     'rfc_prov_cert': 'AAA010101AAA',

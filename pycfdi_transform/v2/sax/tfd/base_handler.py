@@ -9,6 +9,8 @@ class BaseHandler(ABC):
             'safe_numerics': safe_numerics
         }
         self._data = {
+            'version': empty_char,
+            'no_certificado_sat': empty_char,
             'uuid': empty_char,
             'fecha_timbrado': empty_char,
             'rfc_prov_cert': empty_char,

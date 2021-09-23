@@ -28,6 +28,8 @@ class TFDSAXHandler(BaseHandler):
                     context.skip_subtree()
     
     def __transform_tfd(self, element:etree._Element) -> None:
+        self._data['version'] = element.attrib.get('Version')
+        self._data['no_certificado_sat'] = element.attrib.get('NoCertificadoSAT')
         self._data['uuid'] = str(element.attrib.get('UUID')).upper()
         self._data['fecha_timbrado'] = element.attrib.get('FechaTimbrado')
         self._data['rfc_prov_cert'] = element.attrib.get('RfcProvCertif')

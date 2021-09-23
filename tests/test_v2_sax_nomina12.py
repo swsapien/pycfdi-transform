@@ -982,3 +982,531 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
             ]
         }
         self.assertDictEqual(cfdi_data, expected_dict)
+    
+    def test_transform_file_double_nom(self):
+        sax_handler = ct.SAXHandler().use_nomina12()
+        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/double_nomina01.xml")
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            'cfdi33': {
+                'version': '3.3',
+                'serie': '',
+                'folio': '',
+                'fecha': '2021-06-04T11:00:00',
+                'no_certificado': '00000000000000000000',
+                'subtotal': '73942.79',
+                'descuento': '5369.93',
+                'total': '68572.86',
+                'moneda': 'MXN',
+                'tipo_cambio': '',
+                'tipo_comprobante': 'N',
+                'metodo_pago': 'PUE',
+                'forma_pago': '99',
+                'condiciones_pago': '',
+                'lugar_expedicion': '77560',
+                'emisor': {
+                    'rfc': 'EKU9003173C9',
+                    'nombre': 'NOMBRE EMISOR',
+                    'regimen_fiscal': '601'
+                },
+                'receptor': {
+                    'rfc': 'KICR630120NX3',
+                    'nombre': 'NOMBRE RECEPTOR',
+                    'residencia_fiscal': '',
+                    'num_reg_id_trib': '',
+                    'uso_cfdi': 'P01'
+                },
+                'conceptos': [],
+                'impuestos': {
+                    'retenciones': [],
+                    'traslados': []
+                },
+                'complementos': 'Nomina TimbreFiscalDigital',
+                'addendas': ''
+            },
+            'tfd': [
+                {
+                    'version': '1.1',
+                    'no_certificado_sat': '00000000000000000000',
+                    'uuid': 'EB9F91C0-2FF0-41D9-B607-4655E3686E41',
+                    'fecha_timbrado': '2021-06-04T11:00:00',
+                    'rfc_prov_cert': 'IXS7607092R5',
+                    'sello_cfd': 'sign'
+                }
+            ],
+            'implocal': [],
+            'nomina12': [
+                {
+                    'version': '1.2',
+                    'tipo_nomina': 'E',
+                    'fecha_pago': '2021-07-31',
+                    'fecha_inicial_pago': '2021-07-31',
+                    'fecha_final_pago': '2021-07-31',
+                    'num_dias_pagados': '1.000',
+                    'total_percepciones': '9786.15',
+                    'total_deducciones': '5369.93',
+                    'total_otros_pagos': '0.00',
+                    'emisor': {
+                        'curp': '',
+                        'registro_patronal': '00000000000',
+                        'rfc_patron_origen': '',
+                        'entidad_SNCF': {
+                            'origen_recurso': '',
+                            'monto_recurso_propio': ''
+                        }
+                    },
+                    'receptor': {
+                        'curp': 'XEXX010101HNEXXXA4',
+                        'num_seguridad_social': '00000000000',
+                        'fecha_inicio_rel_laboral': '2018-11-26',
+                        'antigüedad': 'P139W',
+                        'tipo_contrato': '02',
+                        'sindicalizado': '',
+                        'tipo_jornada': '01',
+                        'tipo_regimen': '02',
+                        'num_empleado': '2855',
+                        'departamento': '15-055-001-002 SEGURIDAD Y SALUD EN EL TRABAJO',
+                        'puesto': '',
+                        'riesgo_puesto': '1',
+                        'periodicidad_pago': '99',
+                        'banco': '',
+                        'cuenta_bancaria': '',
+                        'salario_base_cot_apor': '509.67',
+                        'salario_diario_integrado': '534.80',
+                        'clave_ent_fed': 'ROO',
+                        'subcontratacion': []
+                    },
+                    'percepciones': {
+                        'total_sueldos': '9786.15',
+                        'total_separacion_indemnizacion': '',
+                        'total_jubilacion_pension_retiro': '',
+                        'total_gravado': '6231.81',
+                        'total_exento': '3554.34',
+                        'percepcion': [
+                            {
+                                'tipo_percepcion': '001',
+                                'clave': '408',
+                                'concepto': 'PROPORCION DE VACACIONES',
+                                'importe_gravado': '3460.66',
+                                'importe_exento': '0.00',
+                                'horas_extra': []
+                            },
+                            {
+                                'tipo_percepcion': '001',
+                                'clave': '409',
+                                'concepto': 'VACACIONES PENDIENTES',
+                                'importe_gravado': '1019.34',
+                                'importe_exento': '0.00',
+                                'horas_extra': []
+                            },
+                            {
+                                'tipo_percepcion': '002',
+                                'clave': '426',
+                                'concepto': 'AGUINALDO',
+                                'importe_gravado': '1751.81',
+                                'importe_exento': '2688.60',
+                                'horas_extra': []
+                            },
+                            {
+                                'tipo_percepcion': '021',
+                                'clave': '427',
+                                'concepto': 'PRIMA VACACIONAL',
+                                'importe_gravado': '0.00',
+                                'importe_exento': '865.74',
+                                'horas_extra': []
+                            }
+                        ]
+                    },
+                    'deducciones': {
+                        'TotalOtrasDeducciones': '',
+                        'TotalImpuestosRetenidos': '5369.93',
+                        'deduccion': [
+                            {
+                                'tipo_deduccion': '002',
+                                'clave': '601',
+                                'concepto': 'ISR',
+                                'importe': '600.99'
+                            },
+                            {
+                                'tipo_deduccion': '002',
+                                'clave': '604',
+                                'concepto': 'ISR LIQUIDACION',
+                                'importe': '4768.94'
+                            }
+                        ]
+                    },
+                    'otros_pagos': {
+                        'otro_pago': [
+                            {
+                                'tipo_otro_pago': '002',
+                                'clave': '105',
+                                'concepto': 'SUBSIDIO AL EMPLEO PAGADO ESP',
+                                'importe': '0.00',
+                                'subsidio_al_empleo': {
+                                    'subsidio_causado': '0.00'
+                                }
+                            }
+                        ]
+                    },
+                    'incapacidades': {
+                        'incapcidad': []
+                    }
+                },
+                {
+                    'version': '1.2',
+                    'tipo_nomina': 'E',
+                    'fecha_pago': '2021-07-31',
+                    'fecha_inicial_pago': '2021-07-31',
+                    'fecha_final_pago': '2021-07-31',
+                    'num_dias_pagados': '1.000',
+                    'total_percepciones': '64156.64',
+                    'total_deducciones': '',
+                    'total_otros_pagos': '',
+                    'emisor': {
+                        'curp': '',
+                        'registro_patronal': '',
+                        'rfc_patron_origen': '',
+                        'entidad_SNCF': {
+                            'origen_recurso': '',
+                            'monto_recurso_propio': ''
+                        }
+                    },
+                    'receptor': {
+                        'curp': 'XEXX010101HNEXXXA4',
+                        'num_seguridad_social': '',
+                        'fecha_inicio_rel_laboral': '',
+                        'antigüedad': '',
+                        'tipo_contrato': '99',
+                        'sindicalizado': '',
+                        'tipo_jornada': '',
+                        'tipo_regimen': '13',
+                        'num_empleado': '2855',
+                        'departamento': '15-055-001-002 SEGURIDAD Y SALUD EN EL TRABAJO',
+                        'puesto': '',
+                        'riesgo_puesto': '',
+                        'periodicidad_pago': '99',
+                        'banco': '',
+                        'cuenta_bancaria': '',
+                        'salario_base_cot_apor': '',
+                        'salario_diario_integrado': '',
+                        'clave_ent_fed': 'ROO',
+                        'subcontratacion': []
+                    },
+                    'percepciones': {
+                        'total_sueldos': '',
+                        'total_separacion_indemnizacion': '64156.64',
+                        'total_jubilacion_pension_retiro': '',
+                        'total_gravado': '39959.24',
+                        'total_exento': '24197.40',
+                        'percepcion': [
+                            {
+                                'tipo_percepcion': '025',
+                                'clave': '130',
+                                'concepto': 'GRAVADO INDEMNIZACION',
+                                'importe_gravado': '39959.24',
+                                'importe_exento': '24197.40',
+                                'horas_extra': []
+                            }
+                        ],
+                        'separacion_indemnizacion': {
+                            'total_pagado': '64156.64',
+                            'num_años_servicio': '3',
+                            'ultimo_sueldo_mens_ord': '15290.10',
+                            'ingreso_acumulable': '15290.10',
+                            'ingreso_no_acumulable': '24669.14'
+                        }
+                    },
+                    'deducciones': {
+                        'TotalOtrasDeducciones': '',
+                        'TotalImpuestosRetenidos': '',
+                        'deduccion': []
+                    },
+                    'otros_pagos': {
+                        'otro_pago': []
+                    },
+                    'incapacidades': {
+                        'incapcidad': []
+                    }
+                }
+            ]
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
+    
+    def test_transform_file_double_nom_break_lines(self):
+        sax_handler = ct.SAXHandler().use_nomina12()
+        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/double_breaks_nomina01.xml")
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            'cfdi33': {
+                'version': '3.3',
+                'serie': '',
+                'folio': '',
+                'fecha': '2021-06-04T11:00:00',
+                'no_certificado': '00000000000000000000',
+                'subtotal': '780109.05',
+                'descuento': '227493.44',
+                'total': '552615.61',
+                'moneda': 'MXN',
+                'tipo_cambio': '',
+                'tipo_comprobante': 'N',
+                'metodo_pago': 'PUE',
+                'forma_pago': '99',
+                'condiciones_pago': '',
+                'lugar_expedicion': '77560',
+                'emisor': {
+                    'rfc': 'EKU9003173C9',
+                    'nombre': 'NOMBRE EMISOR',
+                    'regimen_fiscal': '601'
+                },
+                'receptor': {
+                    'rfc': 'KICR630120NX3',
+                    'nombre': 'NOMBRE RECEPTOR with \\r\\n spaces and breaks',
+                    'residencia_fiscal': '',
+                    'num_reg_id_trib': '',
+                    'uso_cfdi': 'P01'
+                },
+                'conceptos': [],
+                'impuestos': {
+                    'retenciones': [],
+                    'traslados': []
+                },
+                'complementos': 'Nomina TimbreFiscalDigital',
+                'addendas': ''
+            },
+            'tfd': [
+                {
+                    'version': '1.1',
+                    'no_certificado_sat': '00000000000000000000',
+                    'uuid': 'EB9F91C0-2FF0-41D9-B607-4655E3686E41',
+                    'fecha_timbrado': '2021-06-04T11:00:00',
+                    'rfc_prov_cert': 'IXS7607092R5',
+                    'sello_cfd': 'sign'
+                }
+            ],
+            'implocal': [],
+            'nomina12': [
+                {
+                    'version': '1.2',
+                    'tipo_nomina': 'E',
+                    'fecha_pago': '2021-07-23',
+                    'fecha_inicial_pago': '2021-07-23',
+                    'fecha_final_pago': '2021-07-23',
+                    'num_dias_pagados': '8.000',
+                    'total_percepciones': '229962.91',
+                    'total_deducciones': '227493.44',
+                    'total_otros_pagos': '0.00',
+                    'emisor': {
+                        'curp': '',
+                        'registro_patronal': '00000000000',
+                        'rfc_patron_origen': '',
+                        'entidad_SNCF': {
+                            'origen_recurso': '',
+                            'monto_recurso_propio': ''
+                        }
+                    },
+                    'receptor': {
+                        'curp': 'XEXX010101HNEXXXA4',
+                        'num_seguridad_social': '00000000000',
+                        'fecha_inicio_rel_laboral': '2020-03-16',
+                        'antigüedad': 'P70W',
+                        'tipo_contrato': '02',
+                        'sindicalizado': '',
+                        'tipo_jornada': '01',
+                        'tipo_regimen': '02',
+                        'num_empleado': '3123',
+                        'departamento': '15-058-000-000 DIR DE SISTEMAS DE INFORMACION',
+                        'puesto': '',
+                        'riesgo_puesto': '1',
+                        'periodicidad_pago': '99',
+                        'banco': '',
+                        'cuenta_bancaria': '',
+                        'salario_base_cot_apor': '2240.50',
+                        'salario_diario_integrado': '6435.14',
+                        'clave_ent_fed': 'ROO',
+                        'subcontratacion': []
+                    },
+                    'percepciones': {
+                        'total_sueldos': '229962.91',
+                        'total_separacion_indemnizacion': '',
+                        'total_jubilacion_pension_retiro': '',
+                        'total_gravado': '225930.01',
+                        'total_exento': '4032.90',
+                        'percepcion': [
+                            {
+                                'tipo_percepcion': '001',
+                                'clave': '201',
+                                'concepto': 'SUELDO TIMBRADO',
+                                'importe_gravado': '40409.92',
+                                'importe_exento': '0.00',
+                                'horas_extra': []
+                            },
+                            {
+                                'tipo_percepcion': '001',
+                                'clave': '408',
+                                'concepto': 'PROPORCION DE VACACIONES',
+                                'importe_gravado': '32134.19',
+                                'importe_exento': '0.00',
+                                'horas_extra': []
+                            },
+                            {
+                                'tipo_percepcion': '001',
+                                'clave': '409',
+                                'concepto': 'VACACIONES PENDIENTES',
+                                'importe_gravado': '90922.35',
+                                'importe_exento': '0.00',
+                                'horas_extra': []
+                            },
+                            {
+                                'tipo_percepcion': '049',
+                                'clave': '418',
+                                'concepto': 'PREMIO DE ASISTENCIA',
+                                'importe_gravado': '4040.99',
+                                'importe_exento': '0.00',
+                                'horas_extra': []
+                            },
+                            {
+                                'tipo_percepcion': '010',
+                                'clave': '419',
+                                'concepto': 'PREMIO POR PUNTUALIDAD',
+                                'importe_gravado': '4040.99',
+                                'importe_exento': '0.00',
+                                'horas_extra': []
+                            },
+                            {
+                                'tipo_percepcion': '002',
+                                'clave': '426',
+                                'concepto': 'AGUINALDO',
+                                'importe_gravado': '39658.78',
+                                'importe_exento': '2688.60',
+                                'horas_extra': []
+                            },
+                            {
+                                'tipo_percepcion': '021',
+                                'clave': '427',
+                                'concepto': 'PRIMA VACACIONAL',
+                                'importe_gravado': '14722.79',
+                                'importe_exento': '1344.30',
+                                'horas_extra': []
+                            }
+                        ]
+                    },
+                    'deducciones': {
+                        'TotalOtrasDeducciones': '488.79',
+                        'TotalImpuestosRetenidos': '227004.65',
+                        'deduccion': [
+                            {
+                                'tipo_deduccion': '002',
+                                'clave': '601',
+                                'concepto': 'ISR',
+                                'importe': '68245.79'
+                            },
+                            {
+                                'tipo_deduccion': '002',
+                                'clave': '604',
+                                'concepto': 'ISR LIQUIDACION',
+                                'importe': '158758.86'
+                            },
+                            {
+                                'tipo_deduccion': '001',
+                                'clave': '644',
+                                'concepto': 'IMSS',
+                                'importe': '488.79'
+                            }
+                        ]
+                    },
+                    'otros_pagos': {
+                        'otro_pago': [
+                            {
+                                'tipo_otro_pago': '002',
+                                'clave': '105',
+                                'concepto': 'SUBSIDIO AL EMPLEO PAGADO ESP',
+                                'importe': '0.00',
+                                'subsidio_al_empleo': {
+                                    'subsidio_causado': '0.00'
+                                }
+                            }
+                        ]
+                    },
+                    'incapacidades': {
+                        'incapcidad': []
+                    }
+                },
+                {
+                    'version': '1.2',
+                    'tipo_nomina': 'E',
+                    'fecha_pago': '2021-07-23',
+                    'fecha_inicial_pago': '2021-07-23',
+                    'fecha_final_pago': '2021-07-23',
+                    'num_dias_pagados': '8.000',
+                    'total_percepciones': '550146.14',
+                    'total_deducciones': '',
+                    'total_otros_pagos': '',
+                    'emisor': {
+                        'curp': '',
+                        'registro_patronal': '',
+                        'rfc_patron_origen': '',
+                        'entidad_SNCF': {
+                            'origen_recurso': '',
+                            'monto_recurso_propio': ''
+                        }
+                    },
+                    'receptor': {
+                        'curp': 'XEXX010101HNEXXXA4',
+                        'num_seguridad_social': '',
+                        'fecha_inicio_rel_laboral': '',
+                        'antigüedad': '',
+                        'tipo_contrato': '99',
+                        'sindicalizado': '',
+                        'tipo_jornada': '',
+                        'tipo_regimen': '13',
+                        'num_empleado': '3123',
+                        'departamento': '15-058-000-000 DIR DE SISTEMAS DE INFORMACION',
+                        'puesto': '',
+                        'riesgo_puesto': '',
+                        'periodicidad_pago': '99',
+                        'banco': '',
+                        'cuenta_bancaria': '',
+                        'salario_base_cot_apor': '',
+                        'salario_diario_integrado': '',
+                        'clave_ent_fed': 'ROO',
+                        'subcontratacion': []
+                    },
+                    'percepciones': {
+                        'total_sueldos': '',
+                        'total_separacion_indemnizacion': '550146.14',
+                        'total_jubilacion_pension_retiro': '',
+                        'total_gravado': '542070.83',
+                        'total_exento': '8075.31',
+                        'percepcion': [
+                            {
+                                'tipo_percepcion': '025',
+                                'clave': '130',
+                                'concepto': 'GRAVADO INDEMNIZACION',
+                                'importe_gravado': '542070.83',
+                                'importe_exento': '8075.31',
+                                'horas_extra': []
+                            }
+                        ],
+                        'separacion_indemnizacion': {
+                            'total_pagado': '550146.14',
+                            'num_años_servicio': '1',
+                            'ultimo_sueldo_mens_ord': '181844.70',
+                            'ingreso_acumulable': '181844.70',
+                            'ingreso_no_acumulable': '360226.13'
+                        }
+                    },
+                    'deducciones': {
+                        'TotalOtrasDeducciones': '',
+                        'TotalImpuestosRetenidos': '',
+                        'deduccion': []
+                    },
+                    'otros_pagos': {
+                        'otro_pago': []
+                    },
+                    'incapacidades': {
+                        'incapcidad': []
+                    }
+                }
+            ]
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)

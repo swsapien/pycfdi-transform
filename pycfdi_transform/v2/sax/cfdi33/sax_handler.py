@@ -157,7 +157,8 @@ class SAXHandler(BaseHandler):
             # Annotate in complement list
             try:
                 qname = etree.QName(complement.tag)
-                complements.append(qname.localname)
+                if not qname.localname in complements:
+                    complements.append(qname.localname)
             except Exception:
                 complements.append(str(complement.tag))
         if len(complements) > 0:
