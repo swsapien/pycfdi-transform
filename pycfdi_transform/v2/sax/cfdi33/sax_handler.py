@@ -6,8 +6,8 @@ from lxml import etree
 import logging
 
 class SAXHandler(BaseHandler):
-    def __init__(self, empty_char='', safe_numerics=False) -> SAXHandler:
-        super().__init__(empty_char, safe_numerics)
+    def __init__(self, empty_char='', safe_numerics=False, schema_validator:etree.XMLSchema = None) -> SAXHandler:
+        super().__init__(empty_char, safe_numerics, schema_validator)
         self._logger = logging.getLogger('SAXHandler')
         self._inside_concepts = False
     
@@ -16,6 +16,8 @@ class SAXHandler(BaseHandler):
             try:
                 xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
                 tree = etree.XML(StringHelper.file_path_to_string(file_path).encode(), parser=xml_parser)
+                if self._schema_validator != None and isinstance(self._schema_validator, etree.XMLSchema):
+                    self._schema_validator.assertValid(tree)
                 context = etree.iterwalk(tree, events=("start", "end"))
                 self.__handle_events(context)
                 return self._data
@@ -28,6 +30,8 @@ class SAXHandler(BaseHandler):
         try:
             xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
             tree = etree.XML(xml_str.encode(), parser=xml_parser)
+            if self._schema_validator != None and isinstance(self._schema_validator, etree.XMLSchema):
+                self._schema_validator.assertValid(tree)
             context = etree.iterwalk(tree, events=("start", "end"))
             self.__handle_events(context)
             return self._data

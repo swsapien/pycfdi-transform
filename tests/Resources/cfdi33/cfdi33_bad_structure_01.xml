@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Certificado="" CondicionesDePago="NET15" Fecha="2020-04-30T22:36:13" Folio="001002004" FormaPago="01" LugarExpedicion="84094" MetodoPago="PPD" Moneda="MXN" NoCertificado="30001000000400002434" Sello="SKndhzlakx2g1ykM73KJ8O0F02/ibJxmNqpEG6/878pu/8BUX/cgxWyh9O2EHhtITNlBZHD73Qgq9E7fuNOO/1xKuM9tgtzKrXqUmQ5bxhz2OfvynQ6Tmq6nzO+2FF6lyPmi2yxoeoGNtKjDIjnXNPAVYTS7n9V94dsciZaSmSGtT5LTIGTmA5QJQ5t3NzxL5+mkKqxc57W9PO9GRWybzsWnQwvG0XBoMU0n00qXMiVjGfCdzGcdku80qRtNTbL5OWPSgiR5Sc45X5V7Y8lUpaHk7a3zgQ/+haITyAlqux7bJtVGK4Zo78leiex3YbpcLH/gJ12jCqvPmFVJNAPZhw==" Serie="VF" SubTotal="10.00" TipoDeComprobante="I" Total="abc" Version="3.3" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd ">
+    <cfdi:Emisor Nombre="ESCUELA KEMPER URGATE                                           
+    
+    
+    
+     SA DE CV" RegimenFiscal="2" Rfc="EKU9003173C9" />
+    <cfdi:Receptor Nombre="PUBLICO EN &#xA&#xD &#xA&#xD &#xA&#xD GENERAL" Rfc="XAXX010101000" UsoCFDI="G03" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto Cantidad="1.0000" ClaveProdServ="01010101" ClaveUnidad="3G" Descripcion="Detalle
+                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+         factura" Importe="10.00" NoIdentificacion="productoInventario &#xA&#xD         " ValorUnitario="10.0000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="10.00" Importe="1.60" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
+    </cfdi:Conceptos>
+    <cfdi:Impuestos TotalImpuestosTrasladados="1.60">
+        <cfdi:Traslados>
+            <cfdi:Traslado Importe="1.60" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa" />
+        </cfdi:Traslados>
+    </cfdi:Impuestos>
+    <cfdi:Complemento>
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="9d81c696-0401-4f85-b703-6e0d3afd6056XXX" FechaTimbrado="2020-05-02T00:36:50" RfcProvCertif="X4AAA010101AAA" SelloCFD="" NoCertificadoSAT="20001000000300022323" SelloSAT="" 
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    </cfdi:Complemento>
+</cfdi:Comprobante>

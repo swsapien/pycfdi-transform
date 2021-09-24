@@ -1,5 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
+from lxml import etree
 from pycfdi_transform.v2.helpers.string_helper import StringHelper
 from pycfdi_transform.v2.sax.tfd.sax_handler import TFDSAXHandler
 from pycfdi_transform.v2.sax.implocal.sax_handler import ImpLocalSAXHandler
@@ -7,8 +8,9 @@ from pycfdi_transform.v2.sax.nomina12.sax_handler import Nomina12SAXHandler
 from pycfdi_transform.v2.sax.pagos10.sax_handler import Pagos10SAXHandler
 
 class BaseHandler(ABC):
-    def __init__(self, empty_char = '', safe_numerics = False) -> BaseHandler:
+    def __init__(self, empty_char:str = '', safe_numerics:bool = False, schema_validator:etree.XMLSchema = None) -> BaseHandler:
         super().__init__()
+        self._schema_validator = schema_validator
         self._config = {
             'concepts': False,
             'empty_char': empty_char,
