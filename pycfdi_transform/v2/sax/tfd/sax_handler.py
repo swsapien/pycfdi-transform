@@ -28,6 +28,8 @@ class TFDSAXHandler(BaseHandler):
                     context.skip_subtree()
     
     def __transform_tfd(self, element:etree._Element) -> None:
+        if not 'Version' in element.attrib or element.attrib['Version'] != '1.1':
+            raise ValueError('Incorrect type of TFD, this handler only support TFD version 1.1')
         self._data['version'] = element.attrib.get('Version')
         self._data['no_certificado_sat'] = element.attrib.get('NoCertificadoSAT')
         self._data['uuid'] = str(element.attrib.get('UUID')).upper()

@@ -1,8 +1,10 @@
+from pycfdi_transform.v2.helpers.schema_helper import SchemaHelper
+from lxml import etree
 import unittest
 import pycfdi_transform.v2.sax.cfdi33.sax_handler as ct
 
 class TestHanderCfdi33Pagos10Tests(unittest.TestCase):
-    def test_transform_file_pagos10(self):
+    def test_transform_file_pagos10_complete(self):
         sax_handler = ct.SAXHandler().use_pagos10()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago_complete.xml')
         self.assertIsNotNone(cfdi_data)
@@ -11,7 +13,7 @@ class TestHanderCfdi33Pagos10Tests(unittest.TestCase):
                 'version': '3.3',
                 'serie': '"',
                 'folio': '/>KA',
-                'fecha': '2018-01-10T07:22:51.20',
+                'fecha': '2018-01-10T07:22:51',
                 'no_certificado': '47217725691977968749',
                 'subtotal': '5858580.234906',
                 'descuento': '9061950.234906',
@@ -71,7 +73,7 @@ class TestHanderCfdi33Pagos10Tests(unittest.TestCase):
                 {
                     'pago': [
                         {
-                            'fecha_pago': '2005-01-06T06:10:27.07',
+                            'fecha_pago': '2015-01-06T06:10:27',
                             'forma_de_pago_p': '26',
                             'moneda_p': 'XBA',
                             'tipo_cambio_p': '4026190.234907',
@@ -88,28 +90,28 @@ class TestHanderCfdi33Pagos10Tests(unittest.TestCase):
                             'sello_pago': 'YTM0NZomIzI2OTsmIzM0NTueYQ==',
                             'docto_relacionado': [
                                 {
-                                    'IdDocumento': 'BcfEc9ED-e6fE-3a98-13b0-A9c97bEcBcEd',
-                                    'Serie': '',
-                                    'Folio': '',
-                                    'MonedaDR': 'MUR',
-                                    'TipoCambioDR': '',
-                                    'MetodoDePagoDR': 'PPD',
-                                    'NumParcialidad': '',
-                                    'ImpSaldoAnt': '',
-                                    'ImpPagado': '9752350.234906',
-                                    'ImpSaldoInsoluto': '82970.234906'
+                                    'id_documento': 'BcfEc9ED-e6fE-3a98-13b0-A9c97bEcBcEd',
+                                    'serie': '',
+                                    'folio': '',
+                                    'moneda_dr': 'MUR',
+                                    'tipo_cambio_dr': '',
+                                    'metodo_de_pago_dr': 'PPD',
+                                    'num_parcialidad': '',
+                                    'imp_saldo_ant': '',
+                                    'imp_pagado': '9752350.234906',
+                                    'imp_saldo_insoluto': '82970.234906'
                                 },
                                 {
-                                    'IdDocumento': 'be6dcDE2-ab9B-7DcF-Aaa2-CB8679f2fa01',
-                                    'Serie': '',
-                                    'Folio': '',
-                                    'MonedaDR': 'HKD',
-                                    'TipoCambioDR': '',
-                                    'MetodoDePagoDR': 'PPD',
-                                    'NumParcialidad': '',
-                                    'ImpSaldoAnt': '8563470.234906',
-                                    'ImpPagado': '5255780.234906',
-                                    'ImpSaldoInsoluto': ''
+                                    'id_documento': 'be6dcDE2-ab9B-7DcF-Aaa2-CB8679f2fa01',
+                                    'serie': '',
+                                    'folio': '',
+                                    'moneda_dr': 'HKD',
+                                    'tipo_cambio_dr': '',
+                                    'metodo_de_pago_dr': 'PPD',
+                                    'num_parcialidad': '',
+                                    'imp_saldo_ant': '8563470.234906',
+                                    'imp_pagado': '5255780.234906',
+                                    'imp_saldo_insoluto': ''
                                 }
                             ],
                             'impuestos': [
@@ -135,7 +137,7 @@ class TestHanderCfdi33Pagos10Tests(unittest.TestCase):
                             ]
                         },
                         {
-                            'fecha_pago': '1973-04-15T09:02:29.56',
+                            'fecha_pago': '2015-04-15T09:02:29',
                             'forma_de_pago_p': '29',
                             'moneda_p': 'BHD',
                             'tipo_cambio_p': '2027230.234907',
@@ -152,64 +154,64 @@ class TestHanderCfdi33Pagos10Tests(unittest.TestCase):
                             'sello_pago': 'YTM0NZomIzI2OTsmIzM0NTueYQ==',
                             'docto_relacionado': [
                                 {
-                                    'IdDocumento': 'eafcbCE2-Da9c-D0AE-6dd0-eCBeF5422bBe',
-                                    'Serie': '',
-                                    'Folio': '',
-                                    'MonedaDR': 'PYG',
-                                    'TipoCambioDR': '',
-                                    'MetodoDePagoDR': 'PUE',
-                                    'NumParcialidad': '3133',
-                                    'ImpSaldoAnt': '2349050.234906',
-                                    'ImpPagado': '',
-                                    'ImpSaldoInsoluto': '9332080.234906'
+                                    'id_documento': 'eafcbCE2-Da9c-D0AE-6dd0-eCBeF5422bBe',
+                                    'serie': '',
+                                    'folio': '',
+                                    'moneda_dr': 'PYG',
+                                    'tipo_cambio_dr': '',
+                                    'metodo_de_pago_dr': 'PUE',
+                                    'num_parcialidad': '55',
+                                    'imp_saldo_ant': '2349050.234906',
+                                    'imp_pagado': '',
+                                    'imp_saldo_insoluto': '9332080.234906'
                                 },
                                 {
-                                    'IdDocumento': 'B64DDDF2-fECA-fcDe-430d-D1A5F02ea844',
-                                    'Serie': '',
-                                    'Folio': '',
-                                    'MonedaDR': 'MXN',
-                                    'TipoCambioDR': '',
-                                    'MetodoDePagoDR': 'PPD',
-                                    'NumParcialidad': '',
-                                    'ImpSaldoAnt': '',
-                                    'ImpPagado': '1070880.234906',
-                                    'ImpSaldoInsoluto': '6193010.234906'
+                                    'id_documento': 'B64DDDF2-fECA-fcDe-430d-D1A5F02ea844',
+                                    'serie': '',
+                                    'folio': '',
+                                    'moneda_dr': 'MXN',
+                                    'tipo_cambio_dr': '',
+                                    'metodo_de_pago_dr': 'PPD',
+                                    'num_parcialidad': '',
+                                    'imp_saldo_ant': '',
+                                    'imp_pagado': '1070880.234906',
+                                    'imp_saldo_insoluto': '6193010.234906'
                                 },
                                 {
-                                    'IdDocumento': '415-53-638204948',
-                                    'Serie': '',
-                                    'Folio': '',
-                                    'MonedaDR': 'PYG',
-                                    'TipoCambioDR': '',
-                                    'MetodoDePagoDR': 'PPD',
-                                    'NumParcialidad': '',
-                                    'ImpSaldoAnt': '',
-                                    'ImpPagado': '5300650.234906',
-                                    'ImpSaldoInsoluto': '1336720.234906'
+                                    'id_documento': '415-53-638204948',
+                                    'serie': '',
+                                    'folio': '',
+                                    'moneda_dr': 'PYG',
+                                    'tipo_cambio_dr': '',
+                                    'metodo_de_pago_dr': 'PPD',
+                                    'num_parcialidad': '',
+                                    'imp_saldo_ant': '',
+                                    'imp_pagado': '5300650.234906',
+                                    'imp_saldo_insoluto': '1336720.234906'
                                 },
                                 {
-                                    'IdDocumento': 'AB614e3E-8fB7-afce-5Acb-b6B6C332EeEa',
-                                    'Serie': '',
-                                    'Folio': '',
-                                    'MonedaDR': 'CLP',
-                                    'TipoCambioDR': '',
-                                    'MetodoDePagoDR': 'PPD',
-                                    'NumParcialidad': '',
-                                    'ImpSaldoAnt': '',
-                                    'ImpPagado': '',
-                                    'ImpSaldoInsoluto': ''
+                                    'id_documento': 'AB614e3E-8fB7-afce-5Acb-b6B6C332EeEa',
+                                    'serie': '',
+                                    'folio': '',
+                                    'moneda_dr': 'CLP',
+                                    'tipo_cambio_dr': '',
+                                    'metodo_de_pago_dr': 'PPD',
+                                    'num_parcialidad': '',
+                                    'imp_saldo_ant': '',
+                                    'imp_pagado': '',
+                                    'imp_saldo_insoluto': ''
                                 },
                                 {
-                                    'IdDocumento': 'ebCA4FBe-3b90-daFC-DDCD-a2b6A296DDcD',
-                                    'Serie': '',
-                                    'Folio': '',
-                                    'MonedaDR': 'AWG',
-                                    'TipoCambioDR': '',
-                                    'MetodoDePagoDR': 'PPD',
-                                    'NumParcialidad': '462',
-                                    'ImpSaldoAnt': '',
-                                    'ImpPagado': '',
-                                    'ImpSaldoInsoluto': '6085410.234906'
+                                    'id_documento': 'ebCA4FBe-3b90-daFC-DDCD-a2b6A296DDcD',
+                                    'serie': '',
+                                    'folio': '',
+                                    'moneda_dr': 'AWG',
+                                    'tipo_cambio_dr': '',
+                                    'metodo_de_pago_dr': 'PPD',
+                                    'num_parcialidad': '99',
+                                    'imp_saldo_ant': '',
+                                    'imp_pagado': '',
+                                    'imp_saldo_insoluto': '6085410.234906'
                                 }
                             ],
                             'impuestos': [
@@ -274,7 +276,7 @@ class TestHanderCfdi33Pagos10Tests(unittest.TestCase):
                             ]
                         },
                         {
-                            'fecha_pago': '2015-08-06T06:10:27.07',
+                            'fecha_pago': '2015-08-06T06:10:27',
                             'forma_de_pago_p': '26',
                             'moneda_p': 'MXN',
                             'tipo_cambio_p': '',
@@ -294,6 +296,387 @@ class TestHanderCfdi33Pagos10Tests(unittest.TestCase):
                         }
                     ],
                     'version': '1.0'
+                }
+            ]
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
+
+    def test_transform_file_pagos10_01(self):
+        sax_handler = ct.SAXHandler().use_pagos10()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_01.xml')
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            "cfdi33": {
+                "version": "3.3",
+                "serie": "PA",
+                "folio": "1",
+                "fecha": "2019-03-29T17:37:19",
+                "no_certificado": "00000000000000000000",
+                "subtotal": "0",
+                "descuento": "",
+                "total": "0",
+                "moneda": "XXX",
+                "tipo_cambio": "",
+                "tipo_comprobante": "P",
+                "metodo_pago": "",
+                "forma_pago": "",
+                "condiciones_pago": "",
+                "lugar_expedicion": "45110",
+                "emisor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "xxx",
+                    "regimen_fiscal": "601"
+                },
+                "receptor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "PUBLICO EN GENERAL",
+                    "residencia_fiscal": "",
+                    "num_reg_id_trib": "",
+                    "uso_cfdi": "P01"
+                },
+                "conceptos": [],
+                "impuestos": {
+                    "retenciones": [],
+                    "traslados": []
+                },
+                "complementos": "Pagos TimbreFiscalDigital",
+                "addendas": ""
+            },
+            "tfd": [
+                {
+                    "version": "1.1",
+                    "no_certificado_sat": "20001000000300022323",
+                    "uuid": "94C4AA76-9DD5-41AD-A10B-267024761951",
+                    "fecha_timbrado": "2019-03-29T17:42:38",
+                    "rfc_prov_cert": "AAA010101AAA",
+                    "sello_cfd": ""
+                }
+            ],
+            "implocal": [],
+            "pagos10": [
+                {
+                    "pago": [
+                        {
+                            "fecha_pago": "2019-03-29T16:14:52",
+                            "forma_de_pago_p": "03",
+                            "moneda_p": "MXN",
+                            "tipo_cambio_p": "",
+                            "monto": "58000.00",
+                            "num_operacion": "",
+                            "rfc_emisor_cta_ord": "",
+                            "nom_banco_ord_ext": "",
+                            "cta_ordenante": "",
+                            "rfc_emisor_cta_ben": "",
+                            "cta_beneficiario": "",
+                            "tipo_cad_pago": "",
+                            "cert_pago": "",
+                            "cad_pago": "",
+                            "sello_pago": "",
+                            "docto_relacionado": [
+                                {
+                                    "id_documento": "",
+                                    "serie": "",
+                                    "folio": "",
+                                    "moneda_dr": "MXN",
+                                    "tipo_cambio_dr": "",
+                                    "metodo_de_pago_dr": "PPD",
+                                    "num_parcialidad": "2",
+                                    "imp_saldo_ant": "138040.00",
+                                    "imp_pagado": "58000.00",
+                                    "imp_saldo_insoluto": "80040.00"
+                                }
+                            ],
+                            "impuestos": []
+                        }
+                    ],
+                    "version": "1.0"
+                }
+            ]
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
+    
+    def test_transform_file_pagos10_safenumerics_01(self):
+        sax_handler = ct.SAXHandler(safe_numerics=True).use_pagos10()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_01.xml')
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            "cfdi33": {
+                "version": "3.3",
+                "serie": "PA",
+                "folio": "1",
+                "fecha": "2019-03-29T17:37:19",
+                "no_certificado": "00000000000000000000",
+                "subtotal": "0",
+                "descuento": "0.00",
+                "total": "0",
+                "moneda": "XXX",
+                "tipo_cambio": "1.00",
+                "tipo_comprobante": "P",
+                "metodo_pago": "",
+                "forma_pago": "",
+                "condiciones_pago": "",
+                "lugar_expedicion": "45110",
+                "emisor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "xxx",
+                    "regimen_fiscal": "601"
+                },
+                "receptor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "PUBLICO EN GENERAL",
+                    "residencia_fiscal": "",
+                    "num_reg_id_trib": "",
+                    "uso_cfdi": "P01"
+                },
+                "conceptos": [],
+                "impuestos": {
+                    "retenciones": [],
+                    "traslados": []
+                },
+                "complementos": "Pagos TimbreFiscalDigital",
+                "addendas": ""
+            },
+            "tfd": [
+                {
+                    "version": "1.1",
+                    "no_certificado_sat": "20001000000300022323",
+                    "uuid": "94C4AA76-9DD5-41AD-A10B-267024761951",
+                    "fecha_timbrado": "2019-03-29T17:42:38",
+                    "rfc_prov_cert": "AAA010101AAA",
+                    "sello_cfd": ""
+                }
+            ],
+            "implocal": [],
+            "pagos10": [
+                {
+                    "pago": [
+                        {
+                            "fecha_pago": "2019-03-29T16:14:52",
+                            "forma_de_pago_p": "03",
+                            "moneda_p": "MXN",
+                            "tipo_cambio_p": "1.00",
+                            "monto": "58000.00",
+                            "num_operacion": "",
+                            "rfc_emisor_cta_ord": "",
+                            "nom_banco_ord_ext": "",
+                            "cta_ordenante": "",
+                            "rfc_emisor_cta_ben": "",
+                            "cta_beneficiario": "",
+                            "tipo_cad_pago": "",
+                            "cert_pago": "",
+                            "cad_pago": "",
+                            "sello_pago": "",
+                            "docto_relacionado": [
+                                {
+                                    "id_documento": "",
+                                    "serie": "",
+                                    "folio": "",
+                                    "moneda_dr": "MXN",
+                                    "tipo_cambio_dr": "1.00",
+                                    "metodo_de_pago_dr": "PPD",
+                                    "num_parcialidad": "2",
+                                    "imp_saldo_ant": "138040.00",
+                                    "imp_pagado": "58000.00",
+                                    "imp_saldo_insoluto": "80040.00"
+                                }
+                            ],
+                            "impuestos": []
+                        }
+                    ],
+                    "version": "1.0"
+                }
+            ]
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
+    
+    def test_transform_file_pagos10_emptychar_01(self):
+        sax_handler = ct.SAXHandler(empty_char='-').use_pagos10()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_01.xml')
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            "cfdi33": {
+                "version": "3.3",
+                "serie": "PA",
+                "folio": "1",
+                "fecha": "2019-03-29T17:37:19",
+                "no_certificado": "00000000000000000000",
+                "subtotal": "0",
+                "descuento": "-",
+                "total": "0",
+                "moneda": "XXX",
+                "tipo_cambio": "-",
+                "tipo_comprobante": "P",
+                "metodo_pago": "-",
+                "forma_pago": "-",
+                "condiciones_pago": "-",
+                "lugar_expedicion": "45110",
+                "emisor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "xxx",
+                    "regimen_fiscal": "601"
+                },
+                "receptor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "PUBLICO EN GENERAL",
+                    "residencia_fiscal": "-",
+                    "num_reg_id_trib": "-",
+                    "uso_cfdi": "P01"
+                },
+                "conceptos": [],
+                "impuestos": {
+                    "retenciones": [],
+                    "traslados": []
+                },
+                "complementos": "Pagos TimbreFiscalDigital",
+                "addendas": "-"
+            },
+            "tfd": [
+                {
+                    "version": "1.1",
+                    "no_certificado_sat": "20001000000300022323",
+                    "uuid": "94C4AA76-9DD5-41AD-A10B-267024761951",
+                    "fecha_timbrado": "2019-03-29T17:42:38",
+                    "rfc_prov_cert": "AAA010101AAA",
+                    "sello_cfd": ""
+                }
+            ],
+            "implocal": [],
+            "pagos10": [
+                {
+                    "pago": [
+                        {
+                            "fecha_pago": "2019-03-29T16:14:52",
+                            "forma_de_pago_p": "03",
+                            "moneda_p": "MXN",
+                            "tipo_cambio_p": "-",
+                            "monto": "58000.00",
+                            "num_operacion": "-",
+                            "rfc_emisor_cta_ord": "-",
+                            "nom_banco_ord_ext": "-",
+                            "cta_ordenante": "-",
+                            "rfc_emisor_cta_ben": "-",
+                            "cta_beneficiario": "-",
+                            "tipo_cad_pago": "-",
+                            "cert_pago": "-",
+                            "cad_pago": "-",
+                            "sello_pago": "-",
+                            "docto_relacionado": [
+                                {
+                                    "id_documento": "",
+                                    "serie": "-",
+                                    "folio": "-",
+                                    "moneda_dr": "MXN",
+                                    "tipo_cambio_dr": "-",
+                                    "metodo_de_pago_dr": "PPD",
+                                    "num_parcialidad": "2",
+                                    "imp_saldo_ant": "138040.00",
+                                    "imp_pagado": "58000.00",
+                                    "imp_saldo_insoluto": "80040.00"
+                                }
+                            ],
+                            "impuestos": []
+                        }
+                    ],
+                    "version": "1.0"
+                }
+            ]
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
+    
+    def test_transform_file_pagos10_complete_validation(self):
+        schema_validator = SchemaHelper.get_schema_validator_cfdi33()
+        sax_handler = ct.SAXHandler(schema_validator=schema_validator).use_pagos10()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago_complete.xml')
+        self.assertIsNotNone(cfdi_data)
+    
+    def test_transform_file_pagos10_broken_validation(self):
+        schema_validator = SchemaHelper.get_schema_validator_cfdi33()
+        sax_handler = ct.SAXHandler(schema_validator=schema_validator).use_pagos10()
+        with self.assertRaises(etree.DocumentInvalid) as context:
+            sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_broken_01.xml')
+        exception = context.exception
+        self.assertIn("Element '{http://www.sat.gob.mx/TimbreFiscalDigital}TimbreFiscalDigital': This element is not expected. Expected is ( {http://www.sat.gob.mx/Pagos}Pago ).", str(exception), 'Different error expected.')
+    
+    def test_transform_file_pagos10_broken(self):
+        sax_handler = ct.SAXHandler().use_pagos10()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_broken_01.xml')
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            "cfdi33": {
+                "version": "3.3",
+                "serie": "PA",
+                "folio": "1",
+                "fecha": "2019-03-29T17:37:19",
+                "no_certificado": "00000000000000000000",
+                "subtotal": "0",
+                "descuento": "",
+                "total": "0",
+                "moneda": "XXX",
+                "tipo_cambio": "",
+                "tipo_comprobante": "P",
+                "metodo_pago": "",
+                "forma_pago": "",
+                "condiciones_pago": "",
+                "lugar_expedicion": "45110",
+                "emisor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "xxx",
+                    "regimen_fiscal": "601"
+                },
+                "receptor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "PUBLICO EN GENERAL",
+                    "residencia_fiscal": "",
+                    "num_reg_id_trib": "",
+                    "uso_cfdi": "P01"
+                },
+                "conceptos": [],
+                "impuestos": {
+                    "retenciones": [],
+                    "traslados": []
+                },
+                "complementos": "Pagos",
+                "addendas": ""
+            },
+            "tfd": [],
+            "implocal": [],
+            "pagos10": [
+                {
+                    "pago": [
+                        {
+                            "fecha_pago": "2019-03-29T16:14:52",
+                            "forma_de_pago_p": "03",
+                            "moneda_p": "MXN",
+                            "tipo_cambio_p": "",
+                            "monto": "58000.00",
+                            "num_operacion": "",
+                            "rfc_emisor_cta_ord": "",
+                            "nom_banco_ord_ext": "",
+                            "cta_ordenante": "",
+                            "rfc_emisor_cta_ben": "",
+                            "cta_beneficiario": "",
+                            "tipo_cad_pago": "",
+                            "cert_pago": "",
+                            "cad_pago": "",
+                            "sello_pago": "",
+                            "docto_relacionado": [
+                                {
+                                    "id_documento": "94c4aa76-9dd5-41ad-a10b-267024761951",
+                                    "serie": "",
+                                    "folio": "",
+                                    "moneda_dr": "MXN",
+                                    "tipo_cambio_dr": "",
+                                    "metodo_de_pago_dr": "PPD",
+                                    "num_parcialidad": "2",
+                                    "imp_saldo_ant": "138040.00",
+                                    "imp_pagado": "58000.00",
+                                    "imp_saldo_insoluto": "80040.00"
+                                }
+                            ],
+                            "impuestos": []
+                        }
+                    ],
+                    "version": "1.0"
                 }
             ]
         }

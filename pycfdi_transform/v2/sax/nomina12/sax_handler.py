@@ -58,6 +58,8 @@ class Nomina12SAXHandler(BaseHandler):
                     self.__transform_otro_pago(elem)
     
     def __transform_nomina(self, element:etree._Element) -> None:
+        if not 'Version' in element.attrib or element.attrib['Version'] != '1.2':
+            raise ValueError('Incorrect type of Nomina, this handler only support Nomina version 1.2')
         self._data['version'] = element.attrib.get('Version')
         self._data['tipo_nomina'] = element.attrib.get('TipoNomina')
         self._data['fecha_pago'] = element.attrib.get('FechaPago')

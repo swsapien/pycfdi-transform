@@ -27,5 +27,7 @@ class ImpLocalSAXHandler(BaseHandler):
                 else:
                     context.skip_subtree()
     def __transform_implocal(self, element:etree._Element):
+        if not 'version' in element.attrib or element.attrib['version'] != '1.0':
+            raise ValueError('Incorrect type of ImpLocal, this handler only support ImpLocal version 1.0')
         self._data['total_traslados_impuestos_locales'] = element.attrib.get('TotaldeTraslados')
         self._data['total_retenciones_impuestos_locales'] = element.attrib.get('TotaldeRetenciones')

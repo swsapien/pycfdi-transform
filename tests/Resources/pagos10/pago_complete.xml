@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cfdi:Comprobante xmlns="http://www.sat.gob.mx/sitio_internet/cfd/catalogos" xmlns:tdCFDI="http://www.sat.gob.mx/sitio_internet/cfd/tipoDatos/tdCFDI" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 schema.xsd" Version="3.3" Serie="&quot;" Folio="/&gt;KA" Fecha="2018-01-10T07:22:51.20" Sello="string" FormaPago="01" NoCertificado="47217725691977968749" Certificado="string" CondicionesDePago="}_" SubTotal="5858580.234906" Descuento="9061950.234906" Moneda="SGD" TipoCambio="8016540.234907" Total="7679420.234906" TipoDeComprobante="N" MetodoPago="PPD" LugarExpedicion="45734" Confirmacion="8p7F3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<cfdi:Comprobante xmlns="http://www.sat.gob.mx/sitio_internet/cfd/catalogos" xmlns:tdCFDI="http://www.sat.gob.mx/sitio_internet/cfd/tipoDatos/tdCFDI" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 schema.xsd" Version="3.3" Serie="&quot;" Folio="/&gt;KA" Fecha="2018-01-10T07:22:51" Sello="string" FormaPago="01" NoCertificado="47217725691977968749" Certificado="string" CondicionesDePago="}_" SubTotal="5858580.234906" Descuento="9061950.234906" Moneda="SGD" TipoCambio="8016540.234907" Total="7679420.234906" TipoDeComprobante="N" MetodoPago="PPD" LugarExpedicion="45734" Confirmacion="8p7F3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <cfdi:CfdiRelacionados TipoRelacion="08">
     <cfdi:CfdiRelacionado UUID="AcFACba5-d9cb-6cc5-f4BF-fBB5Ba0fcDeB" />
     <cfdi:CfdiRelacionado UUID="2dFfEAFA-be6D-c25A-4aBF-d5fba7b1afDD" />
@@ -19,7 +19,6 @@
       <cfdi:InformacionAduanera NumeroPedimento="56  76  6416  3121097" />
       <cfdi:InformacionAduanera NumeroPedimento="33  78  1329  5838611" />
       <cfdi:InformacionAduanera NumeroPedimento="45  97  3251  9180732" />
-      <cfdi:ComplementoConcepto />
       <cfdi:Parte ClaveProdServ="10231701" Cantidad="9524070.234907" Descripcion="~~R8}}">
         <cfdi:InformacionAduanera NumeroPedimento="38  83  5140  4558711" />
         <cfdi:InformacionAduanera NumeroPedimento="12  93  0588  7410014" />
@@ -40,7 +39,7 @@
   </cfdi:Impuestos>
   <cfdi:Complemento>
     <pago10:Pagos xmlns="http://www.sat.gob.mx/sitio_internet/cfd/catalogos" xmlns:tdCFDI="http://www.sat.gob.mx/sitio_internet/cfd/tipoDatos/tdCFDI" xmlns:pago10="http://www.sat.gob.mx/Pagos" xmlns:catPagos="http://www.sat.gob.mx/sitio_internet/cfd/catalogos/Pagos" xsi:schemaLocation="http://www.sat.gob.mx/Pagos schema.xsd" Version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <pago10:Pago FechaPago="2005-01-06T06:10:27.07" FormaDePagoP="26" MonedaP="XBA" TipoCambioP="4026190.234907" Monto="8426440.234906" NumOperacion="}" RfcEmisorCtaOrd="&amp;ÑÑ941216Z6A" NomBancoOrdExt="~" CtaOrdenante="__LN__5__4" RfcEmisorCtaBen="&amp;&amp;Ñ411106M7A" CtaBeneficiario="_L_T0DRB_6" TipoCadPago="01" CertPago="YTM0NZomIzI2OTsmIzM0NTueYQ==" CadPago="string" SelloPago="YTM0NZomIzI2OTsmIzM0NTueYQ==">
+    <pago10:Pago FechaPago="2015-01-06T06:10:27" FormaDePagoP="26" MonedaP="XBA" TipoCambioP="4026190.234907" Monto="8426440.234906" NumOperacion="}" RfcEmisorCtaOrd="&amp;ÑÑ941216Z6A" NomBancoOrdExt="~" CtaOrdenante="__LN__5__4" RfcEmisorCtaBen="&amp;&amp;Ñ411106M7A" CtaBeneficiario="_L_T0DRB_6" TipoCadPago="01" CertPago="YTM0NZomIzI2OTsmIzM0NTueYQ==" CadPago="string" SelloPago="YTM0NZomIzI2OTsmIzM0NTueYQ==">
       <pago10:DoctoRelacionado IdDocumento="BcfEc9ED-e6fE-3a98-13b0-A9c97bEcBcEd" MonedaDR="MUR" TipoCambioDR="7904020.234907" MetodoDePagoDR="PPD" ImpPagado="9752350.234906" ImpSaldoInsoluto="82970.234906" />
       <pago10:DoctoRelacionado IdDocumento="be6dcDE2-ab9B-7DcF-Aaa2-CB8679f2fa01" Folio="c!}~r" MonedaDR="HKD" MetodoDePagoDR="PPD" ImpSaldoAnt="8563470.234906" ImpPagado="5255780.234906" />
       <pago10:Impuestos TotalImpuestosRetenidos="5031130.234906" TotalImpuestosTrasladados="1252680.234906">
@@ -50,12 +49,12 @@
         </pago10:Traslados>
       </pago10:Impuestos>
     </pago10:Pago>
-    <pago10:Pago FechaPago="1973-04-15T09:02:29.56" FormaDePagoP="29" MonedaP="BHD" TipoCambioP="2027230.234907" Monto="2211890.234906" NumOperacion="~\" RfcEmisorCtaOrd="&amp;ÑR880531UH8" NomBancoOrdExt="~" CtaOrdenante="JS_O33J_3_L3" RfcEmisorCtaBen="ÑÑX930431318" CtaBeneficiario="FV485__M__" TipoCadPago="01" CertPago="YTM0NZomIzI2OTsmIzM0NTueYQ==" CadPago="string" SelloPago="YTM0NZomIzI2OTsmIzM0NTueYQ==">
-      <pago10:DoctoRelacionado IdDocumento="eafcbCE2-Da9c-D0AE-6dd0-eCBeF5422bBe" MonedaDR="PYG" TipoCambioDR="1997730.234907" MetodoDePagoDR="PUE" NumParcialidad="3133" ImpSaldoAnt="2349050.234906" ImpSaldoInsoluto="9332080.234906" />
+    <pago10:Pago FechaPago="2015-04-15T09:02:29" FormaDePagoP="29" MonedaP="BHD" TipoCambioP="2027230.234907" Monto="2211890.234906" NumOperacion="~\" RfcEmisorCtaOrd="&amp;ÑR880531UH8" NomBancoOrdExt="~" CtaOrdenante="JS_O33J_3_L3" RfcEmisorCtaBen="ÑÑX930431318" CtaBeneficiario="FV485__M__" TipoCadPago="01" CertPago="YTM0NZomIzI2OTsmIzM0NTueYQ==" CadPago="string" SelloPago="YTM0NZomIzI2OTsmIzM0NTueYQ==">
+      <pago10:DoctoRelacionado IdDocumento="eafcbCE2-Da9c-D0AE-6dd0-eCBeF5422bBe" MonedaDR="PYG" TipoCambioDR="1997730.234907" MetodoDePagoDR="PUE" NumParcialidad="55" ImpSaldoAnt="2349050.234906" ImpSaldoInsoluto="9332080.234906" />
       <pago10:DoctoRelacionado IdDocumento="B64DDDF2-fECA-fcDe-430d-D1A5F02ea844" Serie="e" MonedaDR="MXN" MetodoDePagoDR="PPD" ImpPagado="1070880.234906" ImpSaldoInsoluto="6193010.234906" />
       <pago10:DoctoRelacionado IdDocumento="415-53-638204948" Serie="qm3}" MonedaDR="PYG" TipoCambioDR="2570340.234907" MetodoDePagoDR="PPD" ImpPagado="5300650.234906" ImpSaldoInsoluto="1336720.234906" />
       <pago10:DoctoRelacionado IdDocumento="AB614e3E-8fB7-afce-5Acb-b6B6C332EeEa" MonedaDR="CLP" MetodoDePagoDR="PPD" />
-      <pago10:DoctoRelacionado IdDocumento="ebCA4FBe-3b90-daFC-DDCD-a2b6A296DDcD" MonedaDR="AWG" TipoCambioDR="7418180.234907" MetodoDePagoDR="PPD" NumParcialidad="462" ImpSaldoInsoluto="6085410.234906" />
+      <pago10:DoctoRelacionado IdDocumento="ebCA4FBe-3b90-daFC-DDCD-a2b6A296DDcD" MonedaDR="AWG" TipoCambioDR="7418180.234907" MetodoDePagoDR="PPD" NumParcialidad="99" ImpSaldoInsoluto="6085410.234906" />
       <pago10:Impuestos TotalImpuestosTrasladados="5810390.234906" />
       <pago10:Impuestos TotalImpuestosTrasladados="3799760.234906">
         <pago10:Retenciones>
@@ -73,8 +72,7 @@
         </pago10:Traslados>
       </pago10:Impuestos>
     </pago10:Pago>
-    <pago10:Pago FechaPago="2015-08-06T06:10:27.07" FormaDePagoP="26" MonedaP="MXN" Monto="8426440.234906" NumOperacion="5459" RfcEmisorCtaOrd="AVV941216Z6A" />
+    <pago10:Pago FechaPago="2015-08-06T06:10:27" FormaDePagoP="26" MonedaP="MXN" Monto="8426440.234906" NumOperacion="5459" RfcEmisorCtaOrd="AVV941216Z6A" />
   </pago10:Pagos>
   </cfdi:Complemento>
-  <cfdi:Addenda />
 </cfdi:Comprobante>

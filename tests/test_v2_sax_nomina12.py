@@ -1,4 +1,5 @@
 from pycfdi_transform.v2.helpers.schema_helper import SchemaHelper
+from lxml import etree
 import unittest
 import pycfdi_transform.v2.sax.cfdi33.sax_handler as ct
 
@@ -12,7 +13,7 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                 'version': '3.3',
                 'serie': '"',
                 'folio': '/>KA',
-                'fecha': '2018-01-10T07:22:51.20',
+                'fecha': '2018-01-10T07:22:51',
                 'no_certificado': '47217725691977968749',
                 'subtotal': '5858580.234906',
                 'descuento': '9061950.234906',
@@ -103,18 +104,18 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                         'riesgo_puesto': '3',
                         'periodicidad_pago': '06',
                         'banco': '647',
-                        'cuenta_bancaria': '2741',
+                        'cuenta_bancaria': '1234567890',
                         'salario_base_cot_apor': '8635520.23',
                         'salario_diario_integrado': '2928750.23',
                         'clave_ent_fed': 'VT',
                         'subcontratacion': [
                             {
                                 'rfc_labora': '&ÑEL561104H5A',
-                                'porcentaje_tiempo': '91.4441937119451'
+                                'porcentaje_tiempo': '91.44'
                             }, 
                             {
                                 'rfc_labora': 'ÑÑL&020703408',
-                                'porcentaje_tiempo': '50.8166999909451'
+                                'porcentaje_tiempo': '50.81'
                             }
                         ]
                     },
@@ -339,7 +340,7 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                 'version': '3.3',
                 'serie': '"',
                 'folio': '/>KA',
-                'fecha': '2018-01-10T07:22:51.20',
+                'fecha': '2018-01-10T07:22:51',
                 'no_certificado': '47217725691977968749',
                 'subtotal': '5858580.234906',
                 'descuento': '9061950.234906',
@@ -430,18 +431,18 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                         'riesgo_puesto': '3',
                         'periodicidad_pago': '06',
                         'banco': '647',
-                        'cuenta_bancaria': '2741',
+                        'cuenta_bancaria': '1234567890',
                         'salario_base_cot_apor': '8635520.23',
                         'salario_diario_integrado': '2928750.23',
                         'clave_ent_fed': 'VT',
                         'subcontratacion': [
                             {
                                 'rfc_labora': '&ÑEL561104H5A',
-                                'porcentaje_tiempo': '91.4441937119451'
+                                'porcentaje_tiempo': '91.44'
                             }, 
                             {
                                 'rfc_labora': 'ÑÑL&020703408',
-                                'porcentaje_tiempo': '50.8166999909451'
+                                'porcentaje_tiempo': '50.81'
                             }
                         ]
                     },
@@ -666,7 +667,7 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                 'version': '3.3',
                 'serie': '"',
                 'folio': '/>KA',
-                'fecha': '2018-01-10T07:22:51.20',
+                'fecha': '2018-01-10T07:22:51',
                 'no_certificado': '47217725691977968749',
                 'subtotal': '5858580.234906',
                 'descuento': '9061950.234906',
@@ -757,18 +758,18 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                         'riesgo_puesto': '3',
                         'periodicidad_pago': '06',
                         'banco': '647',
-                        'cuenta_bancaria': '2741',
+                        'cuenta_bancaria': '1234567890',
                         'salario_base_cot_apor': '8635520.23',
                         'salario_diario_integrado': '2928750.23',
                         'clave_ent_fed': 'VT',
                         'subcontratacion': [
                             {
                                 'rfc_labora': '&ÑEL561104H5A',
-                                'porcentaje_tiempo': '91.4441937119451'
+                                'porcentaje_tiempo': '91.44'
                             }, 
                             {
                                 'rfc_labora': 'ÑÑL&020703408',
-                                'porcentaje_tiempo': '50.8166999909451'
+                                'porcentaje_tiempo': '50.81'
                             }
                         ]
                     },
@@ -1802,7 +1803,7 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                 'version': '3.3',
                 'serie': '"',
                 'folio': '/>KA',
-                'fecha': '2018-01-10T07:22:51.20',
+                'fecha': '2018-01-10T07:22:51',
                 'no_certificado': '47217725691977968749',
                 'subtotal': '5858580.234906',
                 'descuento': '9061950.234906',
@@ -1893,18 +1894,18 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
                         'riesgo_puesto': '3',
                         'periodicidad_pago': '06',
                         'banco': '647',
-                        'cuenta_bancaria': '2741',
+                        'cuenta_bancaria': '1234567890',
                         'salario_base_cot_apor': '8635520.23',
                         'salario_diario_integrado': '2928750.23',
                         'clave_ent_fed': 'VT',
                         'subcontratacion': [
                             {
                                 'rfc_labora': '&ÑEL561104H5A',
-                                'porcentaje_tiempo': '91.4441937119451'
+                                'porcentaje_tiempo': '91.44'
                             }, 
                             {
                                 'rfc_labora': 'ÑÑL&020703408',
-                                'porcentaje_tiempo': '50.8166999909451'
+                                'porcentaje_tiempo': '50.81'
                             }
                         ]
                     },
@@ -2119,3 +2120,222 @@ class TestHanderCfdi33Nomina12Tests(unittest.TestCase):
             ]
         }
         self.assertDictEqual(cfdi_data, expected_dict)
+    
+    def test_transform_file_bad_version(self):
+        sax_handler = ct.SAXHandler().use_nomina12()
+        with self.assertRaises(ValueError) as context:
+            sax_handler.transform_from_file("./tests/Resources/nomina12/bad_version_nomina01.xml")
+        exception = context.exception
+        self.assertIn('Incorrect type of CFDI, this handler only support CFDI version 3.3', str(exception), 'Not expected error message')
+    
+    def test_transform_file_bad_version_xsdvalidation(self):
+        schema_validator = SchemaHelper.get_schema_validator_cfdi33()
+        sax_handler = ct.SAXHandler(schema_validator=schema_validator).use_nomina12()
+        with self.assertRaises(etree.DocumentInvalid) as context:
+            sax_handler.transform_from_file("./tests/Resources/nomina12/bad_version_nomina01.xml")
+        exception = context.exception
+        self.assertIn("The value 'Zapopan, Jalisco' has a length of '16'; this differs from the allowed length of '5'", str(exception), 'Not expected error message')
+    
+    def test_transform_file_broken_xml(self):
+        sax_handler = ct.SAXHandler().use_nomina12()
+        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/broken_nomina12_01.xml")
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            "cfdi33": {
+                "version": "3.3",
+                "serie": "",
+                "folio": "123456",
+                "fecha": "2021-05-27T09:49:02",
+                "no_certificado": "30001000000400002434",
+                "subtotal": "1782.11",
+                "descuento": "748.07",
+                "total": "1034.04",
+                "moneda": "MXN",
+                "tipo_cambio": "",
+                "tipo_comprobante": "N",
+                "metodo_pago": "PUE",
+                "forma_pago": "99",
+                "condiciones_pago": "",
+                "lugar_expedicion": "45400",
+                "emisor": {
+                    "rfc": "EKU9003173C9",
+                    "nombre": "EMISOR",
+                    "regimen_fiscal": "601"
+                },
+                "receptor": {
+                    "rfc": "KICR630120NX3",
+                    "nombre": "RECEPTOR",
+                    "residencia_fiscal": "",
+                    "num_reg_id_trib": "",
+                    "uso_cfdi": "P01"
+                },
+                "conceptos": [],
+                "impuestos": {
+                    "retenciones": [],
+                    "traslados": []
+                },
+                "complementos": "Nomina",
+                "addendas": ""
+            },
+            "tfd": [],
+            "implocal": [],
+            "nomina12": [
+                {
+                    "version": "1.2",
+                    "tipo_nomina": "O",
+                    "fecha_pago": "2021-04-09",
+                    "fecha_inicial_pago": "2021-04-05",
+                    "fecha_final_pago": "2021-04-11",
+                    "num_dias_pagados": "5.000",
+                    "total_percepciones": "1730.34",
+                    "total_deducciones": "748.07",
+                    "total_otros_pagos": "51.77",
+                    "emisor": {
+                        "curp": "",
+                        "registro_patronal": "A0000000000",
+                        "rfc_patron_origen": "",
+                        "entidad_SNCF": {
+                            "origen_recurso": "",
+                            "monto_recurso_propio": ""
+                        }
+                    },
+                    "receptor": {
+                        "curp": "XEXX010101HNEXXXA4",
+                        "num_seguridad_social": "00000000000",
+                        "fecha_inicio_rel_laboral": "2019-11-11",
+                        "antigüedad": "P74W",
+                        "tipo_contrato": "01",
+                        "sindicalizado": "No",
+                        "tipo_jornada": "01",
+                        "tipo_regimen": "02",
+                        "num_empleado": "1",
+                        "departamento": "",
+                        "puesto": "PUESTO",
+                        "riesgo_puesto": "5",
+                        "periodicidad_pago": "02",
+                        "banco": "",
+                        "cuenta_bancaria": "",
+                        "salario_base_cot_apor": "281.27",
+                        "salario_diario_integrado": "281.26",
+                        "clave_ent_fed": "JAL",
+                        "subcontratacion": []
+                    },
+                    "percepciones": {
+                        "total_sueldos": "1730.34",
+                        "total_separacion_indemnizacion": "",
+                        "total_jubilacion_pension_retiro": "",
+                        "total_gravado": "1427.12",
+                        "total_exento": "303.22",
+                        "percepcion": [
+                            {
+                                "tipo_percepcion": "001",
+                                "clave": "P001",
+                                "concepto": "Sueldo Normal",
+                                "importe_gravado": "1248.73",
+                                "importe_exento": "0.00",
+                                "horas_extra": []
+                            },
+                            {
+                                "tipo_percepcion": "001",
+                                "clave": "P004",
+                                "concepto": "Dia Festivo Laborado",
+                                "importe_gravado": "178.39",
+                                "importe_exento": "178.39",
+                                "horas_extra": []
+                            },
+                            {
+                                "tipo_percepcion": "005",
+                                "clave": "P035",
+                                "concepto": "Aportacion Fondo Empresa",
+                                "importe_gravado": "0.00",
+                                "importe_exento": "40.58",
+                                "horas_extra": []
+                            },
+                            {
+                                "tipo_percepcion": "029",
+                                "clave": "P031",
+                                "concepto": "Vales de Despensa",
+                                "importe_gravado": "0.00",
+                                "importe_exento": "58.00",
+                                "horas_extra": []
+                            },
+                            {
+                                "tipo_percepcion": "029",
+                                "clave": "P032",
+                                "concepto": "Canasta Basica",
+                                "importe_gravado": "0.00",
+                                "importe_exento": "26.25",
+                                "horas_extra": []
+                            }
+                        ]
+                    },
+                    "deducciones": {
+                        "TotalOtrasDeducciones": "748.07",
+                        "TotalImpuestosRetenidos": "",
+                        "deduccion": [
+                            {
+                                "tipo_deduccion": "006",
+                                "clave": "D003",
+                                "concepto": "Falta Incapacidad Enfermedad General",
+                                "importe": "356.78"
+                            },
+                            {
+                                "tipo_deduccion": "004",
+                                "clave": "D010",
+                                "concepto": "Aportacion Fondo de Ahorro",
+                                "importe": "40.58"
+                            },
+                            {
+                                "tipo_deduccion": "001",
+                                "clave": "D002",
+                                "concepto": "Cuota IMSS",
+                                "importe": "26.92"
+                            },
+                            {
+                                "tipo_deduccion": "019",
+                                "clave": "D011",
+                                "concepto": "Cuota Sindical",
+                                "importe": "11.60"
+                            },
+                            {
+                                "tipo_deduccion": "020",
+                                "clave": "D009",
+                                "concepto": "Falta Proyecto",
+                                "importe": "312.19"
+                            }
+                        ]
+                    },
+                    "otros_pagos": {
+                        "otro_pago": [
+                            {
+                                "tipo_otro_pago": "002",
+                                "clave": "SEAP",
+                                "concepto": "SUBSIDIO PARA EMPLEO APLICADO",
+                                "importe": "51.77",
+                                "subsidio_al_empleo": {
+                                    "subsidio_causado": "93.66"
+                                }
+                            }
+                        ]
+                    },
+                    "incapacidades": {
+                        "incapacidad": [
+                            {
+                                "dias_incapacidad": "2",
+                                "tipo_incapacidad": "02",
+                                "importe_monetario": "356.78"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
+    
+    def test_transform_file_broken_xml_validation(self):
+        schema_validator = SchemaHelper.get_schema_validator_cfdi33()
+        sax_handler = ct.SAXHandler(schema_validator=schema_validator).use_nomina12()
+        with self.assertRaises(etree.DocumentInvalid) as context:
+            sax_handler.transform_from_file("./tests/Resources/nomina12/broken_nomina12_01.xml")
+        exception = context.exception
+        self.assertIn("Element '{http://www.sat.gob.mx/nomina12}Receptor': This element is not expected. Expected is ( {http://www.sat.gob.mx/nomina12}EntidadSNCF )., line 1", str(exception), 'Not expected error message')

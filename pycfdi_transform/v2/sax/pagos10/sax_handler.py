@@ -31,6 +31,8 @@ class Pagos10SAXHandler(BaseHandler):
 
     
     def __transform_pagos(self, element:etree._Element) -> None:
+        if not 'Version' in element.attrib or element.attrib['Version'] != '1.0':
+            raise ValueError('Incorrect type of Pagos, this handler only support Pagos version 1.0')
         self._data['version'] = element.attrib.get('Version')
     
     def __transform_pago(self, element:etree._Element) -> None:
@@ -57,16 +59,16 @@ class Pagos10SAXHandler(BaseHandler):
             if child.tag == '{http://www.sat.gob.mx/Pagos}DoctoRelacionado':
                 pago['docto_relacionado'].append(
                     {
-                        'IdDocumento': child.attrib.get('IdDocumento'),
-                        'Serie': StringHelper.compact_string(child.attrib.get('CertPago', self._config['empty_char'])),
-                        'Folio': StringHelper.compact_string(child.attrib.get('CertPago', self._config['empty_char'])),
-                        'MonedaDR': child.attrib.get('MonedaDR'),
-                        'TipoCambioDR': child.attrib.get('TipoCambioP', StringHelper.DEFAULT_SAFE_NUMBER_ONE if self._config['safe_numerics'] else self._config['empty_char']),
-                        'MetodoDePagoDR': child.attrib.get('MetodoDePagoDR'),
-                        'NumParcialidad': child.attrib.get('NumParcialidad', self._config['empty_char']),
-                        'ImpSaldoAnt': child.attrib.get('ImpSaldoAnt', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
-                        'ImpPagado': child.attrib.get('ImpPagado', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
-                        'ImpSaldoInsoluto': child.attrib.get('ImpSaldoInsoluto', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
+                        'id_documento': child.attrib.get('IdDocumento'),
+                        'serie': StringHelper.compact_string(child.attrib.get('CertPago', self._config['empty_char'])),
+                        'folio': StringHelper.compact_string(child.attrib.get('CertPago', self._config['empty_char'])),
+                        'moneda_dr': child.attrib.get('MonedaDR'),
+                        'tipo_cambio_dr': child.attrib.get('TipoCambioP', StringHelper.DEFAULT_SAFE_NUMBER_ONE if self._config['safe_numerics'] else self._config['empty_char']),
+                        'metodo_de_pago_dr': child.attrib.get('MetodoDePagoDR'),
+                        'num_parcialidad': child.attrib.get('NumParcialidad', self._config['empty_char']),
+                        'imp_saldo_ant': child.attrib.get('ImpSaldoAnt', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+                        'imp_pagado': child.attrib.get('ImpPagado', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+                        'imp_saldo_insoluto': child.attrib.get('ImpSaldoInsoluto', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
                     }
                 )
             elif child.tag == '{http://www.sat.gob.mx/Pagos}Impuestos':
