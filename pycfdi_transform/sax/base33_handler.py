@@ -51,6 +51,6 @@ class Base33Handler(BaseHandler):
             'UUID': str(attrs['UUID']).upper(),
             'FechaTimbrado': attrs['FechaTimbrado'],
             'RfcProvCertif': attrs['RfcProvCertif'],
-            'SelloCFD': attrs['SelloCFD']
+            'SelloCFD': BaseHandler.remove_breaks(attrs['SelloCFD'])
             }
         )
