@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" Version="3.3" Serie="GCR" Folio="1836567" Fecha="2018-01-15T11:09:28" Sello="DNrolPvd0EctCl+Yuh98J7iJZIH5OmJOnLFISVSCGtcyW3oMqq63Nvm8C9bHgvGxJXiuMwsRo7JF&#xD;&#xA;tTJHYaZnv5PbxTTmKdMuy+SiMHP3+sgiMhMcDFMF792DiTTlKkh6M7g9eYNfSxQIdJs3gca2PaKu&#xD;&#xA;UXuOpb6EuOlkpIAjARBxY1dW8qfvoK0yYTFj0Y+rFbuJU/I6nMtd8BitYTwuMuPDE9ltMXROqfpE&#xD;&#xA;jdvDP2z7brAqry70crAAW4EUJ92LcpT+YiRW+vfpoBX9x5yiDXtA1cpS3F+mlcH88P0DHyaufmZ+&#xD;&#xA;HEBly9E0Gz7m690gMatRx9t7GdPw62EWU997+g==" FormaPago="01" NoCertificado="30001000000400002434" Certificado="MIIFuzCCA6OgAwIBAgIUMzAwMDEwMDAwMDA0MDAwMDI0MzQwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWRpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMTkwNjE3MTk0NDE0WhcNMjMwNjE3MTk0NDE0WjCB4jEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gWElRQjg5MTExNlFFNDEeMBwGA1UEBRMVIC8gWElRQjg5MTExNk1HUk1aUjA1MR4wHAYDVQQLExVFc2N1ZWxhIEtlbXBlciBVcmdhdGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCN0peKpgfOL75iYRv1fqq+oVYsLPVUR/GibYmGKc9InHFy5lYF6OTYjnIIvmkOdRobbGlCUxORX/tLsl8Ya9gm6Yo7hHnODRBIDup3GISFzB/96R9K/MzYQOcscMIoBDARaycnLvy7FlMvO7/rlVnsSARxZRO8Kz8Zkksj2zpeYpjZIya/369+oGqQk1cTRkHo59JvJ4Tfbk/3iIyf4H/Ini9nBe9cYWo0MnKob7DDt/vsdi5tA8mMtA953LapNyCZIDCRQQlUGNgDqY9/8F5mUvVgkcczsIgGdvf9vMQPSf3jjCiKj7j6ucxl1+FwJWmbvgNmiaUR/0q4m2rm78lFAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBCwUAA4ICAQBcpj1TjT4jiinIujIdAlFzE6kRwYJCnDG08zSp4kSnShjxADGEXH2chehKMV0FY7c4njA5eDGdA/G2OCTPvF5rpeCZP5Dw504RZkYDl2suRz+wa1sNBVpbnBJEK0fQcN3IftBwsgNFdFhUtCyw3lus1SSJbPxjLHS6FcZZ51YSeIfcNXOAuTqdimusaXq15GrSrCOkM6n2jfj2sMJYM2HXaXJ6rGTEgYmhYdwxWtil6RfZB+fGQ/H9I9WLnl4KTZUS6C9+NLHh4FPDhSk19fpS2S/56aqgFoGAkXAYt9Fy5ECaPcULIfJ1DEbsXKyRdCv3JY89+0MNkOdaDnsemS2o5Gl08zI4iYtt3L40gAZ60NPh31kVLnYNsmvfNxYyKp+AeJtDHyW9w7ftM0Hoi+BuRmcAQSKFV3pk8j51la+jrRBrAUv8blbRcQ5BiZUwJzHFEKIwTsRGoRyEx96sNnB03n6GTwjIGz92SmLdNl95r9rkvp+2m4S6q1lPuXaFg7DGBrXWC8iyqeWE2iobdwIIuXPTMVqQb12m1dAkJVRO5NdHnP/MpqOvOgLqoZBNHGyBg4Gqm4sCJHCxA1c8Elfa2RQTCk0tAzllL4vOnI1GHkGJn65xokGsaU4B4D36xh7eWrfj4/pgWHmtoDAYa8wzSwo2GVCZOs+mtEgOQB91/g==" SubTotal="601.55" Moneda="MXN" Total="697.80" TipoDeComprobante="I" MetodoPago="PUE" LugarExpedicion="77500"
+    xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE SA DE CV" RegimenFiscal="601" />
+    <cfdi:Receptor Rfc="XAXX010101000" Nombre="PUBLICO EN GENERAL" UsoCFDI="G03" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="15111510" NoIdentificacion="ABC12345" Cantidad="60.000" ClaveUnidad="LTR" Unidad="Litro (L)" Descripcion="VENTA DE GAS" ValorUnitario="10.025833" Importe="601.55">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="601.55" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="96.25" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
+    </cfdi:Conceptos>
+    <cfdi:Impuestos TotalImpuestosTrasladados="96.25">
+        <cfdi:Traslados>
+            <cfdi:Traslado Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="96.25" />
+        </cfdi:Traslados>
+    </cfdi:Impuestos>
+    <cfdi:Complemento>
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/timbrefiscaldigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="1d81c696-0401-4f85-b703-6e0d3afd6056" FechaTimbrado="2018-01-15T12:10:06" RfcProvCertif="AAA010101AAA" SelloCFD="DNrolPvd0EctCl+Yuh98J7iJZIH5OmJOnLFISVSCGtcyW3oMqq63Nvm8C9bHgvGxJXiuMwsRo7JF&#xD;&#xA;tTJHYaZnv5PbxTTmKdMuy+SiMHP3+sgiMhMcDFMF792DiTTlKkh6M7g9eYNfSxQIdJs3gca2PaKu&#xD;&#xA;UXuOpb6EuOlkpIAjARBxY1dW8qfvoK0yYTFj0Y+rFbuJU/I6nMtd8BitYTwuMuPDE9ltMXROqfpE&#xD;&#xA;jdvDP2z7brAqry70crAAW4EUJ92LcpT+YiRW+vfpoBX9x5yiDXtA1cpS3F+mlcH88P0DHyaufmZ+&#xD;&#xA;HEBly9E0Gz7m690gMatRx9t7GdPw62EWU997+g==" NoCertificadoSAT="20001000000300022323" SelloSAT="Agbj2cBP93wu9Tf6M9skOxjMxbDCqjtyr+wJbi8u1qgfLgEnT/Fz9CzYhWFvzPId0W9jn9QQnRRnmRbaE2XELAA9xMKFVUOvLs4IrxU2dabaM63EzsBEXCalWuq9Gm4iej7cPe0f3YAYwPOFyaJKXTXC6NdMXiOE2nITvDgZI/jDMOAIv7F+v+QUXBXq/Z2YrSFmbmvKXJx47wo8P+Qr5o+a1Ot8fPPfx9TOVDNc75tfhw0+QsxvJSyXxt+Yhf/M/ABIwK+jrB2U3umRrSpSvctSCLvfnKRZcrKqGdUn8Tr+BeY7ngpROjPludDB2G507qp09qrlKMaYUUqCkGNNqQ=="
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    </cfdi:Complemento>
+</cfdi:Comprobante>
