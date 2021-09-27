@@ -195,7 +195,8 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertFalse(result_columns is None)
         self.assertTrue(len(result_columns)==1)
         self.assertTrue(len(result_columns[0])==38)
-        self.assertTrue(["&#xA;","&#xD;"] not in str(result_columns[0][37]))
+        self.assertTrue("&#xA;" not in str(result_columns[0][37]))
+        self.assertTrue("&#xD;" not in str(result_columns[0][37]))
 
 if __name__ == '__main__':
     unittest.main()
