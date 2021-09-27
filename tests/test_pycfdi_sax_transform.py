@@ -187,6 +187,16 @@ class TestPycfdiSaxTransform(unittest.TestCase):
         self.assertTrue(len(result_columns[0])==38)
         self.assertTrue(result_columns[0][1] == 'VF')
         self.assertTrue(result_columns[0][6] == '#')
+    
+    def test_sax_cfdi33_01_from_file_ok_with_break_lines_sellocfd(self):
+        path_xml = './tests/Resources/cfdi33_break_lines_sellocfdi.xml'
+        transformer = ct.TSaxCfdi33(empty_char='')
+        result_columns = transformer.to_columns_from_file(path_xml)
+        self.assertFalse(result_columns is None)
+        self.assertTrue(len(result_columns)==1)
+        self.assertTrue(len(result_columns[0])==38)
+        self.assertTrue("&#xA;" not in str(result_columns[0][37]))
+        self.assertTrue("&#xD;" not in str(result_columns[0][37]))
 
 if __name__ == '__main__':
     unittest.main()
