@@ -2,6 +2,7 @@ from __future__ import annotations
 import logging
 from lxml import etree
 from pycfdi_transform.sax.tfd11.base_handler import BaseHandler
+from pycfdi_transform.helpers.string_helper import StringHelper
 
 class TFD11SAXHandler(BaseHandler):
     def __init__(self, empty_char = '', safe_numerics = False) -> TFD11SAXHandler:
@@ -35,4 +36,5 @@ class TFD11SAXHandler(BaseHandler):
         self._data['uuid'] = str(element.attrib.get('UUID')).upper()
         self._data['fecha_timbrado'] = element.attrib.get('FechaTimbrado')
         self._data['rfc_prov_cert'] = element.attrib.get('RfcProvCertif')
-        self._data['sello_cfd'] = element.attrib.get('SelloCFD')
+        self._data['sello_cfd'] = StringHelper.compact_string(element.attrib.get('SelloCFD'))
+        self._data['sello_sat'] = StringHelper.compact_string(element.attrib.get('SelloSAT'))

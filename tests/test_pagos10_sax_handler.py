@@ -353,7 +353,8 @@ class TestPagos10SAXHandler(unittest.TestCase):
                     "uuid": "94C4AA76-9DD5-41AD-A10B-267024761951",
                     "fecha_timbrado": "2019-03-29T17:42:38",
                     "rfc_prov_cert": "AAA010101AAA",
-                    "sello_cfd": ""
+                    "sello_cfd": "",
+                    "sello_sat": ""
                 }
             ],
             "pagos10": [
@@ -449,7 +450,8 @@ class TestPagos10SAXHandler(unittest.TestCase):
                     "uuid": "94C4AA76-9DD5-41AD-A10B-267024761951",
                     "fecha_timbrado": "2019-03-29T17:42:38",
                     "rfc_prov_cert": "AAA010101AAA",
-                    "sello_cfd": ""
+                    "sello_cfd": "",
+                    "sello_sat": ""
                 }
             ],
             "pagos10": [
@@ -545,7 +547,8 @@ class TestPagos10SAXHandler(unittest.TestCase):
                     "uuid": "94C4AA76-9DD5-41AD-A10B-267024761951",
                     "fecha_timbrado": "2019-03-29T17:42:38",
                     "rfc_prov_cert": "AAA010101AAA",
-                    "sello_cfd": ""
+                    "sello_cfd": "",
+                    "sello_sat": ""
                 }
             ],
             "pagos10": [
@@ -682,6 +685,90 @@ class TestPagos10SAXHandler(unittest.TestCase):
                                     "imp_saldo_insoluto": "80040.00"
                                 }
                             ],
+                            "impuestos": []
+                        }
+                    ],
+                    "version": "1.0"
+                }
+            ]
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
+    
+    def test_transform_file_pagos10_nondr(self):
+        sax_handler = CFDI33SAXHandler().use_pagos10()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10NonDr.xml')
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            "cfdi33": {
+                "version": "3.3",
+                "serie": "A",
+                "folio": "0013",
+                "fecha": "2021-01-18T10:27:16",
+                "no_certificado": "0",
+                "subtotal": "0",
+                "descuento": "",
+                "total": "0",
+                "moneda": "XXX",
+                "tipo_cambio": "",
+                "tipo_comprobante": "P",
+                "metodo_pago": "",
+                "forma_pago": "",
+                "condiciones_pago": "",
+                "lugar_expedicion": "77536",
+                "sello": "",
+                "certificado": "",
+                "confirmacion": "",
+                "emisor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "\"xxxxx\"",
+                    "regimen_fiscal": "601"
+                },
+                "receptor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "xxxx",
+                    "residencia_fiscal": "",
+                    "num_reg_id_trib": "",
+                    "uso_cfdi": "P01"
+                },
+                "conceptos": [],
+                "impuestos": {
+                    "retenciones": [],
+                    "traslados": []
+                },
+                "complementos": "Pagos TimbreFiscalDigital",
+                "addendas": ""
+            },
+            "tfd11": [
+                {
+                    "version": "1.1",
+                    "no_certificado_sat": "000",
+                    "uuid": "000000",
+                    "fecha_timbrado": "2021-01-18T10:56:44",
+                    "rfc_prov_cert": "ssss",
+                    "sello_cfd": "GrDwJ",
+                    "sello_sat": "QMsTRNHL..."
+                }
+            ],
+            "pagos10": [
+                {
+                    "pago": [
+                        {
+                            "fecha_pago": "2021-01-13T00:00:00",
+                            "forma_de_pago_p": "03",
+                            "moneda_p": "MXN",
+                            "tipo_cambio_p": "",
+                            "monto": "35674.83",
+                            "num_operacion": "",
+                            "rfc_emisor_cta_ord": "",
+                            "nom_banco_ord_ext": "",
+                            "cta_ordenante": "",
+                            "rfc_emisor_cta_ben": "",
+                            "cta_beneficiario": "0103271668",
+                            "tipo_cad_pago": "01",
+                            "cert_pago": "",
+                            "cad_pago": "21010007",
+                            "sello_pago": "",
+                            "docto_relacionado": [],
                             "impuestos": []
                         }
                     ],

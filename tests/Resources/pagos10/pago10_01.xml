@@ -15,7 +15,7 @@
                 <pago10:DoctoRelacionado IdDocumento="" Serie="i" Folio="3463" MonedaDR="MXN" MetodoDePagoDR="PPD" NumParcialidad="2" ImpSaldoAnt="138040.00" ImpPagado="58000.00" ImpSaldoInsoluto="80040.00" />
             </pago10:Pago>
         </pago10:Pagos>
-        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="94c4aa76-9dd5-41ad-a10b-267024761951" NoCertificadoSAT="20001000000300022323" FechaTimbrado="2019-03-29T17:42:38" RfcProvCertif="AAA010101AAA" SelloCFD="" 
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="94c4aa76-9dd5-41ad-a10b-267024761951" NoCertificadoSAT="20001000000300022323" FechaTimbrado="2019-03-29T17:42:38" RfcProvCertif="AAA010101AAA" SelloCFD="" SelloSAT=""
             xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" 
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
     </cfdi:Complemento>

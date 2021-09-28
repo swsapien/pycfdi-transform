@@ -35,6 +35,6 @@
                 <nomina12:SeparacionIndemnizacion IngresoAcumulable="15290.10" IngresoNoAcumulable="24669.14" NumAñosServicio="3" TotalPagado="64156.64" UltimoSueldoMensOrd="15290.10" />
             </nomina12:Percepciones>
         </nomina12:Nomina>
-        <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" FechaTimbrado="2021-06-04T11:00:00" NoCertificadoSAT="00000000000000000000" RfcProvCertif="IXS7607092R5" SelloCFD="sign" UUID="eb9f91c0-2ff0-41d9-b607-4655e3686e41" Version="1.1" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" />
+        <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" FechaTimbrado="2021-06-04T11:00:00" NoCertificadoSAT="00000000000000000000" RfcProvCertif="IXS7607092R5" SelloCFD="sign" SelloSAT="sign" UUID="eb9f91c0-2ff0-41d9-b607-4655e3686e41" Version="1.1" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" />
     </cfdi:Complemento>
 </cfdi:Comprobante>

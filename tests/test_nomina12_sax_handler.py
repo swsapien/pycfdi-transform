@@ -1041,7 +1041,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     'uuid': 'EB9F91C0-2FF0-41D9-B607-4655E3686E41',
                     'fecha_timbrado': '2021-06-04T11:00:00',
                     'rfc_prov_cert': 'IXS7607092R5',
-                    'sello_cfd': 'sign'
+                    'sello_cfd': 'sign',
+                    'sello_sat': 'sign'
                 }
             ],
             'nomina12': [
@@ -1292,7 +1293,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     'uuid': 'EB9F91C0-2FF0-41D9-B607-4655E3686E41',
                     'fecha_timbrado': '2021-06-04T11:00:00',
                     'rfc_prov_cert': 'IXS7607092R5',
-                    'sello_cfd': 'sign'
+                    'sello_cfd': 'sign',
+                    'sello_sat': 'sign'
                 }
             ],
             'nomina12': [
@@ -1574,7 +1576,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     'uuid': 'EB9F91C0-2FF0-41D9-B607-4655E3686E41',
                     'fecha_timbrado': '2021-06-04T11:00:00',
                     'rfc_prov_cert': 'IXS7607092R5',
-                    'sello_cfd': 'sign'
+                    'sello_cfd': 'sign',
+                    'sello_sat': 'sign'
                 }
             ],
             'nomina12': [
