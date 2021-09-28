@@ -1,11 +1,12 @@
+
 # PyCfdi
 PyCfdi Transform es un paquete de python que te permite convertir un Xml CFDI México a formato columnar.
-  
+
 Cfdi 3.3 con complementos:
-Nomina 1.2
-Pagos 1.0
-ImpuestosLocales 1.0
-TimbreFiscalDigital 1.1
+- [x] Nomina 1.2
+- [x] Pagos 1.0
+- [x] ImpuestosLocales 1.0
+- [x] TimbreFiscalDigital 1.1
   
 # SW sapien
 Queremos compartir la experiencia que tenemos en Facturación Electrónica con la comunidad. Nuestro objetivo es facilitar la implementación y mantenimiento del Cfdi en México.
@@ -108,6 +109,50 @@ La configuración de complementos para la clase **CFDI33SAXHandler** se define a
 
 **NOTA**: En caso de que declaremos un complemento y este no se encuentre en el XML no pasa nada, simplemente la llave del dictionary de python no se encontrará en el resultado obtenido, así entonces podemos tener una configuración avanzada para con el mismo código obtener multiples complementos según sea el caso.
 
+**NOTA2**: Por temas de optimización en CFDI globales, se expone un método adicional para obtener la información de los conceptos.
+
+#### Conceptos CFDI 3.3
+En el caso de los conceptos del CFDI 3.3, por defecto estos campos no se obtienen ya que pocas veces se utilizan, sin embargo es posible obtener la información de los conceptos de la siguiente manera
+```python
+from  pycfdi_transform import CFDI33SAXHandler
+
+path_xml = "./tests/Resources/cfdi33/cfdi33_01_utf8chars.xml"  #path xml que queremos transformar
+transformer = CFDI33SAXHandler().use_concepts_cfdi33() # Cfdi 3.3 con obtención de conceptos.
+cfdi_data = transformer.transform_from_file(path_xml)
+print(cfdi_data) 
+```
+Así entonces nuestro resultado en caso de contener conceptos sería
+```
+{
+  "cfdi33": {
+    "version": "3.3",
+    "serie": "VF",
+    "folio": "001002004",
+    ...
+    "conceptos": [
+      {
+        "clave_prod_serv": "01010101",
+        "no_identificacion": "prodüctoInventarió",
+        "cantidad": "1.0000",
+        "clave_unidad": "3G",
+        "unidad": "",
+        "descripcion": "Detalle factura",
+        "valor_unitario": "10.0000",
+        "importe": "10.00",
+        "descuento": ""
+      }
+    ],
+  },
+  "tfd11": [
+    {
+      "version": "1.1",
+      "no_certificado_sat": "20001000000300022323",
+      "uuid": "9D81C696-0401-4F85-B703-6E0D3AFD6056",
+      ...
+  ]
+}
+```
+
 #### Nomina 1.2
 Ejemplo para extraer adicionalmente la información del complemento de nomina 1.2, entonces al crear nuestra instancia podemos usar la siguiente configuración
 ```python
@@ -153,7 +198,7 @@ transformer = CFDI33SAXHandler().use_pagos10() # Cfdi 3.3 con soporte para pagos
 cfdi_data = transformer.transform_from_file(path_xml)
 print(cfdi_data) 
 ```
-Así entonces nuestro resultado en caso de contener un complemento de nómina sería
+Así entonces nuestro resultado en caso de contener un complemento de pagos sería
 ```
 {
   "cfdi33": {
@@ -191,7 +236,7 @@ transformer = CFDI33SAXHandler().use_implocal10() # Cfdi 3.3 con soporte para im
 cfdi_data = transformer.transform_from_file(path_xml)
 print(cfdi_data) 
 ```
-Así entonces nuestro resultado en caso de contener un complemento de nómina sería
+Así entonces nuestro resultado en caso de contener un complemento de impuestos locales sería
 ```
 {
   "cfdi33": {
@@ -220,9 +265,9 @@ Así entonces nuestro resultado en caso de contener un complemento de nómina se
 ### Configurations
 La clase **CFDI33SAXHandler** contiene parámetros con los cuales se puede configurar el comportamiento al encontrar un valor opcional del XML que no se encuentra definido en el XML así como si debería utilizar numeros para cuando no se encuentre algún atributo numérico opcional. Estas opciones de configuración son 
 
- - empty_char: Valor para atributos opcionales en caso de no encontrarse en el XML.
- - safe_numerics: True o False para definir si utilizar el empty_char o no en los atributos de tipo númerico, por ejemplo Descuento.
- - schema_validator: Clase de tipo *lxml.etree.XMLSchema* para validar la estructura del XML antes de realizar la tranformación. Arroja excepcion de tipo *lxml.etree.DocumentInvalid* en caso de que no cumpla con la validación de XSD.
+ - **empty_char**: Valor para atributos opcionales en caso de no encontrarse en el XML.
+ - **safe_numerics**: True o False para definir si utilizar el empty_char o no en los atributos de tipo númerico, por ejemplo Descuento.
+ - **schema_validator**: Clase de tipo *lxml.etree.XMLSchema* para validar la estructura del XML antes de realizar la tranformación. Arroja excepcion de tipo *lxml.etree.DocumentInvalid* en caso de que no cumpla con la validación de XSD.
 
 #### empty_char
 Al definir un **empty_char** cuando se trate de un campo opcional entonces se mostrará este valor en caso de no contener algún valor en el XML. Ejemplo un XML que no contiene el atributo *Serie*. Este valor por  defecto está definido como un string vacio ''.
