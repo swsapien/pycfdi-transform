@@ -341,7 +341,9 @@ class TestPagos10SAXHandler(unittest.TestCase):
                 "conceptos": [],
                 "impuestos": {
                     "retenciones": [],
-                    "traslados": []
+                    "traslados": [],
+                    'total_impuestos_traslados' :'',
+                    'total_impuestos_retenidos' :''
                 },
                 "complementos": "Pagos TimbreFiscalDigital",
                 "addendas": ""
@@ -438,7 +440,9 @@ class TestPagos10SAXHandler(unittest.TestCase):
                 "conceptos": [],
                 "impuestos": {
                     "retenciones": [],
-                    "traslados": []
+                    "traslados": [],
+                    'total_impuestos_traslados' :'0.00',
+                    'total_impuestos_retenidos' :'0.00'
                 },
                 "complementos": "Pagos TimbreFiscalDigital",
                 "addendas": ""
@@ -535,7 +539,9 @@ class TestPagos10SAXHandler(unittest.TestCase):
                 "conceptos": [],
                 "impuestos": {
                     "retenciones": [],
-                    "traslados": []
+                    "traslados": [],
+                    'total_impuestos_traslados' :'-',
+                    'total_impuestos_retenidos' :'-'
                 },
                 "complementos": "Pagos TimbreFiscalDigital",
                 "addendas": "-"
@@ -646,7 +652,9 @@ class TestPagos10SAXHandler(unittest.TestCase):
                 "conceptos": [],
                 "impuestos": {
                     "retenciones": [],
-                    "traslados": []
+                    "traslados": [],
+                    'total_impuestos_traslados' :'',
+                    'total_impuestos_retenidos' :''
                 },
                 "complementos": "Pagos",
                 "addendas": ""
@@ -733,7 +741,9 @@ class TestPagos10SAXHandler(unittest.TestCase):
                 "conceptos": [],
                 "impuestos": {
                     "retenciones": [],
-                    "traslados": []
+                    "traslados": [],
+                    'total_impuestos_traslados' :'',
+                    'total_impuestos_retenidos' :''
                 },
                 "complementos": "Pagos TimbreFiscalDigital",
                 "addendas": ""
