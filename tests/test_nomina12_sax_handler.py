@@ -213,8 +213,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         }
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '3965300.23', 
-                        'TotalImpuestosRetenidos': '4272620.23', 
+                        'total_otras_deducciones': '3965300.23', 
+                        'total_impuestos_retenidos': '4272620.23', 
                         'deduccion': [
                             {
                                 'tipo_deduccion': '057', 
@@ -542,8 +542,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         }
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '3965300.23', 
-                        'TotalImpuestosRetenidos': '4272620.23', 
+                        'total_otras_deducciones': '3965300.23', 
+                        'total_impuestos_retenidos': '4272620.23', 
                         'deduccion': [
                             {
                                 'tipo_deduccion': '057', 
@@ -871,8 +871,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         }
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '3965300.23', 
-                        'TotalImpuestosRetenidos': '4272620.23', 
+                        'total_otras_deducciones': '3965300.23', 
+                        'total_impuestos_retenidos': '4272620.23', 
                         'deduccion': [
                             {
                                 'tipo_deduccion': '057', 
@@ -1128,8 +1128,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         ]
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '',
-                        'TotalImpuestosRetenidos': '5369.93',
+                        'total_otras_deducciones': '',
+                        'total_impuestos_retenidos': '5369.93',
                         'deduccion': [
                             {
                                 'tipo_deduccion': '002',
@@ -1227,8 +1227,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         }
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '',
-                        'TotalImpuestosRetenidos': '',
+                        'total_otras_deducciones': '',
+                        'total_impuestos_retenidos': '',
                         'deduccion': []
                     },
                     'otros_pagos': {
@@ -1404,8 +1404,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         ]
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '488.79',
-                        'TotalImpuestosRetenidos': '227004.65',
+                        'total_otras_deducciones': '488.79',
+                        'total_impuestos_retenidos': '227004.65',
                         'deduccion': [
                             {
                                 'tipo_deduccion': '002',
@@ -1509,8 +1509,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         }
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '',
-                        'TotalImpuestosRetenidos': '',
+                        'total_otras_deducciones': '',
+                        'total_impuestos_retenidos': '',
                         'deduccion': []
                     },
                     'otros_pagos': {
@@ -1687,8 +1687,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         ]
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '488.79',
-                        'TotalImpuestosRetenidos': '227004.65',
+                        'total_otras_deducciones': '488.79',
+                        'total_impuestos_retenidos': '227004.65',
                         'deduccion': [
                             {
                                 'tipo_deduccion': '002',
@@ -1792,8 +1792,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         }
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '',
-                        'TotalImpuestosRetenidos': '',
+                        'total_otras_deducciones': '',
+                        'total_impuestos_retenidos': '',
                         'deduccion': []
                     },
                     'otros_pagos': {
@@ -2018,8 +2018,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         }
                     },
                     'deducciones': {
-                        'TotalOtrasDeducciones': '3965300.23', 
-                        'TotalImpuestosRetenidos': '4272620.23', 
+                        'total_otras_deducciones': '3965300.23', 
+                        'total_impuestos_retenidos': '4272620.23', 
                         'deduccion': [
                             {
                                 'tipo_deduccion': '057', 
@@ -2288,8 +2288,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         ]
                     },
                     "deducciones": {
-                        "TotalOtrasDeducciones": "748.07",
-                        "TotalImpuestosRetenidos": "",
+                        "total_otras_deducciones": "748.07",
+                        "total_impuestos_retenidos": "",
                         "deduccion": [
                             {
                                 "tipo_deduccion": "006",

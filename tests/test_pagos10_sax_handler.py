@@ -105,7 +105,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
                                 {
                                     'id_documento': 'be6dcDE2-ab9B-7DcF-Aaa2-CB8679f2fa01',
                                     'serie': '',
-                                    'folio': '',
+                                    'folio': 'c!}~r',
                                     'moneda_dr': 'HKD',
                                     'tipo_cambio_dr': '',
                                     'metodo_de_pago_dr': 'PPD',
@@ -168,7 +168,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
                                 },
                                 {
                                     'id_documento': 'B64DDDF2-fECA-fcDe-430d-D1A5F02ea844',
-                                    'serie': '',
+                                    'serie': 'e',
                                     'folio': '',
                                     'moneda_dr': 'MXN',
                                     'tipo_cambio_dr': '',
@@ -180,7 +180,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
                                 },
                                 {
                                     'id_documento': '415-53-638204948',
-                                    'serie': '',
+                                    'serie': 'qm3}',
                                     'folio': '',
                                     'moneda_dr': 'PYG',
                                     'tipo_cambio_dr': '',
@@ -379,8 +379,8 @@ class TestPagos10SAXHandler(unittest.TestCase):
                             "docto_relacionado": [
                                 {
                                     "id_documento": "",
-                                    "serie": "",
-                                    "folio": "",
+                                    "serie": "i",
+                                    "folio": "3463",
                                     "moneda_dr": "MXN",
                                     "tipo_cambio_dr": "",
                                     "metodo_de_pago_dr": "PPD",
@@ -476,8 +476,8 @@ class TestPagos10SAXHandler(unittest.TestCase):
                             "docto_relacionado": [
                                 {
                                     "id_documento": "",
-                                    "serie": "",
-                                    "folio": "",
+                                    "serie": "i",
+                                    "folio": "3463",
                                     "moneda_dr": "MXN",
                                     "tipo_cambio_dr": "1.00",
                                     "metodo_de_pago_dr": "PPD",
@@ -573,8 +573,8 @@ class TestPagos10SAXHandler(unittest.TestCase):
                             "docto_relacionado": [
                                 {
                                     "id_documento": "",
-                                    "serie": "-",
-                                    "folio": "-",
+                                    "serie": "i",
+                                    "folio": "3463",
                                     "moneda_dr": "MXN",
                                     "tipo_cambio_dr": "-",
                                     "metodo_de_pago_dr": "PPD",
@@ -674,8 +674,8 @@ class TestPagos10SAXHandler(unittest.TestCase):
                             "docto_relacionado": [
                                 {
                                     "id_documento": "94c4aa76-9dd5-41ad-a10b-267024761951",
-                                    "serie": "",
-                                    "folio": "",
+                                    "serie": "i",
+                                    "folio": "3463",
                                     "moneda_dr": "MXN",
                                     "tipo_cambio_dr": "",
                                     "metodo_de_pago_dr": "PPD",
