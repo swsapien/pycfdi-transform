@@ -57,7 +57,9 @@ class BaseHandler(ABC):
                 'conceptos': [],
                 'impuestos': {
                     'retenciones': [],
-                    'traslados': []
+                    'traslados': [],
+                    'total_impuestos_traslados': StringHelper.DEFAULT_SAFE_NUMBER_ONE if safe_numerics else empty_char,
+                    'total_impuestos_retenidos': StringHelper.DEFAULT_SAFE_NUMBER_ONE if safe_numerics else empty_char
                 },
                 'complementos': empty_char,
                 'addendas': empty_char
