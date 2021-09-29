@@ -7,13 +7,15 @@ import logging
 
 class CFDI33SAXHandler(BaseHandler):
     def __init__(self, empty_char='', safe_numerics=False, schema_validator:etree.XMLSchema = None) -> CFDI33SAXHandler:
-        super().__init__(empty_char, safe_numerics, schema_validator)
+        super().__init__(empty_char, safe_numerics)
+        self._schema_validator = schema_validator
         self._logger = logging.getLogger('CFDI33SAXHandler')
         self._inside_concepts = False
     
     def transform_from_file(self, file_path:str) -> dict:
         if ('.xml' in file_path):
             try:
+                self._clean_data()
                 xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
                 tree = etree.XML(StringHelper.file_path_to_string(file_path).encode(), parser=xml_parser)
                 if self._schema_validator != None and isinstance(self._schema_validator, etree.XMLSchema):
@@ -28,6 +30,7 @@ class CFDI33SAXHandler(BaseHandler):
             raise ValueError('Incorrect type of document, only support XML files')
     def transform_from_string(self, xml_str:str) -> dict:
         try:
+            self._clean_data()
             xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
             tree = etree.XML(xml_str.encode(), parser=xml_parser)
             if self._schema_validator != None and isinstance(self._schema_validator, etree.XMLSchema):
