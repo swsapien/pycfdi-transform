@@ -16,8 +16,8 @@ class StringHelper:
         return new_str.strip()
     @staticmethod
     def sum_strings(first_val, second_val) -> str:
-        if first_val == '':
+        if not first_val:
             return second_val
-        elif second_val == '':
+        elif not second_val:
             return first_val
         return str(Decimal(first_val) + Decimal(second_val))
