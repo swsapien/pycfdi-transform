@@ -32,7 +32,7 @@ class EfiscoNomina12Formatter(FormatterInterface):
                 self._get_str_value(nomina12['receptor']['puesto']),
                 self._get_str_value(nomina12['receptor']['riesgo_puesto']),
                 self._get_str_value(nomina12['receptor']['banco']),
-                nomina12['receptor']['cuenta_bancaria'],
+                self._get_str_value(nomina12['receptor']['cuenta_bancaria']),
                 self._get_str_value(nomina12['receptor']['antigüedad']),
                 nomina12['receptor']['tipo_contrato'],
                 nomina12['receptor']['periodicidad_pago'],
