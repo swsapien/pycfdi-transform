@@ -1,4 +1,4 @@
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 class StringHelper:
     DEFAULT_SAFE_NUMBER_CERO = '0.00'
     DEFAULT_SAFE_NUMBER_ONE = '1.00'
@@ -20,4 +20,14 @@ class StringHelper:
             return second_val
         elif not second_val:
             return first_val
-        return str(Decimal(first_val) + Decimal(second_val))
+        
+        return str(StringHelper.try_parse_decimal(first_val) + StringHelper.try_parse_decimal(second_val))
+    
+    @staticmethod
+    def try_parse_decimal(val)->Decimal:
+        try:
+            Decimal(val)
+        except InvalidOperation:
+            return Decimal(0.00)
+        else:
+            return Decimal(val)

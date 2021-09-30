@@ -5,7 +5,6 @@ from pycfdi_transform.helpers.string_helper import StringHelper
 class EfiscoCorpCFDI33Formatter(FormatterInterface):
     def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoCorpCFDI33Formatter:
         super().__init__(cfdi_data,empty_char,safe_numerics)
-        super().__init__(cfdi_data)
         assert 'cfdi33' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33.'
         self._config = {
             'empty_char': empty_char,
@@ -23,16 +22,20 @@ class EfiscoCorpCFDI33Formatter(FormatterInterface):
         return total
     
     def _get_implocal10_total_retenciones(self) -> list:
+        total = self._get_numeric_default_value()
         if 'implocal10' in self._cfdi_data:
-            return self._cfdi_data['implocal10']['total_retenciones_impuestos_locales']
-        else:
-            return self._get_numeric_default_value()
+            for tax in self._cfdi_data['implocal10']:
+                if tax['total_retenciones_impuestos_locales']:
+                    total = StringHelper.sum_strings(total, tax['total_retenciones_impuestos_locales'])
+        return total
     
     def _get_implocal10_total_traslados(self) -> list:
+        total = self._get_numeric_default_value()
         if 'implocal10' in self._cfdi_data:
-            return self._cfdi_data['implocal10']['total_traslados_impuestos_locales']
-        else:
-            return self._get_numeric_default_value()
+            for tax in self._cfdi_data['implocal10']:
+                if tax['total_traslados_impuestos_locales']:
+                    total = StringHelper.sum_strings(total, tax['total_traslados_impuestos_locales'])
+        return total
     
     def _get_numeric_default_value(self)->str:
         return StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']
@@ -53,7 +56,6 @@ class EfiscoCorpCFDI33Formatter(FormatterInterface):
         
     def dict_to_columns(self) -> list[list]:
         results = []
-        implocal10 = self._get_implocal10_complement()
         for tdf in self._cfdi_data['tfd11']:
             row = [
                 # VERSION

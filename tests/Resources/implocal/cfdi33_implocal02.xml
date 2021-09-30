@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/implocal http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd" 
+    xmlns:implocal="http://www.sat.gob.mx/implocal" Version="3.3" Serie="G" Folio="370" Fecha="2020-02-25T23:17:37" FormaPago="99" SubTotal="1290.00" Moneda="MXN" Total="1419.00" TipoDeComprobante="I" MetodoPago="PPD" LugarExpedicion="56400" 
+    xmlns:cfdi="http://www.sat.gob.mx/cfd/3" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" NoCertificado="00000000000000000000" Certificado="" Sello="">
+    <cfdi:Emisor Rfc="XIA190128J61" Nombre="XIA190128J61" RegimenFiscal="601" />
+    <cfdi:Receptor Rfc="XIA190128J61" Nombre="XIA190128J61" UsoCFDI="G03" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="23151509" NoIdentificacion="S" Cantidad="9" ClaveUnidad="E48" Unidad="Pieza" Descripcion="SERVICIO" ValorUnitario="60.000000" Importe="540.000000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="540.000000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="86.400000" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
+        <cfdi:Concepto ClaveProdServ="25171905" NoIdentificacion="T" Cantidad="12" ClaveUnidad="H87" Unidad="PIEZAS" Descripcion="T" ValorUnitario="50.000000" Importe="600.000000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="600.000000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="96.000000" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
+        <cfdi:Concepto ClaveProdServ="23151509" NoIdentificacion="C" Cantidad="1" ClaveUnidad="E48" Unidad="SERVICIO" Descripcion="C" ValorUnitario="150.000000" Importe="150.000000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="150.000000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="24.000000" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
+    </cfdi:Conceptos>
+    <cfdi:Impuestos TotalImpuestosTrasladados="206.40">
+        <cfdi:Traslados>
+            <cfdi:Traslado Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="206.400000" />
+        </cfdi:Traslados>
+    </cfdi:Impuestos>
+    <cfdi:Complemento>
+        <implocal:ImpuestosLocales xmlns:implocal="http://www.sat.gob.mx/implocal" xsi:schemaLocation="http://www.sat.gob.mx/implocal http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd" version="1.0" TotaldeRetenciones="77.400000" TotaldeTraslados="0.000000">
+            <implocal:RetencionesLocales ImpLocRetenido="77.40" TasadeRetencion="6" Importe="77.40" />
+        </implocal:ImpuestosLocales>
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="9d81c696-0401-4f85-b703-6e0d3afd6056" FechaTimbrado="2020-05-02T00:36:50" RfcProvCertif="AAA010101AAA" SelloCFD="SKndhzlakx2g1ykM73KJ8O0F02/ibJxmNqpEG6/878pu/8BUX/cgxWyh9O2EHhtITNlBZHD73Qgq9E7fuNOO/1xKuM9tgtzKrXqUmQ5bxhz2OfvynQ6Tmq6nzO+2FF6lyPmi2yxoeoGNtKjDIjnXNPAVYTS7n9V94dsciZaSmSGtT5LTIGTmA5QJQ5t3NzxL5+mkKqxc57W9PO9GRWybzsWnQwvG0XBoMU0n00qXMiVjGfCdzGcdku80qRtNTbL5OWPSgiR5Sc45X5V7Y8lUpaHk7a3zgQ/+haITyAlqux7bJtVGK4Zo78leiex3YbpcLH/gJ12jCqvPmFVJNAPZhw==" NoCertificadoSAT="20001000000300022323" SelloSAT="Agbj2cBP93wu9Tf6M9skOxjMxbDCqjtyr+wJbi8u1qgfLgEnT/Fz9CzYhWFvzPId0W9jn9QQnRRnmRbaE2XELAA9xMKFVUOvLs4IrxU2dabaM63EzsBEXCalWuq9Gm4iej7cPe0f3YAYwPOFyaJKXTXC6NdMXiOE2nITvDgZI/jDMOAIv7F+v+QUXBXq/Z2YrSFmbmvKXJx47wo8P+Qr5o+a1Ot8fPPfx9TOVDNc75tfhw0+QsxvJSyXxt+Yhf/M/ABIwK+jrB2U3umRrSpSvctSCLvfnKRZcrKqGdUn8Tr+BeY7ngpROjPludDB2G507qp09qrlKMaYUUqCkGNNqQ==" 
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    </cfdi:Complemento>
+</cfdi:Comprobante>
