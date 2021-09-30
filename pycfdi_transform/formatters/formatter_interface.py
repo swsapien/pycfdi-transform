@@ -17,8 +17,9 @@ class FormatterInterface(ABC):
     def dict_to_columns(self) -> list[list]:
         raise NotImplementedError
     
+    @staticmethod
     @abstractmethod
-    def get_columns_names(self) -> list[str]:
+    def get_columns_names() -> list[str]:
         raise NotImplementedError
     
     @abstractmethod
