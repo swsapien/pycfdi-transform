@@ -20,37 +20,11 @@ class BaseHandler(ABC):
                 'key': 'tfd11'
             }
         }
+        self.data = self._get_default_data()
+        
     
-    def use_nomina12(self) -> BaseHandler:
-        if not '{http://www.sat.gob.mx/nomina12}Nomina' in self._complements:
-            self._complements['{http://www.sat.gob.mx/nomina12}Nomina'] = {
-                'class': Nomina12SAXHandler,
-                'key': 'nomina12'
-            }
-        return self
-    
-    def use_concepts_cfdi33(self) -> BaseHandler:
-        self._config['concepts'] = True
-        return self
-    
-    def use_pagos10(self) -> BaseHandler:
-        if not '{http://www.sat.gob.mx/Pagos}Pagos' in self._complements:
-            self._complements['{http://www.sat.gob.mx/Pagos}Pagos'] = {
-                'class': Pagos10SAXHandler,
-                'key': 'pagos10'
-            }
-        return self
-    
-    def use_implocal10(self) -> BaseHandler:
-        if not '{http://www.sat.gob.mx/implocal}ImpuestosLocales' in self._complements:
-            self._complements['{http://www.sat.gob.mx/implocal}ImpuestosLocales'] = {
-                'class': ImpLocal10SAXHandler,
-                'key': 'implocal10'
-            }
-        return self
-    
-    def _clean_data(self) -> None:
-        self._data = {
+    def _get_default_data(self):
+        return {
             'cfdi33': {
                 'version': self._config['empty_char'],
                 'serie': self._config['empty_char'],
@@ -85,13 +59,46 @@ class BaseHandler(ABC):
                 'conceptos': [],
                 'impuestos': {
                     'retenciones': [],
-                    'traslados': []
+                    'traslados': [],
+                    'total_impuestos_traslados' : StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'],
+                    'total_impuestos_retenidos' : StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']
                 },
                 'complementos': self._config['empty_char'],
                 'addendas': self._config['empty_char']
             },
             'tfd11': []
         }
+    
+    def use_nomina12(self) -> BaseHandler:
+        if not '{http://www.sat.gob.mx/nomina12}Nomina' in self._complements:
+            self._complements['{http://www.sat.gob.mx/nomina12}Nomina'] = {
+                'class': Nomina12SAXHandler,
+                'key': 'nomina12'
+            }
+        return self
+    
+    def use_concepts_cfdi33(self) -> BaseHandler:
+        self._config['concepts'] = True
+        return self
+    
+    def use_pagos10(self) -> BaseHandler:
+        if not '{http://www.sat.gob.mx/Pagos}Pagos' in self._complements:
+            self._complements['{http://www.sat.gob.mx/Pagos}Pagos'] = {
+                'class': Pagos10SAXHandler,
+                'key': 'pagos10'
+            }
+        return self
+    
+    def use_implocal10(self) -> BaseHandler:
+        if not '{http://www.sat.gob.mx/implocal}ImpuestosLocales' in self._complements:
+            self._complements['{http://www.sat.gob.mx/implocal}ImpuestosLocales'] = {
+                'class': ImpLocal10SAXHandler,
+                'key': 'implocal10'
+            }
+        return self
+    
+    def _clean_data(self) -> None:
+        self._data = self.data = self._get_default_data()
     
     @abstractmethod
     def transform_from_file(self, file_path:str) -> dict:

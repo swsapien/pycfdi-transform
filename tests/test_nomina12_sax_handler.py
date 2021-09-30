@@ -1029,7 +1029,9 @@ class TestNomina12SAXHandler(unittest.TestCase):
                 'conceptos': [],
                 'impuestos': {
                     'retenciones': [],
-                    'traslados': []
+                    'traslados': [],
+                    'total_impuestos_traslados' :'',
+                    'total_impuestos_retenidos' :''
                 },
                 'complementos': 'Nomina TimbreFiscalDigital',
                 'addendas': ''
@@ -1281,7 +1283,9 @@ class TestNomina12SAXHandler(unittest.TestCase):
                 'conceptos': [],
                 'impuestos': {
                     'retenciones': [],
-                    'traslados': []
+                    'traslados': [],
+                    'total_impuestos_traslados' :'',
+                    'total_impuestos_retenidos' :''
                 },
                 'complementos': 'Nomina TimbreFiscalDigital',
                 'addendas': ''
@@ -1564,7 +1568,9 @@ class TestNomina12SAXHandler(unittest.TestCase):
                 'conceptos': [],
                 'impuestos': {
                     'retenciones': [],
-                    'traslados': []
+                    'traslados': [],
+                    'total_impuestos_traslados' :'',
+                    'total_impuestos_retenidos' :''
                 },
                 'complementos': 'Nomina TimbreFiscalDigital',
                 'addendas': ''
@@ -2191,7 +2197,9 @@ class TestNomina12SAXHandler(unittest.TestCase):
                 "conceptos": [],
                 "impuestos": {
                     "retenciones": [],
-                    "traslados": []
+                    "traslados": [],
+                    "total_impuestos_traslados" :"",
+                    "total_impuestos_retenidos" :""
                 },
                 "complementos": "Nomina",
                 "addendas": ""
