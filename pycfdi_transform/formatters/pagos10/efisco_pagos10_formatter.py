@@ -22,10 +22,11 @@ class EfiscoPagos10Formatter(FormatterInterface):
     @staticmethod
     def _get_total_taxes_by_type(taxes:list, tax_classification:str, tax_type:str) -> str:
         total = '0.00'
-        taxes_classificated = taxes[tax_classification]
-        for tax in taxes_classificated:
-            if tax['impuesto'] == tax_type:
-                total = StringHelper.sum_strings(total, tax['importe'])
+        for tax in taxes:
+            taxes_classificated = tax[tax_classification]
+            for tax_classificated in taxes_classificated:
+                if tax_classificated['impuesto'] == tax_type:
+                    total = StringHelper.sum_strings(total, tax_classificated['importe'])
         return total
 
     def _get_part_complement(self) -> list:
@@ -63,6 +64,7 @@ class EfiscoPagos10Formatter(FormatterInterface):
                 
                 if len(pago['docto_relacionado']) > 0:
                     for docto in pago['docto_relacionado']:
+                        row[0] = self._get_id_pago(count_complement_pago, count_pago, count_dr)
                         results.append(
                             row + [
                                 docto['id_documento'],

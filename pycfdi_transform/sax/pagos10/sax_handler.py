@@ -60,8 +60,8 @@ class Pagos10SAXHandler(BaseHandler):
                 pago['docto_relacionado'].append(
                     {
                         'id_documento': child.attrib.get('IdDocumento'),
-                        'serie': StringHelper.compact_string(child.attrib.get('CertPago', self._config['empty_char'])),
-                        'folio': StringHelper.compact_string(child.attrib.get('CertPago', self._config['empty_char'])),
+                        'serie': StringHelper.compact_string(child.attrib.get('Serie', self._config['empty_char'])),
+                        'folio': StringHelper.compact_string(child.attrib.get('Folio', self._config['empty_char'])),
                         'moneda_dr': child.attrib.get('MonedaDR'),
                         'tipo_cambio_dr': child.attrib.get('TipoCambioP', StringHelper.DEFAULT_SAFE_NUMBER_ONE if self._config['safe_numerics'] else self._config['empty_char']),
                         'metodo_de_pago_dr': child.attrib.get('MetodoDePagoDR'),

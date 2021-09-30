@@ -162,8 +162,8 @@ class Nomina12SAXHandler(BaseHandler):
     
     def __transform_deducciones(self, element:etree._Element) -> None:
         self._data['deducciones'] = {
-            'TotalOtrasDeducciones': element.attrib.get('TotalOtrasDeducciones', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
-            'TotalImpuestosRetenidos': element.attrib.get('TotalImpuestosRetenidos', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+            'total_otras_deducciones': element.attrib.get('TotalOtrasDeducciones', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+            'total_impuestos_retenidos': element.attrib.get('TotalImpuestosRetenidos', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
             'deduccion': []
         }
     

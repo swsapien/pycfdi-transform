@@ -58,8 +58,8 @@ class BaseHandler(ABC):
                 'percepcion': []
             },
             'deducciones': {
-                'TotalOtrasDeducciones': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
-                'TotalImpuestosRetenidos': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                'total_otras_deducciones': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
+                'total_impuestos_retenidos': StringHelper.DEFAULT_SAFE_NUMBER_CERO if safe_numerics else empty_char,
                 'deduccion': []
             },
             'otros_pagos': {
