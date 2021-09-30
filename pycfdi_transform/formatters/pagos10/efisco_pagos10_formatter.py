@@ -3,10 +3,9 @@ from pycfdi_transform.formatters.formatter_interface import FormatterInterface
 from pycfdi_transform.helpers.string_helper import StringHelper
 
 class EfiscoPagos10Formatter(FormatterInterface):
-    def __init__(self, cfdi_data: dict) -> EfiscoPagos10Formatter:
-        super().__init__(cfdi_data)
+    def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoPagos10Formatter:
+        super().__init__(cfdi_data, empty_char, safe_numerics)
         assert 'cfdi33' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33.'
-        self._errors = []
     
     @staticmethod
     def _get_id_pago(count_complement:int, count_pago:int, count_dr:int) -> str:
@@ -41,14 +40,14 @@ class EfiscoPagos10Formatter(FormatterInterface):
                     pago['fecha_pago'],
                     pago['forma_de_pago_p'],
                     pago['moneda_p'],
-                    pago['tipo_cambio_p'],
+                    self._get_numeric_tipo_cambio_value(pago['tipo_cambio_p']),
                     pago['monto'],
-                    pago['num_operacion'],
-                    pago['rfc_emisor_cta_ord'],
-                    pago['nom_banco_ord_ext'],
-                    pago['cta_ordenante'],
-                    pago['rfc_emisor_cta_ben'],
-                    pago['cta_beneficiario'],
+                    self._get_str_value(pago['num_operacion']),
+                    self._get_str_value(pago['rfc_emisor_cta_ord']),
+                    self._get_str_value(pago['nom_banco_ord_ext']),
+                    self._get_str_value(pago['cta_ordenante']),
+                    self._get_str_value(pago['rfc_emisor_cta_ben']),
+                    self._get_str_value(pago['cta_beneficiario']),
                 ]
 
                 if len(pago['impuestos']) > 0:
@@ -60,7 +59,17 @@ class EfiscoPagos10Formatter(FormatterInterface):
                     row.append(self._get_total_taxes_by_type(pago['impuestos'], 'retenciones', '003'))
                     row.append(self._get_total_taxes(pago['impuestos'], 'total_impuestos_retenidos'))
                 else:
-                    row.extend(['', '', '', '', '', '', ''])
+                    row.extend(
+                        [
+                            self._get_numeric_default_value(),
+                            self._get_numeric_default_value(),
+                            self._get_numeric_default_value(),
+                            self._get_numeric_default_value(),
+                            self._get_numeric_default_value(),
+                            self._get_numeric_default_value(),
+                            self._get_numeric_default_value()
+                        ]
+                    )
                 
                 if len(pago['docto_relacionado']) > 0:
                     for docto in pago['docto_relacionado']:
@@ -68,20 +77,31 @@ class EfiscoPagos10Formatter(FormatterInterface):
                         results.append(
                             row + [
                                 docto['id_documento'],
-                                docto['serie'],
-                                docto['folio'],
+                                self._get_str_value(docto['serie']),
+                                self._get_str_value(docto['folio']),
                                 docto['moneda_dr'],
-                                docto['tipo_cambio_dr'],
+                                self._get_numeric_tipo_cambio_value(docto['tipo_cambio_dr']),
                                 docto['metodo_de_pago_dr'],
-                                docto['num_parcialidad'],
-                                docto['imp_saldo_ant'],
-                                docto['imp_pagado'],
-                                docto['imp_saldo_insoluto'],
+                                self._get_str_value(docto['num_parcialidad']),
+                                self._get_numeric_value(docto['imp_saldo_ant']),
+                                self._get_numeric_value(docto['imp_pagado']),
+                                self._get_numeric_value(docto['imp_saldo_insoluto']),
                             ]
                         )
                         count_dr += 1
                 else:
-                    results.append(row + [ '', '', '', '', '', '', '', '', '', ''])
+                    results.append(row + [
+                        self._config['empty_char'],
+                        self._config['empty_char'],
+                        self._config['empty_char'],
+                        self._config['empty_char'],
+                        StringHelper.DEFAULT_SAFE_NUMBER_ONE if self._config['safe_numerics'] else self._config['empty_char'],
+                        self._config['empty_char'],
+                        self._config['empty_char'],
+                        self._get_numeric_default_value(),
+                        self._get_numeric_default_value(),
+                        self._get_numeric_default_value()
+                    ])
                 count_pago += 1
             count_complement_pago += 1
         return results
@@ -92,25 +112,25 @@ class EfiscoPagos10Formatter(FormatterInterface):
         for tdf in self._cfdi_data['tfd11']:
             row = [
                 self._cfdi_data['cfdi33']['version'],
-                self._cfdi_data['cfdi33']['serie'],
-                self._cfdi_data['cfdi33']['folio'],
+                self._get_str_value(self._cfdi_data['cfdi33']['serie']),
+                self._get_str_value(self._cfdi_data['cfdi33']['folio']),
                 self._cfdi_data['cfdi33']['fecha'],
                 self._cfdi_data['cfdi33']['no_certificado'],
                 self._cfdi_data['cfdi33']['subtotal'],
-                self._cfdi_data['cfdi33']['descuento'],
+                self._get_numeric_value(self._cfdi_data['cfdi33']['descuento']),
                 self._cfdi_data['cfdi33']['total'],
                 self._cfdi_data['cfdi33']['moneda'],
-                self._cfdi_data['cfdi33']['tipo_cambio'],
+                self._get_numeric_tipo_cambio_value(self._cfdi_data['cfdi33']['tipo_cambio']),
                 self._cfdi_data['cfdi33']['tipo_comprobante'],
-                self._cfdi_data['cfdi33']['metodo_pago'],
-                self._cfdi_data['cfdi33']['forma_pago'],
-                self._cfdi_data['cfdi33']['condiciones_pago'],
+                self._get_str_value(self._cfdi_data['cfdi33']['metodo_pago']),
+                self._get_str_value(self._cfdi_data['cfdi33']['forma_pago']),
+                self._get_str_value(self._cfdi_data['cfdi33']['condiciones_pago']),
                 self._cfdi_data['cfdi33']['lugar_expedicion'],
                 self._cfdi_data['cfdi33']['emisor']['rfc'],
-                self._cfdi_data['cfdi33']['emisor']['nombre'],
+                self._get_str_value(self._cfdi_data['cfdi33']['emisor']['nombre']),
                 self._cfdi_data['cfdi33']['emisor']['regimen_fiscal'],
                 self._cfdi_data['cfdi33']['receptor']['rfc'],
-                self._cfdi_data['cfdi33']['receptor']['nombre'],
+                self._get_str_value(self._cfdi_data['cfdi33']['receptor']['nombre']),
                 self._cfdi_data['cfdi33']['receptor']['uso_cfdi'],
                 tdf['uuid'],
                 tdf['fecha_timbrado'],

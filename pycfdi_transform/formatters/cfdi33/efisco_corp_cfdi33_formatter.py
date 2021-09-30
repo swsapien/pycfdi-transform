@@ -36,9 +36,6 @@ class EfiscoCorpCFDI33Formatter(FormatterInterface):
                 if tax['total_traslados_impuestos_locales']:
                     total = StringHelper.sum_strings(total, tax['total_traslados_impuestos_locales'])
         return total
-    
-    def _get_numeric_default_value(self)->str:
-        return StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']
 
     def _get_concept_value_by_key(self,key: str)->str:
         if self._cfdi_data['cfdi33']['conceptos'] and len(self._cfdi_data['cfdi33']['conceptos']) > 0 and key in self._cfdi_data['cfdi33']['conceptos'][0]:
@@ -61,9 +58,9 @@ class EfiscoCorpCFDI33Formatter(FormatterInterface):
                 # VERSION
                 self._cfdi_data['cfdi33']['version'],
                 # SERIE
-                self._cfdi_data['cfdi33']['serie'],
+                self._get_str_value(self._cfdi_data['cfdi33']['serie']),
                 # FOLIO
-                self._cfdi_data['cfdi33']['folio'],
+                self._get_str_value(self._cfdi_data['cfdi33']['folio']),
                 # FECHA
                 self._cfdi_data['cfdi33']['fecha'],
                 # NOCERTIFICADO
@@ -71,37 +68,37 @@ class EfiscoCorpCFDI33Formatter(FormatterInterface):
                 # SUBTOTAL
                 self._cfdi_data['cfdi33']['subtotal'],
                 # DESCUENTO
-                self._cfdi_data['cfdi33']['descuento'],
+                self._get_numeric_value(self._cfdi_data['cfdi33']['descuento']),
                 # TOTAL
                 self._cfdi_data['cfdi33']['total'],
                 # MONEDA
                 self._cfdi_data['cfdi33']['moneda'],
                 # TIPOCAMBIO
-                self._cfdi_data['cfdi33']['tipo_cambio'],
+                self._get_numeric_tipo_cambio_value(self._cfdi_data['cfdi33']['tipo_cambio']),
                 # TIPODECOMPROBANTE
                 self._cfdi_data['cfdi33']['tipo_comprobante'],
                 # METODOPAGO
-                self._cfdi_data['cfdi33']['metodo_pago'],
+                self._get_str_value(self._cfdi_data['cfdi33']['metodo_pago']),
                 # FORMAPAGO
-                self._cfdi_data['cfdi33']['forma_pago'],
+                self._get_str_value(self._cfdi_data['cfdi33']['forma_pago']),
                 # CONDICIONESDEPAGO
-                self._cfdi_data['cfdi33']['condiciones_pago'],
+                self._get_str_value(self._cfdi_data['cfdi33']['condiciones_pago']),
                 # LUGAREXPEDICION
                 self._cfdi_data['cfdi33']['lugar_expedicion'],
                 # EMISORRFC
                 self._cfdi_data['cfdi33']['emisor']['rfc'],
                 # EMISORNOMBRE
-                self._cfdi_data['cfdi33']['emisor']['nombre'],
+                self._get_str_value(self._cfdi_data['cfdi33']['emisor']['nombre']),
                 # EMISORREGIMENFISCAL
                 self._cfdi_data['cfdi33']['emisor']['regimen_fiscal'],
                 # RECEPTORRFC
                 self._cfdi_data['cfdi33']['receptor']['rfc'],
                 # RECEPTORNOMBRE
-                self._cfdi_data['cfdi33']['receptor']['nombre'],
+                self._get_str_value(self._cfdi_data['cfdi33']['receptor']['nombre']),
                 # RESIDENCIAFISCAL                
-                self._cfdi_data['cfdi33']['receptor']['residencia_fiscal'],
+                self._get_str_value(self._cfdi_data['cfdi33']['receptor']['residencia_fiscal']),
                 # NUMREGIDTRIB
-                self._cfdi_data['cfdi33']['receptor']['num_reg_id_trib'],
+                self._get_str_value(self._cfdi_data['cfdi33']['receptor']['num_reg_id_trib']),
                 # RECEPTORUSOCFDI
                 self._cfdi_data['cfdi33']['receptor']['uso_cfdi'],
                 # CLAVEPRODSERV
@@ -113,7 +110,7 @@ class EfiscoCorpCFDI33Formatter(FormatterInterface):
                 # IEPSTRASLADO
                 self._get_total_taxes_by_type(self._cfdi_data['cfdi33']['impuestos'], 'traslados', '003'),
                 # TOTALIMPUESTOSTRASLADOS
-                self._cfdi_data['cfdi33']['impuestos']['total_impuestos_traslados'],
+                self._get_numeric_value(self._cfdi_data['cfdi33']['impuestos']['total_impuestos_traslados']),
                 # ISRRETENIDO
                 self._get_total_taxes_by_type(self._cfdi_data['cfdi33']['impuestos'], 'retenciones', '001'),
                 # IVARETENIDO
@@ -121,13 +118,13 @@ class EfiscoCorpCFDI33Formatter(FormatterInterface):
                 # IEPSRETENIDO
                 self._get_total_taxes_by_type(self._cfdi_data['cfdi33']['impuestos'], 'retenciones', '003'),
                 # TOTALIMPUESTOSRETENIDOS
-                self._cfdi_data['cfdi33']['impuestos']['total_impuestos_retenidos'],
+                self._get_numeric_value(self._cfdi_data['cfdi33']['impuestos']['total_impuestos_retenidos']),
                 # TOTALTRASLADOSIMPUESTOSLOCALES
                 self._get_implocal10_total_traslados(),
                 # TOTALRETENCIONESIMPUESTOSLOCALES
                 self._get_implocal10_total_retenciones(),
                 # COMPLEMENTOS
-                self._cfdi_data['cfdi33']['complementos'],
+                self._get_str_value(self._cfdi_data['cfdi33']['complementos']),
                 # UUID                
                 tdf['uuid'],
                 # FECHATIMBRADO

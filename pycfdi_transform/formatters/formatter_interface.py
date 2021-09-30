@@ -1,5 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
+from pycfdi_transform.helpers.string_helper import StringHelper
 
 class FormatterInterface(ABC):
     def __init__(self, cfdi_data:dict, empty_char:str = '', safe_numerics:bool = False) -> FormatterInterface:
@@ -27,3 +28,21 @@ class FormatterInterface(ABC):
     @abstractmethod
     def get_errors(self) -> str:
         raise NotImplementedError
+    
+    def _get_str_value(self, val:str)->str:
+        if val:
+            return val
+        return self._config['empty_char']
+
+    def _get_numeric_value(self, val:str)->str:
+        if val:
+            return val
+        return StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']
+    
+    def _get_numeric_tipo_cambio_value(self, val:str)->str:
+        if val:
+            return val
+        return StringHelper.DEFAULT_SAFE_NUMBER_ONE if self._config['safe_numerics'] else self._config['empty_char']
+
+    def _get_numeric_default_value(self)->str:
+        return StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']

@@ -1,12 +1,10 @@
 from __future__ import annotations
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
-from pycfdi_transform.helpers.string_helper import StringHelper
 
 class EfiscoNomina12Formatter(FormatterInterface):
-    def __init__(self, cfdi_data: dict) -> EfiscoNomina12Formatter:
-        super().__init__(cfdi_data)
+    def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoNomina12Formatter:
+        super().__init__(cfdi_data, empty_char, safe_numerics)
         assert 'cfdi33' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33.'
-        self._errors = []
     
     def _get_part_complement(self) -> list:
         results = []
@@ -17,37 +15,37 @@ class EfiscoNomina12Formatter(FormatterInterface):
                 nomina12['fecha_inicial_pago'],
                 nomina12['fecha_final_pago'],
                 nomina12['num_dias_pagados'],
-                nomina12['total_percepciones'],
-                nomina12['total_deducciones'],
-                nomina12['total_otros_pagos'],
-                nomina12['emisor']['curp'],
-                nomina12['emisor']['registro_patronal'],
-                nomina12['emisor']['rfc_patron_origen'],
+                self._get_numeric_value(nomina12['total_percepciones']),
+                self._get_numeric_value(nomina12['total_deducciones']),
+                self._get_numeric_value(nomina12['total_otros_pagos']),
+                self._get_str_value(nomina12['emisor']['curp']),
+                self._get_str_value(nomina12['emisor']['registro_patronal']),
+                self._get_str_value(nomina12['emisor']['rfc_patron_origen']),
                 nomina12['receptor']['curp'],
-                nomina12['receptor']['num_seguridad_social'],
+                self._get_str_value(nomina12['receptor']['num_seguridad_social']),
                 nomina12['receptor']['fecha_inicio_rel_laboral'],
-                nomina12['receptor']['sindicalizado'],
-                nomina12['receptor']['tipo_jornada'],
+                self._get_str_value(nomina12['receptor']['sindicalizado']),
+                self._get_str_value(nomina12['receptor']['tipo_jornada']),
                 nomina12['receptor']['tipo_regimen'],
                 nomina12['receptor']['num_empleado'],
-                nomina12['receptor']['departamento'],
-                nomina12['receptor']['puesto'],
-                nomina12['receptor']['riesgo_puesto'],
-                nomina12['receptor']['banco'],
+                self._get_str_value(nomina12['receptor']['departamento']),
+                self._get_str_value(nomina12['receptor']['puesto']),
+                self._get_str_value(nomina12['receptor']['riesgo_puesto']),
+                self._get_str_value(nomina12['receptor']['banco']),
                 nomina12['receptor']['cuenta_bancaria'],
-                nomina12['receptor']['antigüedad'],
+                self._get_str_value(nomina12['receptor']['antigüedad']),
                 nomina12['receptor']['tipo_contrato'],
                 nomina12['receptor']['periodicidad_pago'],
-                nomina12['receptor']['salario_base_cot_apor'],
-                nomina12['receptor']['salario_diario_integrado'],
+                self._get_numeric_value(nomina12['receptor']['salario_base_cot_apor']),
+                self._get_numeric_value(nomina12['receptor']['salario_diario_integrado']),
                 nomina12['receptor']['clave_ent_fed'],
-                nomina12['percepciones']['total_sueldos'],
-                nomina12['percepciones']['total_separacion_indemnizacion'],
-                nomina12['percepciones']['total_jubilacion_pension_retiro'],
-                nomina12['percepciones']['total_gravado'],
-                nomina12['percepciones']['total_exento'],
-                nomina12['deducciones']['total_otras_deducciones'],
-                nomina12['deducciones']['total_impuestos_retenidos'],
+                self._get_numeric_value(nomina12['percepciones']['total_sueldos']),
+                self._get_numeric_value(nomina12['percepciones']['total_separacion_indemnizacion']),
+                self._get_numeric_value(nomina12['percepciones']['total_jubilacion_pension_retiro']),
+                self._get_numeric_value(nomina12['percepciones']['total_gravado']),
+                self._get_numeric_value(nomina12['percepciones']['total_exento']),
+                self._get_numeric_value(nomina12['deducciones']['total_otras_deducciones']),
+                self._get_numeric_value(nomina12['deducciones']['total_impuestos_retenidos']),
             ]
 
             if len(nomina12['percepciones']['percepcion']) > 0:
@@ -94,25 +92,25 @@ class EfiscoNomina12Formatter(FormatterInterface):
         for tdf in self._cfdi_data['tfd11']:
             row = [
                 self._cfdi_data['cfdi33']['version'],
-                self._cfdi_data['cfdi33']['serie'],
-                self._cfdi_data['cfdi33']['folio'],
+                self._get_str_value(self._cfdi_data['cfdi33']['serie']),
+                self._get_str_value(self._cfdi_data['cfdi33']['folio']),
                 self._cfdi_data['cfdi33']['fecha'],
                 self._cfdi_data['cfdi33']['no_certificado'],
                 self._cfdi_data['cfdi33']['subtotal'],
-                self._cfdi_data['cfdi33']['descuento'],
+                self._get_numeric_value(self._cfdi_data['cfdi33']['descuento']),
                 self._cfdi_data['cfdi33']['total'],
                 self._cfdi_data['cfdi33']['moneda'],
-                self._cfdi_data['cfdi33']['tipo_cambio'],
+                self._get_numeric_tipo_cambio_value(self._cfdi_data['cfdi33']['tipo_cambio']),
                 self._cfdi_data['cfdi33']['tipo_comprobante'],
-                self._cfdi_data['cfdi33']['metodo_pago'],
-                self._cfdi_data['cfdi33']['forma_pago'],
-                self._cfdi_data['cfdi33']['condiciones_pago'],
+                self._get_str_value(self._cfdi_data['cfdi33']['metodo_pago']),
+                self._get_str_value(self._cfdi_data['cfdi33']['forma_pago']),
+                self._get_str_value(self._cfdi_data['cfdi33']['condiciones_pago']),
                 self._cfdi_data['cfdi33']['lugar_expedicion'],
                 self._cfdi_data['cfdi33']['emisor']['rfc'],
-                self._cfdi_data['cfdi33']['emisor']['nombre'],
+                self._get_str_value(self._cfdi_data['cfdi33']['emisor']['nombre']),
                 self._cfdi_data['cfdi33']['emisor']['regimen_fiscal'],
                 self._cfdi_data['cfdi33']['receptor']['rfc'],
-                self._cfdi_data['cfdi33']['receptor']['nombre'],
+                self._get_str_value(self._cfdi_data['cfdi33']['receptor']['nombre']),
                 self._cfdi_data['cfdi33']['receptor']['uso_cfdi'],
                 tdf['uuid'],
                 tdf['fecha_timbrado'],
