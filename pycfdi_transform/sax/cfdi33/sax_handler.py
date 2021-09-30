@@ -14,18 +14,7 @@ class CFDI33SAXHandler(BaseHandler):
     
     def transform_from_file(self, file_path:str) -> dict:
         if ('.xml' in file_path):
-            try:
-                self._clean_data()
-                xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
-                tree = etree.XML(StringHelper.file_path_to_string(file_path).encode(), parser=xml_parser)
-                if self._schema_validator != None and isinstance(self._schema_validator, etree.XMLSchema):
-                    self._schema_validator.assertValid(tree)
-                context = etree.iterwalk(tree, events=("start", "end"))
-                self.__handle_events(context)
-                return self._data
-            except Exception as ex:
-                self._logger.exception(f'Caugth Exception at tranforming file {file_path}.')
-                raise ex
+            return self.transform_from_string(StringHelper.file_path_to_string(file_path))
         else:
             raise ValueError('Incorrect type of document, only support XML files')
     def transform_from_string(self, xml_str:str) -> dict:

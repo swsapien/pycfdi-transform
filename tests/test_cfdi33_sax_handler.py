@@ -645,5 +645,11 @@ class TestCFDI33SAXHandler(unittest.TestCase):
         sax_handler = CFDI33SAXHandler()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi33/cfdi33_break_lines_sellocfdi.xml')
         self.assertIsNotNone(cfdi_data)
-        self.assertTrue("&#xA;" not in str(cfdi_data['cfdi33']['sello']))
-        self.assertTrue("&#xA;" not in str(cfdi_data['cfdi33']['sello']))
+        # sello
+        self.assertTrue('\n' not in str(cfdi_data['cfdi33']['sello']))
+        self.assertTrue('\r' not in str(cfdi_data['cfdi33']['sello']))
+        self.assertTrue('\t' not in str(cfdi_data['cfdi33']['sello']))
+        # sello_tfd   
+        self.assertTrue('\n' not in str(cfdi_data['tfd11'][0]['sello_cfd']))
+        self.assertTrue('\r' not in str(cfdi_data['tfd11'][0]['sello_cfd']))
+        self.assertTrue('\t' not in str(cfdi_data['tfd11'][0]['sello_cfd']))
