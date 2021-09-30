@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/Pagos http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos10.xsd" 
+    xmlns:pago10="http://www.sat.gob.mx/Pagos" Version="3.3" Serie="PA" Folio="1" Fecha="2019-03-29T17:37:19" SubTotal="0" Moneda="XXX" Total="0" TipoDeComprobante="P" LugarExpedicion="45110" 
+    xmlns:cfdi="http://www.sat.gob.mx/cfd/3" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" NoCertificado="00000000000000000000" Certificado="">
+    <cfdi:Emisor Rfc="XAXX010101000" Nombre="xxx" RegimenFiscal="601" />
+    <cfdi:Receptor Rfc="XAXX010101000" Nombre="PUBLICO EN GENERAL" UsoCFDI="P01" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="84111506" Cantidad="1" ClaveUnidad="ACT" Descripcion="Pago" ValorUnitario="0" Importe="0" />
+    </cfdi:Conceptos>
+    <cfdi:Complemento>
+        <pago10:Pagos Version="1.0" 
+            xmlns:pago10="http://www.sat.gob.mx/Pagos">
+            <pago10:Pago FechaPago="2019-03-29T16:14:52" FormaDePagoP="03" MonedaP="MXN" Monto="58000.00">
+                <pago10:DoctoRelacionado IdDocumento="" Serie="i" Folio="3463" MonedaDR="MXN" MetodoDePagoDR="PPD" NumParcialidad="2" ImpSaldoAnt="138040.00" ImpPagado="58000.00" ImpSaldoInsoluto="80040.00" />
+            </pago10:Pago>
+        </pago10:Pagos>
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="94c4aa76-9dd5-41ad-a10b-267024761951" NoCertificadoSAT="20001000000300022323" FechaTimbrado="2019-03-29T17:42:38" RfcProvCertif="AAA010101AAA" SelloCFD="" SelloSAT=""
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    </cfdi:Complemento>
+</cfdi:Comprobante>

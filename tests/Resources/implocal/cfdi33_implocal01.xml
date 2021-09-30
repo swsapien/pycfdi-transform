@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/implocal http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd" 
+    xmlns:implocal="http://www.sat.gob.mx/implocal" Version="3.3" Serie="G" Folio="370" Fecha="2020-02-25T23:17:37" FormaPago="99" SubTotal="1290.00" Moneda="MXN" Total="1419.00" TipoDeComprobante="I" MetodoPago="PPD" LugarExpedicion="56400" 
+    xmlns:cfdi="http://www.sat.gob.mx/cfd/3" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" NoCertificado="00000000000000000000" Certificado="" Sello="">
+    <cfdi:Emisor Rfc="XIA190128J61" Nombre="XIA190128J61" RegimenFiscal="601" />
+    <cfdi:Receptor Rfc="XIA190128J61" Nombre="XIA190128J61" UsoCFDI="G03" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="23151509" NoIdentificacion="S" Cantidad="9" ClaveUnidad="E48" Unidad="Pieza" Descripcion="SERVICIO" ValorUnitario="60.000000" Importe="540.000000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="540.000000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="86.400000" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
+        <cfdi:Concepto ClaveProdServ="25171905" NoIdentificacion="T" Cantidad="12" ClaveUnidad="H87" Unidad="PIEZAS" Descripcion="T" ValorUnitario="50.000000" Importe="600.000000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="600.000000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="96.000000" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
+        <cfdi:Concepto ClaveProdServ="23151509" NoIdentificacion="C" Cantidad="1" ClaveUnidad="E48" Unidad="SERVICIO" Descripcion="C" ValorUnitario="150.000000" Importe="150.000000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="150.000000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="24.000000" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
+    </cfdi:Conceptos>
+    <cfdi:Impuestos TotalImpuestosTrasladados="206.40">
+        <cfdi:Traslados>
+            <cfdi:Traslado Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="206.400000" />
+        </cfdi:Traslados>
+    </cfdi:Impuestos>
+    <cfdi:Complemento>
+        <implocal:ImpuestosLocales xmlns:implocal="http://www.sat.gob.mx/implocal" xsi:schemaLocation="http://www.sat.gob.mx/implocal http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd" version="1.0" TotaldeRetenciones="77.400000" TotaldeTraslados="0.000000">
+            <implocal:RetencionesLocales ImpLocRetenido="77.40" TasadeRetencion="6" Importe="77.40" />
+        </implocal:ImpuestosLocales>
+    </cfdi:Complemento>
+</cfdi:Comprobante>

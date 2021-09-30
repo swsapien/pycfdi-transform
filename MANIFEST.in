@@ -1,2 +1,5 @@
-include pycfdi_transform/xslt/*.xslt
-include pycfdi_transform/sax/*.py
+include pycfdi_transform/*.py
+include pycfdi_transform/sax/*/*.py
+include pycfdi_transform/helpers/*.py
+include pycfdi_transform/xsd/*/*.xsd
+include pycfdi_transform/xsd/*/*/*.xsd
