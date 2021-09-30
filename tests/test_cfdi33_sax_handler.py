@@ -640,3 +640,10 @@ class TestCFDI33SAXHandler(unittest.TestCase):
             ]
         }
         self.assertDictEqual(cfdi_data, expected_dict)
+    
+    def test_cfdi33_sax_handler_with_break_lines_sellocfd(self):
+        sax_handler = CFDI33SAXHandler()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi33/cfdi33_break_lines_sellocfdi.xml')
+        self.assertIsNotNone(cfdi_data)
+        self.assertTrue("&#xA;" not in str(cfdi_data['cfdi33']['sello']))
+        self.assertTrue("&#xA;" not in str(cfdi_data['cfdi33']['sello']))
