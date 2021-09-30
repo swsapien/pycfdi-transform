@@ -72,11 +72,11 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
         formatter = EfiscoCorpCFDI33Formatter(cfdi_data)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
-        self.assertEquals(formatter.get_errors(),'')
+        self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEquals(data_columns[0][32],'0.000000')
-        self.assertEquals(data_columns[0][33],'77.400000')
+        self.assertEqual(data_columns[0][32],'0.000000')
+        self.assertEqual(data_columns[0][33],'77.400000')
     
     def test_formatter_cfdi33_implocal10_safe_numerics_1(self):
         sax_handler = CFDI33SAXHandler().use_implocal10()
@@ -84,10 +84,10 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
         formatter = EfiscoCorpCFDI33Formatter(cfdi_data,empty_char='',safe_numerics=True)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
-        self.assertEquals(formatter.get_errors(),'')
+        self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEquals(data_columns[0][32],'0.00')
+        self.assertEqual(data_columns[0][32],'0.00')
     
     def test_formatter_cfdi33_implocal10_safe_empty_char_1(self):
         sax_handler = CFDI33SAXHandler().use_implocal10()
@@ -95,10 +95,10 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
         formatter = EfiscoCorpCFDI33Formatter(cfdi_data,empty_char='-',safe_numerics=False)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
-        self.assertEquals(formatter.get_errors(),'')
+        self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEquals(data_columns[0][32],'-')
+        self.assertEqual(data_columns[0][32],'-')
     
     def test_formatter_cfdi33_implocal10_multiple_complements(self):
         sax_handler = CFDI33SAXHandler().use_implocal10()
@@ -106,8 +106,8 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
         formatter = EfiscoCorpCFDI33Formatter(cfdi_data,empty_char='-',safe_numerics=False)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
-        self.assertEquals(formatter.get_errors(),'')
+        self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEquals(data_columns[0][32],'20.000000')
-        self.assertEquals(data_columns[0][33],'40.000000')
+        self.assertEqual(data_columns[0][32],'20.000000')
+        self.assertEqual(data_columns[0][33],'40.000000')
