@@ -1,4 +1,5 @@
 
+
 # PyCfdi
 PyCfdi Transform es un paquete de python que te permite convertir un Xml CFDI México a formato columnar.
 
@@ -97,12 +98,15 @@ print(cfdi_data)
 
 Una vez que tengamos la información de la transformación del CFDI, entonces usaremos un Formatter para presentar esta información en el formato columnar. Ejemplo
 ```python
-from  pycfdi_transform.formatters import CFDI33Formatter
+from pycfdi_transform.formatters.cfdi33.efisco_corp_cfdi33_formatter import EfiscoCorpCFDI33Formatter
 formatter = CFDI33Formatter(cfdi_data)
-result_columns = formatter.format_object()
-columns = formatter.get_columns_names()
-print(result_columns) # Contenido del xml Ej: ['3.3', 'A5', '5511', ...]
-print(columns) # Nombre de las columnas Ej: ['VERSION', 'SERIE', 'FOLIO', ...]
+if formatter.can_format(): # Verifica si puede formatear el objeto
+  result_columns = formatter.dict_to_columns() # Obtiene la información en formato columnar
+  columns = formatter.get_columns_names() # Obtiene los headers de las columnas
+  print(result_columns) # Contenido del xml Ej: ['3.3', 'A5', '5511', ...]
+  print(columns) # Nombre de las columnas Ej: ['VERSION', 'SERIE', 'FOLIO', ...]
+else:
+  print(formatter.get_errors()) # Not tfd11 in data.
 ```
 ### Complements
 La configuración de complementos para la clase **CFDI33SAXHandler** se define a través de *method chaining* que se obtiene a través de contruir una nueva instancia del Handler. Por defecto se encuentra activado el complemento de TimbreFiscalDigital 1.1, por lo que solo tendremos que configurar complementos adicionales de los cuales queramos obtener información.
