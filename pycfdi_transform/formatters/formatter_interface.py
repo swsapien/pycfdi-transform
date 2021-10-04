@@ -19,7 +19,7 @@ class FormatterInterface(ABC):
     
     @staticmethod
     @abstractmethod
-    def get_columns_names(self) -> list[str]:
+    def get_columns_names() -> list[str]:
         raise NotImplementedError
     
     @abstractmethod

@@ -151,7 +151,8 @@ class EfiscoPagos10Formatter(FormatterInterface):
     def get_errors(self) -> str:
         return '|'.join(self._errors)
     
-    def get_columns_names(self) -> list[str]:
+    @staticmethod
+    def get_columns_names() -> list[str]:
         return [
             "VERSION",
             "SERIE",
