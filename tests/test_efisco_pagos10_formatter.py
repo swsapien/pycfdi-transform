@@ -1,6 +1,7 @@
 from pycfdi_transform import CFDI33SAXHandler
 from pycfdi_transform.formatters.pagos10.efisco_pagos10_formatter import EfiscoPagos10Formatter
 import unittest
+import time
 
 class TestEfiscoPagos10Formatter(unittest.TestCase):
 
@@ -103,6 +104,48 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
             self.assertEqual(len(row), len(formatter.get_columns_names()), 'Different length of columns')
         first_row = ['3.3', 'PA', '1', '2019-03-29T17:37:19', '00000000000000000000', '0', '', '0', 'XXX', '', 'P', '', '', '', '45110', 'XAXX010101000', 'xxx', '601', 'XAXX010101000', 'PUBLICO EN GENERAL', 'P01', '94C4AA76-9DD5-41AD-A10B-267024761951', '2019-03-29T17:42:38', 'AAA010101AAA', '', 'CP1_P1_DR1', '2019-03-29T16:14:52', '03', 'MXN', '', '58000.00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'i', '3463', 'MXN', '', 'PPD', '2', '138040.00', '58000.00', '80040.00']
         self.assertListEqual(first_row, row_list[0])
+    
+    def test_rows_pagos10_01_empty_char(self):
+        start = time.time()
+        sax_handler = CFDI33SAXHandler().use_pagos10()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_01.xml')
+        self.assertIsNotNone(cfdi_data)
+        formatter = EfiscoPagos10Formatter(cfdi_data, empty_char='-')
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '', 'Errors obtained.')
+        row_list = formatter.dict_to_columns()
+        end_time = start - time.time()
+        first_row = ['3.3', 'PA', '1', '2019-03-29T17:37:19', '00000000000000000000', '0', '-', '0', 'XXX', '-', 'P', '-', '-', '-', '45110', 'XAXX010101000', 'xxx', '601', 'XAXX010101000', 'PUBLICO EN GENERAL', 'P01', '94C4AA76-9DD5-41AD-A10B-267024761951', '2019-03-29T17:42:38', 'AAA010101AAA', '', 'CP1_P1_DR1', '2019-03-29T16:14:52', '03', 'MXN', '-', '58000.00', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '', 'i', '3463', 'MXN', '-', 'PPD', '2', '138040.00', '58000.00', '80040.00']
+        self.assertListEqual(first_row, row_list[0])
+        self.assertLess(end_time, 0.01)
+    
+    def test_rows_pagos10_01_safe_numerics(self):
+        start = time.time()
+        sax_handler = CFDI33SAXHandler().use_pagos10()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_01.xml')
+        self.assertIsNotNone(cfdi_data)
+        formatter = EfiscoPagos10Formatter(cfdi_data, safe_numerics=True)
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '', 'Errors obtained.')
+        row_list = formatter.dict_to_columns()
+        end_time = start - time.time()
+        first_row = ['3.3', 'PA', '1', '2019-03-29T17:37:19', '00000000000000000000', '0', '0.00', '0', 'XXX', '1.00', 'P', '', '', '', '45110', 'XAXX010101000', 'xxx', '601', 'XAXX010101000', 'PUBLICO EN GENERAL', 'P01', '94C4AA76-9DD5-41AD-A10B-267024761951', '2019-03-29T17:42:38', 'AAA010101AAA', '', 'CP1_P1_DR1', '2019-03-29T16:14:52', '03', 'MXN', '1.00', '58000.00', '', '', '', '', '', '', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '', 'i', '3463', 'MXN', '1.00', 'PPD', '2', '138040.00', '58000.00', '80040.00']
+        self.assertListEqual(first_row, row_list[0])
+        self.assertLess(end_time, 0.01)
+    
+    def test_rows_pagos10_01_empty_char_safe_numerics(self):
+        start = time.time()
+        sax_handler = CFDI33SAXHandler().use_pagos10()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_01.xml')
+        self.assertIsNotNone(cfdi_data)
+        formatter = EfiscoPagos10Formatter(cfdi_data, empty_char='-', safe_numerics=True)
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '', 'Errors obtained.')
+        row_list = formatter.dict_to_columns()
+        end_time = start - time.time()
+        first_row = ['3.3', 'PA', '1', '2019-03-29T17:37:19', '00000000000000000000', '0', '0.00', '0', 'XXX', '1.00', 'P', '-', '-', '-', '45110', 'XAXX010101000', 'xxx', '601', 'XAXX010101000', 'PUBLICO EN GENERAL', 'P01', '94C4AA76-9DD5-41AD-A10B-267024761951', '2019-03-29T17:42:38', 'AAA010101AAA', '', 'CP1_P1_DR1', '2019-03-29T16:14:52', '03', 'MXN', '1.00', '58000.00', '-', '-', '-', '-', '-', '-', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '', 'i', '3463', 'MXN', '1.00', 'PPD', '2', '138040.00', '58000.00', '80040.00']
+        self.assertListEqual(first_row, row_list[0])
+        self.assertLess(end_time, 0.01)
     
     def test_rows_pagos10_multi_tfd(self):
         sax_handler = CFDI33SAXHandler().use_pagos10()

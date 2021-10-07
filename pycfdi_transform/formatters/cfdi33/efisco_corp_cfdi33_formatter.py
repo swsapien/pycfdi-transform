@@ -137,7 +137,8 @@ class EfiscoCorpCFDI33Formatter(FormatterInterface):
             results.append(row)
         return results
     
-    def get_columns_names(self) -> list[str]:
+    @staticmethod
+    def get_columns_names() -> list[str]:
         return [
             'VERSION', 
             'SERIE', 

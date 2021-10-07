@@ -32,7 +32,7 @@ class EfiscoNomina12Formatter(FormatterInterface):
                 self._get_str_value(nomina12['receptor']['puesto']),
                 self._get_str_value(nomina12['receptor']['riesgo_puesto']),
                 self._get_str_value(nomina12['receptor']['banco']),
-                nomina12['receptor']['cuenta_bancaria'],
+                self._get_str_value(nomina12['receptor']['cuenta_bancaria']),
                 self._get_str_value(nomina12['receptor']['antigüedad']),
                 nomina12['receptor']['tipo_contrato'],
                 nomina12['receptor']['periodicidad_pago'],
@@ -131,7 +131,8 @@ class EfiscoNomina12Formatter(FormatterInterface):
     def get_errors(self) -> str:
         return '|'.join(self._errors)
     
-    def get_columns_names(self) -> list[str]:
+    @staticmethod
+    def get_columns_names() -> list[str]:
         return [
             "VERSION",
             "SERIE",
