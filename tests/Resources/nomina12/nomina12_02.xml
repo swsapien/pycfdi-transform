@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+    xmlns:nomina12="http://www.sat.gob.mx/nomina12"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd" Version="3.3" Folio="55515" Fecha="2021-09-30T09:45:51" Sello="NxlSH2oX5xXHnlmsk4oZGf2gvVDDYS+LWN/DmtSoNezuZYg7uA3IYjK/9TgptYfNAOO895dXI+U1VeTE+M8tWDOWA6SR6qZT2xo1hcSFjQDfqOfSQaN1DIJNjl2w4OAiwlcFqifuqDEEwQJSzvsjpEEFLlDTSSFDmoZ+tzQS8IkNNPeOynELcDMpHt9IdKEIQPBFqM2Dc62MdPT2PBPFy1UZ/mbv3vV+ndkrlmthKgyBFAiWjGt7+GFerfQkBE6YCpTPSB/dC/34C8yuAv5N8GYQsxlg3bxEjbXarFD5dinxtSZ9KTduhNL7a+h2DmAdA1ias73TrnR8/dRkmg5M+A==" FormaPago="99" NoCertificado="30001000000400002463" Certificado="MIIFwTCCA6mgAwIBAgIUMzAwMDEwMDAwMDA0MDAwMDI0NjMwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWRpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMTkwNjIwMjA1NTA4WhcNMjMwNjIwMjA1NTA4WjCB6DEmMCQGA1UEAxQdSEVSUkVSSUEgJiBFTEVDVFJJQ09TIFMgREUgQ1YxJjAkBgNVBCkUHUhFUlJFUklBICYgRUxFQ1RSSUNPUyBTIERFIENWMSYwJAYDVQQKFB1IRVJSRVJJQSAmIEVMRUNUUklDT1MgUyBERSBDVjElMCMGA1UELRQcSCZFOTUxMTI4NDY5IC8gWE9KSTc0MDkxOVU0ODEeMBwGA1UEBRMVIC8gWE9KSTc0MDkxOU1RVERNTjAyMScwJQYDVQQLFB5IRVJSRVJJQSAmIEVMRUNUUklDT1MgU0EgREUgQ1YwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDoNWRICH7Ja/IR0sFzGAoveKzFT94BJ4Wlh7MsePe50azvre4j6CYEItQ5jCkxZyYHT23dfONpUWDN7+Bx7j9QjKPwqr+zJjFrla/hD4fj63LeUmofVR7TjeDLLEwCSsn1k3vLae4WBgsV1jNc3M87ZYOHpe0XXLVw/25nSyqQS5l4HTJrw7wQ3NZAXghG38NIOUYJZsE/6K3OAslVoF/YregQ0UqodFLyA6BBMcfll8rjMIWtCy2DxZ0T5QCPX3OccWzB9hHvP5PAjUiOf+FpKHW8WPGEywoC1vM3nvsHXTp2MkUn78U5PK/hmc/7chqaneZHA066AIRs3zGHkHTjAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBCwUAA4ICAQCsaJpin0RAOsyxBMQRpfTM47k+a1QlHHsP2vEubuINZE+3Hp4b/C1w1gGe8+l8EJcLxQfQ0ovlvKDdYFJLleBCkt9eoFY92keaL77Teq6YxzQ8jArI1WSz75KkljzHYbtm4Oy+hsmpla4L51VnhRfyqehfAgZEDRHytpOPVzxIQnnDx/GI2KVlUBvInOS50dBoCnq5sxzQ+Ha1nsPMvrdTaHBRjto4kOL9SkHvZDVZHWnJ1R7w+1n0zXmDV27BUNsHQNaDG8e+5uGex7d/Bfolf3dU2y4YVFN9DOP8ge0J7ryIuRB7eESwT3aEM/0gec41vMOfVmR2mzNeX0q8czU0xjMH+NKSdgkNFAvoMk2uIsGePkbQDdk3XW1h6f3HGRQ85mkPh/Zt4kqbc0CzFsQMGdj8eixm8jRazSoCdndSDXrDwSTkVaqTuYqRxy89NWNk4dbXXqw4a52DKR1oYR0r9AVjHTfK936tRvNhxQ4KHGjPUi0ttxoCw1fogKwf2MRkTZMO0EZrEnODKl3CMoi4IXuWpNYY6MhUCjLRWJF/mOclkpCzNpyNbwJiGTshTEDvfqS1PsIuXgjIzbCa3seRzP6yxsd0CfEI7lUxMvYT6r0wqRXsymO6mOywWQKRFnrZmzD1zSMRap7vhED+plAxUgouQFbfv1NDkqAfF57FFA==" SubTotal="16298.05" Descuento="8991.72" Moneda="MXN" Total="7306.33" TipoDeComprobante="N" MetodoPago="PUE" LugarExpedicion="45400">
+    <cfdi:Emisor Rfc="H&amp;E951128469" Nombre="HERRERIA &amp; ELECTRICOS S DE CV" RegimenFiscal="601" />
+    <cfdi:Receptor Rfc="KICR630120NX3" Nombre="EMPLEADO 001" UsoCFDI="P01" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="84111505" Cantidad="1" ClaveUnidad="ACT" Descripcion="Pago de nómina" ValorUnitario="16298.05" Importe="16298.05" Descuento="8991.72" />
+    </cfdi:Conceptos>
+    <cfdi:Complemento>
+        <nomina12:Nomina Version="1.2" TipoNomina="O" FechaPago="2021-07-15" FechaInicialPago="2021-07-01" FechaFinalPago="2021-07-15" NumDiasPagados="15.000" TotalPercepciones="16298.05" TotalDeducciones="8991.72" TotalOtrosPagos="0.00">
+            <nomina12:Emisor RegistroPatronal="A0000000000"></nomina12:Emisor>
+            <nomina12:Receptor Curp="XEXX010101HNEXXXA4" NumSeguridadSocial="00000000000" FechaInicioRelLaboral="2018-09-17" Antigüedad="P147W" TipoContrato="01" Sindicalizado="No" TipoJornada="01" TipoRegimen="02" NumEmpleado="800067" Puesto="COORDINADOR" RiesgoPuesto="1" PeriodicidadPago="04" SalarioBaseCotApor="1354.6" SalarioDiarioIntegrado="1112.28" ClaveEntFed="JAL"></nomina12:Receptor>
+            <nomina12:Percepciones TotalSueldos="16298.05" TotalGravado="14935.08" TotalExento="1362.97">
+                <nomina12:Percepcion TipoPercepcion="001" Clave="P001" Concepto="Sueldo Normal" ImporteGravado="14935.05" ImporteExento="0.00"></nomina12:Percepcion>
+                <nomina12:Percepcion TipoPercepcion="029" Clave="P031" Concepto="Vales de Despensa" ImporteGravado="0.03" ImporteExento="680.97"></nomina12:Percepcion>
+                <nomina12:Percepcion TipoPercepcion="029" Clave="P073" Concepto="Vales de Despensa Pension Alimencia" ImporteGravado="0.00" ImporteExento="682.00"></nomina12:Percepcion>
+            </nomina12:Percepciones>
+            <nomina12:Deducciones TotalOtrasDeducciones="6491.05" TotalImpuestosRetenidos="2500.67">
+                <nomina12:Deduccion TipoDeduccion="001" Clave="D002" Concepto="Cuota IMSS" Importe="547.72"></nomina12:Deduccion>
+                <nomina12:Deduccion TipoDeduccion="002" Clave="ISR8" Concepto="ISPT" Importe="2500.67"></nomina12:Deduccion>
+                <nomina12:Deduccion TipoDeduccion="007" Clave="D026" Concepto="Pension Alimenticia Porcentaje" Importe="5943.33"></nomina12:Deduccion>
+            </nomina12:Deducciones>
+            <nomina12:OtrosPagos>
+                <nomina12:OtroPago TipoOtroPago="002" Clave="SEAP" Concepto="SUBSIDIO PARA EMPLEO APLICADO" Importe="0.00">
+                    <nomina12:SubsidioAlEmpleo SubsidioCausado="0"></nomina12:SubsidioAlEmpleo>
+                </nomina12:OtroPago>
+            </nomina12:OtrosPagos>
+        </nomina12:Nomina>
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="1ad04113-32d9-43a2-a84a-4e1aaf4f9f43" FechaTimbrado="2021-09-30T13:26:43" RfcProvCertif="SPR190613I52" SelloCFD="NxlSH2oX5xXHnlmsk4oZGf2gvVDDYS+LWN/DmtSoNezuZYg7uA3IYjK/9TgptYfNAOO895dXI+U1VeTE+M8tWDOWA6SR6qZT2xo1hcSFjQDfqOfSQaN1DIJNjl2w4OAiwlcFqifuqDEEwQJSzvsjpEEFLlDTSSFDmoZ+tzQS8IkNNPeOynELcDMpHt9IdKEIQPBFqM2Dc62MdPT2PBPFy1UZ/mbv3vV+ndkrlmthKgyBFAiWjGt7+GFerfQkBE6YCpTPSB/dC/34C8yuAv5N8GYQsxlg3bxEjbXarFD5dinxtSZ9KTduhNL7a+h2DmAdA1ias73TrnR8/dRkmg5M+A==" NoCertificadoSAT="30001000000400002495" SelloSAT="qWWikXIBcK4lXg3NQQ+7Js31yJ+LXXCc9vTb/VuyZpNw3AxRDGB6XcyJFE/uQlAahs9vW69HqrauUSofSvNNZFZXcO8gPjlGpL0l4irLf9BHADVjWR6VO/wqryspvpb12uOt+UWvJ9ofS2pCwcO0VgwRUy6tuNwvA/3SqA4qeuT3Z+Iq5/l3IhwvvEAEwoHjm1vYr9P0CwOsbhLrk4zOH3NpgEaAEeodcZ03kJaQEUuiIZJ7mgQC1/zFE0unzT76mAm2yToKvLKHUQCO0W0F5bdMJh4+42Sus8ckLn3o5Aj5dE/So1wfddOgNuVtq8VAnUMpF46X6m5c8uZWNqCQPA=="
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    </cfdi:Complemento>
+</cfdi:Comprobante>

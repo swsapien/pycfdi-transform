@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+    xmlns:nomina12="http://www.sat.gob.mx/nomina12"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Certificado="cert" Descuento="227493.44" Fecha="2021-06-04T11:00:00" FormaPago="99" LugarExpedicion="77560" MetodoPago="PUE" Moneda="MXN" NoCertificado="00000000000000000000" Sello="sign" SubTotal="780109.05" TipoDeComprobante="N" Total="552615.61" Version="3.3" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd">
+    <cfdi:Emisor Nombre="NOMBRE EMISOR" RegimenFiscal="601" Rfc="EKU9003173C9" />
+    <cfdi:Receptor Nombre="NOMBRE RECEPTOR
+    with \r\n                                                                                      
+    
+    
+    
+    spaces and breaks" Rfc="KICR630120NX3" UsoCFDI="P01" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto Cantidad="1" ClaveProdServ="84111505" ClaveUnidad="ACT" Descripcion="Pago de nómina" Descuento="227493.44" Importe="780109.05" ValorUnitario="780109.05" />
+    </cfdi:Conceptos>
+    <cfdi:Complemento>
+        <nomina12:Nomina FechaFinalPago="2021-07-23" FechaInicialPago="2021-07-23" FechaPago="2021-07-23" NumDiasPagados="8.000" TipoNomina="E" TotalDeducciones="227493.44" TotalOtrosPagos="0.00" TotalPercepciones="229962.91" Version="1.2">
+            <nomina12:Emisor RegistroPatronal="00000000000" />
+            <nomina12:Receptor Antigüedad="P70W" ClaveEntFed="ROO" Curp="XEXX010101HNEXXXA4" Departamento="15-058-000-000 DIR DE SISTEMAS DE INFORMACION" FechaInicioRelLaboral="2020-03-16" NumEmpleado="3123" NumSeguridadSocial="00000000000" PeriodicidadPago="99" RiesgoPuesto="1" SalarioBaseCotApor="2240.50" SalarioDiarioIntegrado="6435.14" TipoContrato="02" TipoJornada="01" TipoRegimen="02" />
+            <nomina12:Percepciones TotalExento="4032.90" TotalGravado="225930.01" TotalSueldos="229962.91">
+                <nomina12:Percepcion Clave="201" Concepto="SUELDO 
+                TIMBRADO" ImporteExento="0.00" ImporteGravado="40409.92" TipoPercepcion="001" />
+                <nomina12:Percepcion Clave="408" Concepto="PROPORCION DE VACACIONES" ImporteExento="0.00" ImporteGravado="32134.19" TipoPercepcion="001" />
+                <nomina12:Percepcion Clave="409" Concepto="VACACIONES PENDIENTES" ImporteExento="0.00" ImporteGravado="90922.35" TipoPercepcion="001" />
+                <nomina12:Percepcion Clave="418" Concepto="PREMIO DE ASISTENCIA" ImporteExento="0.00" ImporteGravado="4040.99" TipoPercepcion="049" />
+                <nomina12:Percepcion Clave="419" Concepto="PREMIO POR PUNTUALIDAD" ImporteExento="0.00" ImporteGravado="4040.99" TipoPercepcion="010" />
+                <nomina12:Percepcion Clave="426" Concepto="AGUINALDO" ImporteExento="2688.60" ImporteGravado="39658.78" TipoPercepcion="002" />
+                <nomina12:Percepcion Clave="427" Concepto="PRIMA VACACIONAL" ImporteExento="1344.30" ImporteGravado="14722.79" TipoPercepcion="021" />
+            </nomina12:Percepciones>
+            <nomina12:Deducciones TotalImpuestosRetenidos="227004.65" TotalOtrasDeducciones="488.79">
+                <nomina12:Deduccion Clave="601" Concepto="ISR" Importe="68245.79" TipoDeduccion="002" />
+                <nomina12:Deduccion Clave="604" Concepto="ISR
+                LIQUIDACION" Importe="158758.86" TipoDeduccion="002" />
+                <nomina12:Deduccion Clave="644" Concepto="IMSS" Importe="488.79" TipoDeduccion="001" />
+            </nomina12:Deducciones>
+            <nomina12:OtrosPagos>
+                <nomina12:OtroPago Clave="105" Concepto="SUBSIDIO AL
+                EMPLEO PAGADO ESP" Importe="0.00" TipoOtroPago="002">
+                    <nomina12:SubsidioAlEmpleo SubsidioCausado="0.00" />
+                </nomina12:OtroPago>
+            </nomina12:OtrosPagos>
+        </nomina12:Nomina>
+        <nomina12:Nomina FechaFinalPago="2021-07-23" FechaInicialPago="2021-07-23" FechaPago="2021-07-23" NumDiasPagados="8.000" TipoNomina="E" TotalPercepciones="550146.14" Version="1.2">
+            <nomina12:Emisor />
+            <nomina12:Receptor ClaveEntFed="ROO" Curp="XEXX010101HNEXXXA4" Departamento="15-058-000-000 DIR DE &#xA&#xD SISTEMAS DE INFORMACION" NumEmpleado="3123" PeriodicidadPago="99" TipoContrato="99" TipoRegimen="13" />
+            <nomina12:Percepciones TotalExento="8075.31" TotalGravado="542070.83" TotalSeparacionIndemnizacion="550146.14">
+                <nomina12:Percepcion Clave="130" Concepto="GRAVADO &#xA INDEMNIZACION" ImporteExento="8075.31" ImporteGravado="542070.83" TipoPercepcion="025" />
+                <nomina12:SeparacionIndemnizacion IngresoAcumulable="181844.70" IngresoNoAcumulable="360226.13" NumAñosServicio="1" TotalPagado="550146.14" UltimoSueldoMensOrd="181844.70" />
+            </nomina12:Percepciones>
+        </nomina12:Nomina>
+        <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" FechaTimbrado="2021-06-04T11:00:00" NoCertificadoSAT="00000000000000000000" RfcProvCertif="IXS7607092R5" SelloSAT="sign" SelloCFD="sign" UUID="eb9f91c0-2ff0-41d9-b607-4655e3686e41" Version="1.1" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" />
+    </cfdi:Complemento>
+</cfdi:Comprobante>

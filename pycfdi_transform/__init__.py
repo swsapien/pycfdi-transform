@@ -1,4 +1,4 @@
-# Copyright 2020 The SW sapien Authors. All Rights Reserved.
+# Copyright 2021 The SW sapien Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,21 +20,12 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from pycfdi_transform.t_cfdi33 import TCfdi33
-from pycfdi_transform.t_pago10 import TPago10
-from pycfdi_transform.t_nomina12 import TNomina12
-from pycfdi_transform.t_nomina11 import TNomina11
-from pycfdi_transform.t_cfdi32 import TCfdi32
-from pycfdi_transform.t_cfdi33_detail import TCfdi33Detail
-from pycfdi_transform.t_cfdi32_detail import TCfdi32Detail
-from pycfdi_transform.t_sax_cfdi33 import TSaxCfdi33
-from pycfdi_transform.t_sax_cfdi32 import TSaxCfdi32
-from pycfdi_transform.t_sax_pagos10 import TSaxPagos10
-from pycfdi_transform.t_sax_nomina11 import TSaxNomina11
-from pycfdi_transform.t_sax_nomina12 import TSaxNomina12
-from pycfdi_transform.t_sax_cfdi32_detail import TSaxCfdi32Detail
-from pycfdi_transform.t_sax_cfdi33_detail import TSaxCfdi33Detail
-from pycfdi_transform.t_sax_cfdi33_c_description import TSaxCfdi33Description
+from pycfdi_transform.sax.cfdi33.sax_handler import CFDI33SAXHandler
+from pycfdi_transform.helpers.schema_helper import SchemaHelper
+#formatters
+from pycfdi_transform.formatters.cfdi33.efisco_corp_cfdi33_formatter import EfiscoCorpCFDI33Formatter
+from pycfdi_transform.formatters.nomina12.efisco_nomina12_formatter import EfiscoNomina12Formatter
+from pycfdi_transform.formatters.pagos10.efisco_pagos10_formatter import EfiscoPagos10Formatter
 
 del absolute_import
 del division
