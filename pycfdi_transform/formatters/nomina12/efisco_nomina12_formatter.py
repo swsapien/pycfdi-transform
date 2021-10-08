@@ -7,39 +7,34 @@ class EfiscoNomina12Formatter(FormatterInterface):
         super().__init__(cfdi_data, empty_char, safe_numerics)
         assert 'cfdi33' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33.'
     
-    def __get_total_percepciones(self):
-        total = '0.00'
+    def __get_nomina_total_by_property(self,property_name):
+        total = None
         for nomina12 in self._cfdi_data['nomina12']:
-            if nomina12['total_percepciones']:
-                total = StringHelper.sum_strings(total, nomina12['total_percepciones'])
-        return total
+            if nomina12[property_name]:
+                total = StringHelper.sum_strings(total, nomina12[property_name])
+        return self._get_numeric_value(total)
+    
+    def __get_total_by_element_and_property(self,element_name:str,property_name:str):
+        total = None
+        for nomina12 in self._cfdi_data['nomina12']:
+            if nomina12[element_name][property_name]:
+                total = StringHelper.sum_strings(total, nomina12[element_name][property_name])
+        return self._get_numeric_value(total)
+
+    def __get_total_percepciones(self):
+        return self.__get_nomina_total_by_property('total_percepciones')
     
     def __get_total_deducciones(self):
-        total = '0.00'
-        for nomina12 in self._cfdi_data['nomina12']:
-            if nomina12['total_deducciones']:
-                total = StringHelper.sum_strings(total, nomina12['total_deducciones'])
-        return total
+        return self.__get_nomina_total_by_property('total_deducciones')
     
     def __get_total_otros_pagos(self):
-        total = '0.00'
-        for nomina12 in self._cfdi_data['nomina12']:
-            if nomina12['total_otros_pagos']:
-                total = StringHelper.sum_strings(total, nomina12['total_otros_pagos'])
-        return total
+        return self.__get_nomina_total_by_property('total_otros_pagos')
     
     def __get_percepciones_total_by_property_name(self,property_name):
         return self.__get_total_by_element_and_property('percepciones',property_name)
     
     def __get_deducciones_total_by_property_name(self,property_name):
         return self.__get_total_by_element_and_property('deducciones',property_name)
-    
-    def __get_total_by_element_and_property(self,element_name:str,property_name:str):
-        total = '0.00'
-        for nomina12 in self._cfdi_data['nomina12']:
-            if nomina12[element_name][property_name]:
-                total = StringHelper.sum_strings(total, nomina12[element_name][property_name])
-        return total
     
     def _get_part_complement(self) -> list:
         results = []
