@@ -1,10 +1,40 @@
 from __future__ import annotations
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
+from pycfdi_transform.helpers.string_helper import StringHelper
 
 class EfiscoNomina12Formatter(FormatterInterface):
     def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoNomina12Formatter:
         super().__init__(cfdi_data, empty_char, safe_numerics)
         assert 'cfdi33' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33.'
+    
+    def __get_nomina_total_by_property(self,property_name):
+        total = None
+        for nomina12 in self._cfdi_data['nomina12']:
+            if nomina12[property_name]:
+                total = StringHelper.sum_strings(total, nomina12[property_name])
+        return self._get_numeric_value(total)
+    
+    def __get_total_by_element_and_property(self,element_name:str,property_name:str):
+        total = None
+        for nomina12 in self._cfdi_data['nomina12']:
+            if nomina12[element_name][property_name]:
+                total = StringHelper.sum_strings(total, nomina12[element_name][property_name])
+        return self._get_numeric_value(total)
+
+    def __get_total_percepciones(self):
+        return self.__get_nomina_total_by_property('total_percepciones')
+    
+    def __get_total_deducciones(self):
+        return self.__get_nomina_total_by_property('total_deducciones')
+    
+    def __get_total_otros_pagos(self):
+        return self.__get_nomina_total_by_property('total_otros_pagos')
+    
+    def __get_percepciones_total_by_property_name(self,property_name):
+        return self.__get_total_by_element_and_property('percepciones',property_name)
+    
+    def __get_deducciones_total_by_property_name(self,property_name):
+        return self.__get_total_by_element_and_property('deducciones',property_name)
     
     def _get_part_complement(self) -> list:
         results = []
@@ -15,9 +45,9 @@ class EfiscoNomina12Formatter(FormatterInterface):
                 nomina12['fecha_inicial_pago'],
                 nomina12['fecha_final_pago'],
                 nomina12['num_dias_pagados'],
-                self._get_numeric_value(nomina12['total_percepciones']),
-                self._get_numeric_value(nomina12['total_deducciones']),
-                self._get_numeric_value(nomina12['total_otros_pagos']),
+                self.__get_total_percepciones(),
+                self.__get_total_deducciones(),
+                self.__get_total_otros_pagos(),
                 self._get_str_value(nomina12['emisor']['curp']),
                 self._get_str_value(nomina12['emisor']['registro_patronal']),
                 self._get_str_value(nomina12['emisor']['rfc_patron_origen']),
@@ -39,13 +69,13 @@ class EfiscoNomina12Formatter(FormatterInterface):
                 self._get_numeric_value(nomina12['receptor']['salario_base_cot_apor']),
                 self._get_numeric_value(nomina12['receptor']['salario_diario_integrado']),
                 nomina12['receptor']['clave_ent_fed'],
-                self._get_numeric_value(nomina12['percepciones']['total_sueldos']),
-                self._get_numeric_value(nomina12['percepciones']['total_separacion_indemnizacion']),
-                self._get_numeric_value(nomina12['percepciones']['total_jubilacion_pension_retiro']),
-                self._get_numeric_value(nomina12['percepciones']['total_gravado']),
-                self._get_numeric_value(nomina12['percepciones']['total_exento']),
-                self._get_numeric_value(nomina12['deducciones']['total_otras_deducciones']),
-                self._get_numeric_value(nomina12['deducciones']['total_impuestos_retenidos']),
+                self.__get_percepciones_total_by_property_name('total_sueldos'),
+                self.__get_percepciones_total_by_property_name('total_separacion_indemnizacion'),
+                self.__get_percepciones_total_by_property_name('total_jubilacion_pension_retiro'),
+                self.__get_percepciones_total_by_property_name('total_gravado'),
+                self.__get_percepciones_total_by_property_name('total_exento'),
+                self.__get_deducciones_total_by_property_name('total_otras_deducciones'),
+                self.__get_deducciones_total_by_property_name('total_impuestos_retenidos'),
             ]
 
             if len(nomina12['percepciones']['percepcion']) > 0:
