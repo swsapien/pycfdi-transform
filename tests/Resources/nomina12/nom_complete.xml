@@ -7,7 +7,7 @@
     <cfdi:CfdiRelacionado UUID="DeEAC5A7-b1b6-Ad2F-2D22-BEeceEbDD4Ac" />
     <cfdi:CfdiRelacionado UUID="fFAdE4eB-0B0d-eC19-Db4A-aBC3d8Af87De" />
   </cfdi:CfdiRelacionados>
-  <cfdi:Emisor Rfc="J&amp;O750807563" Nombre="Q" RegimenFiscal="611" />
+  <cfdi:Emisor Rfc="J&amp;O750807563" Nombre="Q~" RegimenFiscal="611" />
   <cfdi:Receptor Rfc="ÑÑD68010919A" Nombre="^*p_" ResidenciaFiscal="PRI" NumRegIdTrib="string" UsoCFDI="D01" />
   <cfdi:Conceptos>
     <cfdi:Concepto ClaveProdServ="50436114" Cantidad="5139880.234907" ClaveUnidad="C65" Unidad="1" Descripcion="\2}" ValorUnitario="7221960.234906" Importe="4978010.234906" Descuento="6164480.234906">
