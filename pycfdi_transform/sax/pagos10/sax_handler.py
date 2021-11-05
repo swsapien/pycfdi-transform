@@ -5,8 +5,8 @@ from pycfdi_transform.sax.pagos10.base_handler import BaseHandler
 from lxml import etree
 
 class Pagos10SAXHandler(BaseHandler):
-    def __init__(self, empty_char = '', safe_numerics = False) -> Pagos10SAXHandler:
-        super().__init__(empty_char, safe_numerics)
+    def __init__(self, empty_char = '', safe_numerics = False,esc_delimiters:str = "~") -> Pagos10SAXHandler:
+        super().__init__(empty_char, safe_numerics,esc_delimiters)
         self._logger = logging.getLogger('Pagos10SAXHandler')
     
     def transform_from_string(self, xml_str:str) -> dict:
@@ -42,16 +42,16 @@ class Pagos10SAXHandler(BaseHandler):
             'moneda_p': element.attrib.get('MonedaP'),
             'tipo_cambio_p': element.attrib.get('TipoCambioP', StringHelper.DEFAULT_SAFE_NUMBER_ONE if self._config['safe_numerics'] else self._config['empty_char']),
             'monto': element.attrib.get('Monto'),
-            'num_operacion': StringHelper.compact_string(element.attrib.get('NumOperacion', self._config['empty_char'])),
+            'num_operacion': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('NumOperacion', self._config['empty_char'])),
             'rfc_emisor_cta_ord': element.attrib.get('RfcEmisorCtaOrd', self._config['empty_char']),
-            'nom_banco_ord_ext': StringHelper.compact_string(element.attrib.get('NomBancoOrdExt', self._config['empty_char'])),
+            'nom_banco_ord_ext': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('NomBancoOrdExt', self._config['empty_char'])),
             'cta_ordenante': element.attrib.get('CtaOrdenante', self._config['empty_char']),
             'rfc_emisor_cta_ben': element.attrib.get('RfcEmisorCtaBen', self._config['empty_char']),
             'cta_beneficiario': element.attrib.get('CtaBeneficiario', self._config['empty_char']),
             'tipo_cad_pago': element.attrib.get('TipoCadPago', self._config['empty_char']),
-            'cert_pago': StringHelper.compact_string(element.attrib.get('CertPago', self._config['empty_char'])),
-            'cad_pago': StringHelper.compact_string(element.attrib.get('CadPago', self._config['empty_char'])),
-            'sello_pago': StringHelper.compact_string(element.attrib.get('SelloPago', self._config['empty_char'])),
+            'cert_pago': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('CertPago', self._config['empty_char'])),
+            'cad_pago': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('CadPago', self._config['empty_char'])),
+            'sello_pago': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('SelloPago', self._config['empty_char'])),
             'docto_relacionado': [],
             'impuestos': []
         }
@@ -60,8 +60,8 @@ class Pagos10SAXHandler(BaseHandler):
                 pago['docto_relacionado'].append(
                     {
                         'id_documento': child.attrib.get('IdDocumento'),
-                        'serie': StringHelper.compact_string(child.attrib.get('Serie', self._config['empty_char'])),
-                        'folio': StringHelper.compact_string(child.attrib.get('Folio', self._config['empty_char'])),
+                        'serie': StringHelper.compact_string(self._config['esc_delimiters'],child.attrib.get('Serie', self._config['empty_char'])),
+                        'folio': StringHelper.compact_string(self._config['esc_delimiters'],child.attrib.get('Folio', self._config['empty_char'])),
                         'moneda_dr': child.attrib.get('MonedaDR'),
                         'tipo_cambio_dr': child.attrib.get('TipoCambioP', StringHelper.DEFAULT_SAFE_NUMBER_ONE if self._config['safe_numerics'] else self._config['empty_char']),
                         'metodo_de_pago_dr': child.attrib.get('MetodoDePagoDR'),
