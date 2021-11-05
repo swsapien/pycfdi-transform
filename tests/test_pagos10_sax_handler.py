@@ -29,7 +29,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
                 'confirmacion':'8p7F3',
                 'emisor': {
                     'rfc': 'J&O750807563',
-                    'nombre': 'Q~',
+                    'nombre': 'Q',
                     'regimen_fiscal': '611'
                 },
                 'receptor': {
@@ -81,7 +81,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
                             'monto': '8426440.234906',
                             'num_operacion': '}',
                             'rfc_emisor_cta_ord': '&ÑÑ941216Z6A',
-                            'nom_banco_ord_ext': '~',
+                            'nom_banco_ord_ext': '',
                             'cta_ordenante': '__LN__5__4',
                             'rfc_emisor_cta_ben': '&&Ñ411106M7A',
                             'cta_beneficiario': '_L_T0DRB_6',
@@ -105,7 +105,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
                                 {
                                     'id_documento': 'be6dcDE2-ab9B-7DcF-Aaa2-CB8679f2fa01',
                                     'serie': '',
-                                    'folio': 'c!}~r',
+                                    'folio': 'c!}r',
                                     'moneda_dr': 'HKD',
                                     'tipo_cambio_dr': '',
                                     'metodo_de_pago_dr': 'PPD',
@@ -143,9 +143,9 @@ class TestPagos10SAXHandler(unittest.TestCase):
                             'moneda_p': 'BHD',
                             'tipo_cambio_p': '2027230.234907',
                             'monto': '2211890.234906',
-                            'num_operacion': '~\\',
+                            'num_operacion': '\\',
                             'rfc_emisor_cta_ord': '&ÑR880531UH8',
-                            'nom_banco_ord_ext': '~',
+                            'nom_banco_ord_ext': '',
                             'cta_ordenante': 'JS_O33J_3_L3',
                             'rfc_emisor_cta_ben': 'ÑÑX930431318',
                             'cta_beneficiario': 'FV485__M__',

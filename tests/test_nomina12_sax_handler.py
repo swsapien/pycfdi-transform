@@ -29,7 +29,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                 'confirmacion':'8p7F3',
                 'emisor': {
                     'rfc': 'J&O750807563',
-                    'nombre': 'Q~',
+                    'nombre': 'Q',
                     'regimen_fiscal': '611'
                 },
                 'receptor': {
@@ -83,7 +83,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     'total_otros_pagos': '7815140.23',
                     'emisor': {
                         'curp': 'JAQE081121MOCZGNW2',
-                        'registro_patronal': '"}~',
+                        'registro_patronal': '"}',
                         'rfc_patron_origen': 'KOÑ7908288LA',
                         'entidad_SNCF': {
                             'origen_recurso': 'IP',
@@ -99,7 +99,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'sindicalizado': 'Sí',
                         'tipo_jornada': '05',
                         'tipo_regimen': '09',
-                        'num_empleado': '~~',
+                        'num_empleado': '1',
                         'departamento': 'W',
                         'puesto': '}}8',
                         'riesgo_puesto': '3',
@@ -129,16 +129,16 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'percepcion': [
                             {
                                 'tipo_percepcion': '019',
-                                'clave': '9~}m', 
-                                'concepto': '~K', 
+                                'clave': '9}m', 
+                                'concepto': 'K', 
                                 'importe_gravado': '9232380.23', 
                                 'importe_exento': '6681000.23', 
                                 'horas_extra': []
                             }, 
                             {
                                 'tipo_percepcion': '031', 
-                                'clave': '~^["4}~a', 
-                                'concepto': '}U~', 
+                                'clave': '^["4}a', 
+                                'concepto': '}U', 
                                 'importe_gravado': '6444510.23', 
                                 'importe_exento': '190260.23', 
                                 'horas_extra': [
@@ -156,8 +156,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_percepcion': '013', 
-                                'clave': '~eeE}}', 
-                                'concepto': '~', 
+                                'clave': 'eeE}}', 
+                                'concepto': '1', 
                                 'importe_gravado': '3007460.23', 
                                 'importe_exento': '352260.23', 
                                 'horas_extra': [
@@ -177,8 +177,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_percepcion': '046',
-                                'clave': '~fL',
-                                'concepto': '8Fe}~9}y}]',
+                                'clave': 'fL*',
+                                'concepto': '8Fe}9}y}]',
                                 'importe_gravado': '3250080.23',
                                 'importe_exento': '7428920.23',
                                 'horas_extra': [
@@ -218,20 +218,20 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'deduccion': [
                             {
                                 'tipo_deduccion': '057', 
-                                'clave': '1(lL`}~R', 
+                                'clave': '1(lL`}R', 
                                 'concepto': '}}}}vlf', 
                                 'importe': '8329690.23'
                             }, 
                             {
                                 'tipo_deduccion': '100', 
-                                'clave': '~qc}', 
-                                'concepto': '}X~', 
+                                'clave': 'qc}', 
+                                'concepto': '}X', 
                                 'importe': '524170.23'
                             }, 
                             {
                                 'tipo_deduccion': '104', 
-                                'clave': '4}L},~L', 
-                                'concepto': '~~}f', 
+                                'clave': '4}L},L', 
+                                'concepto': '}f', 
                                 'importe': '40660.23'
                             }, 
                             {
@@ -244,7 +244,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             {
                                 'tipo_deduccion': '099', 
                                 'clave': 'y}}', 
-                                'concepto': '~J}', 
+                                'concepto': 'J}', 
                                 'importe': '4072880.23'
                             }
                         ]
@@ -253,14 +253,14 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'otro_pago': [
                             {
                                 'tipo_otro_pago': '007', 
-                                'clave': '}O~VM~', 
+                                'clave': '}OVM', 
                                 'concepto': '}}', 
                                 'importe': '9359660.23'
                             }, 
                             {
                                 'tipo_otro_pago': '003', 
                                 'clave': 'j{}$', 
-                                'concepto': '^}}~', 
+                                'concepto': '^}}', 
                                 'importe': '1808190.23', 
                                 'subsidio_al_empleo': {
                                     'subsidio_causado': '8913760.23'
@@ -268,7 +268,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '003', 
-                                'clave': '}~}I', 
+                                'clave': '}}I', 
                                 'concepto': 'pM}', 
                                 'importe': '7909810.23', 
                                 'subsidio_al_empleo': {
@@ -277,7 +277,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '005', 
-                                'clave': '}}~Ij~', 
+                                'clave': '}}Ij', 
                                 'concepto': '}(', 
                                 'importe': '2642840.23', 
                                 'subsidio_al_empleo': {
@@ -286,8 +286,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '005', 
-                                'clave': '~}~}~~~L}i}', 
-                                'concepto': '}~', 
+                                'clave': '}}L}i}', 
+                                'concepto': '}', 
                                 'importe': '4736020.23', 
                                 'compensacion_saldos_a_favor': {
                                     'saldo_a_favor': '6382120.23', 
@@ -358,7 +358,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                 'confirmacion':'8p7F3',
                 'emisor': {
                     'rfc': 'J&O750807563',
-                    'nombre': 'Q~',
+                    'nombre': 'Q',
                     'regimen_fiscal': '611'
                 },
                 'receptor': {
@@ -412,7 +412,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     'total_otros_pagos': '7815140.23',
                     'emisor': {
                         'curp': 'JAQE081121MOCZGNW2',
-                        'registro_patronal': '"}~',
+                        'registro_patronal': '"}',
                         'rfc_patron_origen': 'KOÑ7908288LA',
                         'entidad_SNCF': {
                             'origen_recurso': 'IP',
@@ -428,7 +428,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'sindicalizado': 'Sí',
                         'tipo_jornada': '05',
                         'tipo_regimen': '09',
-                        'num_empleado': '~~',
+                        'num_empleado': '1',
                         'departamento': 'W',
                         'puesto': '}}8',
                         'riesgo_puesto': '3',
@@ -458,16 +458,16 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'percepcion': [
                             {
                                 'tipo_percepcion': '019',
-                                'clave': '9~}m', 
-                                'concepto': '~K', 
+                                'clave': '9}m', 
+                                'concepto': 'K', 
                                 'importe_gravado': '9232380.23', 
                                 'importe_exento': '6681000.23', 
                                 'horas_extra': []
                             }, 
                             {
                                 'tipo_percepcion': '031', 
-                                'clave': '~^["4}~a', 
-                                'concepto': '}U~', 
+                                'clave': '^["4}a', 
+                                'concepto': '}U', 
                                 'importe_gravado': '6444510.23', 
                                 'importe_exento': '190260.23', 
                                 'horas_extra': [
@@ -485,8 +485,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_percepcion': '013', 
-                                'clave': '~eeE}}', 
-                                'concepto': '~', 
+                                'clave': 'eeE}}', 
+                                'concepto': '1', 
                                 'importe_gravado': '3007460.23', 
                                 'importe_exento': '352260.23', 
                                 'horas_extra': [
@@ -506,8 +506,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_percepcion': '046',
-                                'clave': '~fL',
-                                'concepto': '8Fe}~9}y}]',
+                                'clave': 'fL*',
+                                'concepto': '8Fe}9}y}]',
                                 'importe_gravado': '3250080.23',
                                 'importe_exento': '7428920.23',
                                 'horas_extra': [
@@ -547,20 +547,20 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'deduccion': [
                             {
                                 'tipo_deduccion': '057', 
-                                'clave': '1(lL`}~R', 
+                                'clave': '1(lL`}R', 
                                 'concepto': '}}}}vlf', 
                                 'importe': '8329690.23'
                             }, 
                             {
                                 'tipo_deduccion': '100', 
-                                'clave': '~qc}', 
-                                'concepto': '}X~', 
+                                'clave': 'qc}', 
+                                'concepto': '}X', 
                                 'importe': '524170.23'
                             }, 
                             {
                                 'tipo_deduccion': '104', 
-                                'clave': '4}L},~L', 
-                                'concepto': '~~}f', 
+                                'clave': '4}L},L', 
+                                'concepto': '}f', 
                                 'importe': '40660.23'
                             }, 
                             {
@@ -573,7 +573,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             {
                                 'tipo_deduccion': '099', 
                                 'clave': 'y}}', 
-                                'concepto': '~J}', 
+                                'concepto': 'J}', 
                                 'importe': '4072880.23'
                             }
                         ]
@@ -582,14 +582,14 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'otro_pago': [
                             {
                                 'tipo_otro_pago': '007', 
-                                'clave': '}O~VM~', 
+                                'clave': '}OVM', 
                                 'concepto': '}}', 
                                 'importe': '9359660.23'
                             }, 
                             {
                                 'tipo_otro_pago': '003', 
                                 'clave': 'j{}$', 
-                                'concepto': '^}}~', 
+                                'concepto': '^}}', 
                                 'importe': '1808190.23', 
                                 'subsidio_al_empleo': {
                                     'subsidio_causado': '8913760.23'
@@ -597,7 +597,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '003', 
-                                'clave': '}~}I', 
+                                'clave': '}}I', 
                                 'concepto': 'pM}', 
                                 'importe': '7909810.23', 
                                 'subsidio_al_empleo': {
@@ -606,7 +606,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '005', 
-                                'clave': '}}~Ij~', 
+                                'clave': '}}Ij', 
                                 'concepto': '}(', 
                                 'importe': '2642840.23', 
                                 'subsidio_al_empleo': {
@@ -615,8 +615,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '005', 
-                                'clave': '~}~}~~~L}i}', 
-                                'concepto': '}~', 
+                                'clave': '}}L}i}', 
+                                'concepto': '}', 
                                 'importe': '4736020.23', 
                                 'compensacion_saldos_a_favor': {
                                     'saldo_a_favor': '6382120.23', 
@@ -687,7 +687,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                 'confirmacion':'8p7F3',
                 'emisor': {
                     'rfc': 'J&O750807563',
-                    'nombre': 'Q~',
+                    'nombre': 'Q',
                     'regimen_fiscal': '611'
                 },
                 'receptor': {
@@ -741,7 +741,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     'total_otros_pagos': '7815140.23',
                     'emisor': {
                         'curp': 'JAQE081121MOCZGNW2',
-                        'registro_patronal': '"}~',
+                        'registro_patronal': '"}',
                         'rfc_patron_origen': 'KOÑ7908288LA',
                         'entidad_SNCF': {
                             'origen_recurso': 'IP',
@@ -757,7 +757,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'sindicalizado': 'Sí',
                         'tipo_jornada': '05',
                         'tipo_regimen': '09',
-                        'num_empleado': '~~',
+                        'num_empleado': '1',
                         'departamento': 'W',
                         'puesto': '}}8',
                         'riesgo_puesto': '3',
@@ -787,16 +787,16 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'percepcion': [
                             {
                                 'tipo_percepcion': '019',
-                                'clave': '9~}m', 
-                                'concepto': '~K', 
+                                'clave': '9}m', 
+                                'concepto': 'K', 
                                 'importe_gravado': '9232380.23', 
                                 'importe_exento': '6681000.23', 
                                 'horas_extra': []
                             }, 
                             {
                                 'tipo_percepcion': '031', 
-                                'clave': '~^["4}~a', 
-                                'concepto': '}U~', 
+                                'clave': '^["4}a', 
+                                'concepto': '}U', 
                                 'importe_gravado': '6444510.23', 
                                 'importe_exento': '190260.23', 
                                 'horas_extra': [
@@ -814,8 +814,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_percepcion': '013', 
-                                'clave': '~eeE}}', 
-                                'concepto': '~', 
+                                'clave': 'eeE}}', 
+                                'concepto': '1', 
                                 'importe_gravado': '3007460.23', 
                                 'importe_exento': '352260.23', 
                                 'horas_extra': [
@@ -835,8 +835,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_percepcion': '046',
-                                'clave': '~fL',
-                                'concepto': '8Fe}~9}y}]',
+                                'clave': 'fL*',
+                                'concepto': '8Fe}9}y}]',
                                 'importe_gravado': '3250080.23',
                                 'importe_exento': '7428920.23',
                                 'horas_extra': [
@@ -876,20 +876,20 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'deduccion': [
                             {
                                 'tipo_deduccion': '057', 
-                                'clave': '1(lL`}~R', 
+                                'clave': '1(lL`}R', 
                                 'concepto': '}}}}vlf', 
                                 'importe': '8329690.23'
                             }, 
                             {
                                 'tipo_deduccion': '100', 
-                                'clave': '~qc}', 
-                                'concepto': '}X~', 
+                                'clave': 'qc}', 
+                                'concepto': '}X', 
                                 'importe': '524170.23'
                             }, 
                             {
                                 'tipo_deduccion': '104', 
-                                'clave': '4}L},~L', 
-                                'concepto': '~~}f', 
+                                'clave': '4}L},L', 
+                                'concepto': '}f', 
                                 'importe': '40660.23'
                             }, 
                             {
@@ -902,7 +902,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             {
                                 'tipo_deduccion': '099', 
                                 'clave': 'y}}', 
-                                'concepto': '~J}', 
+                                'concepto': 'J}', 
                                 'importe': '4072880.23'
                             }
                         ]
@@ -911,14 +911,14 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'otro_pago': [
                             {
                                 'tipo_otro_pago': '007', 
-                                'clave': '}O~VM~', 
+                                'clave': '}OVM', 
                                 'concepto': '}}', 
                                 'importe': '9359660.23'
                             }, 
                             {
                                 'tipo_otro_pago': '003', 
                                 'clave': 'j{}$', 
-                                'concepto': '^}}~', 
+                                'concepto': '^}}', 
                                 'importe': '1808190.23', 
                                 'subsidio_al_empleo': {
                                     'subsidio_causado': '8913760.23'
@@ -926,7 +926,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '003', 
-                                'clave': '}~}I', 
+                                'clave': '}}I', 
                                 'concepto': 'pM}', 
                                 'importe': '7909810.23', 
                                 'subsidio_al_empleo': {
@@ -935,7 +935,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '005', 
-                                'clave': '}}~Ij~', 
+                                'clave': '}}Ij', 
                                 'concepto': '}(', 
                                 'importe': '2642840.23', 
                                 'subsidio_al_empleo': {
@@ -944,8 +944,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '005', 
-                                'clave': '~}~}~~~L}i}', 
-                                'concepto': '}~', 
+                                'clave': '}}L}i}', 
+                                'concepto': '}', 
                                 'importe': '4736020.23', 
                                 'compensacion_saldos_a_favor': {
                                     'saldo_a_favor': '6382120.23', 
@@ -1840,7 +1840,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                 'confirmacion':'8p7F3',
                 'emisor': {
                     'rfc': 'J&O750807563',
-                    'nombre': 'Q~',
+                    'nombre': 'Q',
                     'regimen_fiscal': '611'
                 },
                 'receptor': {
@@ -1894,7 +1894,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     'total_otros_pagos': '7815140.23',
                     'emisor': {
                         'curp': 'JAQE081121MOCZGNW2',
-                        'registro_patronal': '"}~',
+                        'registro_patronal': '"}',
                         'rfc_patron_origen': 'KOÑ7908288LA',
                         'entidad_SNCF': {
                             'origen_recurso': 'IP',
@@ -1910,7 +1910,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'sindicalizado': 'Sí',
                         'tipo_jornada': '05',
                         'tipo_regimen': '09',
-                        'num_empleado': '~~',
+                        'num_empleado': '1',
                         'departamento': 'W',
                         'puesto': '}}8',
                         'riesgo_puesto': '3',
@@ -1940,16 +1940,16 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'percepcion': [
                             {
                                 'tipo_percepcion': '019',
-                                'clave': '9~}m', 
-                                'concepto': '~K', 
+                                'clave': '9}m', 
+                                'concepto': 'K', 
                                 'importe_gravado': '9232380.23', 
                                 'importe_exento': '6681000.23', 
                                 'horas_extra': []
                             }, 
                             {
                                 'tipo_percepcion': '031', 
-                                'clave': '~^["4}~a', 
-                                'concepto': '}U~', 
+                                'clave': '^["4}a', 
+                                'concepto': '}U', 
                                 'importe_gravado': '6444510.23', 
                                 'importe_exento': '190260.23', 
                                 'horas_extra': [
@@ -1967,8 +1967,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_percepcion': '013', 
-                                'clave': '~eeE}}', 
-                                'concepto': '~', 
+                                'clave': 'eeE}}', 
+                                'concepto': '1', 
                                 'importe_gravado': '3007460.23', 
                                 'importe_exento': '352260.23', 
                                 'horas_extra': [
@@ -1988,8 +1988,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_percepcion': '046',
-                                'clave': '~fL',
-                                'concepto': '8Fe}~9}y}]',
+                                'clave': 'fL*',
+                                'concepto': '8Fe}9}y}]',
                                 'importe_gravado': '3250080.23',
                                 'importe_exento': '7428920.23',
                                 'horas_extra': [
@@ -2029,20 +2029,20 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'deduccion': [
                             {
                                 'tipo_deduccion': '057', 
-                                'clave': '1(lL`}~R', 
+                                'clave': '1(lL`}R', 
                                 'concepto': '}}}}vlf', 
                                 'importe': '8329690.23'
                             }, 
                             {
                                 'tipo_deduccion': '100', 
-                                'clave': '~qc}', 
-                                'concepto': '}X~', 
+                                'clave': 'qc}', 
+                                'concepto': '}X', 
                                 'importe': '524170.23'
                             }, 
                             {
                                 'tipo_deduccion': '104', 
-                                'clave': '4}L},~L', 
-                                'concepto': '~~}f', 
+                                'clave': '4}L},L', 
+                                'concepto': '}f', 
                                 'importe': '40660.23'
                             }, 
                             {
@@ -2055,7 +2055,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             {
                                 'tipo_deduccion': '099', 
                                 'clave': 'y}}', 
-                                'concepto': '~J}', 
+                                'concepto': 'J}', 
                                 'importe': '4072880.23'
                             }
                         ]
@@ -2064,14 +2064,14 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'otro_pago': [
                             {
                                 'tipo_otro_pago': '007', 
-                                'clave': '}O~VM~', 
+                                'clave': '}OVM', 
                                 'concepto': '}}', 
                                 'importe': '9359660.23'
                             }, 
                             {
                                 'tipo_otro_pago': '003', 
                                 'clave': 'j{}$', 
-                                'concepto': '^}}~', 
+                                'concepto': '^}}', 
                                 'importe': '1808190.23', 
                                 'subsidio_al_empleo': {
                                     'subsidio_causado': '8913760.23'
@@ -2079,7 +2079,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '003', 
-                                'clave': '}~}I', 
+                                'clave': '}}I', 
                                 'concepto': 'pM}', 
                                 'importe': '7909810.23', 
                                 'subsidio_al_empleo': {
@@ -2088,7 +2088,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '005', 
-                                'clave': '}}~Ij~', 
+                                'clave': '}}Ij', 
                                 'concepto': '}(', 
                                 'importe': '2642840.23', 
                                 'subsidio_al_empleo': {
@@ -2097,8 +2097,8 @@ class TestNomina12SAXHandler(unittest.TestCase):
                             }, 
                             {
                                 'tipo_otro_pago': '005', 
-                                'clave': '~}~}~~~L}i}', 
-                                'concepto': '}~', 
+                                'clave': '}}L}i}', 
+                                'concepto': '}', 
                                 'importe': '4736020.23', 
                                 'compensacion_saldos_a_favor': {
                                     'saldo_a_favor': '6382120.23', 
