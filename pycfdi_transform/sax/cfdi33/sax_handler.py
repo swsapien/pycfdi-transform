@@ -6,8 +6,8 @@ from lxml import etree
 import logging
 
 class CFDI33SAXHandler(BaseHandler):
-    def __init__(self, empty_char='', safe_numerics=False, schema_validator:etree.XMLSchema = None) -> CFDI33SAXHandler:
-        super().__init__(empty_char, safe_numerics)
+    def __init__(self, empty_char='', safe_numerics=False, schema_validator:etree.XMLSchema = None,esc_delimiters:str = "") -> CFDI33SAXHandler:
+        super().__init__(empty_char, safe_numerics,esc_delimiters)
         self._schema_validator = schema_validator
         self._logger = logging.getLogger('CFDI33SAXHandler')
         self._inside_concepts = False
@@ -62,8 +62,8 @@ class CFDI33SAXHandler(BaseHandler):
         if not 'Version' in element.attrib or element.attrib['Version'] != '3.3':
             raise ValueError('Incorrect type of CFDI, this handler only support CFDI version 3.3')
         self._data['cfdi33']['version'] = element.attrib.get('Version')
-        self._data['cfdi33']['serie'] = StringHelper.compact_string(element.attrib.get('Serie', self._config['empty_char']))
-        self._data['cfdi33']['folio'] = StringHelper.compact_string(element.attrib.get('Folio', self._config['empty_char']))
+        self._data['cfdi33']['serie'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Serie', self._config['empty_char']))
+        self._data['cfdi33']['folio'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Folio', self._config['empty_char']))
         self._data['cfdi33']['fecha'] = element.attrib.get('Fecha')
         self._data['cfdi33']['no_certificado'] = element.attrib.get('NoCertificado')
         self._data['cfdi33']['subtotal'] = element.attrib.get('SubTotal')
@@ -74,36 +74,36 @@ class CFDI33SAXHandler(BaseHandler):
         self._data['cfdi33']['tipo_comprobante'] = element.attrib.get('TipoDeComprobante')
         self._data['cfdi33']['metodo_pago'] = element.attrib.get('MetodoPago', self._config['empty_char'])
         self._data['cfdi33']['forma_pago'] = element.attrib.get('FormaPago', self._config['empty_char'])
-        self._data['cfdi33']['condiciones_pago'] = StringHelper.compact_string(element.attrib.get('CondicionesDePago', self._config['empty_char']))
+        self._data['cfdi33']['condiciones_pago'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('CondicionesDePago', self._config['empty_char']))
         self._data['cfdi33']['lugar_expedicion'] = element.attrib.get('LugarExpedicion')
-        self._data['cfdi33']['sello'] = StringHelper.compact_string(element.attrib.get('Sello'))
-        self._data['cfdi33']['certificado'] = StringHelper.compact_string(element.attrib.get('Certificado'))
+        self._data['cfdi33']['sello'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Sello'))
+        self._data['cfdi33']['certificado'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Certificado'))
         self._data['cfdi33']['confirmacion'] = element.attrib.get('Confirmacion', self._config['empty_char'])
     
     def __transform_emisor(self, element:etree._Element) -> None:
         self._data['cfdi33']['emisor'] = {
             'rfc': element.attrib.get('Rfc'),
-            'nombre': StringHelper.compact_string(element.attrib.get('Nombre', self._config['empty_char'])),
+            'nombre': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Nombre', self._config['empty_char'])),
             'regimen_fiscal': element.attrib.get('RegimenFiscal')
         }
 
     def __transform_receptor(self, element:etree._Element) -> None:
         self._data['cfdi33']['receptor'] = {
             'rfc': element.attrib.get('Rfc'),
-            'nombre': StringHelper.compact_string(element.attrib.get('Nombre', self._config['empty_char'])),
+            'nombre': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Nombre', self._config['empty_char'])),
             'residencia_fiscal': element.attrib.get('ResidenciaFiscal', self._config['empty_char']),
-            'num_reg_id_trib': StringHelper.compact_string(element.attrib.get('NumRegIdTrib', self._config['empty_char'])),
+            'num_reg_id_trib': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('NumRegIdTrib', self._config['empty_char'])),
             'uso_cfdi': element.attrib.get('UsoCFDI'),
         }
     
     def __transform_concept(self, element:etree._Element) -> None:
         concept = {
             'clave_prod_serv': element.attrib.get('ClaveProdServ'),
-            'no_identificacion': StringHelper.compact_string(element.attrib.get('NoIdentificacion', self._config['empty_char'])),
+            'no_identificacion': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('NoIdentificacion', self._config['empty_char'])),
             'cantidad': element.attrib.get('Cantidad'),
             'clave_unidad': element.attrib.get('ClaveUnidad'),
-            'unidad': StringHelper.compact_string(element.attrib.get('Unidad', self._config['empty_char'])),
-            'descripcion': StringHelper.compact_string(element.attrib.get('Descripcion')),
+            'unidad': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Unidad', self._config['empty_char'])),
+            'descripcion': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Descripcion')),
             'valor_unitario': element.attrib.get('ValorUnitario'),
             'importe': element.attrib.get('Importe'),
             'descuento': element.attrib.get('Descuento', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),

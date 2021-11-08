@@ -5,8 +5,8 @@ from pycfdi_transform.helpers.string_helper import StringHelper
 from pycfdi_transform.sax.nomina12.base_handler import BaseHandler
 
 class Nomina12SAXHandler(BaseHandler):
-    def __init__(self, empty_char = '', safe_numerics = False) -> Nomina12SAXHandler:
-        super().__init__(empty_char, safe_numerics)
+    def __init__(self, empty_char = '', safe_numerics = False,esc_delimiters:str = "") -> Nomina12SAXHandler:
+        super().__init__(empty_char, safe_numerics,esc_delimiters)
         self._logger = logging.getLogger('Nomina12SAXHandler')
     
     def transform_from_string(self, xml_str:str) -> dict:
@@ -72,7 +72,7 @@ class Nomina12SAXHandler(BaseHandler):
     
     def __transform_emisor(self, element:etree._Element) -> None:
         self._data['emisor']['curp'] = element.attrib.get('Curp', self._config['empty_char'])
-        self._data['emisor']['registro_patronal'] = StringHelper.compact_string(element.attrib.get('RegistroPatronal', self._config['empty_char']))
+        self._data['emisor']['registro_patronal'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('RegistroPatronal', self._config['empty_char']))
         self._data['emisor']['rfc_patron_origen'] = element.attrib.get('RfcPatronOrigen', self._config['empty_char'])
     
     def __transform_emisor_snfc(self, element:etree._Element) -> None:
@@ -88,9 +88,9 @@ class Nomina12SAXHandler(BaseHandler):
         self._data['receptor']['sindicalizado'] = element.attrib.get('Sindicalizado', self._config['empty_char'])
         self._data['receptor']['tipo_jornada'] = element.attrib.get('TipoJornada', self._config['empty_char'])
         self._data['receptor']['tipo_regimen'] = element.attrib.get('TipoRegimen')
-        self._data['receptor']['num_empleado'] = element.attrib.get('NumEmpleado')
-        self._data['receptor']['departamento'] = StringHelper.compact_string(element.attrib.get('Departamento', self._config['empty_char']))
-        self._data['receptor']['puesto'] = StringHelper.compact_string(element.attrib.get('Puesto', self._config['empty_char']))
+        self._data['receptor']['num_empleado'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('NumEmpleado'))
+        self._data['receptor']['departamento'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Departamento', self._config['empty_char']))
+        self._data['receptor']['puesto'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Puesto', self._config['empty_char']))
         self._data['receptor']['riesgo_puesto'] = element.attrib.get('RiesgoPuesto', self._config['empty_char'])
         self._data['receptor']['periodicidad_pago'] = element.attrib.get('PeriodicidadPago')
         self._data['receptor']['banco'] = element.attrib.get('Banco', self._config['empty_char'])
@@ -119,8 +119,8 @@ class Nomina12SAXHandler(BaseHandler):
     def __transform_percepcion(self, element:etree._Element) -> None:
         percepcion = {
             'tipo_percepcion': element.attrib.get('TipoPercepcion'),
-            'clave': StringHelper.compact_string(element.attrib.get('Clave')),
-            'concepto': StringHelper.compact_string(element.attrib.get('Concepto')),
+            'clave': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Clave')),
+            'concepto': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Concepto')),
             'importe_gravado': element.attrib.get('ImporteGravado'),
             'importe_exento': element.attrib.get('ImporteExento'),
             'horas_extra': []
@@ -171,8 +171,8 @@ class Nomina12SAXHandler(BaseHandler):
         self._data['deducciones']['deduccion'].append(
             {
                 'tipo_deduccion': element.attrib.get('TipoDeduccion'),
-                'clave': StringHelper.compact_string(element.attrib.get('Clave')),
-                'concepto': StringHelper.compact_string(element.attrib.get('Concepto')),
+                'clave': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Clave')),
+                'concepto': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Concepto')),
                 'importe': element.attrib.get('Importe')
             }
         )
@@ -185,8 +185,8 @@ class Nomina12SAXHandler(BaseHandler):
     def __transform_otro_pago(self, element:etree._Element) -> None:
         otro_pago = {
             'tipo_otro_pago': element.attrib.get('TipoOtroPago'),
-            'clave': StringHelper.compact_string(element.attrib.get('Clave')),
-            'concepto': StringHelper.compact_string(element.attrib.get('Concepto')),
+            'clave': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Clave')),
+            'concepto': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Concepto')),
             'importe': element.attrib.get('Importe'),
         }
         for child in element.getchildren():
