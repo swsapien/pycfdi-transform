@@ -3,11 +3,12 @@ from abc import ABC, abstractmethod
 from pycfdi_transform.helpers.string_helper import StringHelper
 
 class BaseHandler(ABC):
-    def __init__(self, empty_char='', safe_numerics=False) -> BaseHandler:
+    def __init__(self, empty_char='', safe_numerics=False, esc_delimiters:str = "") -> BaseHandler:
         super().__init__()
         self._config = {
             'empty_char': empty_char,
-            'safe_numerics': safe_numerics
+            'safe_numerics': safe_numerics,
+            'esc_delimiters':esc_delimiters
         }
         self._data = {
             'version': empty_char,

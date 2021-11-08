@@ -5,8 +5,8 @@ from pycfdi_transform.sax.tfd11.base_handler import BaseHandler
 from pycfdi_transform.helpers.string_helper import StringHelper
 
 class TFD11SAXHandler(BaseHandler):
-    def __init__(self, empty_char = '', safe_numerics = False) -> TFD11SAXHandler:
-        super().__init__(empty_char, safe_numerics)
+    def __init__(self, empty_char = '', safe_numerics = False,esc_delimiters:str = "") -> TFD11SAXHandler:
+        super().__init__(empty_char, safe_numerics,esc_delimiters)
         self._logger = logging.getLogger('TFD11SAXHandler')
     
     def transform_from_string(self, xml_str:str) -> dict:
@@ -36,5 +36,5 @@ class TFD11SAXHandler(BaseHandler):
         self._data['uuid'] = str(element.attrib.get('UUID')).upper()
         self._data['fecha_timbrado'] = element.attrib.get('FechaTimbrado')
         self._data['rfc_prov_cert'] = element.attrib.get('RfcProvCertif')
-        self._data['sello_cfd'] = StringHelper.compact_string(element.attrib.get('SelloCFD'))
-        self._data['sello_sat'] = StringHelper.compact_string(element.attrib.get('SelloSAT'))
+        self._data['sello_cfd'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('SelloCFD'))
+        self._data['sello_sat'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('SelloSAT'))
