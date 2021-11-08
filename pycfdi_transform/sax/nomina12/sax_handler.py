@@ -88,7 +88,7 @@ class Nomina12SAXHandler(BaseHandler):
         self._data['receptor']['sindicalizado'] = element.attrib.get('Sindicalizado', self._config['empty_char'])
         self._data['receptor']['tipo_jornada'] = element.attrib.get('TipoJornada', self._config['empty_char'])
         self._data['receptor']['tipo_regimen'] = element.attrib.get('TipoRegimen')
-        self._data['receptor']['num_empleado'] = element.attrib.get('NumEmpleado')
+        self._data['receptor']['num_empleado'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('NumEmpleado'))
         self._data['receptor']['departamento'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Departamento', self._config['empty_char']))
         self._data['receptor']['puesto'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Puesto', self._config['empty_char']))
         self._data['receptor']['riesgo_puesto'] = element.attrib.get('RiesgoPuesto', self._config['empty_char'])

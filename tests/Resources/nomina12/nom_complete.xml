@@ -10,7 +10,7 @@
   <cfdi:Emisor Rfc="J&amp;O750807563" Nombre="Q~" RegimenFiscal="611" />
   <cfdi:Receptor Rfc="ÑÑD68010919A" Nombre="^*p_" ResidenciaFiscal="PRI" NumRegIdTrib="string" UsoCFDI="D01" />
   <cfdi:Conceptos>
-    <cfdi:Concepto ClaveProdServ="50436114" Cantidad="5139880.234907" ClaveUnidad="C65" Unidad="1" Descripcion="\2}" ValorUnitario="7221960.234906" Importe="4978010.234906" Descuento="6164480.234906">
+    <cfdi:Concepto ClaveProdServ="50436114" Cantidad="5139880.234907" ClaveUnidad="C65" Unidad="~1" Descripcion="\2}" ValorUnitario="7221960.234906" Importe="4978010.234906" Descuento="6164480.234906">
       <cfdi:Impuestos />
       <cfdi:InformacionAduanera NumeroPedimento="05  44  6575  3698526" />
       <cfdi:CuentaPredial Numero="3" />
@@ -19,7 +19,7 @@
       <cfdi:InformacionAduanera NumeroPedimento="56  76  6416  3121097" />
       <cfdi:InformacionAduanera NumeroPedimento="33  78  1329  5838611" />
       <cfdi:InformacionAduanera NumeroPedimento="45  97  3251  9180732" />
-      <cfdi:Parte ClaveProdServ="10231701" Cantidad="9524070.234907" Descripcion="R8}}">
+      <cfdi:Parte ClaveProdServ="10231701" Cantidad="9524070.234907" Descripcion="~R8}}">
         <cfdi:InformacionAduanera NumeroPedimento="38  83  5140  4558711" />
         <cfdi:InformacionAduanera NumeroPedimento="12  93  0588  7410014" />
       </cfdi:Parte>
@@ -39,24 +39,24 @@
   </cfdi:Impuestos>
   <cfdi:Complemento>
     <nomina12:Nomina xmlns="http://www.sat.gob.mx/sitio_internet/cfd/catalogos" xmlns:tdCFDI="http://www.sat.gob.mx/sitio_internet/cfd/tipoDatos/tdCFDI" xmlns:catNomina="http://www.sat.gob.mx/sitio_internet/cfd/catalogos/Nomina" xmlns:nomina12="http://www.sat.gob.mx/nomina12" xsi:schemaLocation="http://www.sat.gob.mx/nomina12 schema.xsd" Version="1.2" TipoNomina="O" FechaPago="1972-01-05" FechaInicialPago="1994-08-28" FechaFinalPago="1995-04-17" NumDiasPagados="2997.357" TotalPercepciones="6450960.23" TotalDeducciones="4226100.23" TotalOtrosPagos="7815140.23" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <nomina12:Emisor Curp="JAQE081121MOCZGNW2" RegistroPatronal="&quot;}" RfcPatronOrigen="KOÑ7908288LA">
+    <nomina12:Emisor Curp="JAQE081121MOCZGNW2" RegistroPatronal="&quot;}~" RfcPatronOrigen="KOÑ7908288LA">
       <nomina12:EntidadSNCF OrigenRecurso="IP" MontoRecursoPropio="9301520.23" />
     </nomina12:Emisor>
-    <nomina12:Receptor Curp="VXNL701131HQTRYB07" NumSeguridadSocial="59904" FechaInicioRelLaboral="2010-09-02" Antigüedad="P2Y2D" TipoContrato="09" Sindicalizado="Sí" TipoJornada="05" TipoRegimen="09" NumEmpleado="1" Departamento="W" Puesto="}}8" RiesgoPuesto="3" PeriodicidadPago="06" Banco="647" CuentaBancaria="1234567890" SalarioBaseCotApor="8635520.23" SalarioDiarioIntegrado="2928750.23" ClaveEntFed="VT">
+    <nomina12:Receptor Curp="VXNL701131HQTRYB07" NumSeguridadSocial="59904" FechaInicioRelLaboral="2010-09-02" Antigüedad="P2Y2D" TipoContrato="09" Sindicalizado="Sí" TipoJornada="05" TipoRegimen="09" NumEmpleado="~1" Departamento="W" Puesto="}}8" RiesgoPuesto="3" PeriodicidadPago="06" Banco="647" CuentaBancaria="1234567890" SalarioBaseCotApor="8635520.23" SalarioDiarioIntegrado="2928750.23" ClaveEntFed="VT">
       <nomina12:SubContratacion RfcLabora="&amp;ÑEL561104H5A" PorcentajeTiempo="91.44" />
       <nomina12:SubContratacion RfcLabora="ÑÑL&amp;020703408" PorcentajeTiempo="50.81" />
     </nomina12:Receptor>
     <nomina12:Percepciones TotalSueldos="4960830.23" TotalSeparacionIndemnizacion="3741880.23" TotalJubilacionPensionRetiro="7499380.23" TotalGravado="2472530.23" TotalExento="8274700.23">
-      <nomina12:Percepcion TipoPercepcion="019" Clave="9}m" Concepto="K" ImporteGravado="9232380.23" ImporteExento="6681000.23" />
-      <nomina12:Percepcion TipoPercepcion="031" Clave="^[&quot;4}a" Concepto="}U" ImporteGravado="6444510.23" ImporteExento="190260.23">
+      <nomina12:Percepcion TipoPercepcion="019" Clave="9~}m" Concepto="~K" ImporteGravado="9232380.23" ImporteExento="6681000.23" />
+      <nomina12:Percepcion TipoPercepcion="031" Clave="~^[&quot;4}~a" Concepto="}U~" ImporteGravado="6444510.23" ImporteExento="190260.23">
         <nomina12:AccionesOTitulos ValorMercado="5791520.234907" PrecioAlOtorgarse="2416940.234907" />
         <nomina12:HorasExtra Dias="4890" TipoHoras="03" HorasExtra="7170" ImportePagado="4190840.23" />
       </nomina12:Percepcion>
-      <nomina12:Percepcion TipoPercepcion="013" Clave="eeE}}" Concepto="1" ImporteGravado="3007460.23" ImporteExento="352260.23">
+      <nomina12:Percepcion TipoPercepcion="013" Clave="~eeE}}" Concepto="~1" ImporteGravado="3007460.23" ImporteExento="352260.23">
         <nomina12:HorasExtra Dias="4444" TipoHoras="01" HorasExtra="7306" ImportePagado="4568110.23" />
         <nomina12:HorasExtra Dias="559" TipoHoras="01" HorasExtra="1594" ImportePagado="1797550.23" />
       </nomina12:Percepcion>
-      <nomina12:Percepcion TipoPercepcion="046" Clave="fL*" Concepto="8Fe}9}y}]" ImporteGravado="3250080.23" ImporteExento="7428920.23">
+      <nomina12:Percepcion TipoPercepcion="046" Clave="fL*~" Concepto="8Fe}9}y}]" ImporteGravado="3250080.23" ImporteExento="7428920.23">
         <nomina12:HorasExtra Dias="6641" TipoHoras="03" HorasExtra="5424" ImportePagado="828280.23" />
         <nomina12:HorasExtra Dias="2317" TipoHoras="03" HorasExtra="5749" ImportePagado="64260.23" />
       </nomina12:Percepcion>
@@ -64,24 +64,24 @@
       <nomina12:SeparacionIndemnizacion TotalPagado="6595300.23" NumAñosServicio="90" UltimoSueldoMensOrd="6493240.23" IngresoAcumulable="5732610.23" IngresoNoAcumulable="2531860.23" />
     </nomina12:Percepciones>
     <nomina12:Deducciones TotalOtrasDeducciones="3965300.23" TotalImpuestosRetenidos="4272620.23">
-      <nomina12:Deduccion TipoDeduccion="057" Clave="1(lL`}R" Concepto="}}}}vlf" Importe="8329690.23" />
-      <nomina12:Deduccion TipoDeduccion="100" Clave="qc}" Concepto="}X" Importe="524170.23" />
-      <nomina12:Deduccion TipoDeduccion="104" Clave="4}L},L" Concepto="}f" Importe="40660.23" />
+      <nomina12:Deduccion TipoDeduccion="057" Clave="1(lL`}~R" Concepto="}}}}vlf" Importe="8329690.23" />
+      <nomina12:Deduccion TipoDeduccion="100" Clave="~qc}" Concepto="}X~" Importe="524170.23" />
+      <nomina12:Deduccion TipoDeduccion="104" Clave="4}L},~L" Concepto="~~}f" Importe="40660.23" />
       <nomina12:Deduccion TipoDeduccion="009" Clave="W}}}}" Concepto="D^" Importe="9265310.23" />
-      <nomina12:Deduccion TipoDeduccion="099" Clave="y}}" Concepto="J}" Importe="4072880.23" />
+      <nomina12:Deduccion TipoDeduccion="099" Clave="y}}" Concepto="~J}" Importe="4072880.23" />
     </nomina12:Deducciones>
     <nomina12:OtrosPagos>
-      <nomina12:OtroPago TipoOtroPago="007" Clave="}OVM" Concepto="}}" Importe="9359660.23" />
-      <nomina12:OtroPago TipoOtroPago="003" Clave="j{}$" Concepto="^}}" Importe="1808190.23">
+      <nomina12:OtroPago TipoOtroPago="007" Clave="}~OVM~" Concepto="}}" Importe="9359660.23" />
+      <nomina12:OtroPago TipoOtroPago="003" Clave="j{}$" Concepto="^}}~" Importe="1808190.23">
         <nomina12:SubsidioAlEmpleo SubsidioCausado="8913760.23" />
       </nomina12:OtroPago>
-      <nomina12:OtroPago TipoOtroPago="003" Clave="}}I" Concepto="pM}" Importe="7909810.23">
+      <nomina12:OtroPago TipoOtroPago="003" Clave="}~}I" Concepto="pM}" Importe="7909810.23">
         <nomina12:SubsidioAlEmpleo SubsidioCausado="8574770.23" />
       </nomina12:OtroPago>
-      <nomina12:OtroPago TipoOtroPago="005" Clave="}}Ij" Concepto="}(" Importe="2642840.23">
+      <nomina12:OtroPago TipoOtroPago="005" Clave="}~}Ij~" Concepto="}(" Importe="2642840.23">
         <nomina12:SubsidioAlEmpleo SubsidioCausado="3608130.23" />
       </nomina12:OtroPago>
-      <nomina12:OtroPago TipoOtroPago="005" Clave="}}L}i}" Concepto="}" Importe="4736020.23">
+      <nomina12:OtroPago TipoOtroPago="005" Clave="~}~}~~~L}i}" Concepto="}" Importe="4736020.23">
         <nomina12:CompensacionSaldosAFavor SaldoAFavor="6382120.23" Año="9858" RemanenteSalFav="888430.23" />
       </nomina12:OtroPago>
     </nomina12:OtrosPagos>
