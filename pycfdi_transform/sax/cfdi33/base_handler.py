@@ -7,7 +7,7 @@ from pycfdi_transform.sax.nomina12.sax_handler import Nomina12SAXHandler
 from pycfdi_transform.sax.pagos10.sax_handler import Pagos10SAXHandler
 
 class BaseHandler(ABC):
-    def __init__(self, empty_char:str = '', safe_numerics:bool = False, esc_delimiters:str = "~") -> BaseHandler:
+    def __init__(self, empty_char:str = '', safe_numerics:bool = False, esc_delimiters:str = "") -> BaseHandler:
         super().__init__()
         self._config = {
             'concepts': False,

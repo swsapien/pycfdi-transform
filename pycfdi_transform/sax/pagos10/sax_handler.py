@@ -5,7 +5,7 @@ from pycfdi_transform.sax.pagos10.base_handler import BaseHandler
 from lxml import etree
 
 class Pagos10SAXHandler(BaseHandler):
-    def __init__(self, empty_char = '', safe_numerics = False,esc_delimiters:str = "~") -> Pagos10SAXHandler:
+    def __init__(self, empty_char = '', safe_numerics = False,esc_delimiters:str = "") -> Pagos10SAXHandler:
         super().__init__(empty_char, safe_numerics,esc_delimiters)
         self._logger = logging.getLogger('Pagos10SAXHandler')
     

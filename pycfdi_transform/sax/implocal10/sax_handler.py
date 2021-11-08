@@ -4,7 +4,7 @@ from lxml import etree
 import logging
 
 class ImpLocal10SAXHandler(BaseHandler):
-    def __init__(self, empty_char='', safe_numerics=False,esc_delimiters:str = "~") -> ImpLocal10SAXHandler:
+    def __init__(self, empty_char='', safe_numerics=False,esc_delimiters:str = "") -> ImpLocal10SAXHandler:
         super().__init__(empty_char, safe_numerics,esc_delimiters)
         self._logger = logging.getLogger('ImpLocal10SAXHandler')
     

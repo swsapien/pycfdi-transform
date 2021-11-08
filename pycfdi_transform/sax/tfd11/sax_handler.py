@@ -5,7 +5,7 @@ from pycfdi_transform.sax.tfd11.base_handler import BaseHandler
 from pycfdi_transform.helpers.string_helper import StringHelper
 
 class TFD11SAXHandler(BaseHandler):
-    def __init__(self, empty_char = '', safe_numerics = False,esc_delimiters:str = "~") -> TFD11SAXHandler:
+    def __init__(self, empty_char = '', safe_numerics = False,esc_delimiters:str = "") -> TFD11SAXHandler:
         super().__init__(empty_char, safe_numerics,esc_delimiters)
         self._logger = logging.getLogger('TFD11SAXHandler')
     

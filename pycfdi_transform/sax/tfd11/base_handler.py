@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 class BaseHandler(ABC):
-    def __init__(self, empty_char = '', safe_numerics = False,esc_delimiters:str = "~") -> BaseHandler:
+    def __init__(self, empty_char = '', safe_numerics = False,esc_delimiters:str = "") -> BaseHandler:
         super().__init__()
         self._config = {
             'empty_char': empty_char,

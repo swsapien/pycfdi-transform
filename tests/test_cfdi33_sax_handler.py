@@ -372,7 +372,7 @@ class TestCFDI33SAXHandler(unittest.TestCase):
         }
         self.assertDictEqual(cfdi_data, expected_dict)
     def test_transform_file_with_concepts_bad_description(self):
-        sax_handler = CFDI33SAXHandler().use_concepts_cfdi33()
+        sax_handler = CFDI33SAXHandler(esc_delimiters="~").use_concepts_cfdi33()
         cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33/cfdi33_01_bad_character.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {

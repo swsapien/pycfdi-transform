@@ -6,7 +6,7 @@ from lxml import etree
 import logging
 
 class CFDI33SAXHandler(BaseHandler):
-    def __init__(self, empty_char='', safe_numerics=False, schema_validator:etree.XMLSchema = None,esc_delimiters:str = "~") -> CFDI33SAXHandler:
+    def __init__(self, empty_char='', safe_numerics=False, schema_validator:etree.XMLSchema = None,esc_delimiters:str = "") -> CFDI33SAXHandler:
         super().__init__(empty_char, safe_numerics,esc_delimiters)
         self._schema_validator = schema_validator
         self._logger = logging.getLogger('CFDI33SAXHandler')
