@@ -21,6 +21,7 @@ from __future__ import division
 from __future__ import print_function
 
 from pycfdi_transform.sax.cfdi33.sax_handler import CFDI33SAXHandler
+from pycfdi_transform.sax.cfdi40.sax_handler import CFDI40SAXHandler
 from pycfdi_transform.helpers.schema_helper import SchemaHelper
 #formatters
 from pycfdi_transform.formatters.cfdi33.efisco_corp_cfdi33_formatter import EfiscoCorpCFDI33Formatter

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xmlns="http://www.sat.gob.mx/sitio_internet/cfd/catalogos" xmlns:tdCFDI="http://www.sat.gob.mx/sitio_internet/cfd/tipoDatos/tdCFDI" xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 schema.xsd" Version="4.0" Serie="IFDG~" Folio="41741985~" Fecha="2021-12-01T05:56:56" Sello="SKndhzlakx2g1ykM73KJ8O0F02/ibJxmNqpEG6/878pu/8BUX/cgxWyh9O2EHhtITNlBZHD73Qgq9E7fuNOO/1xKuM9tgtzKrXqUmQ5bxhz2OfvynQ6Tmq6nzO+2FF6ly&#xD;&#xA;Pmi2yxoeoGNtKjDIjnXNPAV&#xA;YTS7n9V94dsciZaSmSGtT5LTIGTmA5QJQ5t3NzxL5+mkKqxc57W9PO9GRWybzsWnQwvG0XBoMU0n00qXMiVjGfCdzGcdku80qRtNTbL5OWPSgiR5Sc45X5V7Y8lUpaHk7a3zgQ/+haITyAlqux7bJtVGK4Zo78leiex3YbpcLH/gJ12jCqvPmFVJNAPZhw==" FormaPago="01" NoCertificado="30001000000400002434" Certificado="MIIFuzCCA6OgAwIBAgIUMzAwMDEwMDAwMDA0MDAwMDI0MzQwDQYJKoZIhvcNAQELBQAwggErMQ8wDQ&#xA;&#xD;YDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWRpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMTkwNjE3MTk0NDE0WhcNMjMwNjE3MTk0NDE0WjCB4jEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gWElRQjg5MTExNlFFNDEeMBwGA1UEBRMVIC8gWElRQjg5MTExNk1HUk1aUj&#xD;&#xA;A1MR4wHAYDVQQLExVFc2N1ZWxhIEtlbXBlciBVcmdhdGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCN0peKpgfOL75iYRv1fqq+oVYsLPVUR/GibYmGKc9InHFy5lYF6OTYjnIIvmkOdRobbGlCUxORX/tLsl8Ya9gm6Yo7hHnODRBIDup3GISFzB/96R9K/MzYQOcscMIoBDARaycnLvy7FlMvO7/rlVnsSARxZRO8Kz8Zkksj2zpeYpjZIya/369+oGqQk1cTRkHo59JvJ4Tfbk/3iIyf4H/Ini9nBe9cYWo0MnKob7DDt/vsdi5tA8mMtA953LapNyCZIDCRQQlUGNgDqY9/8F5mUvVgkcczsIgGdvf9vMQPSf3jjCiKj7j6ucxl1+FwJWmbvgNmiaUR/0q4m2rm78l&#xD;&#xA;FAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBCwUAA4ICAQBcpj1TjT4jiinIujIdAlFzE6kRwYJCnDG08zSp4kSnShjxADGEXH2chehKMV0FY7c4njA5eDGdA/G2OCTPvF5rpeCZP5Dw504RZkYDl2suRz+wa1sNBVpbnBJEK0fQcN3IftBwsgNFdFhUtCyw3lus1SSJbPxjLHS6FcZZ51YSeIfcNXOAuTqdimusaXq15GrSrCOkM6n2jfj2sMJYM2HXaXJ6rGTEgYmhYdwxWtil6RfZB+fGQ/H9I9WLnl4KTZUS6C9+NLHh4FPDhSk19fpS2S/56aqgFoGAkXAYt9Fy5ECaPcULIfJ1DEbsXKyRdCv3JY89+0MNkOdaDnsemS2o5Gl08zI4iYtt3L40gAZ60NPh31kVLnYNsmvfNxYyKp+AeJtDHyW9w7ftM0Hoi+BuRmcAQSKFV3pk8j51la+jrRBrAUv8blbRcQ5BiZ&#xD;&#xA;UwJzHFEKIwTsRGoRyEx96sNnB03n6GTwjIGz92SmLdNl95r9rkvp+2m4S6q1lPuXaFg7DGBrXWC8iyqeWE2iobdwIIuXPTMVqQb12m1dAkJVRO5NdHnP/MpqOvOgLqoZBNHGyBg4Gqm4sCJHCxA1c8Elfa2RQTCk0tAzllL4vOnI1GHkGJn65xokGsaU4B4D36xh7eWrfj4/pgWHmtoDAYa8wzSwo2GVCZOs+mtEgOQB91/g==" CondicionesDePago="NE&#xD;T15" SubTotal="4959440.234906" Descuento="3308870.234906" Moneda="IRR" TipoCambio="2378590.234907" Total="6078640.234906" TipoDeComprobante="I" Exportacion="01" MetodoPago="PPD" LugarExpedicion="45400" Confirmacion="62kpj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <cfdi:InformacionGlobal Periodicidad="64" Meses="04" Año="3178" />
+  <cfdi:CfdiRelacionados TipoRelacion="08">
+    <cfdi:CfdiRelacionado UUID="cAAB1AFA-Ac0d-BDaC-5ccf-aad448CafC08" />
+    <cfdi:CfdiRelacionado UUID="2Eb04CE0-F1ED-3ebc-B796-38fFe2DfeBeC" />
+    <cfdi:CfdiRelacionado UUID="7FC2Bbfd-e7E2-2FaA-39c7-d1DC6Cf3fEEE" />
+    <cfdi:CfdiRelacionado UUID="E06CcA24-Cc8E-2aD9-906B-38baCCB5CE2d" />
+  </cfdi:CfdiRelacionados>
+  <cfdi:Emisor Rfc="SKDR690105TM0" Nombre="ESCUELÄ KEMPER ÚRGATE SA DE CV`}}}~" RegimenFiscal="624" FacAtrAdquirente="6521836835" />
+  <cfdi:Receptor Rfc="&amp;ÑOZ291130QPA" Nombre="PUBLICO EN &#xA;&#xD; &#xA;&#xD; &#xA;&#xD; GENERAL" DomicilioFiscalReceptor="72786" ResidenciaFiscal="VGB" NumRegIdTrib="string" RegimenFiscalReceptor="603" UsoCFDI="I06" />
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="51101903" NoIdentificacion="~55515" Cantidad="9253280.234907" ClaveUnidad="A58" Descripcion="b!~asdasfg85418816" ValorUnitario="5835760.234906" Importe="3916480.234906" ObjetoImp="34">
+      <cfdi:InformacionAduanera NumeroPedimento="55  93  2058  3145422" />
+      <cfdi:InformacionAduanera NumeroPedimento="20  70  8108  3877858" />
+      <cfdi:CuentaPredial Numero="79Y8e82dmb2KvpOAJCBNMR9m7089" />
+      <cfdi:CuentaPredial Numero="cBd62nMv4sab1fSzxymj" />
+      <cfdi:CuentaPredial Numero="1Uu5" />
+      <cfdi:Parte ClaveProdServ="50333905" Cantidad="2177550.234907" Descripcion="m">
+        <cfdi:InformacionAduanera NumeroPedimento="11  68  8236  6781922" />
+        <cfdi:InformacionAduanera NumeroPedimento="63  93  8611  9920969" />
+        <cfdi:InformacionAduanera NumeroPedimento="99  71  2851  8427541" />
+      </cfdi:Parte>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="50321559" NoIdentificacion="/1852821)" Cantidad="1993740.234907" ClaveUnidad="G55" Descripcion="}&amp;~" ValorUnitario="315930.234906" Importe="2922160.234906" Descuento="7520980.234906" ObjetoImp="81">
+      <cfdi:ACuentaTerceros RfcACuentaTerceros="ÑÑ&amp;Ñ270414O01" NombreACuentaTerceros="}ni,os<wryhjjnuj" RegimenFiscalACuentaTerceros="622" DomicilioFiscalACuentaTerceros="31610" />
+      <cfdi:InformacionAduanera NumeroPedimento="30  01  4783  2906941" />
+      <cfdi:InformacionAduanera NumeroPedimento="40  83  0324  9059030" />
+      <cfdi:InformacionAduanera NumeroPedimento="58  48  7061  8330144" />
+      <cfdi:CuentaPredial Numero="EV" />
+      <cfdi:CuentaPredial Numero="3fb" />
+      <cfdi:CuentaPredial Numero="rBDK" />
+      <cfdi:CuentaPredial Numero="NJ7" />
+      <cfdi:ComplementoConcepto />
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="50466301" NoIdentificacion="}r}~&amp;" Cantidad="5592790.234907" ClaveUnidad="H84" Unidad="7" Descripcion="!#{k*" ValorUnitario="4334580.234906" Importe="325840.234906" ObjetoImp="16">
+      <cfdi:InformacionAduanera NumeroPedimento="31  86  0023  2152531" />
+      <cfdi:InformacionAduanera NumeroPedimento="14  91  5393  7726953" />
+      <cfdi:InformacionAduanera NumeroPedimento="18  78  0052  9876618" />
+      <cfdi:ComplementoConcepto />
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="25174800" Cantidad="577420.234907" ClaveUnidad="P28" Descripcion="E" ValorUnitario="8775650.234906" Importe="9380680.234906" ObjetoImp="13">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="8225490.234907" Impuesto="001" TipoFactor="Tasa" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+      <cfdi:ACuentaTerceros RfcACuentaTerceros="ÑHD7811238G3" NombreACuentaTerceros="munuiok~efsd8/4589hgrf" RegimenFiscalACuentaTerceros="630" DomicilioFiscalACuentaTerceros="69822" />
+      <cfdi:InformacionAduanera NumeroPedimento="83  43  4092  5929501" />
+      <cfdi:InformacionAduanera NumeroPedimento="56  76  0703  4994972" />
+      <cfdi:CuentaPredial Numero="181" />
+      <cfdi:CuentaPredial Numero="w2r" />
+      <cfdi:CuentaPredial Numero="2k51m55kah2f" />
+      <cfdi:ComplementoConcepto />
+      <cfdi:Parte ClaveProdServ="50344655" Cantidad="9193520.234907" Descripcion="PVe">
+        <cfdi:InformacionAduanera NumeroPedimento="19  41  6653  2611949" />
+        <cfdi:InformacionAduanera NumeroPedimento="27  15  0967  4701893" />
+        <cfdi:InformacionAduanera NumeroPedimento="52  61  2083  5612287" />
+      </cfdi:Parte>
+      <cfdi:Parte ClaveProdServ="50473911" Cantidad="2690020.234907" Descripcion="~M~(3)+">
+        <cfdi:InformacionAduanera NumeroPedimento="48  19  5970  8923309" />
+        <cfdi:InformacionAduanera NumeroPedimento="41  58  9731  5386414" />
+      </cfdi:Parte>
+      <cfdi:Parte ClaveProdServ="44102103" Cantidad="5521930.234907" Descripcion="]u" />
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="10302150" NoIdentificacion="}9}z~}" Cantidad="52990.234907" ClaveUnidad="XDC" Descripcion="dm~}~" ValorUnitario="8833520.234906" Importe="6441520.234906" ObjetoImp="00">
+      <cfdi:InformacionAduanera NumeroPedimento="18  44  3905  1602021" />
+      <cfdi:CuentaPredial Numero="V" />
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosRetenidos="4307870.234906" TotalImpuestosTrasladados="5376690.234906">
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="001" Importe="5246790.234906" />
+      <cfdi:Retencion Impuesto="001" Importe="1904550.234906" />
+      <cfdi:Retencion Impuesto="001" Importe="7118250.234906" />
+      <cfdi:Retencion Impuesto="001" Importe="3272020.234906" />
+      <cfdi:Retencion Impuesto="002" Importe="1379300.234906" />
+    </cfdi:Retenciones>
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="5649040.234906" Impuesto="002" TipoFactor="Exento" TasaOCuota="2437280.234906" Importe="1615450.234906" />
+      <cfdi:Traslado Base="5649040.234906" Impuesto="003" TipoFactor="Tasa" TasaOCuota="2437280.234906" Importe="1615450.234906" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="9d81c696-0401-4f85-b703-6e0d3afd6056" FechaTimbrado="2020-05-02T00:36:50" RfcProvCertif="AAA010101AAA" SelloCFD="SKndhzlakx2g1ykM73KJ8O0F02/ibJxmNqpEG6/878pu/8BUX/cgxWyh9O2EHhtITNlBZHD73Qgq9E7fuNOO/1xKuM9tgtzKrXqUmQ5bxhz2OfvynQ6Tmq6nzO+2FF6lyPmi2yxoeoGNtKjDIjnXNPAVYTS7n9V94dsciZaSmSGtT5LTIGTmA5QJQ5t3NzxL5+mkKqxc57W9PO9GRWybzsWnQwvG0XBoMU0n00qXMiVjGfCdzGcdku80qRtNTbL5OWPSgiR5Sc45X5V7Y8lUpaHk7a3zgQ/+haITyAlqux7bJtVGK4Zo78leiex3YbpcLH/gJ12jCqvPmFVJNAPZhw==" NoCertificadoSAT="20001000000300022323" SelloSAT="Agbj2cBP93wu9Tf6M9skOxjMxbDCqjtyr+wJbi8u1qgfLgEnT/Fz9CzYhWFvzPId0W9jn9QQnRRnmRbaE2XELAA9xMKFVUOvLs4IrxU2dabaM63EzsBEXCalWuq9Gm4iej7cPe0f3YAYwPOFyaJKXTXC6NdMXiOE2nITvDgZI/jDMOAIv7F+v+QUXBXq/Z2YrSFmbmvKXJx47wo8P+Qr5o+a1Ot8fPPfx9TOVDNc75tfhw0+QsxvJSyXxt+Yhf/M/ABIwK+jrB2U3umRrSpSvctSCLvfnKRZcrKqGdUn8Tr+BeY7ngpROjPludDB2G507qp09qrlKMaYUUqCkGNNqQ==" 
+        xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    </cfdi:Complemento>
+  <cfdi:Addenda />
+</cfdi:Comprobante>
