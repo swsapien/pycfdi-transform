@@ -27,6 +27,7 @@ from pycfdi_transform.helpers.schema_helper import SchemaHelper
 from pycfdi_transform.formatters.cfdi33.efisco_corp_cfdi33_formatter import EfiscoCorpCFDI33Formatter
 from pycfdi_transform.formatters.nomina12.efisco_nomina12_formatter import EfiscoNomina12Formatter
 from pycfdi_transform.formatters.pagos10.efisco_pagos10_formatter import EfiscoPagos10Formatter
+from pycfdi_transform.formatters.cfdi40.cda_cfdi40_formatter import CDACFDI40Formatter
 
 del absolute_import
 del division
