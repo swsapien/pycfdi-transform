@@ -168,7 +168,8 @@ class CFDI33SAXHandler(BaseHandler):
         for addenda in element.getchildren():
             try:
                 qname = etree.QName(addenda.tag)
-                addendas.append(qname.localname)
+                if not qname.localname in addendas:
+                    addendas.append(qname.localname)
             except Exception:
                 addendas.append(str(addenda.tag))
         if len(addendas) > 0:
