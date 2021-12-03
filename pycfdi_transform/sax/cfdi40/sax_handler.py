@@ -6,6 +6,18 @@ from lxml import etree
 import logging
 
 class CFDI40SAXHandler(BaseHandler):
+    """Class to extract data from invoice XML to dict.
+
+    Args:
+        empty_char : str, default: ''
+                    Data added if the field has not data.
+        safe_numerics : bool, default: False
+                    If definied numeric data with not value is presented as 0.00 or 1.00 in case of TIPOCAMBIO.
+        schema_validator : etree.XMLSchema, default: None
+                    Class to perform validation against XMLSchema already loaded in class. If None provided no validation is done.
+        esc_delimiters : str, default: ''
+                    Characters to remove from data, useful if your final format is text like csv and remove "," from data.
+    """
     def __init__(self, empty_char='', safe_numerics=False, schema_validator:etree.XMLSchema = None,esc_delimiters:str = "") -> CFDI40SAXHandler:
         super().__init__(empty_char, safe_numerics,esc_delimiters)
         self._schema_validator = schema_validator
@@ -13,11 +25,33 @@ class CFDI40SAXHandler(BaseHandler):
         self._inside_concepts = False
     
     def transform_from_file(self, file_path:str) -> dict:
+        """Transform XML to dict extracting its data.
+
+        Args:
+            file_path (str): File path to XML.
+
+        Raises:
+            Exception: When not valid invoice file is provided.
+
+        Returns:
+            dict: Dict containing data from CFDI.
+        """
         if ('.xml' in file_path):
             return self.transform_from_string(StringHelper.file_path_to_string(file_path))
         else:
             raise ValueError('Incorrect type of document, only support XML files')
     def transform_from_string(self, xml_str:str) -> dict:
+        """Transform XML from string to dict extracting its data.
+
+        Args:
+            xml_str (str): String containing XML.
+
+        Raises:
+            Exception: When not invoice document is provided.
+
+        Returns:
+            dict: Dict containing data from CFDI.
+        """
         try:
             self._clean_data()
             xml_parser = etree.XMLParser(encoding='utf-8', recover=True)

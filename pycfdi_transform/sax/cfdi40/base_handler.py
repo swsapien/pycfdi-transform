@@ -6,6 +6,16 @@ from pycfdi_transform.sax.implocal10.sax_handler import ImpLocal10SAXHandler
 from pycfdi_transform.sax.nomina12.sax_handler import Nomina12SAXHandler
 
 class BaseHandler(ABC):
+    """Base abstract class where data and configs are stored.
+
+    Args:
+        empty_char : str, default: ''
+                    Data added if the field has not data.
+        safe_numerics : bool, default: False
+                    If definied numeric data with not value is presented as 0.00 or 1.00 in case of TIPOCAMBIO.
+        esc_delimiters : str, default: ''
+                    Characters to remove from data, useful if your final format is text like csv and remove "," from data.
+    """
     def __init__(self, empty_char:str = '', safe_numerics:bool = False, esc_delimiters:str = "") -> BaseHandler:
         super().__init__()
         self._config = {
@@ -78,6 +88,11 @@ class BaseHandler(ABC):
         }
     
     def use_nomina12(self) -> BaseHandler:
+        """Activate the tranform in case of find complement nomina12 in invoice.
+
+        Returns:
+            BaseHandler: Instance of configured class.
+        """
         if not '{http://www.sat.gob.mx/nomina12}Nomina' in self._complements:
             self._complements['{http://www.sat.gob.mx/nomina12}Nomina'] = {
                 'class': Nomina12SAXHandler,
@@ -86,10 +101,20 @@ class BaseHandler(ABC):
         return self
 
     def use_concepts_cfdi40(self) -> BaseHandler:
+        """Activate the tranform of concepts. Not recommended in case of global invoice.
+
+        Returns:
+            BaseHandler: Instance of configured class.
+        """
         self._config['concepts'] = True
         return self
     
     def use_implocal10(self) -> BaseHandler:
+        """Activate the tranform in case of find complement implocal10 in invoice.
+
+        Returns:
+            BaseHandler: Instance of configured class.
+        """
         if not '{http://www.sat.gob.mx/implocal}ImpuestosLocales' in self._complements:
             self._complements['{http://www.sat.gob.mx/implocal}ImpuestosLocales'] = {
                 'class': ImpLocal10SAXHandler,
