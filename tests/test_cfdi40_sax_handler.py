@@ -835,3 +835,9 @@ class TestCFDI40SAXHandler(unittest.TestCase):
         self.assertTrue('\n' not in str(cfdi_data['tfd11'][0]['sello_cfd']))
         self.assertTrue('\r' not in str(cfdi_data['tfd11'][0]['sello_cfd']))
         self.assertTrue('\t' not in str(cfdi_data['tfd11'][0]['sello_cfd']))
+    
+    def test_transform_cfdi33(self):
+        sax_handler = CFDI40SAXHandler(safe_numerics=True, empty_char='-')
+        with self.assertRaises(ValueError) as context:
+            cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi33/cfdi33_01.xml')
+        self.assertTrue("does't have correct namespace for CFDI V4.0" in str(context.exception))

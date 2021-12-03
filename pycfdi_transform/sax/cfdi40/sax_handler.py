@@ -56,6 +56,8 @@ class CFDI40SAXHandler(BaseHandler):
             self._clean_data()
             xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
             tree = etree.XML(xml_str.encode(), parser=xml_parser)
+            if not 'cfdi' in tree.nsmap or tree.nsmap['cfdi'] != 'http://www.sat.gob.mx/cfd/4':
+                raise ValueError('The CFDI does\'t have correct namespace for CFDI V4.0.')
             if self._schema_validator != None and isinstance(self._schema_validator, etree.XMLSchema):
                 self._schema_validator.assertValid(tree)
             context = etree.iterwalk(tree, events=("start", "end"))
