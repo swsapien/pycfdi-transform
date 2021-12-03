@@ -136,3 +136,22 @@ class TestCDACFDI40Formatter(unittest.TestCase):
         self.assertEqual(named_column['EMISORNOMBRE'], 'ESCUELÄ KEMPER ÚRGATE SA DE CV`}}}~')
         self.assertEqual(named_column['RECEPTORNOMBRE'], 'kghfhg~')
         self.assertEqual(named_column['COMPLEMENTOS'], 'TimbreFiscalDigital')
+    
+    def test_formatter_cfdi40_addenda(self):
+        sax_handler = CFDI40SAXHandler(safe_numerics=True, empty_char='-')
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi40/cfdi40_01_addenda.xml')
+        formatter = CDACFDI40Formatter(cfdi_data, safe_numerics=True, empty_char='-')
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '')
+        self.assertTrue(formatter.has_addenda())
+        self.assertTrue(formatter.get_addendas() is not None and formatter.get_addendas() == "NombreAdenda xmlAtt")
+    
+    def test_formatter_cfdi40_not_addenda(self):
+        sax_handler = CFDI40SAXHandler(safe_numerics=True, empty_char='-')
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi40/cfdi40_01.xml')
+        formatter = CDACFDI40Formatter(cfdi_data, safe_numerics=True, empty_char='-')
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '')
+        self.assertFalse(formatter.has_addenda())
+        self.assertTrue(formatter.get_addendas() is not None and formatter.get_addendas() == "")
+        
