@@ -11,7 +11,7 @@ class CFDI33SAXHandler(BaseHandler):
         self._schema_validator = schema_validator
         self._logger = logging.getLogger('CFDI33SAXHandler')
         self._inside_concepts = False
-    
+
     def transform_from_file(self, file_path:str) -> dict:
         if ('.xml' in file_path):
             return self.transform_from_string(StringHelper.file_path_to_string(file_path))
@@ -74,14 +74,14 @@ class CFDI33SAXHandler(BaseHandler):
         self._data['cfdi33']['moneda'] = element.attrib.get('Moneda')
         self._data['cfdi33']['tipo_cambio'] = element.attrib.get('TipoCambio', StringHelper.DEFAULT_SAFE_NUMBER_ONE if self._config['safe_numerics'] else self._config['empty_char'])
         self._data['cfdi33']['tipo_comprobante'] = element.attrib.get('TipoDeComprobante')
-        self._data['cfdi33']['metodo_pago'] = element.attrib.get('MetodoPago', self._config['empty_char'])
-        self._data['cfdi33']['forma_pago'] = element.attrib.get('FormaPago', self._config['empty_char'])
+        self._data['cfdi33']['metodo_pago'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('MetodoPago', self._config['empty_char']))
+        self._data['cfdi33']['forma_pago'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('FormaPago', self._config['empty_char']))
         self._data['cfdi33']['condiciones_pago'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('CondicionesDePago', self._config['empty_char']))
         self._data['cfdi33']['lugar_expedicion'] = element.attrib.get('LugarExpedicion')
         self._data['cfdi33']['sello'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Sello'))
         self._data['cfdi33']['certificado'] = StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('Certificado'))
         self._data['cfdi33']['confirmacion'] = element.attrib.get('Confirmacion', self._config['empty_char'])
-    
+
     def __transform_emisor(self, element:etree._Element) -> None:
         self._data['cfdi33']['emisor'] = {
             'rfc': element.attrib.get('Rfc'),
@@ -97,7 +97,7 @@ class CFDI33SAXHandler(BaseHandler):
             'num_reg_id_trib': StringHelper.compact_string(self._config['esc_delimiters'],element.attrib.get('NumRegIdTrib', self._config['empty_char'])),
             'uso_cfdi': element.attrib.get('UsoCFDI'),
         }
-    
+
     def __transform_concept(self, element:etree._Element) -> None:
         concept = {
             'clave_prod_serv': element.attrib.get('ClaveProdServ'),
@@ -111,7 +111,7 @@ class CFDI33SAXHandler(BaseHandler):
             'descuento': element.attrib.get('Descuento', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
         }
         self._data['cfdi33']['conceptos'].append(concept)
-    
+
     def __transform_general_taxes(self, element:etree._Element) -> None:
         self._data['cfdi33']['impuestos']['total_impuestos_traslados'] = element.attrib.get('TotalImpuestosTrasladados', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
         self._data['cfdi33']['impuestos']['total_impuestos_retenidos'] = element.attrib.get('TotalImpuestosRetenidos', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
@@ -142,7 +142,7 @@ class CFDI33SAXHandler(BaseHandler):
                     'importe': retencion.attrib.get('Importe')
                 }
             )
-    
+
     def __transform_complement(self, element:etree._Element) -> None:
         complements = []
         for complement in element.getchildren():
@@ -164,7 +164,7 @@ class CFDI33SAXHandler(BaseHandler):
                 complements.append(str(complement.tag))
         if len(complements) > 0:
             self._data['cfdi33']['complementos'] = ' '.join(complements)
-    
+
     def __transform_addenda(self, element:etree._Element) -> None:
         addendas = []
         for addenda in element.getchildren():
