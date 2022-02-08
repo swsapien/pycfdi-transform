@@ -147,6 +147,7 @@ class CFDI40SAXHandler(BaseHandler):
             'valor_unitario': element.attrib.get('ValorUnitario'),
             'importe': element.attrib.get('Importe'),
             'descuento': element.attrib.get('Descuento', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+            'objeto_imp': element.attrib.get('ObjetoImp')
         }
         self._data['cfdi40']['conceptos'].append(concept)
     
@@ -164,6 +165,7 @@ class CFDI40SAXHandler(BaseHandler):
         for traslado in list_elements:
             self._data['cfdi40']['impuestos']['traslados'].append(
                 {
+                    'base': traslado.attrib.get('Base'),
                     'impuesto': traslado.attrib.get('Impuesto'),
                     'tipo_factor': traslado.attrib.get('TipoFactor'),
                     'tasa_o_cuota': traslado.attrib.get('TasaOCuota'),
