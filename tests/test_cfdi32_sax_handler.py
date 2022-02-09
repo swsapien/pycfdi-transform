@@ -624,52 +624,52 @@ class TestCFDI32SAXHandler(unittest.TestCase):
         cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_addenda_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
-            "cfdi32": {
-                "version": "3.2",
-                "serie": "A",
-                "folio": "",
-                "fecha": "2014-12-17T08:14:08",
-                "no_certificado": "None",
-                "subtotal": "1603",
-                "descuento": "",
-                "total": "1603",
-                "moneda": "MXN",
-                "tipo_cambio": "",
-                "tipo_comprobante": "ingreso",
-                "metodo_pago": "EFECTIVO",
-                "forma_pago": "PAGO EN UNA SOLA EXHIBICION",
-                "condiciones_pago": "",
-                "lugar_expedicion": "VICTORIA TAMPS",
-                "sello": "None",
-                "certificado": "None",
-                "emisor": {
-                    "rfc": "LURS721022C97",
-                    "nombre": "SAUL LU RUBIO",
-                    "regimen_fiscal": [
-                        "NO APLICA"
+            'cfdi32': {
+                'version': '3.2',
+                'serie': 'A',
+                'folio': '',
+                'fecha': '2014-12-17T08:14:08',
+                'no_certificado': None,
+                'subtotal': '1603',
+                'descuento': '',
+                'total': '1603',
+                'moneda': 'MXN',
+                'tipo_cambio': '',
+                'tipo_comprobante': 'ingreso',
+                'metodo_pago': 'EFECTIVO',
+                'forma_pago': 'PAGO EN UNA SOLA EXHIBICION',
+                'condiciones_pago': '',
+                'lugar_expedicion': 'VICTORIA TAMPS',
+                'sello': None,
+                'certificado': None,
+                'emisor': {
+                    'rfc': 'LURS721022C97',
+                    'nombre': 'SAUL LU RUBIO',
+                    'regimen_fiscal': [
+                        'NO APLICA'
                     ]
                 },
-                "receptor": {
-                    "rfc": "SFE0807172W8",
-                    "nombre": "SFERP S.C."
+                'receptor': {
+                    'rfc': 'SFE0807172W8',
+                    'nombre': 'SFERP S.C.'
                 },
-                "conceptos": [
+                'conceptos': [
 
                 ],
-                "impuestos": {
-                    "retenciones": [
+                'impuestos': {
+                    'retenciones': [
 
                     ],
-                    "traslados": [
+                    'traslados': [
 
                     ],
-                    "total_impuestos_traslados": "0",
-                    "total_impuestos_retenidos": ""
+                    'total_impuestos_traslados': '0',
+                    'total_impuestos_retenidos': ''
                 },
-                "complementos": "",
-                "addendas": "Documento"
+                'complementos': '',
+                'addendas': 'Documento'
             },
-            "tfd10": [
+            'tfd10': [
 
             ]
         }
