@@ -4,6 +4,7 @@ from pycfdi_transform.helpers.string_helper import StringHelper
 from pycfdi_transform.sax.tfd10.sax_handler import TFD10SAXHandler
 from pycfdi_transform.sax.implocal10.sax_handler import ImpLocal10SAXHandler
 from pycfdi_transform.sax.nomina12.sax_handler import Nomina12SAXHandler
+from pycfdi_transform.sax.nomina11.sax_handler import Nomina11SAXHandler
 from pycfdi_transform.sax.pagos10.sax_handler import Pagos10SAXHandler
 
 
@@ -71,6 +72,14 @@ class BaseHandler(ABC):
             self._complements['{http://www.sat.gob.mx/nomina12}Nomina'] = {
                 'class': Nomina12SAXHandler,
                 'key': 'nomina12'
+            }
+        return self
+    
+    def use_nomina11(self) -> BaseHandler:
+        if not '{http://www.sat.gob.mx/nomina}Nomina' in self._complements:
+            self._complements['{http://www.sat.gob.mx/nomina}Nomina'] = {
+                'class': Nomina11SAXHandler,
+                'key': 'nomina11'
             }
         return self
 
