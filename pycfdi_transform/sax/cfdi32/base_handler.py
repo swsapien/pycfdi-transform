@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from pycfdi_transform.helpers.string_helper import StringHelper
-from pycfdi_transform.sax.tfd11.sax_handler import TFD11SAXHandler
+from pycfdi_transform.sax.tfd10.sax_handler import TFD10SAXHandler
 from pycfdi_transform.sax.implocal10.sax_handler import ImpLocal10SAXHandler
 from pycfdi_transform.sax.nomina12.sax_handler import Nomina12SAXHandler
 from pycfdi_transform.sax.pagos10.sax_handler import Pagos10SAXHandler
@@ -18,8 +18,8 @@ class BaseHandler(ABC):
         }
         self._complements = {
             '{http://www.sat.gob.mx/TimbreFiscalDigital}TimbreFiscalDigital': {
-                'class': TFD11SAXHandler,
-                'key': 'tfd11'
+                'class': TFD10SAXHandler,
+                'key': 'tfd10'
             }
         }
         self.data = self._get_default_data()
@@ -63,7 +63,7 @@ class BaseHandler(ABC):
                 'complementos': self._config['empty_char'],
                 'addendas': self._config['empty_char']
             },
-            'tfd11': []
+            'tfd10': []
         }
 
     def use_nomina12(self) -> BaseHandler:

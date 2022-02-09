@@ -1,7 +1,7 @@
 from __future__ import annotations
 import logging
 from lxml import etree
-from pycfdi_transform.sax.tfd11.base_handler import BaseHandler
+from pycfdi_transform.sax.tfd10.base_handler import BaseHandler
 from pycfdi_transform.helpers.string_helper import StringHelper
 
 
@@ -30,7 +30,7 @@ class TFD10SAXHandler(BaseHandler):
                     context.skip_subtree()
 
     def __transform_tfd(self, element: etree._Element) -> None:
-        if not 'Version' in element.attrib or element.attrib['Version'] != '1.0':
+        if not 'version' in element.attrib or element.attrib['version'] != '1.0':
             raise ValueError('Incorrect type of TFD, this handler only support TFD version 1.0')
         self._data['version'] = element.attrib.get('version')
         self._data['no_certificado_sat'] = element.attrib.get('noCertificadoSAT')

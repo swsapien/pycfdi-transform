@@ -97,56 +97,47 @@ class CFDI32SAXHandler(BaseHandler):
             'nombre': StringHelper.compact_string(self._config['esc_delimiters'], element.attrib.get('nombre', self._config['empty_char']))
         }
 
-    # TODO adaptar
     def __transform_concept(self, element: etree._Element) -> None:
         concept = {
-            'clave_prod_serv': element.attrib.get('ClaveProdServ'),
-            'no_identificacion': StringHelper.compact_string(self._config['esc_delimiters'], element.attrib.get('NoIdentificacion', self._config['empty_char'])),
-            'cantidad': element.attrib.get('Cantidad'),
-            'clave_unidad': element.attrib.get('ClaveUnidad'),
-            'unidad': StringHelper.compact_string(self._config['esc_delimiters'], element.attrib.get('Unidad', self._config['empty_char'])),
-            'descripcion': StringHelper.compact_string(self._config['esc_delimiters'], element.attrib.get('Descripcion')),
-            'valor_unitario': element.attrib.get('ValorUnitario'),
-            'importe': element.attrib.get('Importe'),
-            'descuento': element.attrib.get('Descuento', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+            'no_identificacion': StringHelper.compact_string(self._config['esc_delimiters'], element.attrib.get('noIdentificacion', self._config['empty_char'])),
+            'cantidad': element.attrib.get('cantidad'),
+            'unidad': StringHelper.compact_string(self._config['esc_delimiters'], element.attrib.get('unidad', self._config['empty_char'])),
+            'descripcion': StringHelper.compact_string(self._config['esc_delimiters'], element.attrib.get('descripcion')),
+            'valor_unitario': element.attrib.get('valorUnitario'),
+            'importe': element.attrib.get('importe')
         }
         self._data['cfdi32']['conceptos'].append(concept)
 
-    # TODO ADAPTAR
     def __transform_general_taxes(self, element: etree._Element) -> None:
-        self._data['cfdi32']['impuestos']['total_impuestos_traslados'] = element.attrib.get('TotalImpuestosTrasladados', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
-        self._data['cfdi32']['impuestos']['total_impuestos_retenidos'] = element.attrib.get('TotalImpuestosRetenidos', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
+        self._data['cfdi32']['impuestos']['total_impuestos_traslados'] = element.attrib.get('totalImpuestosTrasladados', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
+        self._data['cfdi32']['impuestos']['total_impuestos_retenidos'] = element.attrib.get('totalImpuestosRetenidos', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
         for child in element.getchildren():
             if child.tag == '{http://www.sat.gob.mx/cfd/3}Traslados':
                 self.__transform_taxes_traslados(child.getchildren())
             elif child.tag == '{http://www.sat.gob.mx/cfd/3}Retenciones':
                 self.__transform_taxes_retenciones(child.getchildren())
 
-    # TODO ADAPTAR
     def __transform_taxes_traslados(self, list_elements: list[etree._Element]) -> None:
         self._data['cfdi32']['impuestos']['traslados'] = []
         for traslado in list_elements:
             self._data['cfdi32']['impuestos']['traslados'].append(
                 {
-                    'impuesto': traslado.attrib.get('Impuesto'),
-                    'tipo_factor': traslado.attrib.get('TipoFactor'),
-                    'tasa_o_cuota': traslado.attrib.get('TasaOCuota'),
-                    'importe': traslado.attrib.get('Importe')
+                    'impuesto': traslado.attrib.get('impuesto'),
+                    'tasa': traslado.attrib.get('tasa'),
+                    'importe': traslado.attrib.get('importe')
                 }
             )
 
-    # TODO ADAPTAR
     def __transform_taxes_retenciones(self, list_elements: list[etree._Element]) -> None:
         self._data['cfdi32']['impuestos']['retenciones'] = []
         for retencion in list_elements:
             self._data['cfdi32']['impuestos']['retenciones'].append(
                 {
-                    'impuesto': retencion.attrib.get('Impuesto'),
-                    'importe': retencion.attrib.get('Importe')
+                    'impuesto': retencion.attrib.get('impuesto'),
+                    'importe': retencion.attrib.get('importe')
                 }
             )
 
-    # TODO ADAPTAR
     def __transform_complement(self, element: etree._Element) -> None:
         complements = []
         for complement in element.getchildren():
