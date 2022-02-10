@@ -13,7 +13,7 @@ class Pagos20SAXHandler(BaseHandler):
         try:
             xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
             tree = etree.XML(xml_str, parser=xml_parser)
-            context = etree.iterwalk(tree, events=("start", "end"))
+            context = etree.iterwalk(tree, events=("start",))
             self.__handle_events(context)
             return self._data
         except Exception as ex:
@@ -27,9 +27,9 @@ class Pagos20SAXHandler(BaseHandler):
                     self.__transform_pagos(elem)
                 if elem.tag == '{http://www.sat.gob.mx/Pagos20}Totales':
                     self.__transform_totales(elem)
-            elif action == 'end':
                 if elem.tag == '{http://www.sat.gob.mx/Pagos20}Pago':
                     self.__transform_pago(elem)
+
     
     def __transform_pagos(self, element:etree._Element) -> None:
         if not 'Version' in element.attrib or element.attrib['Version'] != '2.0':
@@ -90,7 +90,7 @@ class Pagos20SAXHandler(BaseHandler):
             'imp_saldo_ant': element.attrib.get('ImpSaldoAnt', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
             'imp_pagado': element.attrib.get('ImpPagado', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
             'imp_saldo_insoluto': element.attrib.get('ImpSaldoInsoluto', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
-            'objecto_imp_dr': StringHelper.compact_string(self._config['esc_delimiters'], element.attrib.get('ObjetoImpDR', self._config['empty_char'])),
+            'objecto_imp_dr': element.attrib.get('ObjetoImpDR'),
             'impuestos_dr': []
         }
         for child in element.getchildren():
