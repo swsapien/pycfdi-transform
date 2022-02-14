@@ -104,7 +104,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
         self.assertFalse(formatter.can_format())
         self.assertEqual(formatter.get_errors(), 'Not nomina11 in data.')
 
-    def test_rows_nomina12_01(self):
+    def test_rows_nomina11_01(self):
         sax_handler = CFDI32SAXHandler().use_nomina11()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
         self.assertIsNotNone(cfdi_data)
@@ -132,7 +132,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
         self.assertListEqual(expected_rows, row_list)
 
 
-    def test_rows_nomina12_01_empty_char(self):
+    def test_rows_nomina11_01_empty_char(self):
         sax_handler = CFDI32SAXHandler().use_nomina11()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_empty_chars.xml')
         self.assertIsNotNone(cfdi_data)
@@ -148,7 +148,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
         self.assertListEqual(expected_rows, row_list)
 
 
-    def test_rows_nomina12_01_safe_numerics(self):
+    def test_rows_nomina11_01_safe_numerics(self):
         sax_handler = CFDI32SAXHandler().use_nomina11()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_safe_numerics.xml')
         self.assertIsNotNone(cfdi_data)
@@ -164,7 +164,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
         ]
         self.assertListEqual(expected_rows, row_list)
 
-    def test_rows_nomina12_01_empty_char_safe_numerics(self):
+    def test_rows_nomina11_01_empty_char_safe_numerics(self):
         sax_handler = CFDI32SAXHandler().use_nomina11()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_safe_numerics.xml')
         self.assertIsNotNone(cfdi_data)
@@ -184,7 +184,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
         self.assertListEqual(expected_rows, row_list)
 
-    def test_rows_nomina12_02(self):
+    def test_rows_nomina11_02(self):
         start = time.time()
         sax_handler = CFDI32SAXHandler().use_nomina11()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')

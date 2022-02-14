@@ -76,12 +76,14 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                     ],
                     "traslados": [
                         {
+                            "base": "5649040.234906",
                             "impuesto": "002",
                             "tipo_factor": "Exento",
                             "tasa_o_cuota": "2437280.234906",
                             "importe": "1615450.234906"
                         },
                         {
+                            "base": "5649040.234906",
                             "impuesto": "003",
                             "tipo_factor": "Tasa",
                             "tasa_o_cuota": "2437280.234906",
@@ -176,12 +178,14 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                     ],
                     "traslados": [
                         {
+                            "base": "5649040.234906",
                             "impuesto": "002",
                             "tipo_factor": "Exento",
                             "tasa_o_cuota": "2437280.234906",
                             "importe": "1615450.234906"
                         },
                         {
+                            "base": "5649040.234906",
                             "impuesto": "003",
                             "tipo_factor": "Tasa",
                             "tasa_o_cuota": "2437280.234906",
@@ -386,7 +390,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "b!~asdasfg85418816",
                         "valor_unitario": "5835760.234906",
                         "importe": "3916480.234906",
-                        "descuento": ""
+                        "descuento": "",
+                        "objeto_imp": "34"
                     },
                     {
                         "clave_prod_serv": "50321559",
@@ -397,7 +402,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "}&~",
                         "valor_unitario": "315930.234906",
                         "importe": "2922160.234906",
-                        "descuento": "7520980.234906"
+                        "descuento": "7520980.234906",
+                        "objeto_imp": "81"
                     },
                     {
                         "clave_prod_serv": "50466301",
@@ -408,7 +414,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "!#{k*",
                         "valor_unitario": "4334580.234906",
                         "importe": "325840.234906",
-                        "descuento": ""
+                        "descuento": "",
+                        "objeto_imp": "16"
                     },
                     {
                         "clave_prod_serv": "25174800",
@@ -419,7 +426,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "E",
                         "valor_unitario": "8775650.234906",
                         "importe": "9380680.234906",
-                        "descuento": ""
+                        "descuento": "",
+                        "objeto_imp": "13"
                     },
                     {
                         "clave_prod_serv": "10302150",
@@ -430,7 +438,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "dm~}~",
                         "valor_unitario": "8833520.234906",
                         "importe": "6441520.234906",
-                        "descuento": ""
+                        "descuento": "",
+                        "objeto_imp": "00"
                     }
                 ],
                 "impuestos": {
@@ -458,12 +467,14 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                     ],
                     "traslados": [
                         {
+                            "base": "5649040.234906",
                             "impuesto": "002",
                             "tipo_factor": "Exento",
                             "tasa_o_cuota": "2437280.234906",
                             "importe": "1615450.234906"
                         },
                         {
+                            "base": "5649040.234906",
                             "impuesto": "003",
                             "tipo_factor": "Tasa",
                             "tasa_o_cuota": "2437280.234906",
@@ -489,6 +500,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
             ]
         }
         self.assertDictEqual(cfdi_data, expected_dict)
+        
+        
     def test_transform_file_with_concepts_bad_description(self):
         sax_handler = CFDI40SAXHandler(esc_delimiters="~").use_concepts_cfdi40()
         cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01_bad_character.xml")
@@ -539,7 +552,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "b!asdasfg85418816",
                         "valor_unitario": "5835760.234906",
                         "importe": "3916480.234906",
-                        "descuento": ""
+                        "descuento": "",
+                        "objeto_imp": "34"
                     },
                     {
                         "clave_prod_serv": "50321559",
@@ -550,7 +564,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "}&",
                         "valor_unitario": "315930.234906",
                         "importe": "2922160.234906",
-                        "descuento": "7520980.234906"
+                        "descuento": "7520980.234906",
+                        "objeto_imp": "81"
                     },
                     {
                         "clave_prod_serv": "50466301",
@@ -561,7 +576,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "!#{k*",
                         "valor_unitario": "4334580.234906",
                         "importe": "325840.234906",
-                        "descuento": ""
+                        "descuento": "",
+                        "objeto_imp": "16"
                     },
                     {
                         "clave_prod_serv": "25174800",
@@ -572,7 +588,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "E",
                         "valor_unitario": "8775650.234906",
                         "importe": "9380680.234906",
-                        "descuento": ""
+                        "descuento": "",
+                        "objeto_imp": "13"
                     },
                     {
                         "clave_prod_serv": "10302150",
@@ -583,7 +600,8 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                         "descripcion": "dm}",
                         "valor_unitario": "8833520.234906",
                         "importe": "6441520.234906",
-                        "descuento": ""
+                        "descuento": "",
+                        "objeto_imp": "00"
                     }
                 ],
                 "impuestos": {
@@ -611,12 +629,14 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                     ],
                     "traslados": [
                         {
+                            "base": "5649040.234906",
                             "impuesto": "002",
                             "tipo_factor": "Exento",
                             "tasa_o_cuota": "2437280.234906",
                             "importe": "1615450.234906"
                         },
                         {
+                            "base": "5649040.234906",
                             "impuesto": "003",
                             "tipo_factor": "Tasa",
                             "tasa_o_cuota": "2437280.234906",
@@ -782,12 +802,14 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                     ],
                     "traslados": [
                         {
+                            "base": "5649040.234906",
                             "impuesto": "002",
                             "tipo_factor": "Exento",
                             "tasa_o_cuota": "2437280.234906",
                             "importe": "1615450.234906"
                         },
                         {
+                            "base": "5649040.234906",
                             "impuesto": "003",
                             "tipo_factor": "Tasa",
                             "tasa_o_cuota": "2437280.234906",
@@ -912,12 +934,14 @@ class TestCFDI40SAXHandler(unittest.TestCase):
                     ],
                     "traslados": [
                         {
+                            "base": "5649040.234906",
                             "impuesto": "002",
                             "tipo_factor": "Exento",
                             "tasa_o_cuota": "2437280.234906",
                             "importe": "1615450.234906"
                         },
                         {
+                            "base": "5649040.234906",
                             "impuesto": "003",
                             "tipo_factor": "Tasa",
                             "tasa_o_cuota": "2437280.234906",
