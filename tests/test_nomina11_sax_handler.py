@@ -5,7 +5,7 @@ class TestNomina11SAXHandler(unittest.TestCase):
 
       def test_transform_file_nomina11_complete_nom(self):
          sax_handler = CFDI32SAXHandler().use_nomina11()
-         cfdi_data = sax_handler.transform_from_file("../tests/Resources/nomina11/nom_complete.xml")
+         cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina11/nom_complete.xml")
          self.assertIsNotNone(cfdi_data)
          expected_dict = {
             "cfdi32":{
@@ -199,7 +199,7 @@ class TestNomina11SAXHandler(unittest.TestCase):
 
       def test_transform_file_nomina11_safe_numerics(self):
          sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-         cfdi_data = sax_handler.transform_from_file("../tests/Resources/nomina11/nom_safe_numerics.xml")
+         cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina11/nom_safe_numerics.xml")
          self.assertIsNotNone(cfdi_data)
          expected_dict = {
             "cfdi32":{
@@ -344,7 +344,7 @@ class TestNomina11SAXHandler(unittest.TestCase):
 
       def test_transform_file_nomina11_empty_char(self):
          sax_handler = CFDI32SAXHandler(empty_char='~').use_nomina11()
-         cfdi_data = sax_handler.transform_from_file("../tests/Resources/nomina11/nom_empty_chars.xml")
+         cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina11/nom_empty_chars.xml")
          self.assertIsNotNone(cfdi_data)
          expected_dict = {
             "cfdi32":{
@@ -490,7 +490,7 @@ class TestNomina11SAXHandler(unittest.TestCase):
       def test_transform_file_nomina11_bad_version(self):
          sax_handler = CFDI32SAXHandler().use_nomina11()
          with self.assertRaises(ValueError) as context:
-            sax_handler.transform_from_file("../tests/Resources/nomina11/nom_bad_version.xml")
+            sax_handler.transform_from_file("./tests/Resources/nomina11/nom_bad_version.xml")
          exception = context.exception
          self.assertIn('Incorrect type of Nomina, this handler only support Nomina version 1.1', str(exception),
                        'Not expected error message')
