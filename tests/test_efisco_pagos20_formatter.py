@@ -82,7 +82,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
         self.assertFalse(formatter.can_format())
         self.assertEqual(formatter.get_errors(), 'Not tfd11 in data.')
     
-    def test_formatter_error_tfdpagos_pagos10(self):
+    def test_formatter_error_tfdpagos_pagos20(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_stamped.xml')
         cfdi_data.pop('pagos20')
@@ -90,7 +90,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
         self.assertFalse(formatter.can_format())
         self.assertEqual(formatter.get_errors(), 'Not pagos20 in data.')
 
-    def test_rows_pagos10_01(self):
+    def test_rows_pagos20_01(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_stamped.xml')
         self.assertIsNotNone(cfdi_data)
@@ -105,7 +105,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
         self.assertListEqual(first_row, row_list[0])
 
  #DONE
-    def test_rows_pagos10_01_empty_char(self):
+    def test_rows_pagos20_01_empty_char(self):
         start = time.time()
         sax_handler = CFDI40SAXHandler().use_pagos20()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_empty_chars.xml')
@@ -121,7 +121,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
         self.assertLess(end_time, 0.01)
 
     #DONE
-    def test_rows_pagos10_01_safe_numerics(self):
+    def test_rows_pagos20_01_safe_numerics(self):
         start = time.time()
         sax_handler = CFDI40SAXHandler().use_pagos20()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_safe_numbers.xml')
@@ -135,8 +135,8 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
         first_row = ['4.0', 'Serie', 'Folio', '2021-12-16T15:40:21', '30001000000400002444', '0', '0.00', '0.0', 'XXX', '1.00', 'P', '', '', '', '20008', 'XAXX010101000', 'PUBLICO GENERAL', '601', 'XAXX010101000', 'Nombre', 'G01', '080CF54E-F9DB-4470-BF0D-A8613DC10B24', '2022-02-08T21:58:56', 'SPR190613I52', 'WUCP5ykONZrtAg97dDf4bx/GIldE0diCw1LDmCUci3YI31ocsvAQJCRTrWJ9JNkr3UrD1CyO//vxhP65DvmuNGyK0+QrQn7FDvEX+vo0bslbMP+UprBevco4JYW3BLazIpU1rSmoiu1K0ViAZCpdRk+o13uV8be4SQGOPclLsTljUxcYdn2qHLlP+EhSyqEb7MNUTQvY44MpjPlRRfgHnhDVQZDGZyta1M5jHrQioIl625Ju6PFDNMMyt+VltFb9omWpa7QxWuIaQ/jpmtWxqVGZjjpNj6aT8g1gjnr+dqyBQ5FpRunDfj9YgQJAs5Dug4S6Mwzj474egKjLKYlUoQ==', 'CP1_P1_DR1', '2021-12-02T00:18:10', '01', 'USD', '1.00', '14000.00', '', '', '', '', '', '', '1488703.81', '0.00', '2.00', '0.00', '0.00', 'BEDC8964-7E57-4604-9968-7E01378E8706', 'Serie3', 'Folio3', 'MXN', '1.329310', '1', '5000.00', '2000.00', '3000.00']
         self.assertListEqual(first_row, row_list[0])
         self.assertLess(end_time, 0.01)
-    #DONE
-    def test_rows_pagos10_01_empty_char_safe_numerics(self):
+
+    def test_rows_pagos20_01_empty_char_safe_numerics(self):
         start = time.time()
         sax_handler = CFDI40SAXHandler().use_pagos20()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_safe_numbers.xml')
@@ -151,8 +151,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
         self.assertListEqual(first_row, row_list[0])
         self.assertLess(end_time, 0.01)
 
-    # AQUIIII
-    def test_rows_pagos10_multi_tfd(self):
+    def test_rows_pagos20_multi_tfd(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_stamped_multiple_tfd.xml')
         self.assertIsNotNone(cfdi_data)
@@ -181,7 +180,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
         ]
         self.assertListEqual(expected_rows, row_list)
     
-    def test_rows_pagos10_complete(self):
+    def test_rows_pagos20_complete(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_stamped.xml')
         #Fix missing TFD in file.

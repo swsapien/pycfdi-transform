@@ -30,6 +30,7 @@ from pycfdi_transform.formatters.cfdi33.efisco_corp_cfdi33_formatter import Efis
 from pycfdi_transform.formatters.nomina11.efisco_nomina11_formatter import EfiscoNomina11Formatter
 from pycfdi_transform.formatters.nomina12.efisco_nomina12_formatter import EfiscoNomina12Formatter
 from pycfdi_transform.formatters.pagos10.efisco_pagos10_formatter import EfiscoPagos10Formatter
+from pycfdi_transform.formatters.pagos20.efisco_pagos20_formatter import EfiscoPagos20Formatter
 from pycfdi_transform.formatters.cfdi40.cda_cfdi40_formatter import CDACFDI40Formatter
 
 del absolute_import
