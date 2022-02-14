@@ -489,7 +489,7 @@ class TestPagos20SAXHandler(unittest.TestCase):
     
     def test_transform_file_pagos20_emptychar(self):
         sax_handler = CFDI40SAXHandler(empty_char='-').use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('../tests/Resources/pagos20/pago_empty_chars.xml')
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_empty_chars.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
          "cfdi40":{
