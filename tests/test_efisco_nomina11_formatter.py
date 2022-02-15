@@ -92,9 +92,10 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
     def test_formatter_error_tfd_nomina11(self):
         sax_handler = CFDI32SAXHandler().use_nomina11()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data.pop('nomina11')
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertFalse(formatter.can_format())
-        self.assertEqual(formatter.get_errors(), 'Not tfd11 in data.')
+        self.assertEqual(formatter.get_errors(), 'Not nomina11 in data.')
 
     def test_formatter_error_tfdpagos_nomina11(self):
         sax_handler = CFDI32SAXHandler().use_nomina11()

@@ -66,7 +66,7 @@ class TestEfiscoCorpCFDI32Formatter(unittest.TestCase):
         cfdi_data.pop('tfd10')
         formatter = EfiscoCorpCFDI32Formatter(cfdi_data)
         self.assertFalse(formatter.can_format())
-        self.assertEqual(formatter.get_errors(), 'Not tfd11 in data.')
+        self.assertEqual(formatter.get_errors(), 'Not tfd10 in data.')
     
     def test_formatter_cfdi32_implocal10_ok(self):
         sax_handler = CFDI32SAXHandler().use_implocal10()

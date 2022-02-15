@@ -245,7 +245,7 @@ class TestPagos20SAXHandler(unittest.TestCase):
         sax_handler = CFDI40SAXHandler(safe_numerics=True).use_pagos20()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_safe_numbers.xml')
         self.assertIsNotNone(cfdi_data)
-        expected_dict ={
+        expected_dict = {
          "cfdi40":{
             "version":"4.0",
             "serie":"Serie",
@@ -294,11 +294,19 @@ class TestPagos20SAXHandler(unittest.TestCase):
                "total_impuestos_traslados":"0.00",
                "total_impuestos_retenidos":"0.00"
             },
-            "complementos":"Pagos",
+            "complementos":"Pagos TimbreFiscalDigital",
             "addendas":""
          },
          "tfd11":[
-
+            {
+               "version":"1.1",
+               "no_certificado_sat":"30001000000400002495",
+               "uuid":"080CF54E-F9DB-4470-BF0D-A8613DC10B24",
+               "fecha_timbrado":"2022-02-08T21:58:56",
+               "rfc_prov_cert":"SPR190613I52",
+               "sello_cfd":"WUCP5ykONZrtAg97dDf4bx/GIldE0diCw1LDmCUci3YI31ocsvAQJCRTrWJ9JNkr3UrD1CyO//vxhP65DvmuNGyK0+QrQn7FDvEX+vo0bslbMP+UprBevco4JYW3BLazIpU1rSmoiu1K0ViAZCpdRk+o13uV8be4SQGOPclLsTljUxcYdn2qHLlP+EhSyqEb7MNUTQvY44MpjPlRRfgHnhDVQZDGZyta1M5jHrQioIl625Ju6PFDNMMyt+VltFb9omWpa7QxWuIaQ/jpmtWxqVGZjjpNj6aT8g1gjnr+dqyBQ5FpRunDfj9YgQJAs5Dug4S6Mwzj474egKjLKYlUoQ==",
+               "sello_sat":"a9kmT6W3anSX4pDk+vRNBbvY+IxsulTelNl9mKocZsbWve+hZLm4YqqWoodRJgDC/jZVgO5mkql4haWAa3CpkLXYlz5RYnb6cTu9DfFZrELXvSGhAlvPOLWkWVV1cEI6HYPBV4ExXSdFIr6v6tVNLnScoGxVh6H5So2sxlsYSOq/XQIlQZTzR+Pv0sa3xB0Co4AOtzDdW/sjnXIj9c4lGzLyLAhoza+BlVTUERuV5IOLx+op3yHr9zGsxTKinPajg6/jS5n7czZ8RUhNWsdqKojEYNyOQUOp17bglhXP4Q9br1OMESakiqZM3f2ARFuhNAGwuUSh82pYAlLBWEzpPQ=="
+            }
          ],
          "pagos20":[
             {
@@ -483,7 +491,7 @@ class TestPagos20SAXHandler(unittest.TestCase):
         sax_handler = CFDI40SAXHandler(empty_char='-').use_pagos20()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_empty_chars.xml')
         self.assertIsNotNone(cfdi_data)
-        expected_dict ={
+        expected_dict = {
          "cfdi40":{
             "version":"4.0",
             "serie":"Serie",
@@ -532,11 +540,19 @@ class TestPagos20SAXHandler(unittest.TestCase):
                "total_impuestos_traslados":"-",
                "total_impuestos_retenidos":"-"
             },
-            "complementos":"Pagos",
+            "complementos":"Pagos TimbreFiscalDigital",
             "addendas":"-"
          },
          "tfd11":[
-
+            {
+               "version":"1.1",
+               "no_certificado_sat":"30001000000400002495",
+               "uuid":"080CF54E-F9DB-4470-BF0D-A8613DC10B24",
+               "fecha_timbrado":"2022-02-08T21:58:56",
+               "rfc_prov_cert":"SPR190613I52",
+               "sello_cfd":"WUCP5ykONZrtAg97dDf4bx/GIldE0diCw1LDmCUci3YI31ocsvAQJCRTrWJ9JNkr3UrD1CyO//vxhP65DvmuNGyK0+QrQn7FDvEX+vo0bslbMP+UprBevco4JYW3BLazIpU1rSmoiu1K0ViAZCpdRk+o13uV8be4SQGOPclLsTljUxcYdn2qHLlP+EhSyqEb7MNUTQvY44MpjPlRRfgHnhDVQZDGZyta1M5jHrQioIl625Ju6PFDNMMyt+VltFb9omWpa7QxWuIaQ/jpmtWxqVGZjjpNj6aT8g1gjnr+dqyBQ5FpRunDfj9YgQJAs5Dug4S6Mwzj474egKjLKYlUoQ==",
+               "sello_sat":"a9kmT6W3anSX4pDk+vRNBbvY+IxsulTelNl9mKocZsbWve+hZLm4YqqWoodRJgDC/jZVgO5mkql4haWAa3CpkLXYlz5RYnb6cTu9DfFZrELXvSGhAlvPOLWkWVV1cEI6HYPBV4ExXSdFIr6v6tVNLnScoGxVh6H5So2sxlsYSOq/XQIlQZTzR+Pv0sa3xB0Co4AOtzDdW/sjnXIj9c4lGzLyLAhoza+BlVTUERuV5IOLx+op3yHr9zGsxTKinPajg6/jS5n7czZ8RUhNWsdqKojEYNyOQUOp17bglhXP4Q9br1OMESakiqZM3f2ARFuhNAGwuUSh82pYAlLBWEzpPQ=="
+            }
          ],
          "pagos20":[
             {
