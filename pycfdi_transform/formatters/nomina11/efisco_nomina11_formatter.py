@@ -105,22 +105,7 @@ class EfiscoNomina11Formatter(FormatterInterface):
                             '0.00',
                         ]
                     )
-            #         CHECK THIS
-            # if len(nomina11['otros_pagos']['otro_pago']) > 0:
-            #     for otro_pago in nomina11['otros_pagos']['otro_pago']:
-            #         results.append(
-            #             row + [
-            #                 'O',
-            #                 otro_pago['clave'],
-            #                 otro_pago['tipo_otro_pago'],
-            #                 otro_pago['concepto'],
-            #                 '0.00',
-            #                 otro_pago['importe']
-            #             ]
-            #         )
-            # results.append(row + [])
-            varia = len(row)
-
+                    
         return results
 
     def dict_to_columns(self) -> list[list]:
