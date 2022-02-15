@@ -66,14 +66,6 @@ class BaseHandler(ABC):
             },
             'tfd10': []
         }
-
-    def use_nomina12(self) -> BaseHandler:
-        if not '{http://www.sat.gob.mx/nomina12}Nomina' in self._complements:
-            self._complements['{http://www.sat.gob.mx/nomina12}Nomina'] = {
-                'class': Nomina12SAXHandler,
-                'key': 'nomina12'
-            }
-        return self
     
     def use_nomina11(self) -> BaseHandler:
         if not '{http://www.sat.gob.mx/nomina}Nomina' in self._complements:
