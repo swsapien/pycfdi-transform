@@ -4,6 +4,7 @@ from pycfdi_transform.helpers.string_helper import StringHelper
 from pycfdi_transform.sax.tfd11.sax_handler import TFD11SAXHandler
 from pycfdi_transform.sax.implocal10.sax_handler import ImpLocal10SAXHandler
 from pycfdi_transform.sax.nomina12.sax_handler import Nomina12SAXHandler
+from pycfdi_transform.sax.pagos20.sax_handler import Pagos20SAXHandler
 
 class BaseHandler(ABC):
     """Base abstract class where data and configs are stored.
@@ -97,6 +98,14 @@ class BaseHandler(ABC):
             self._complements['{http://www.sat.gob.mx/nomina12}Nomina'] = {
                 'class': Nomina12SAXHandler,
                 'key': 'nomina12'
+            }
+        return self
+    
+    def use_pagos20(self) -> BaseHandler:
+        if not '{http://www.sat.gob.mx/Pagos20}Pagos' in self._complements:
+            self._complements['{http://www.sat.gob.mx/Pagos20}Pagos'] = {
+                'class': Pagos20SAXHandler,
+                'key': 'pagos20'
             }
         return self
 
