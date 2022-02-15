@@ -100,12 +100,10 @@ class EfiscoNomina11Formatter(FormatterInterface):
                             deduccion['tipo_deduccion'],
                             deduccion['concepto'],
                             deduccion['importe_gravado'],
-                            #deduccion['importe_gravado'],
-                            #deduccion['importe_exento'],
                             '0.00',
                         ]
                     )
-                    
+
         return results
 
     def dict_to_columns(self) -> list[list]:

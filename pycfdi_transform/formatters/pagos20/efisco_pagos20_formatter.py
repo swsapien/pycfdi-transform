@@ -53,11 +53,9 @@ class EfiscoPagos20Formatter(FormatterInterface):
                 if len(pago['impuestos_p']) > 0:
                     row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'traslados_p', '002'))
                     row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'traslados_p', '003'))
-                    #row.append(self._get_total_taxes(pago['impuestos_p'], 'total_impuestos_trasladados'))
                     row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'retenciones_p', '001'))
                     row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'retenciones_p', '002'))
                     row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'retenciones_p', '003'))
-                    #row.append(self._get_total_taxes(pago['impuestos_p'], 'total_impuestos_retenidos'))
                 else:
                     row.extend(
                         [
