@@ -44,7 +44,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                     ]
                 },
                 "receptor": {
-                    "rfc": "JILH841117AS9",
+                    "rfc": "CACX7605101P8",
                     "nombre": "PUBLICO GENERAL"
                 },
                 "conceptos": [
@@ -123,7 +123,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                     ]
                 },
                 "receptor": {
-                    "rfc": "JILH841117AS9",
+                    "rfc": "CACX7605101P8",
                     "nombre": "PUBLICO GENERAL"
                 },
                 "conceptos": [
@@ -199,7 +199,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                     ]
                 },
                 "receptor": {
-                    "rfc": "JILH841117AS9",
+                    "rfc": "CACX7605101P8",
                     "nombre": "PUBLICO GENERAL"
                 },
                 "conceptos": [
@@ -275,7 +275,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                     ]
                 },
                 "receptor": {
-                    "rfc": "JILH841117AS9",
+                    "rfc": "CACX7605101P8",
                     "nombre": "PUBLICO GENERAL"
                 },
                 "conceptos": [
@@ -358,7 +358,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                     ]
                 },
                 "receptor": {
-                    "rfc": "JILH841117AS9",
+                    "rfc": "CACX7605101P8",
                     "nombre": "PUBLICO GENERAL"
                 },
                 "conceptos": [
@@ -434,7 +434,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                     ]
                 },
                 "receptor": {
-                    "rfc": "JILH841117AS9",
+                    "rfc": "CACX7605101P8",
                     "nombre": "PUBLICO GENERAL"
                 },
                 "conceptos": [
@@ -539,7 +539,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                     ]
                 },
                 "receptor": {
-                    "rfc": "JILH841117AS9",
+                    "rfc": "CACX7605101P8",
                     "nombre": "PUBLICO GENERAL"
                 },
                 "conceptos": [
@@ -643,15 +643,15 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                 'sello': None,
                 'certificado': None,
                 'emisor': {
-                    'rfc': 'LURS721022C97',
-                    'nombre': 'SAUL LU RUBIO',
+                    'rfc': 'WATM640917J45',
+                    'nombre': 'MARIA WATEMBER TORRES',
                     'regimen_fiscal': [
                         'NO APLICA'
                     ]
                 },
                 'receptor': {
-                    'rfc': 'SFE0807172W8',
-                    'nombre': 'SFERP S.C.'
+                    'rfc': 'KIJ0906199R1',
+                    'nombre': 'KERNEL INDUSTIA JUGUETERA SA DE CV'
                 },
                 'conceptos': [
 

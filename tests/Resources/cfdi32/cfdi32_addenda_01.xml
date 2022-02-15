@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.2" serie="A" fecha="2014-12-17T08:14:08" formaDePago="PAGO EN UNA SOLA EXHIBICION" subTotal="1603" Moneda="MXN" total="1603" tipoDeComprobante="ingreso" metodoDePago="EFECTIVO" LugarExpedicion="VICTORIA TAMPS" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd">
-    <cfdi:Emisor rfc="LURS721022C97" nombre="SAUL LU RUBIO">
+    <cfdi:Emisor rfc="WATM640917J45" nombre="MARIA WATEMBER TORRES">
         <cfdi:DomicilioFiscal calle="LIBRAMIENTO GUADALUPE VICTORIA" noExterior="SIN NUMERO" colonia="AREA PAJARITOS" localidad="VICTORIA" municipio="VICTORIA" estado="TAMAULIPAS" pais="MEXICO" codigoPostal="87087"/>
         <cfdi:RegimenFiscal Regimen="NO APLICA"/>
     </cfdi:Emisor>
-    <cfdi:Receptor rfc="SFE0807172W8" nombre="SFERP S.C.">
+    <cfdi:Receptor rfc="KIJ0906199R1" nombre="KERNEL INDUSTIA JUGUETERA SA DE CV">
         <cfdi:Domicilio calle="INDUSTRIA NAVIERA" noExterior="141" colonia="INDUSTRIAL EL COLLI" localidad="ZAPOPAN" municipio="ZAPOPAN" estado="JALISCO" pais="MEXICO" codigoPostal="87120"/>
     </cfdi:Receptor>
     <cfdi:Conceptos>

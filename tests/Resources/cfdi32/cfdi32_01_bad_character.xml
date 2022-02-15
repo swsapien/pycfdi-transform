@@ -7,7 +7,7 @@
         <cfdi:RegimenFiscal Regimen="GENERAL DE LEY PERSONAS MORALES"/>
         <cfdi:RegimenFiscal Regimen="GENERAL DE LEY PERSONAS MORALES DOBLE REGIMEN"/>
     </cfdi:Emisor>
-    <cfdi:Receptor rfc="JILH841117AS9" nombre="PUBLICO GENERAL">
+    <cfdi:Receptor rfc="CACX7605101P8" nombre="PUBLICO GENERAL">
         <cfdi:Domicilio calle="CALLE" noExterior="1" colonia="GUADALAJARA" localidad="GUADALAJARA" municipio="GUADALAJARA" estado="JALISCO" pais="MEX" codigoPostal="45100"/>
     </cfdi:Receptor>
     <cfdi:Conceptos>

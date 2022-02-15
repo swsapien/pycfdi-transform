@@ -74,7 +74,7 @@ class TestPagos20SAXHandler(unittest.TestCase):
                        "num_operacion":"1",
                        "rfc_emisor_cta_ord":"XAXX010101000",
                        "nom_banco_ord_ext":"NomBancoOrdExt1",
-                       "cta_ordenante":"003293323",
+                       "cta_ordenante":"0000000000000000",
                        "rfc_emisor_cta_ben":"XAXX010101000",
                        "cta_beneficiario":"003293324",
                        "tipo_cad_pago":"1",
