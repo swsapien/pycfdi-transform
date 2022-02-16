@@ -1,4 +1,4 @@
-from pycfdi_transform.formatters.cfdi32.efisco_cfdi32_formatter import EfiscoCorpCFDI32Formatter
+from pycfdi_transform.formatters.cfdi32.efisco_corp_cfdi32_formatter import EfiscoCorpCFDI32Formatter
 import unittest
 
 from pycfdi_transform.sax.cfdi32.sax_handler import CFDI32SAXHandler

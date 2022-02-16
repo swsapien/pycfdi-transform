@@ -5,8 +5,8 @@ from pycfdi_transform.helpers.string_helper import StringHelper
 class EfiscoPagos10Formatter(FormatterInterface):
     def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoPagos10Formatter:
         super().__init__(cfdi_data, empty_char, safe_numerics)
-        assert 'cfdi33' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33.'
-    
+        assert 'cfdi32' in self._cfdi_data or 'cfdi33' in self._cfdi_data , 'este formatter solo soporta datos de  cfdi32 o cfdi33.'
+
     @staticmethod
     def _get_id_pago(count_complement:int, count_pago:int, count_dr:int) -> str:
         return f"CP{count_complement}_P{count_pago}_DR{count_dr}"
@@ -109,29 +109,35 @@ class EfiscoPagos10Formatter(FormatterInterface):
     def dict_to_columns(self) -> list[list]:
         results = []
         pagos_list = self._get_part_complement()
+        cfdi_version = 'cfdi33'
+        if 'cfdi32' in self._cfdi_data:
+            cfdi_version = 'cfdi32'
         for tdf in self._cfdi_data['tfd11']:
+            uso_cfdi = ""
+            if cfdi_version == 'cfdi33':
+                uso_cfdi = self._cfdi_data[cfdi_version]['receptor']['uso_cfdi']
             row = [
-                self._cfdi_data['cfdi33']['version'],
-                self._get_str_value(self._cfdi_data['cfdi33']['serie']),
-                self._get_str_value(self._cfdi_data['cfdi33']['folio']),
-                self._cfdi_data['cfdi33']['fecha'],
-                self._cfdi_data['cfdi33']['no_certificado'],
-                self._cfdi_data['cfdi33']['subtotal'],
-                self._get_numeric_value(self._cfdi_data['cfdi33']['descuento']),
-                self._cfdi_data['cfdi33']['total'],
-                self._cfdi_data['cfdi33']['moneda'],
-                self._get_numeric_tipo_cambio_value(self._cfdi_data['cfdi33']['tipo_cambio']),
-                self._cfdi_data['cfdi33']['tipo_comprobante'],
-                self._get_str_value(self._cfdi_data['cfdi33']['metodo_pago']),
-                self._get_str_value(self._cfdi_data['cfdi33']['forma_pago']),
-                self._get_str_value(self._cfdi_data['cfdi33']['condiciones_pago']),
-                self._cfdi_data['cfdi33']['lugar_expedicion'],
-                self._cfdi_data['cfdi33']['emisor']['rfc'],
+                self._cfdi_data[cfdi_version]['version'],
+                self._get_str_value(self._cfdi_data[cfdi_version]['serie']),
+                self._get_str_value(self._cfdi_data[cfdi_version]['folio']),
+                self._cfdi_data[cfdi_version]['fecha'],
+                self._cfdi_data[cfdi_version]['no_certificado'],
+                self._cfdi_data[cfdi_version]['subtotal'],
+                self._get_numeric_value(self._cfdi_data[cfdi_version]['descuento']),
+                self._cfdi_data[cfdi_version]['total'],
+                self._cfdi_data[cfdi_version]['moneda'],
+                self._get_numeric_tipo_cambio_value(self._cfdi_data[cfdi_version]['tipo_cambio']),
+                self._cfdi_data[cfdi_version]['tipo_comprobante'],
+                self._get_str_value(self._cfdi_data[cfdi_version]['metodo_pago']),
+                self._get_str_value(self._cfdi_data[cfdi_version]['forma_pago']),
+                self._get_str_value(self._cfdi_data[cfdi_version]['condiciones_pago']),
+                self._cfdi_data[cfdi_version]['lugar_expedicion'],
+                self._cfdi_data[cfdi_version]['emisor']['rfc'],
                 self._get_str_value(self._cfdi_data['cfdi33']['emisor']['nombre']),
-                self._cfdi_data['cfdi33']['emisor']['regimen_fiscal'],
-                self._cfdi_data['cfdi33']['receptor']['rfc'],
-                self._get_str_value(self._cfdi_data['cfdi33']['receptor']['nombre']),
-                self._cfdi_data['cfdi33']['receptor']['uso_cfdi'],
+                self._cfdi_data[cfdi_version]['emisor']['regimen_fiscal'],
+                self._cfdi_data[cfdi_version]['receptor']['rfc'],
+                self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['nombre']),
+                uso_cfdi,
                 tdf['uuid'],
                 tdf['fecha_timbrado'],
                 tdf['rfc_prov_cert'],
