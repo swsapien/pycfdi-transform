@@ -110,7 +110,7 @@ class EfiscoPagos10Formatter(FormatterInterface):
         results = []
         pagos_list = self._get_part_complement()
         cfdi_version = 'cfdi33'
-        if self._cfdi_data['cfdi33']['version'] == '3.2':
+        if 'cfdi32' in self._cfdi_data:
             cfdi_version = 'cfdi32'
         for tdf in self._cfdi_data['tfd11']:
             row = [
