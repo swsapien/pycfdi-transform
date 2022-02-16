@@ -114,7 +114,7 @@ class EfiscoPagos10Formatter(FormatterInterface):
             cfdi_version = 'cfdi32'
         for tdf in self._cfdi_data['tfd11']:
             uso_cfdi = ""
-            if cfdi_version == '3.3':
+            if cfdi_version == 'cfdi33':
                 uso_cfdi = self._cfdi_data[cfdi_version]['receptor']['uso_cfdi']
             row = [
                 self._cfdi_data[cfdi_version]['version'],
