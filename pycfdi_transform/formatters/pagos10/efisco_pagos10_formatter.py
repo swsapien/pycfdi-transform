@@ -113,6 +113,9 @@ class EfiscoPagos10Formatter(FormatterInterface):
         if 'cfdi32' in self._cfdi_data:
             cfdi_version = 'cfdi32'
         for tdf in self._cfdi_data['tfd11']:
+            uso_cfdi = ""
+            if cfdi_version == '3.3':
+                uso_cfdi = self._cfdi_data[cfdi_version]['receptor']['uso_cfdi']
             row = [
                 self._cfdi_data[cfdi_version]['version'],
                 self._get_str_value(self._cfdi_data[cfdi_version]['serie']),
@@ -134,7 +137,7 @@ class EfiscoPagos10Formatter(FormatterInterface):
                 self._cfdi_data[cfdi_version]['emisor']['regimen_fiscal'],
                 self._cfdi_data[cfdi_version]['receptor']['rfc'],
                 self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['nombre']),
-                self._cfdi_data[cfdi_version]['receptor']['uso_cfdi'],
+                uso_cfdi,
                 tdf['uuid'],
                 tdf['fecha_timbrado'],
                 tdf['rfc_prov_cert'],
