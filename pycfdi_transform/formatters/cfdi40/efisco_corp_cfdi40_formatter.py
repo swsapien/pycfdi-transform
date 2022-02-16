@@ -59,7 +59,7 @@ class EfiscoCorpCFDI40Formatter(FormatterInterface):
 
         Usage example:
         ```
-        formatter = CDACFDI40Formatter(cfdi_data)
+        formatter = EfiscoCorpCFDI40Formatter(cfdi_data)
         if formatter.can_format():
             data_columns = formatter.dict_to_columns()
         else:
@@ -106,7 +106,7 @@ class EfiscoCorpCFDI40Formatter(FormatterInterface):
 
         Usage example:
         ```
-        formatter = CDACFDI40Formatter(cfdi_data)
+        formatter = EfiscoCorpCFDI40Formatter(cfdi_data)
         if formatter.can_format():
             data_columns = formatter.dict_to_columns()
             dict_columns = dict(zip(formatter.get_columns_names(), data_columns[0]))

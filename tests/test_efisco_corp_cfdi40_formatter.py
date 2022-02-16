@@ -2,7 +2,7 @@ from pycfdi_transform import CFDI40SAXHandler
 from pycfdi_transform.formatters.cfdi40.efisco_corp_cfdi40_formatter import EfiscoCorpCFDI40Formatter
 import unittest
 
-class TestCDACFDI40Formatter(unittest.TestCase):
+class TestEfiscoCorpCFDI40Formatter(unittest.TestCase):
 
     def test_columns_names_cfdi40(self):
         formatter = EfiscoCorpCFDI40Formatter({'cfdi40': {}})
