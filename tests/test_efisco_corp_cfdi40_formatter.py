@@ -68,7 +68,7 @@ class TestEfiscoCorpCFDI40Formatter(unittest.TestCase):
     
     def test_formatter_cfdi40_implocal10_ok(self):
         sax_handler = CFDI40SAXHandler().use_implocal10()
-        cfdi_data = sax_handler.transform_from_file('/tests/Resources/implocal/cfdi40_01_implocal.xml')
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/implocal/cfdi40_01_implocal.xml')
         formatter = EfiscoCorpCFDI40Formatter(cfdi_data)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
