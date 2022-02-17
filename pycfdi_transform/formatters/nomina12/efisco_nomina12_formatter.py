@@ -5,7 +5,7 @@ from pycfdi_transform.helpers.string_helper import StringHelper
 class EfiscoNomina12Formatter(FormatterInterface):
     def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoNomina12Formatter:
         super().__init__(cfdi_data, empty_char, safe_numerics)
-        assert 'cfdi33' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33.'
+        assert 'cfdi33' in self._cfdi_data or 'cfdi40' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33.'
     
     def __get_nomina_total_by_property(self,property_name):
         total = None
