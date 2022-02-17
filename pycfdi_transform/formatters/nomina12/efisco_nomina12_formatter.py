@@ -5,15 +5,15 @@ from pycfdi_transform.helpers.string_helper import StringHelper
 class EfiscoNomina12Formatter(FormatterInterface):
     def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoNomina12Formatter:
         super().__init__(cfdi_data, empty_char, safe_numerics)
-        assert 'cfdi33' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33.'
-    
+        assert 'cfdi33' in self._cfdi_data or 'cfdi40' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33 o cfdi40.'
+
     def __get_nomina_total_by_property(self,property_name):
         total = None
         for nomina12 in self._cfdi_data['nomina12']:
             if nomina12[property_name]:
                 total = StringHelper.sum_strings(total, nomina12[property_name])
         return self._get_numeric_value(total)
-    
+
     def __get_total_by_element_and_property(self,element_name:str,property_name:str):
         total = None
         for nomina12 in self._cfdi_data['nomina12']:
@@ -23,19 +23,19 @@ class EfiscoNomina12Formatter(FormatterInterface):
 
     def __get_total_percepciones(self):
         return self.__get_nomina_total_by_property('total_percepciones')
-    
+
     def __get_total_deducciones(self):
         return self.__get_nomina_total_by_property('total_deducciones')
-    
+
     def __get_total_otros_pagos(self):
         return self.__get_nomina_total_by_property('total_otros_pagos')
-    
+
     def __get_percepciones_total_by_property_name(self,property_name):
         return self.__get_total_by_element_and_property('percepciones',property_name)
-    
+
     def __get_deducciones_total_by_property_name(self,property_name):
         return self.__get_total_by_element_and_property('deducciones',property_name)
-    
+
     def _get_part_complement(self) -> list:
         results = []
         for nomina12 in self._cfdi_data['nomina12']:
@@ -115,7 +115,7 @@ class EfiscoNomina12Formatter(FormatterInterface):
                         ]
                     )
         return results
-        
+
     def dict_to_columns(self) -> list[list]:
         results = []
         nomina_list = self._get_part_complement()
@@ -150,17 +150,17 @@ class EfiscoNomina12Formatter(FormatterInterface):
             for nomina_row in nomina_list:
                 results.append(row + nomina_row)
         return results
-    
+
     def can_format(self) -> bool:
         if not 'nomina12' in self._cfdi_data or len(self._cfdi_data['nomina12']) == 0:
             self._errors.append('Not nomina12 in data.')
         elif not 'tfd11' in self._cfdi_data or len(self._cfdi_data['tfd11']) == 0:
             self._errors.append('Not tfd11 in data.')
         return len(self._errors) == 0
-    
+
     def get_errors(self) -> str:
         return '|'.join(self._errors)
-    
+
     @staticmethod
     def get_columns_names() -> list[str]:
         return [

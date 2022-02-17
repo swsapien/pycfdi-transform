@@ -66,7 +66,7 @@ class BaseHandler(ABC):
             },
             'tfd10': []
         }
-    
+
     def use_nomina11(self) -> BaseHandler:
         if not '{http://www.sat.gob.mx/nomina}Nomina' in self._complements:
             self._complements['{http://www.sat.gob.mx/nomina}Nomina'] = {
@@ -77,14 +77,6 @@ class BaseHandler(ABC):
 
     def use_concepts_cfdi32(self) -> BaseHandler:
         self._config['concepts'] = True
-        return self
-
-    def use_pagos10(self) -> BaseHandler:
-        if not '{http://www.sat.gob.mx/Pagos}Pagos' in self._complements:
-            self._complements['{http://www.sat.gob.mx/Pagos}Pagos'] = {
-                'class': Pagos10SAXHandler,
-                'key': 'pagos10'
-            }
         return self
 
     def use_implocal10(self) -> BaseHandler:

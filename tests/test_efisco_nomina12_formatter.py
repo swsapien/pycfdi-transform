@@ -86,7 +86,7 @@ class TestEfiscoNomina12Formatter(unittest.TestCase):
     def test_initialize_class_error_version_nomina12(self):
         with self.assertRaises(AssertionError) as ex:
             EfiscoNomina12Formatter({'cfdi32': {}})
-        self.assertEqual('Este formatter únicamente soporta datos de cfdi33.', str(ex.exception))
+        self.assertEqual('Este formatter únicamente soporta datos de cfdi33 o cfdi40.', str(ex.exception))
     
     def test_formatter_error_tfd_nomina12(self):
         sax_handler = CFDI33SAXHandler().use_nomina12()
