@@ -2,24 +2,25 @@ from __future__ import annotations
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
 from pycfdi_transform.helpers.string_helper import StringHelper
 
+
 class EfiscoPagos10Formatter(FormatterInterface):
-    def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoPagos10Formatter:
+    def __init__(self, cfdi_data: dict, empty_char: str = '', safe_numerics: bool = False) -> EfiscoPagos10Formatter:
         super().__init__(cfdi_data, empty_char, safe_numerics)
-        assert 'cfdi32' in self._cfdi_data or 'cfdi33' in self._cfdi_data , 'este formatter solo soporta datos de  cfdi32 o cfdi33.'
+        assert 'cfdi33' in self._cfdi_data, 'este formatter solo soporta datos de cfdi33.'
 
     @staticmethod
-    def _get_id_pago(count_complement:int, count_pago:int, count_dr:int) -> str:
+    def _get_id_pago(count_complement: int, count_pago: int, count_dr: int) -> str:
         return f"CP{count_complement}_P{count_pago}_DR{count_dr}"
-    
+
     @staticmethod
-    def _get_total_taxes(taxes:list, key:str) -> str:
+    def _get_total_taxes(taxes: list, key: str) -> str:
         total = '0.00'
         for tax in taxes:
             total = StringHelper.sum_strings(total, tax[key])
         return total
-    
+
     @staticmethod
-    def _get_total_taxes_by_type(taxes:list, tax_classification:str, tax_type:str) -> str:
+    def _get_total_taxes_by_type(taxes: list, tax_classification: str, tax_type: str) -> str:
         total = '0.00'
         for tax in taxes:
             taxes_classificated = tax[tax_classification]
@@ -70,7 +71,7 @@ class EfiscoPagos10Formatter(FormatterInterface):
                             self._get_numeric_default_value()
                         ]
                     )
-                
+
                 if len(pago['docto_relacionado']) > 0:
                     for docto in pago['docto_relacionado']:
                         row[0] = self._get_id_pago(count_complement_pago, count_pago, count_dr)
@@ -105,7 +106,7 @@ class EfiscoPagos10Formatter(FormatterInterface):
                 count_pago += 1
             count_complement_pago += 1
         return results
-        
+
     def dict_to_columns(self) -> list[list]:
         results = []
         pagos_list = self._get_part_complement()
@@ -146,17 +147,17 @@ class EfiscoPagos10Formatter(FormatterInterface):
             for pago_row in pagos_list:
                 results.append(row + pago_row)
         return results
-    
+
     def can_format(self) -> bool:
         if not 'pagos10' in self._cfdi_data or len(self._cfdi_data['pagos10']) == 0:
             self._errors.append('Not pagos10 in data.')
         elif not 'tfd11' in self._cfdi_data or len(self._cfdi_data['tfd11']) == 0:
             self._errors.append('Not tfd11 in data.')
         return len(self._errors) == 0
-    
+
     def get_errors(self) -> str:
         return '|'.join(self._errors)
-    
+
     @staticmethod
     def get_columns_names() -> list[str]:
         return [
