@@ -6,7 +6,7 @@ from pycfdi_transform.helpers.string_helper import StringHelper
 class EfiscoPagos10Formatter(FormatterInterface):
     def __init__(self, cfdi_data: dict, empty_char: str = '', safe_numerics: bool = False) -> EfiscoPagos10Formatter:
         super().__init__(cfdi_data, empty_char, safe_numerics)
-        assert 'cfdi33' in self._cfdi_data, 'este formatter solo soporta datos de cfdi33.'
+        assert 'cfdi33' in self._cfdi_data, 'Este formatter solo soporta datos de cfdi33.'
 
     @staticmethod
     def _get_id_pago(count_complement: int, count_pago: int, count_dr: int) -> str:
