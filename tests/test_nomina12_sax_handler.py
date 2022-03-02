@@ -1161,7 +1161,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         ]
                     },
                     'incapacidades': {
-                        'incapcidad': []
+                        'incapacidad': []
                     }
                 },
                 {
@@ -1237,7 +1237,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'otro_pago': []
                     },
                     'incapacidades': {
-                        'incapcidad': []
+                        'incapacidad': []
                     }
                 }
             ]
@@ -1445,7 +1445,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         ]
                     },
                     'incapacidades': {
-                        'incapcidad': []
+                        'incapacidad': []
                     }
                 },
                 {
@@ -1521,7 +1521,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'otro_pago': []
                     },
                     'incapacidades': {
-                        'incapcidad': []
+                        'incapacidad': []
                     }
                 }
             ]
@@ -1730,7 +1730,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         ]
                     },
                     'incapacidades': {
-                        'incapcidad': []
+                        'incapacidad': []
                     }
                 },
                 {
@@ -1806,7 +1806,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                         'otro_pago': []
                     },
                     'incapacidades': {
-                        'incapcidad': []
+                        'incapacidad': []
                     }
                 }
             ]
