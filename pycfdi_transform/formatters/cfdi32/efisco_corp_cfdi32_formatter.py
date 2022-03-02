@@ -2,9 +2,10 @@ from __future__ import annotations
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
 from pycfdi_transform.helpers.string_helper import StringHelper
 
+
 class EfiscoCorpCFDI32Formatter(FormatterInterface):
-    def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoCorpCFDI32Formatter:
-        super().__init__(cfdi_data,empty_char,safe_numerics)
+    def __init__(self, cfdi_data: dict, empty_char: str = '', safe_numerics: bool = False) -> EfiscoCorpCFDI32Formatter:
+        super().__init__(cfdi_data, empty_char, safe_numerics)
         assert 'cfdi32' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi32.'
         self._config = {
             'empty_char': empty_char,
@@ -13,14 +14,14 @@ class EfiscoCorpCFDI32Formatter(FormatterInterface):
         self._errors = []
 
     @staticmethod
-    def _get_total_taxes_by_type(taxes:list, tax_classification:str, tax_type:str) -> str:
+    def _get_total_taxes_by_type(taxes: list, tax_classification: str, tax_type: str) -> str:
         total = '0.00'
         taxes_classificated = taxes[tax_classification]
         for tax in taxes_classificated:
             if tax['impuesto'] == tax_type:
                 total = StringHelper.sum_strings(total, tax['importe'])
         return total
-    
+
     def _get_implocal10_total_retenciones(self) -> list:
         total = self._get_numeric_default_value()
         if 'implocal10' in self._cfdi_data:
@@ -28,7 +29,7 @@ class EfiscoCorpCFDI32Formatter(FormatterInterface):
                 if tax['total_retenciones_impuestos_locales']:
                     total = StringHelper.sum_strings(total, tax['total_retenciones_impuestos_locales'])
         return total
-    
+
     def _get_implocal10_total_traslados(self) -> list:
         total = self._get_numeric_default_value()
         if 'implocal10' in self._cfdi_data:
@@ -37,20 +38,39 @@ class EfiscoCorpCFDI32Formatter(FormatterInterface):
                     total = StringHelper.sum_strings(total, tax['total_traslados_impuestos_locales'])
         return total
 
-    def _get_concept_value_by_key(self,key: str)->str:
+    def _get_concept_value_by_key(self, key: str) -> str:
         if self._cfdi_data['cfdi32']['conceptos'] and len(self._cfdi_data['cfdi32']['conceptos']) > 0 and key in self._cfdi_data['cfdi32']['conceptos'][0]:
             return self._cfdi_data['cfdi32']['conceptos'][0][key]
-        else: 
+        else:
             return self._config["empty_char"]
 
     def can_format(self) -> bool:
         if not 'tfd10' in self._cfdi_data or len(self._cfdi_data['tfd10']) == 0:
             self._errors.append('Not tfd10 in data.')
         return len(self._errors) == 0
-    
+
     def get_errors(self) -> str:
         return '|'.join(self._errors)
-        
+
+    def _get_tipo_comprobante(self, cfdi_data) -> str:
+        if 'nomina11' in cfdi_data:
+            return 'N'
+        elif cfdi_data['cfdi32']['tipo_comprobante'] == 'ingreso':
+            return 'I'
+        elif cfdi_data['cfdi32']['tipo_comprobante'] == 'egreso':
+            return 'E'
+        elif cfdi_data['cfdi32']['tipo_comprobante'] == 'transporte':
+            return 'T'
+
+    def _get_moneda(self, tipo_de_cambio):
+        try:
+            return 'MXN' if not tipo_de_cambio or float(tipo_de_cambio) == 1 else 'USD'
+        except ValueError:
+            return 'USD'
+
+    def _get_emisor_regimen_fiscal(self, emisor_regimen_fiscal: list):
+        return ', '.join(emisor_regimen_fiscal)
+
     def dict_to_columns(self) -> list[list]:
         results = []
         for tdf in self._cfdi_data['tfd10']:
@@ -72,13 +92,13 @@ class EfiscoCorpCFDI32Formatter(FormatterInterface):
                 # TOTAL
                 self._cfdi_data['cfdi32']['total'],
                 # MONEDA
-                self._cfdi_data['cfdi32']['moneda'],
+                self._get_moneda(self._cfdi_data['cfdi32']['tipo_cambio']),
                 # TIPOCAMBIO
                 self._get_numeric_tipo_cambio_value(self._cfdi_data['cfdi32']['tipo_cambio']),
                 # TIPODECOMPROBANTE
-                self._cfdi_data['cfdi32']['tipo_comprobante'],
+                self._get_tipo_comprobante(self._cfdi_data),
                 # METODOPAGO
-                self._get_str_value(self._cfdi_data['cfdi32']['metodo_pago']),
+                "",
                 # FORMAPAGO
                 self._get_str_value(self._cfdi_data['cfdi32']['forma_pago']),
                 # CONDICIONESDEPAGO
@@ -90,7 +110,7 @@ class EfiscoCorpCFDI32Formatter(FormatterInterface):
                 # EMISORNOMBRE
                 self._get_str_value(self._cfdi_data['cfdi32']['emisor']['nombre']),
                 # EMISORREGIMENFISCAL
-                self._cfdi_data['cfdi32']['emisor']['regimen_fiscal'],
+                '',
                 # RECEPTORRFC
                 self._cfdi_data['cfdi32']['receptor']['rfc'],
                 # RECEPTORNOMBRE
@@ -102,7 +122,7 @@ class EfiscoCorpCFDI32Formatter(FormatterInterface):
                 # RECEPTORUSOCFDI
                 "",
                 # CLAVEPRODSERV
-                self._get_concept_value_by_key('clave_prod_serv'),                    
+                self._get_concept_value_by_key('clave_prod_serv'),
                 # C_DESCRIPCION
                 self._get_concept_value_by_key('descripcion'),
                 # IVATRASLADO
@@ -132,50 +152,63 @@ class EfiscoCorpCFDI32Formatter(FormatterInterface):
                 # RFCPROVCERTIF
                 "",
                 # SELLOCFD
-                tdf['sello_cfd']
+                tdf['sello_cfd'],
+                # FORMAPAGO32
+                self._get_str_value(self._cfdi_data['cfdi32']['forma_pago']),
+                # METODOPAGO32
+                self._get_str_value(self._cfdi_data['cfdi32']['metodo_pago']),
+                # MONEDA32
+                self._get_str_value(self._cfdi_data['cfdi32']['moneda']),
+                # EMISORREGIMENFISCAL32
+                self._get_emisor_regimen_fiscal(self._cfdi_data['cfdi32']['emisor']['regimen_fiscal']),
             ]
             results.append(row)
         return results
-    
+
     @staticmethod
     def get_columns_names() -> list[str]:
         return [
-            'VERSION', 
-            'SERIE', 
-            'FOLIO', 
-            'FECHA', 
-            'NOCERTIFICADO', 
-            'SUBTOTAL', 
-            'DESCUENTO', 
-            'TOTAL', 
-            'MONEDA', 
-            'TIPOCAMBIO', 
-            'TIPODECOMPROBANTE', 
-            'METODOPAGO', 
-            'FORMAPAGO', 
-            'CONDICIONESDEPAGO', 
-            'LUGAREXPEDICION', 
-            'EMISORRFC', 
-            'EMISORNOMBRE', 
-            'EMISORREGIMENFISCAL', 
-            'RECEPTORRFC', 
-            'RECEPTORNOMBRE', 
-            'RESIDENCIAFISCAL', 
-            'NUMREGIDTRIB', 
-            'RECEPTORUSOCFDI', 
+            'VERSION',
+            'SERIE',
+            'FOLIO',
+            'FECHA',
+            'NOCERTIFICADO',
+            'SUBTOTAL',
+            'DESCUENTO',
+            'TOTAL',
+            'MONEDA',
+            'TIPOCAMBIO',
+            'TIPODECOMPROBANTE',
+            'METODOPAGO',
+            'FORMAPAGO',
+            'CONDICIONESDEPAGO',
+            'LUGAREXPEDICION',
+            'EMISORRFC',
+            'EMISORNOMBRE',
+            'EMISORREGIMENFISCAL',
+            'RECEPTORRFC',
+            'RECEPTORNOMBRE',
+            'RESIDENCIAFISCAL',
+            'NUMREGIDTRIB',
+            'RECEPTORUSOCFDI',
             'CLAVEPRODSERV',
             'C_DESCRIPCION',
-            'IVATRASLADO', 
-            'IEPSTRASLADO', 
-            'TOTALIMPUESTOSTRASLADOS', 
-            'ISRRETENIDO', 
-            'IVARETENIDO', 
-            'IEPSRETENIDO', 
-            'TOTALIMPUESTOSRETENIDOS', 
-            'TOTALTRASLADOSIMPUESTOSLOCALES', 
-            'TOTALRETENCIONESIMPUESTOSLOCALES', 
-            'COMPLEMENTOS', 
-            'UUID', 
-            'FECHATIMBRADO', 
-            'RFCPROVCERTIF', 
-            'SELLOCFD']
+            'IVATRASLADO',
+            'IEPSTRASLADO',
+            'TOTALIMPUESTOSTRASLADOS',
+            'ISRRETENIDO',
+            'IVARETENIDO',
+            'IEPSRETENIDO',
+            'TOTALIMPUESTOSRETENIDOS',
+            'TOTALTRASLADOSIMPUESTOSLOCALES',
+            'TOTALRETENCIONESIMPUESTOSLOCALES',
+            'COMPLEMENTOS',
+            'UUID',
+            'FECHATIMBRADO',
+            'RFCPROVCERTIF',
+            'SELLOCFD',
+            'METODOPAGO32',
+            'FORMAPAGO32',
+            'MONEDA32',
+            'EMISORREGIMENFISCAL32'
+        ]
