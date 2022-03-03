@@ -1,6 +1,5 @@
 from __future__ import annotations
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
-from pycfdi_transform.helpers.string_helper import StringHelper
 
 class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
     def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoCoreConceptsDetailFormatter:
@@ -10,7 +9,7 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
         results = []
         version = self.get_version()
         cfdi_version = version['cfdi']
-        for tdf in self._cfdi_data[version['tfd']]:
+        for tfd in self._cfdi_data[version['tfd']]:
             cfdi_row = [
                 self._cfdi_data[cfdi_version]['version'],
                 self._get_str_value(self._cfdi_data[cfdi_version]['serie']),
@@ -33,23 +32,25 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
                 self._cfdi_data[cfdi_version]['receptor']['rfc'],
                 self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['nombre']),
                 self._cfdi_data[cfdi_version]['receptor']['uso_cfdi'],
-                tdf['uuid'],
-                tdf['fecha_timbrado'],
+                tfd['uuid'],
+                tfd['fecha_timbrado'],
             ]
-            for  idx, concept in self._cfdi_data['conceptos']:
+
+            for  idx, concept in enumerate(self._cfdi_data[cfdi_version]['conceptos']):
+
                 concept_row = [
                     idx,
-                    clave_pro_serv,
-                    no_identificacion,
-                    cantidad,
-                    clave_unidad,
-                    unidad,
-                    descripcion,
-                    valor_unitario,
-                    descuento,
-                    importe
+                    concept['clave_prod_serv'],
+                    concept['no_identificacion'],
+                    concept['cantidad'],
+                    concept['clave_unidad'],
+                    concept['unidad'],
+                    concept['descripcion'],
+                    concept['valor_unitario'],
+                    concept['descuento'],
+                    concept['importe']
                 ]
-                results.append([cfdi_row + concept_row])
+                results.append(cfdi_row + concept_row)
         return results
 
     def get_version(self):
@@ -61,12 +62,12 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
         return {'cfdi': 'cfdi33', 'tfd': 'tfd11' }
 
     def can_format(self) -> bool:
-        # if not 'nomina12' in self._cfdi_data or len(self._cfdi_data['nomina12']) == 0:
-        #     self._errors.append('Not nomina12 in data.')
-        # elif not 'tfd11' in self._cfdi_data or len(self._cfdi_data['tfd11']) == 0:
-        #     self._errors.append('Not tfd11 in data.')
-        # return len(self._errors) == 0
-        return True
+        version = self.get_version()
+        cfdi_version = version['cfdi']
+        if 'conceptos' in self._cfdi_data[cfdi_version]:
+            return True
+        self._errors.append('No concepts key')
+        return False
 
     def get_errors(self) -> str:
         return '|'.join(self._errors)
