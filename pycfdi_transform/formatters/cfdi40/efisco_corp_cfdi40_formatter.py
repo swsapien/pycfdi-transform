@@ -22,7 +22,7 @@ class EfiscoCorpCFDI40Formatter(BaseCFDI40Formatter):
             list[list]: List of lists where each element is disctint TFD (if invoice only have 1 TFD expect only 1 element) 
         """
         results = []
-        for tdf in self._cfdi_data['tfd11']:
+        for tfd in self._cfdi_data['tfd11']:
             row = [
                 # VERSION
                 self._cfdi_data['cfdi40']['version'],
@@ -95,13 +95,13 @@ class EfiscoCorpCFDI40Formatter(BaseCFDI40Formatter):
                 # COMPLEMENTOS
                 self._get_str_value(self._cfdi_data['cfdi40']['complementos']),
                 # UUID                
-                tdf['uuid'],
+                tfd['uuid'],
                 # FECHATIMBRADO
-                tdf['fecha_timbrado'],
+                tfd['fecha_timbrado'],
                 # RFCPROVCERTIF
-                tdf['rfc_prov_cert'],
+                tfd['rfc_prov_cert'],
                 # SELLOCFD
-                tdf['sello_cfd'],
+                tfd['sello_cfd'],
                 # FORMAPAGO32
                 '',
                 # METODOPAGO32

@@ -4,8 +4,8 @@ from pycfdi_transform.formatters.formatter_interface import FormatterInterface
 from pycfdi_transform.helpers.string_helper import StringHelper
 
 
-class BaseCFD32Formatter(FormatterInterface, ABC):
-    def __init__(self, cfdi_data: dict, empty_char: str = '', safe_numerics: bool = False) -> BaseCFD32Formatter:
+class BaseCFDI32Formatter(FormatterInterface, ABC):
+    def __init__(self, cfdi_data: dict, empty_char: str = '', safe_numerics: bool = False) -> BaseCFDI32Formatter:
         super().__init__(cfdi_data, empty_char, safe_numerics)
         assert 'cfdi32' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi32.'
         self._config = {

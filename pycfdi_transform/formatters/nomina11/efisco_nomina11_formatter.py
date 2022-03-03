@@ -109,7 +109,7 @@ class EfiscoNomina11Formatter(FormatterInterface):
     def dict_to_columns(self) -> list[list]:
         results = []
         nomina_list = self._get_part_complement()
-        for tdf in self._cfdi_data['tfd10']:
+        for tfd in self._cfdi_data['tfd10']:
             row = [
                 self._cfdi_data['cfdi32']['version'],
                 self._get_str_value(self._cfdi_data['cfdi32']['serie']),
@@ -132,10 +132,10 @@ class EfiscoNomina11Formatter(FormatterInterface):
                 self._cfdi_data['cfdi32']['receptor']['rfc'],
                 self._cfdi_data['cfdi32']['receptor']['nombre'],
                 "",  # USOCFDI
-                tdf['uuid'],
-                tdf['fecha_timbrado'],
+                tfd['uuid'],
+                tfd['fecha_timbrado'],
                 "",  # RFCPROVECERT
-                tdf['sello_cfd']
+                tfd['sello_cfd']
             ]
             for nomina_row in nomina_list:
                 results.append(row + nomina_row)

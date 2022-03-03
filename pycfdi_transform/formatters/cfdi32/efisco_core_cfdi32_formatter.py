@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-from pycfdi_transform.formatters.cfdi32.base_cfdi32_formatter import BaseCFD32Formatter
+from pycfdi_transform.formatters.cfdi32.base_cfdi32_formatter import BaseCFDI32Formatter
 
 
-class EfiscoCoreCFDI32Formatter(BaseCFD32Formatter):
+class EfiscoCoreCFDI32Formatter(BaseCFDI32Formatter):
     def dict_to_columns(self) -> list[list]:
         results = []
-        for tdf in self._cfdi_data['tfd10']:
+        for tfd in self._cfdi_data['tfd10']:
             row = [
                 # VERSION
                 self._cfdi_data['cfdi32']['version'],
@@ -77,13 +77,13 @@ class EfiscoCoreCFDI32Formatter(BaseCFD32Formatter):
                 # COMPLEMENTOS
                 self._get_str_value(self._cfdi_data['cfdi32']['complementos']),
                 # UUID
-                tdf['uuid'],
+                tfd['uuid'],
                 # FECHATIMBRADO
-                tdf['fecha_timbrado'],
+                tfd['fecha_timbrado'],
                 # RFCPROVCERTIF
                 "",
                 # SELLOCFD
-                tdf['sello_cfd']
+                tfd['sello_cfd']
             ]
             results.append(row)
         return results
