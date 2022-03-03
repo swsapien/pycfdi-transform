@@ -4,9 +4,9 @@ from pycfdi_transform.formatters.concepts.efisco_core_concepts_detail_formatter 
 import unittest
 import time
 
-class TestEfiscoNomina12Formatter(unittest.TestCase):
+class TestEfiscoCoreConceptosFormatter(unittest.TestCase):
 
-    def test_columns_names_nomina11(self):
+    def test_columns_names_concepts(self):
         formatter = EfiscoCoreConceptsDetailFormatter({'cfdi33': {}})
         columns_expected = [
             "VERSION",

@@ -31,7 +31,7 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
                 self._cfdi_data[cfdi_version]['emisor']['regimen_fiscal'],
                 self._cfdi_data[cfdi_version]['receptor']['rfc'],
                 self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['nombre']),
-                self._cfdi_data[cfdi_version]['receptor'].get('uso_cfdi',''),
+                self._cfdi_data[cfdi_version]['receptor'].get('uso_cfdi', self._config['empty_char']),
                 tfd['uuid'],
                 tfd['fecha_timbrado'],
             ]
@@ -40,15 +40,15 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
 
                 concept_row = [
                     idx,
-                    concept.get('clave_prod_serv', ''),
-                    concept.get('no_identificacion', ''),
-                    concept.get('cantidad', ''),
-                    concept.get('clave_unidad', ''),
-                    concept.get('unidad', ''),
-                    concept.get('descripcion', ''),
-                    concept.get('valor_unitario', ''),
-                    concept.get('descuento', ''),
-                    concept.get('importe', '')
+                    concept.get('clave_prod_serv', self._config['empty_char']),
+                    concept.get('no_identificacion', self._config['empty_char']),
+                    concept.get('cantidad', self._config['empty_char']),
+                    concept.get('clave_unidad', self._config['empty_char']),
+                    concept.get('unidad', self._config['empty_char']),
+                    concept.get('descripcion', self._config['empty_char']),
+                    concept.get('valor_unitario', self._config['empty_char']),
+                    concept.get('descuento', self._config['empty_char']),
+                    concept.get('importe', self._config['empty_char'])
                 ]
                 results.append(cfdi_row + concept_row)
         return results
