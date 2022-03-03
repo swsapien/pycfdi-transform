@@ -3,7 +3,7 @@ from __future__ import annotations
 from pycfdi_transform.formatters.cfdi40.base_cfdi40_formatter import BaseCFDI40Formatter
 
 
-class EfiscoCorpCFDI40Formatter(BaseCFDI40Formatter):
+class EfiscoCoreCFDI40Formatter(BaseCFDI40Formatter):
     def dict_to_columns(self) -> list[list]:
         """Format data contained in dict to list matching every column with its asociated column.
         For complete list of columns use "get_columns_names".
@@ -72,8 +72,6 @@ class EfiscoCorpCFDI40Formatter(BaseCFDI40Formatter):
                 self._cfdi_data['cfdi40']['receptor']['uso_cfdi'],
                 # CLAVEPRODSERV
                 self._get_concept_value_by_key('clave_prod_serv'),
-                # C_DESCRIPCION
-                self._get_concept_value_by_key('descripcion'),
                 # IVATRASLADO
                 self._get_total_taxes_by_type(self._cfdi_data['cfdi40']['impuestos'], 'traslados', '002'),
                 # IEPSTRASLADO
@@ -101,21 +99,18 @@ class EfiscoCorpCFDI40Formatter(BaseCFDI40Formatter):
                 # RFCPROVCERTIF
                 tdf['rfc_prov_cert'],
                 # SELLOCFD
-                tdf['sello_cfd'],
-                # FORMAPAGO32
-                '',
-                # METODOPAGO32
-                '',
-                # MONEDA32
-                '',
-                # EMISORREGIMENFISCAL32
-                '',
+                tdf['sello_cfd']
             ]
             results.append(row)
         return results
 
     @staticmethod
     def get_columns_names() -> list[str]:
+        """Gets a full list with columns names
+
+        Returns:
+            list[str]: List with columns names.
+        """
         return [
             'VERSION',
             'SERIE',
@@ -141,7 +136,6 @@ class EfiscoCorpCFDI40Formatter(BaseCFDI40Formatter):
             'NUMREGIDTRIB',
             'RECEPTORUSOCFDI',
             'CLAVEPRODSERV',
-            'C_DESCRIPCION',
             'IVATRASLADO',
             'IEPSTRASLADO',
             'TOTALIMPUESTOSTRASLADOS',
@@ -155,9 +149,4 @@ class EfiscoCorpCFDI40Formatter(BaseCFDI40Formatter):
             'UUID',
             'FECHATIMBRADO',
             'RFCPROVCERTIF',
-            'SELLOCFD',
-            'METODOPAGO32',
-            'FORMAPAGO32',
-            'MONEDA32',
-            'EMISORREGIMENFISCAL32'
-        ]
+            'SELLOCFD']
