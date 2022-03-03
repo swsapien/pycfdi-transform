@@ -35,6 +35,7 @@ from pycfdi_transform.formatters.pagos10.efisco_pagos10_formatter import EfiscoP
 from pycfdi_transform.formatters.pagos20.efisco_pagos20_formatter import EfiscoPagos20Formatter
 from pycfdi_transform.formatters.cfdi40.cda_cfdi40_formatter import CDACFDI40Formatter
 from pycfdi_transform.formatters.cfdi40.efisco_corp_cfdi40_formatter import EfiscoCorpCFDI40Formatter
+from pycfdi_transform.formatters.concepts.efisco_core_concepts_detail_formatter import EfiscoCoreConceptsDetailFormatter
 
 del absolute_import
 del division
