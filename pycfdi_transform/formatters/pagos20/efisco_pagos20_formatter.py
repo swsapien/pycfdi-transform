@@ -107,7 +107,7 @@ class EfiscoPagos20Formatter(FormatterInterface):
     def dict_to_columns(self) -> list[list]:
         results = []
         pagos_list = self._get_part_complement()
-        for tdf in self._cfdi_data['tfd11']:
+        for tfd in self._cfdi_data['tfd11']:
             row = [
                 self._cfdi_data['cfdi40']['version'],
                 self._get_str_value(self._cfdi_data['cfdi40']['serie']),
@@ -130,10 +130,10 @@ class EfiscoPagos20Formatter(FormatterInterface):
                 self._cfdi_data['cfdi40']['receptor']['rfc'],
                 self._get_str_value(self._cfdi_data['cfdi40']['receptor']['nombre']),
                 self._cfdi_data['cfdi40']['receptor']['uso_cfdi'],
-                tdf['uuid'],
-                tdf['fecha_timbrado'],
-                tdf['rfc_prov_cert'],
-                tdf['sello_cfd']
+                tfd['uuid'],
+                tfd['fecha_timbrado'],
+                tfd['rfc_prov_cert'],
+                tfd['sello_cfd']
             ]
             for pago_row in pagos_list:
                 results.append(row + pago_row)

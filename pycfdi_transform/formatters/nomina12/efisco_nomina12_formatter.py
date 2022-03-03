@@ -122,7 +122,7 @@ class EfiscoNomina12Formatter(FormatterInterface):
         cfdi_version = 'cfdi33'
         if 'cfdi40' in self._cfdi_data:
             cfdi_version = 'cfdi40'
-        for tdf in self._cfdi_data['tfd11']:
+        for tfd in self._cfdi_data['tfd11']:
             row = [
                 self._cfdi_data[cfdi_version]['version'],
                 self._get_str_value(self._cfdi_data[cfdi_version]['serie']),
@@ -145,10 +145,10 @@ class EfiscoNomina12Formatter(FormatterInterface):
                 self._cfdi_data[cfdi_version]['receptor']['rfc'],
                 self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['nombre']),
                 self._cfdi_data[cfdi_version]['receptor']['uso_cfdi'],
-                tdf['uuid'],
-                tdf['fecha_timbrado'],
-                tdf['rfc_prov_cert'],
-                tdf['sello_cfd']
+                tfd['uuid'],
+                tfd['fecha_timbrado'],
+                tfd['rfc_prov_cert'],
+                tfd['sello_cfd']
             ]
             for nomina_row in nomina_list:
                 results.append(row + nomina_row)

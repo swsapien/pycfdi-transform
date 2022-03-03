@@ -3,7 +3,7 @@ from __future__ import annotations
 from pycfdi_transform.formatters.cfdi33.base_cfdi33_formatter import BaseCFDI33Formatter
 
 
-class EfiscoCorpCFDI33Formatter(BaseCFDI33Formatter):
+class EfiscoCoreCFDI33Formatter(BaseCFDI33Formatter):
 
     def dict_to_columns(self) -> list[list]:
         results = []
@@ -55,8 +55,6 @@ class EfiscoCorpCFDI33Formatter(BaseCFDI33Formatter):
                 self._get_str_value(self._cfdi_data['cfdi33']['receptor']['num_reg_id_trib']),
                 # RECEPTORUSOCFDI
                 self._cfdi_data['cfdi33']['receptor']['uso_cfdi'],
-                # CLAVEPRODSERV
-                self._get_concept_value_by_key('clave_prod_serv'),
                 # C_DESCRIPCION
                 self._get_concept_value_by_key('descripcion'),
                 # IVATRASLADO
@@ -86,15 +84,7 @@ class EfiscoCorpCFDI33Formatter(BaseCFDI33Formatter):
                 # RFCPROVCERTIF
                 tfd['rfc_prov_cert'],
                 # SELLOCFD
-                tfd['sello_cfd'],
-                # FORMAPAGO32
-                '',
-                # METODOPAGO32
-                '',
-                # MONEDA32
-                '',
-                # EMISORREGIMENFISCAL32
-                '',
+                tfd['sello_cfd']
             ]
             results.append(row)
         return results
@@ -126,7 +116,6 @@ class EfiscoCorpCFDI33Formatter(BaseCFDI33Formatter):
             'NUMREGIDTRIB',
             'RECEPTORUSOCFDI',
             'CLAVEPRODSERV',
-            'C_DESCRIPCION',
             'IVATRASLADO',
             'IEPSTRASLADO',
             'TOTALIMPUESTOSTRASLADOS',
@@ -140,10 +129,4 @@ class EfiscoCorpCFDI33Formatter(BaseCFDI33Formatter):
             'UUID',
             'FECHATIMBRADO',
             'RFCPROVCERTIF',
-            'SELLOCFD',
-            'METODOPAGO32',
-            'FORMAPAGO32',
-            'MONEDA32',
-            'EMISORREGIMENFISCAL32'
-        ]
-
+            'SELLOCFD']
