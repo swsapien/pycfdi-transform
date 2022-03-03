@@ -31,7 +31,7 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
                 self._cfdi_data[cfdi_version]['emisor']['regimen_fiscal'],
                 self._cfdi_data[cfdi_version]['receptor']['rfc'],
                 self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['nombre']),
-                self._cfdi_data[cfdi_version]['receptor']['uso_cfdi'],
+                self._cfdi_data[cfdi_version]['receptor'].get('uso_cfdi',''),
                 tfd['uuid'],
                 tfd['fecha_timbrado'],
             ]
@@ -40,15 +40,15 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
 
                 concept_row = [
                     idx,
-                    concept['clave_prod_serv'],
-                    concept['no_identificacion'],
-                    concept['cantidad'],
-                    concept['clave_unidad'],
-                    concept['unidad'],
-                    concept['descripcion'],
-                    concept['valor_unitario'],
-                    concept['descuento'],
-                    concept['importe']
+                    concept.get('clave_prod_serv', ''),
+                    concept.get('no_identificacion', ''),
+                    concept.get('cantidad', ''),
+                    concept.get('clave_unidad', ''),
+                    concept.get('unidad', ''),
+                    concept.get('descripcion', ''),
+                    concept.get('valor_unitario', ''),
+                    concept.get('descuento', ''),
+                    concept.get('importe', '')
                 ]
                 results.append(cfdi_row + concept_row)
         return results
