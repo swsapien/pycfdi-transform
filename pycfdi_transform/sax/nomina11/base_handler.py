@@ -44,7 +44,7 @@ class BaseHandler(ABC):
                 'deduccion': []
             },
             'incapacidades': {
-                'incapcidad': []
+                'incapacidad': []
             },
             'horas_extras': {
                 'horas_extra': []

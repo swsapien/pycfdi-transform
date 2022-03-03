@@ -79,6 +79,7 @@ class EfiscoPagos20Formatter(FormatterInterface):
                                 self._get_str_value(docto['folio']),
                                 docto['moneda_dr'],
                                 self._get_numeric_tipo_cambio_value(docto['equivalencia_dr']),
+                                "", #METODO_DE_PAGO_DR
                                 self._get_str_value(docto['num_parcialidad']),
                                 self._get_numeric_value(docto['imp_saldo_ant']),
                                 self._get_numeric_value(docto['imp_pagado']),
@@ -199,7 +200,8 @@ class EfiscoPagos20Formatter(FormatterInterface):
             "P_DR_SERIE",
             "P_DR_FOLIO",
             "P_DR_MONEDADR",
-            "P_DR_EQUIVALENCIADR",
+            "P_DR_TIPOCAMBIODR",
+            "P_DR_METODODEPAGODR",
             "P_DR_NUMPARCIALIDAD",
             "P_DR_IMPSALDOANT",
             "P_DR_IMPPAGADO",
