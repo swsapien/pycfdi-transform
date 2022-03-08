@@ -31,14 +31,14 @@ class EfiscoNomina11Formatter(FormatterInterface):
     def __get_total_deducciones(self,nomina11):
         if 'deducciones' in nomina11:
             if('deduccion' in nomina11['deducciones']):
-                result = [float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in
+                result = [float(h['importe_gravado']) + float(h['importe_exento']) for h in
                           nomina11['deducciones']['deduccion'] if h['tipo_deduccion'] == '022']
                 return sum(result)
 
     def __get_total_otras_deducciones(self, nomina11):
         if 'deducciones' in nomina11:
             if ('deduccion' in nomina11['deducciones']):
-                result = [float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in
+                result = [float(h['importe_gravado']) + float(h['importe_exento']) for h in
                           nomina11['deducciones']['deduccion'] if h['tipo_deduccion'] != '022']
                 return sum(result)
 
@@ -56,18 +56,18 @@ class EfiscoNomina11Formatter(FormatterInterface):
     def __get_total_sueldos(self, nomina11):
         if len(nomina11['percepciones']['percepcion']) > 0:
             result = [
-                float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in nomina11['percepciones']['percepcion']
+                float(h['importe_gravado']) + float(h['importe_exento']) for h in nomina11['percepciones']['percepcion']
                 if h['tipo_percepcion'] != '022' and h['tipo_percepcion'] != '023' and h['tipo_percepcion'] != '025' and h['tipo_percepcion'] != '039' and h['tipo_percepcion'] != '044']
             return sum(result)
 
     def __get_total_jubilacion(self, nomina11):
         if len(nomina11['percepciones']['percepcion']) > 0:
-            result = [float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in nomina11['percepciones']['percepcion'] if h['tipo_percepcion'] == '039' or h['tipo_percepcion'] == '044']
+            result = [float(h['importe_gravado']) + float(h['importe_exento']) for h in nomina11['percepciones']['percepcion'] if h['tipo_percepcion'] == '039' or h['tipo_percepcion'] == '044']
             return sum(result)
 
     def __get_total_separacion_indem(self, nomina11):
         if len(nomina11['percepciones']['percepcion']) > 0:
-            result = [float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in nomina11['percepciones']['percepcion'] if h['tipo_percepcion'] == '022' or h['tipo_percepcion'] == '023' or h['tipo_percepcion'] == '025']
+            result = [float(h['importe_gravado']) + float(h['importe_exento']) for h in nomina11['percepciones']['percepcion'] if h['tipo_percepcion'] == '022' or h['tipo_percepcion'] == '023' or h['tipo_percepcion'] == '025']
             return sum(result)
 
     def _get_part_complement(self) -> list:
