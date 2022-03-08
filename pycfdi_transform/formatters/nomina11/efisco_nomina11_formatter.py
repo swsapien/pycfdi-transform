@@ -1,4 +1,7 @@
 from __future__ import annotations
+from decimal import Decimal
+from functools import reduce
+
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
 from pycfdi_transform.helpers.string_helper import StringHelper
 
@@ -25,8 +28,21 @@ class EfiscoNomina11Formatter(FormatterInterface):
     def __get_total_percepciones(self):
         return self.__get_nomina_total_by_property('total_percepciones')
 
-    def __get_total_deducciones(self):
-        return self.__get_nomina_total_by_property('total_deducciones')
+    def __get_total_deducciones(self,nomina11):
+        if 'deducciones' in nomina11:
+            if('deduccion' in nomina11['deducciones']):
+                result = [float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in
+                          nomina11['deducciones']['deduccion'] if h['tipo_deduccion'] == '022']
+                return sum(result)
+
+    def __get_total_otras_deducciones(self, nomina11):
+        if 'deducciones' in nomina11:
+            if ('deduccion' in nomina11['deducciones']):
+                result = [float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in
+                          nomina11['deducciones']['deduccion'] if h['tipo_deduccion'] != '022']
+                return sum(result)
+
+
 
     def __get_total_otros_pagos(self):
         return self.__get_nomina_total_by_property('total_otros_pagos')
@@ -37,17 +53,40 @@ class EfiscoNomina11Formatter(FormatterInterface):
     def __get_deducciones_total_by_property_name(self, property_name):
         return self.__get_total_by_element_and_property('deducciones', property_name)
 
+    def __get_total_sueldos(self, nomina11):
+        if len(nomina11['percepciones']['percepcion']) > 0:
+            result = [
+                float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in nomina11['percepciones']['percepcion']
+                if h['tipo_percepcion'] != '022' and h['tipo_percepcion'] != '023' and h['tipo_percepcion'] != '025' and h['tipo_percepcion'] != '039' and h['tipo_percepcion'] != '044']
+            return sum(result)
+
+    def __get_total_jubilacion(self, nomina11):
+        if len(nomina11['percepciones']['percepcion']) > 0:
+            result = [float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in nomina11['percepciones']['percepcion'] if h['tipo_percepcion'] == '039' or h['tipo_percepcion'] == '044']
+            return sum(result)
+
+    def __get_total_separacion_indem(self, nomina11):
+        if len(nomina11['percepciones']['percepcion']) > 0:
+            result = [float(h['importe_gravado'] != "") + float(h['importe_exento'] != "") for h in nomina11['percepciones']['percepcion'] if h['tipo_percepcion'] == '022' or h['tipo_percepcion'] == '023' or h['tipo_percepcion'] == '025']
+            return sum(result)
+
     def _get_part_complement(self) -> list:
         results = []
         for nomina11 in self._cfdi_data['nomina11']:
+            total_sueldos = self.__get_total_sueldos(nomina11)
+            total_jubilacion = self.__get_total_jubilacion(nomina11)
+            total_separacion = self.__get_total_separacion_indem(nomina11)
+            total_deducciones = self.__get_total_deducciones(nomina11)
+            total_otras_deducciones = self.__get_total_otras_deducciones(nomina11)
+            total_percepciones = total_sueldos + total_separacion + total_jubilacion
             row = [
                 "",  # tipoNomina
                 nomina11['fecha_pago'],
                 nomina11['fecha_inicial_pago'],
                 nomina11['fecha_final_pago'],
                 nomina11['num_dias_pagados'],
-                "",  # TOTAL PERCEPCIONES
-                "",  # TOTAL DEDUCCIONES
+                total_percepciones,  # TOTAL PERCEPCIONES
+                total_deducciones,  # TOTAL DEDUCCIONES
                 "",  # OTROS_PAGOS
                 "",  # EMISOR CURP
                 self._get_str_value(nomina11['registro_patronal']),
@@ -70,12 +109,12 @@ class EfiscoNomina11Formatter(FormatterInterface):
                 self._get_numeric_value(nomina11['salario_base_cot_apor']),
                 self._get_numeric_value(nomina11['salario_diario_integrado']),
                 "",  # RECEPTOR CLAVEENTFED
-                "",  # TOTALSUELDOS
-                "",  # TOTALSEPARACIONINDEM
-                "",  # TOTALJUBILACION
+                total_sueldos,  # TOTALSUELDOS
+                total_separacion,  # TOTALSEPARACIONINDEM
+                total_jubilacion,  # TOTALJUBILACION
                 self.__get_percepciones_total_by_property_name('total_gravado'),
                 self.__get_percepciones_total_by_property_name('total_exento'),
-                "",  # TOTALOTRASDEDUCC
+                total_otras_deducciones,  # TOTALOTRASDEDUCC
                 "",  # TOTALIMPRET
             ]
 
