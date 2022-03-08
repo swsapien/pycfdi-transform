@@ -83,7 +83,7 @@ class TestEfiscoCoreConceptosFormatter(unittest.TestCase):
     def test_formatter_concepts_cfdi_40(self):
         start = time.time()
         sax_handler = CFDI40SAXHandler().use_concepts_cfdi40()
-        cfdi_data = sax_handler.transform_from_file('./Resources/cfdi40/cfdi40_01.xml')
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi40/cfdi40_01.xml')
         expected_columns = [
            ['4.0', 'IFDG~', '41741985~', '2021-12-01T05:56:56', '30001000000400002434', '4959440.234906', '3308870.234906', '6078640.234906', 'IRR', '2378590.234907', 'I', 'PPD', '01', 'NET15', '45400', 'SKDR690105TM0', 'ESCUELÄ KEMPER ÚRGATE SA DE CV`}}}~', '624', '&ÑOZ291130QPA', 'kghfhg~', 'I06', '9D81C696-0401-4F85-B703-6E0D3AFD6056', '2020-05-02T00:36:50', 0, '51101903', '~55515', '9253280.234907', 'A58', '', 'b!~asdasfg85418816', '5835760.234906', '', '3916480.234906'],
            ['4.0', 'IFDG~', '41741985~', '2021-12-01T05:56:56', '30001000000400002434', '4959440.234906', '3308870.234906', '6078640.234906', 'IRR', '2378590.234907', 'I', 'PPD', '01', 'NET15', '45400', 'SKDR690105TM0', 'ESCUELÄ KEMPER ÚRGATE SA DE CV`}}}~', '624', '&ÑOZ291130QPA', 'kghfhg~', 'I06', '9D81C696-0401-4F85-B703-6E0D3AFD6056', '2020-05-02T00:36:50', 1, '50321559', '/1852821)', '1993740.234907', 'G55', '', '}&~', '315930.234906', '7520980.234906', '2922160.234906'],
