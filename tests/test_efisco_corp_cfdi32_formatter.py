@@ -134,6 +134,15 @@ class TestEfiscoCorpCFDI32Formatter(unittest.TestCase):
         self.assertEqual(named_column['RECEPTORNOMBRE'], 'PUBLICO GENERAL')
         self.assertEqual(named_column['C_DESCRIPCION'], '123')
 
+    def test_formatter_impuestos_cfdi32(self):
+        sax_handler = CFDI32SAXHandler().use_concepts_cfdi32()
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi32/cfdi32_01.xml')
+        formatter = EfiscoCorpCFDI32Formatter(cfdi_data, safe_numerics=True)
+        data_columns = formatter.dict_to_columns()
+        named_column = dict(zip(formatter.get_columns_names(), data_columns[0]))
+        self.assertEqual(named_column['IVATRASLADO'], '213.28')
+        self.assertEqual(named_column['TOTALIMPUESTOSTRASLADOS'], '0.00')
+
     def test_conversion_columns32_cfdi32(self):
         sax_handler = CFDI32SAXHandler().use_concepts_cfdi32()
         cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi32/cfdi32_01.xml')

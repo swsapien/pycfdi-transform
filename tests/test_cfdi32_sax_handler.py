@@ -1,3 +1,4 @@
+import os
 import unittest
 from pycfdi_transform import CFDI32SAXHandler, SchemaHelper
 from lxml import etree
@@ -14,7 +15,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
 
     def test_transform_file(self):
         sax_handler = CFDI32SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi32": {
@@ -91,9 +92,9 @@ class TestCFDI32SAXHandler(unittest.TestCase):
 
     def test_transform_file_reusable(self):
         sax_handler = CFDI32SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_nomina_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_nomina_01.xml")
         self.assertIsNotNone(cfdi_data)
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi32": {
@@ -169,7 +170,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
 
     def test_transform_file_utf8chars(self):
         sax_handler = CFDI32SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_01_utf8chars.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_01_utf8chars.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi32": {
@@ -245,7 +246,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
 
     def test_transform_file_with_concepts(self):
         sax_handler = CFDI32SAXHandler().use_concepts_cfdi32()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi32": {
@@ -328,7 +329,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
 
     def test_transform_file_safe_numerics(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True)
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi32": {
@@ -404,7 +405,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
 
     def test_transform_file_with_concepts_bad_description(self):
         sax_handler = CFDI32SAXHandler(esc_delimiters="~").use_concepts_cfdi32()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_01_bad_character.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_01_bad_character.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi32": {
@@ -488,7 +489,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
     def test_transform_file_global(self):
         start_time = time.time()
         sax_handler = CFDI32SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_large_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_large_01.xml")
         total_seconds = time.time() - start_time
         self.assertLessEqual(total_seconds, 1.0, 'Too much time to transform global cfdi')
         self.assertIsNotNone(cfdi_data)
@@ -496,7 +497,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
     def test_transform_file_with_concepts_global(self):
         start_time = time.time()
         sax_handler = CFDI32SAXHandler().use_concepts_cfdi32()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_large_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_large_01.xml")
         total_seconds = time.time() - start_time
         self.assertLessEqual(total_seconds, 1.5, 'Too much time to transform global cfdi')
         self.assertIsNotNone(cfdi_data)
@@ -507,7 +508,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
         start_time = time.time()
         schema_validator = SchemaHelper.get_schema_validator_cfdi32()
         sax_handler = CFDI32SAXHandler(schema_validator=schema_validator).use_concepts_cfdi32()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_01.xml")
         total_seconds = time.time() - start_time
         self.assertLessEqual(total_seconds, 1, 'Too much time to validate xsd')
         self.assertIsNotNone(cfdi_data)
@@ -595,7 +596,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
         schema_validator = SchemaHelper.get_schema_validator_cfdi32()
         sax_handler = CFDI32SAXHandler(schema_validator=schema_validator).use_concepts_cfdi32()
         with self.assertRaises(etree.DocumentInvalid) as context:
-            sax_handler.transform_from_file("./tests/Resources/cfdi33/cfdi33_bad_structure_01.xml")
+            sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi33/cfdi33_bad_structure_01.xml")
         exception = context.exception
         self.assertIn("Element '{http://www.sat.gob.mx/cfd/3}Comprobante', attribute 'Total': 'abc' is not a valid value of the atomic type '{http://www.sat.gob.mx/sitio_internet/cfd/tipoDatos/tdCFDI}t_Importe", str(exception))
 
@@ -604,7 +605,7 @@ class TestCFDI32SAXHandler(unittest.TestCase):
         start_time = time.time()
         schema_validator = SchemaHelper.get_schema_validator_cfdi32()
         sax_handler = CFDI32SAXHandler(schema_validator=schema_validator).use_concepts_cfdi32()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33/cfdi33_large_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi33/cfdi33_large_01.xml")
         total_seconds = time.time() - start_time
         self.assertLessEqual(total_seconds, 2, 'Too much time to validate xsd')
         self.assertIsNotNone(cfdi_data)
@@ -614,14 +615,14 @@ class TestCFDI32SAXHandler(unittest.TestCase):
         start_time = time.time()
         schema_validator = SchemaHelper.get_schema_validator_cfdi32()
         sax_handler = CFDI32SAXHandler(schema_validator=schema_validator)
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33/cfdi33_large_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi33/cfdi33_large_01.xml")
         total_seconds = time.time() - start_time
         self.assertLessEqual(total_seconds, 2, 'Too much time to validate xsd')
         self.assertIsNotNone(cfdi_data)
 
     def test_tranform_file_addenda(self):
         sax_handler = CFDI32SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi32/cfdi32_addenda_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi32/cfdi32_addenda_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi32': {
