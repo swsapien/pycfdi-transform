@@ -45,6 +45,13 @@ class BaseCFDI33Formatter(FormatterInterface, ABC):
         else:
             return self._config["empty_char"]
 
+    def _get_concept_value_by_key_concatenated(self, key: str) -> str:
+        if self._cfdi_data['cfdi33']['conceptos'] and len(self._cfdi_data['cfdi33']['conceptos']) > 0:
+            items = [d for d in self._cfdi_data['cfdi33']['conceptos'] if key in d.keys()]
+            return ', '.join(i[key] for i in items)
+        else:
+            return self._config["empty_char"]
+
     def can_format(self) -> bool:
         if not 'tfd11' in self._cfdi_data or len(self._cfdi_data['tfd11']) == 0:
             self._errors.append('Not tfd11 in data.')

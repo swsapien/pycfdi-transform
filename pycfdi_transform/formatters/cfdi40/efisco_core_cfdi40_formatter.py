@@ -71,7 +71,7 @@ class EfiscoCoreCFDI40Formatter(BaseCFDI40Formatter):
                 # RECEPTORUSOCFDI
                 self._cfdi_data['cfdi40']['receptor']['uso_cfdi'],
                 # CLAVEPRODSERV
-                self._get_concept_value_by_key('clave_prod_serv'),
+                self._get_concept_value_by_key_concatenated('clave_prod_serv'),
                 # IVATRASLADO
                 self._get_total_taxes_by_type(self._cfdi_data['cfdi40']['impuestos'], 'traslados', '002'),
                 # IEPSTRASLADO
