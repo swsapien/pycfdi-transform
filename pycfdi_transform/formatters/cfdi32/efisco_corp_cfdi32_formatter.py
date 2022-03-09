@@ -74,17 +74,17 @@ class EfiscoCorpCFDI32Formatter(BaseCFDI32Formatter):
                 # C_DESCRIPCION
                 self._get_concept_value_by_key('descripcion'),
                 # IVATRASLADO
-                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'traslados', '002'),
+                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'traslados', 'IVA'),
                 # IEPSTRASLADO
-                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'traslados', '003'),
+                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'traslados', 'IEPS'),
                 # TOTALIMPUESTOSTRASLADOS
                 self._get_numeric_value(self._cfdi_data['cfdi32']['impuestos']['total_impuestos_traslados']),
                 # ISRRETENIDO
-                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'retenciones', '001'),
+                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'retenciones', 'ISR'),
                 # IVARETENIDO
-                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'retenciones', '002'),
+                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'retenciones', 'IVA'),
                 # IEPSRETENIDO
-                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'retenciones', '003'),
+                self._get_total_taxes_by_type(self._cfdi_data['cfdi32']['impuestos'], 'retenciones', 'IEPS'),
                 # TOTALIMPUESTOSRETENIDOS
                 self._get_numeric_value(self._cfdi_data['cfdi32']['impuestos']['total_impuestos_retenidos']),
                 # TOTALTRASLADOSIMPUESTOSLOCALES
