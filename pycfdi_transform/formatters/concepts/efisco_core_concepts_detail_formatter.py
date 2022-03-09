@@ -39,7 +39,7 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
             for  idx, concept in enumerate(self._cfdi_data[cfdi_version]['conceptos']):
 
                 concept_row = [
-                    idx,
+                    idx + 1,
                     concept.get('clave_prod_serv', self._config['empty_char']),
                     concept.get('no_identificacion', self._config['empty_char']),
                     concept.get('cantidad', self._config['empty_char']),

@@ -56,7 +56,7 @@ class EfiscoCoreCFDI33Formatter(BaseCFDI33Formatter):
                 # RECEPTORUSOCFDI
                 self._cfdi_data['cfdi33']['receptor']['uso_cfdi'],
                 # C_DESCRIPCION
-                self._get_concept_value_by_key('descripcion'),
+                self._get_concept_value_by_key_concatenated('clave_prod_serv'),
                 # IVATRASLADO
                 self._get_total_taxes_by_type(self._cfdi_data['cfdi33']['impuestos'], 'traslados', '002'),
                 # IEPSTRASLADO

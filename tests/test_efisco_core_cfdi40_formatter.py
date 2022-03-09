@@ -118,4 +118,16 @@ class TestEfiscoCoreCFDI40Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(), '')
         self.assertFalse(formatter.has_addenda())
         self.assertTrue(formatter.get_addendas() is not None and formatter.get_addendas() == "")
+
+    def test_formatter_concat_concept_keys(self):
+        sax_handler = CFDI40SAXHandler().use_concepts_cfdi40()
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__)  + '/Resources/cfdi40/cfdi40_01.xml')
+        formatter = EfiscoCoreCFDI40Formatter(cfdi_data)
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '')
+        data_columns = formatter.dict_to_columns()
+        self.assertEqual(len(data_columns), 1)
+        self.assertEqual(len(data_columns[0]), len(formatter.get_columns_names()))
+        named_column = dict(zip(formatter.get_columns_names(), data_columns[0]))
+        self.assertEqual(named_column['CLAVEPRODSERV'], '51101903, 50321559, 50466301, 25174800, 10302150')
         
