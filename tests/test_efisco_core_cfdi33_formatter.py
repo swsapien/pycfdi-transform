@@ -88,3 +88,15 @@ class TestEfiscoCoreCFDI33Formatter(unittest.TestCase):
         self.assertEqual(named_column['EMISORNOMBRE'], 'ESCUELA KEMPER URGATE SA DE CV')
         self.assertEqual(named_column['RECEPTORNOMBRE'], 'PUBLICO EN GENERAL')
         self.assertEqual(named_column['COMPLEMENTOS'], 'TimbreFiscalDigital')
+
+    def test_formatter_concat_concept_keys_cfdi33(self):
+        sax_handler = CFDI33SAXHandler().use_concepts_cfdi33()
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi33/cfdi33_01_conceptos.xml')
+        formatter = EfiscoCoreCFDI33Formatter(cfdi_data)
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '')
+        data_columns = formatter.dict_to_columns()
+        self.assertEqual(len(data_columns), 1)
+        self.assertEqual(len(data_columns[0]), len(formatter.get_columns_names()))
+        named_column = dict(zip(formatter.get_columns_names(), data_columns[0]))
+        self.assertEqual(named_column['CLAVEPRODSERV'], '01010101, 2300403')

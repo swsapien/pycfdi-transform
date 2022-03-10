@@ -56,6 +56,13 @@ class BaseCFDI40Formatter(FormatterInterface, ABC):
         else:
             return self._config["empty_char"]
 
+    def _get_concept_value_by_key_concatenated(self, key: str) -> str:
+        if self._cfdi_data['cfdi40']['conceptos'] and len(self._cfdi_data['cfdi40']['conceptos']) > 0:
+            items = [d for d in self._cfdi_data['cfdi40']['conceptos'] if key in d.keys()]
+            return ', '.join(i[key] for i in items)
+        else:
+            return self._config["empty_char"]
+
     def can_format(self) -> bool:
         """Validates if the provided data is valid and has TFD.
         This method allow to validate data previus of the process and avoid posible errors or exceptions.
