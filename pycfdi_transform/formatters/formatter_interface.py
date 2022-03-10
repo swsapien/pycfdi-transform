@@ -41,7 +41,7 @@ class FormatterInterface(ABC):
         return StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']
     
     def _get_numeric_tipo_cambio_value(self, val:str)->str:
-        if val:
+        if val and val.isnumeric():
             return val
         return StringHelper.DEFAULT_SAFE_NUMBER_ONE if self._config['safe_numerics'] else self._config['empty_char']
 
