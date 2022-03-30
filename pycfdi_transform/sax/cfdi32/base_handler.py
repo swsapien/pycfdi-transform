@@ -75,6 +75,14 @@ class BaseHandler(ABC):
             }
         return self
 
+    def use_nomina12(self) -> BaseHandler:
+        if not '{http://www.sat.gob.mx/nomina12}Nomina' in self._complements:
+            self._complements['{http://www.sat.gob.mx/nomina12}Nomina'] = {
+                'class': Nomina12SAXHandler,
+                'key': 'nomina12'
+            }
+        return self
+
     def use_concepts_cfdi32(self) -> BaseHandler:
         self._config['concepts'] = True
         return self
