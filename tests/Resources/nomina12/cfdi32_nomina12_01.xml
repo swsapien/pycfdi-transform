@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd" version="3.2" serie="RN" folio="1535" fecha="2016-11-21T10:02:13" tipoDeComprobante="egreso" formaDePago="PAGO EN UNA SOLA EXHIBICION" metodoDePago="NA" noCertificado="20000000000000005760" subTotal="7500.05" descuento="1234.09" Moneda="MXN" TipoCambio="1" total="6265.96" LugarExpedicion="45110" certificado="XXX" sello="XXX">
+    <cfdi:Emisor rfc="AAA010101AAA" nombre="Empresa de Pruebas SA DE CV">
+        <cfdi:RegimenFiscal Regimen="601" />
+    </cfdi:Emisor>
+    <cfdi:Receptor rfc="CACX7605101P8" nombre="EMPLEADO DE PRUEBA" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto cantidad="1" unidad="ACT" descripcion="Pago de nómina" valorUnitario="7500.05" importe="7500.05" />
+    </cfdi:Conceptos>
+    <cfdi:Impuestos />
+    <cfdi:Complemento>
+        <nomina12:Nomina xmlns:nomina12="http://www.sat.gob.mx/nomina12" Version="1.2" FechaPago="2016-10-31" FechaInicialPago="2016-10-16" FechaFinalPago="2016-10-31" NumDiasPagados="15" TipoNomina="O" TotalDeducciones="1234.09" TotalOtrosPagos="0.0" TotalPercepciones="7500.05" xsi:schemaLocation="http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/informacion_fiscal/factura_electronica/Documents/Complementoscfdi/nomina12.xsd">
+            <nomina12:Emisor RegistroPatronal="A0000000000" />
+            <nomina12:Receptor Curp="XEXX010101HNEXXXA4" TipoContrato="01" TipoRegimen="02" NumEmpleado="060" PeriodicidadPago="04" ClaveEntFed="JAL" NumSeguridadSocial="00000000000" Banco="021" FechaInicioRelLaboral="2016-06-01" Antigüedad="P21W" Puesto="Desarrollador" SalarioBaseCotApor="435.50" RiesgoPuesto="2" SalarioDiarioIntegrado="435.50" />
+            <nomina12:Percepciones TotalGravado="7500.05" TotalExento="0.00" TotalSueldos="7500.05">
+                <nomina12:Percepcion TipoPercepcion="001" Clave="001" Concepto="Sueldos, Salarios Rayas y Jornales" ImporteGravado="6250.05" ImporteExento="0.00" />
+                <nomina12:Percepcion TipoPercepcion="049" Clave="014" Concepto="Premios de asistencia" ImporteGravado="625.00" ImporteExento="0.00" />
+                <nomina12:Percepcion TipoPercepcion="010" Clave="013" Concepto="Premios por puntualidad" ImporteGravado="625.00" ImporteExento="0.00" />                  
+            </nomina12:Percepciones>
+            <nomina12:Deducciones TotalOtrasDeducciones="179.34" TotalImpuestosRetenidos="1054.75">
+                <nomina12:Deduccion TipoDeduccion="002" Clave="001" Concepto="ISR" Importe="1054.75" />
+                <nomina12:Deduccion TipoDeduccion="001" Clave="012" Concepto="Seguridad social" Importe="179.34" />
+            </nomina12:Deducciones>       
+        </nomina12:Nomina>
+    <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/TimbreFiscalDigital/TimbreFiscalDigital.xsd" selloCFD="XXX" FechaTimbrado="2014-04-03T18:17:02" UUID="CD13D35E-2FCF-4A23-ADCA-51F2E48B8018" noCertificadoSAT="20000000000000005760" version="1.0" selloSAT="XXX" />
+</cfdi:Comprobante>

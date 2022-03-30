@@ -2,6 +2,8 @@ from pycfdi_transform import CFDI33SAXHandler, SchemaHelper
 from lxml import etree
 import unittest
 
+from pycfdi_transform.sax.cfdi32.sax_handler import CFDI32SAXHandler
+
 class TestNomina12SAXHandler(unittest.TestCase):
     def test_transform_file_complete_nom(self):
         sax_handler = CFDI33SAXHandler().use_nomina12()
@@ -2365,3 +2367,60 @@ class TestNomina12SAXHandler(unittest.TestCase):
             sax_handler.transform_from_file("./tests/Resources/nomina12/broken_nomina12_01.xml")
         exception = context.exception
         self.assertIn("Element '{http://www.sat.gob.mx/nomina12}Receptor': This element is not expected. Expected is ( {http://www.sat.gob.mx/nomina12}EntidadSNCF )., line 1", str(exception), 'Not expected error message')
+    
+    def test_transform_file_cfdi32_nomina12_01(self):
+        sax_handler = CFDI32SAXHandler().use_nomina12()
+        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/cfdi32_nomina12_01.xml")
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            'cfdi32': {
+                'version': '3.2', 
+                'serie': 'RN', 
+                'folio': '1535', 
+                'fecha': '2016-11-21T10:02:13', 
+                'no_certificado': '20000000000000005760', 
+                'subtotal': '7500.05', 
+                'descuento': '1234.09', 
+                'total': '6265.96', 
+                'moneda': 'MXN', 
+                'tipo_cambio': '1', 
+                'tipo_comprobante': 'egreso', 
+                'metodo_pago': 'NA', 
+                'forma_pago': 'PAGO EN UNA SOLA EXHIBICION', 
+                'condiciones_pago': '', 
+                'lugar_expedicion': '45110', 
+                'sello': 'XXX', 
+                'certificado': 'XXX', 
+                'emisor': {
+                    'rfc': 'AAA010101AAA', 
+                    'nombre': 'Empresa de Pruebas SA DE CV', 
+                    'regimen_fiscal': ['601']
+                }, 
+                'receptor': {
+                    'rfc': 'CACX7605101P8', 
+                    'nombre': 'EMPLEADO DE PRUEBA'
+                }, 
+                'conceptos': [], 
+                'impuestos': {
+                    'retenciones': [], 
+                    'traslados': [], 
+                    'total_impuestos_traslados': '', 
+                    'total_impuestos_retenidos': ''
+                }, 
+                'complementos': 'Nomina TimbreFiscalDigital', 
+                'addendas': ''
+            },
+            'tfd10': [
+                {
+                    'version': '1.0', 
+                    'no_certificado_sat': '20000000000000005760', 
+                    'uuid': 'CD13D35E-2FCF-4A23-ADCA-51F2E48B8018', 
+                    'fecha_timbrado': '2014-04-03T18:17:02',
+                    'sello_cfd': 'XXX', 
+                    'sello_sat': 'XXX'
+                }
+            ],
+            'nomina12': [{'version': '1.2', 'tipo_nomina': 'O', 'fecha_pago': '2016-10-31', 'fecha_inicial_pago': '2016-10-16', 'fecha_final_pago': '2016-10-31', 'num_dias_pagados': '15', 'total_percepciones': '7500.05', 'total_deducciones': '1234.09', 'total_otros_pagos': '0.0', 'emisor': {'curp': '', 'registro_patronal': 'A0000000000', 'rfc_patron_origen': '', 'entidad_SNCF': {'origen_recurso': '', 'monto_recurso_propio': ''}}, 'receptor': {'curp': 'XEXX010101HNEXXXA4', 'num_seguridad_social': '00000000000', 'fecha_inicio_rel_laboral': '2016-06-01', 'antigüedad': 'P21W', 'tipo_contrato': '01', 'sindicalizado': '', 'tipo_jornada': '', 'tipo_regimen': '02', 'num_empleado': '060', 'departamento': '', 'puesto': 'Desarrollador', 'riesgo_puesto': '2', 'periodicidad_pago': '04', 'banco': '021', 'cuenta_bancaria': '', 'salario_base_cot_apor': '435.50', 'salario_diario_integrado': '435.50', 'clave_ent_fed': 'JAL', 'subcontratacion': []}, 'percepciones': {'total_sueldos': '7500.05', 'total_separacion_indemnizacion': '', 'total_jubilacion_pension_retiro': '', 'total_gravado': '7500.05', 'total_exento': '0.00', 'percepcion': [{'tipo_percepcion': '001', 'clave': '001', 'concepto': 'Sueldos, Salarios Rayas y Jornales', 'importe_gravado': '6250.05', 'importe_exento': '0.00', 'horas_extra': []}, {'tipo_percepcion': '049', 'clave': '014', 'concepto': 'Premios de asistencia', 'importe_gravado': '625.00', 'importe_exento': '0.00', 'horas_extra': []}, {'tipo_percepcion': '010', 'clave': '013', 'concepto': 'Premios por puntualidad', 'importe_gravado': '625.00', 'importe_exento': '0.00', 'horas_extra': []}]}, 'deducciones': {'total_otras_deducciones': '179.34', 'total_impuestos_retenidos': '1054.75', 'deduccion': [{'tipo_deduccion': '002', 'clave': '001', 'concepto': 'ISR', 'importe': '1054.75'}, {'tipo_deduccion': '001', 'clave': '012', 'concepto': 'Seguridad social', 'importe': '179.34'}]}, 'otros_pagos': {'otro_pago': []}, 'incapacidades': {'incapacidad': []}}]
+            
+        }
+        self.assertDictEqual(cfdi_data, expected_dict)
