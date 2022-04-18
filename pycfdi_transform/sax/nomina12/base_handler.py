@@ -67,7 +67,7 @@ class BaseHandler(ABC):
                 'otro_pago': []
             },
             'incapacidades': {
-                'incapcidad': []
+                'incapacidad': []
             }
         }
 

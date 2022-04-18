@@ -72,8 +72,8 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
     
     def test_initialize_class_error_version_pagos10(self):
         with self.assertRaises(AssertionError) as ex:
-            EfiscoPagos10Formatter({'cfdi32': {}})
-        self.assertEqual('Este formatter únicamente soporta datos de cfdi33.', str(ex.exception))
+            EfiscoPagos10Formatter({'cfdi40': {}})
+        self.assertEqual('Este formatter solo soporta datos de cfdi33.', str(ex.exception))
     
     def test_formatter_error_tfd_pagos10(self):
         sax_handler = CFDI33SAXHandler().use_pagos10()
