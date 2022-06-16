@@ -11,20 +11,6 @@ class EfiscoCoreNomina11Formatter(FormatterInterface):
         super().__init__(cfdi_data, empty_char, safe_numerics)
         assert 'cfdi32' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi32.'
 
-    def __get_nomina_total_by_property(self, property_name):
-        total = None
-        for nomina11 in self._cfdi_data['nomina11']:
-            if nomina11[property_name]:
-                total = StringHelper.sum_strings(total, nomina11[property_name])
-        return self._get_numeric_value(total)
-
-    def __get_total_by_element_and_property(self, element_name: str, property_name: str):
-        total = None
-        for nomina11 in self._cfdi_data['nomina11']:
-            if nomina11[element_name][property_name]:
-                total = StringHelper.sum_strings(total, nomina11[element_name][property_name])
-        return self._get_numeric_value(total)
-
     def _get_part_complement(self) -> list:
         results = []
         for nomina11 in self._cfdi_data['nomina11']:
@@ -61,8 +47,8 @@ class EfiscoCoreNomina11Formatter(FormatterInterface):
                 StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'],  # TOTALSUELDOS
                 StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'],  # TOTALSEPARACIONINDEM
                 StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'],  # TOTALJUBILACION
-                self.__get_total_by_element_and_property('percepciones', 'total_gravado'),
-                self.__get_total_by_element_and_property('percepciones', 'total_exento')
+                self._get_numeric_value(nomina11['percepciones']['total_gravado']),
+                self._get_numeric_value(nomina11['percepciones']['total_exento']),
             ]
 
             self._set_percepciones(nomina11, row)
@@ -86,8 +72,8 @@ class EfiscoCoreNomina11Formatter(FormatterInterface):
 
     def _set_deducciones(self, nomina11, row):
         incapacidad = self._get_incapacidad(nomina11)
-        row.append(self.__get_total_by_element_and_property('deducciones', 'total_gravado'))  # TOTAL OTRAS DEDUCCIONES
-        row.append(self.__get_total_by_element_and_property('deducciones', 'total_exento'))  # TOTAL IMPUESTOS RETENIDOS
+        row.append(self._get_numeric_value(nomina11['deducciones']['total_gravado']),)  # TOTAL OTRAS DEDUCCIONES
+        row.append(self._get_numeric_value(nomina11['deducciones']['total_exento']),)  # TOTAL IMPUESTOS RETENIDOS
         for tipo_deduccion in catalogs.DEDUCCIONES:
             deducciones = [deduccion for deduccion in nomina11['deducciones']['deduccion'] if
                            deduccion['tipo_deduccion'] == tipo_deduccion]
