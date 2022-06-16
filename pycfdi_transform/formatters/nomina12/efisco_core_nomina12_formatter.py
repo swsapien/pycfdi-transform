@@ -11,20 +11,6 @@ class EfiscoCoreNomina12Formatter(FormatterInterface):
         super().__init__(cfdi_data, empty_char, safe_numerics)
         assert 'cfdi33' in self._cfdi_data or 'cfdi40' in self._cfdi_data, 'Este formatter únicamente soporta datos de cfdi33 o cfdi40.'
 
-    def __get_nomina_total_by_property(self, property_name):
-        total = None
-        for nomina12 in self._cfdi_data['nomina12']:
-            if nomina12[property_name]:
-                total = StringHelper.sum_strings(total, nomina12[property_name])
-        return self._get_numeric_value(total)
-
-    def __get_total_by_element_and_property(self, element_name: str, property_name: str):
-        total = None
-        for nomina12 in self._cfdi_data['nomina12']:
-            if nomina12[element_name][property_name]:
-                total = StringHelper.sum_strings(total, nomina12[element_name][property_name])
-        return self._get_numeric_value(total)
-
     def _get_part_complement(self) -> list:
         results = []
         for nomina12 in self._cfdi_data['nomina12']:
@@ -34,9 +20,9 @@ class EfiscoCoreNomina12Formatter(FormatterInterface):
                 nomina12['fecha_inicial_pago'],
                 nomina12['fecha_final_pago'],
                 nomina12['num_dias_pagados'],
-                self.__get_nomina_total_by_property('total_percepciones'),
-                self.__get_nomina_total_by_property('total_deducciones'),
-                self.__get_nomina_total_by_property('total_otros_pagos'),
+                self._get_numeric_value(nomina12['total_percepciones']),
+                self._get_numeric_value(nomina12['total_deducciones']),
+                self._get_numeric_value(nomina12['total_otros_pagos']),
                 self._get_str_value(nomina12['emisor']['curp']),
                 self._get_str_value(nomina12['emisor']['registro_patronal']),
                 self._get_str_value(nomina12['emisor']['rfc_patron_origen']),
@@ -58,11 +44,11 @@ class EfiscoCoreNomina12Formatter(FormatterInterface):
                 self._get_numeric_value(nomina12['receptor']['salario_base_cot_apor']),
                 self._get_numeric_value(nomina12['receptor']['salario_diario_integrado']),
                 nomina12['receptor']['clave_ent_fed'],
-                self.__get_total_by_element_and_property('percepciones', 'total_sueldos'),
-                self.__get_total_by_element_and_property('percepciones', 'total_separacion_indemnizacion'),
-                self.__get_total_by_element_and_property('percepciones', 'total_jubilacion_pension_retiro'),
-                self.__get_total_by_element_and_property('percepciones', 'total_gravado'),
-                self.__get_total_by_element_and_property('percepciones', 'total_exento'),
+                self._get_numeric_value(nomina12['percepciones']['total_sueldos']),
+                self._get_numeric_value(nomina12['percepciones']['total_separacion_indemnizacion']),
+                self._get_numeric_value(nomina12['percepciones']['total_jubilacion_pension_retiro']),
+                self._get_numeric_value(nomina12['percepciones']['total_gravado']),
+                self._get_numeric_value(nomina12['percepciones']['total_exento']),
             ]
 
             self._set_percepciones(nomina12, row)
@@ -89,8 +75,8 @@ class EfiscoCoreNomina12Formatter(FormatterInterface):
 
     def _set_deducciones(self, nomina12, row):
         incapacidad = self.get_incapacidad(nomina12)
-        row.append(self.__get_total_by_element_and_property('deducciones', 'total_otras_deducciones'))
-        row.append(self.__get_total_by_element_and_property('deducciones', 'total_impuestos_retenidos'))
+        row.append(self._get_numeric_value(nomina12['deducciones']['total_otras_deducciones']))
+        row.append(self._get_numeric_value(nomina12['deducciones']['total_impuestos_retenidos']))
         for tipo_deduccion in catalogs.DEDUCCIONES:
             deducciones = [deduccion for deduccion in nomina12['deducciones']['deduccion'] if
                            deduccion['tipo_deduccion'] == tipo_deduccion]
