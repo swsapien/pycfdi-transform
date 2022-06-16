@@ -507,3 +507,12 @@ class TestEfiscoNomina12Formatter(unittest.TestCase):
 
         self.assertTrue(expected_columns_length == len(result_columns[0]))
         self.assertListEqual(expected_columns, result_columns)
+
+    def test_multi_complements(self):
+        sax_handler = CFDI33SAXHandler().use_nomina12()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina12/double_nomina01.xml')
+        formatter = EfiscoCoreNomina12Formatter(cfdi_data)
+        self.assertTrue(formatter.can_format())
+        data_result = formatter.dict_to_columns()
+        self.assertEqual(data_result[0][30], "9786.15")
+        self.assertEqual(data_result[1][30], "64156.64")
