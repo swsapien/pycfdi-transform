@@ -147,10 +147,21 @@ class CFDI40SAXHandler(BaseHandler):
             'valor_unitario': element.attrib.get('ValorUnitario'),
             'importe': element.attrib.get('Importe'),
             'descuento': element.attrib.get('Descuento', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
-            'objeto_imp': element.attrib.get('ObjetoImp')
+            'objeto_imp': element.attrib.get('ObjetoImp'),
+            'terceros': self.__transform_terceros(element)
         }
         self._data['cfdi40']['conceptos'].append(concept)
-    
+
+    def __transform_terceros(self, element: etree._Element):
+        terceros_data = dict()
+        for child in element.getchildren():
+            if child.tag == '{http://www.sat.gob.mx/cfd/4}ACuentaTerceros':
+                terceros_data['nombre'] = StringHelper.compact_string(self._config['esc_delimiters'], child.attrib.get('NombreACuentaTerceros', self._config['empty_char']))
+                terceros_data['rfc'] = StringHelper.compact_string(self._config['esc_delimiters'], child.attrib.get('RfcACuentaTerceros', self._config['empty_char']))
+                terceros_data['domicilioFiscal'] = StringHelper.compact_string(self._config['esc_delimiters'], child.attrib.get('DomicilioFiscalACuentaTerceros', self._config['empty_char']))
+                terceros_data['regimenFiscal'] = StringHelper.compact_string(self._config['esc_delimiters'], child.attrib.get('RegimenFiscalACuentaTerceros', self._config['empty_char']))
+        return terceros_data
+
     def __transform_general_taxes(self, element:etree._Element) -> None:
         self._data['cfdi40']['impuestos']['total_impuestos_traslados'] = element.attrib.get('TotalImpuestosTrasladados', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
         self._data['cfdi40']['impuestos']['total_impuestos_retenidos'] = element.attrib.get('TotalImpuestosRetenidos', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
