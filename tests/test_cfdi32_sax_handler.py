@@ -286,7 +286,8 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                         "unidad": "No Aplica",
                         "descripcion": "123",
                         "valor_unitario": "1333",
-                        "importe": "1333.000000"
+                        "importe": "1333.000000",
+                        "terceros": {}
                     }
                 ],
                 "impuestos": {
@@ -325,6 +326,13 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                 }
             ]
         }
+        self.assertDictEqual(cfdi_data, expected_dict)
+
+    def test_transform_file_with_terceros(self):
+        sax_handler = CFDI32SAXHandler().use_concepts_cfdi32()
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/terceros/terceros11_32.xml')
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {'cfdi32': {'version': '3.2', 'serie': 'C', 'folio': '38', 'fecha': '2015-03-05T10:33:52', 'no_certificado': '20001000000100005867', 'subtotal': '35000.00', 'descuento': '0.00', 'total': '40600.00', 'moneda': 'Pesos', 'tipo_cambio': '', 'tipo_comprobante': 'ingreso', 'metodo_pago': 'No Identificado', 'forma_pago': 'PAGO EN UNA SOLA EXHIBICION', 'condiciones_pago': '', 'lugar_expedicion': 'Monterrey, Nuevo León', 'sello': 'YFS5JN8N9mgHA2XjQ7hdlbEiEUaBYAox4kKUsBHrwueUhbIPVww4KHRAmFhQQMLt7pQ/H+Ffvv4kwre/2bL9dZfA7+5YbFmVxWQw1m5QGem8iFCbrc1YoPh1b0aOBUgTzCMWfwGv2hVhSaYyGsrSHsQJ5kAMB+Xoy14sygBcBc0=', 'certificado': 'MIIEdDCCA1ygAwIBAgIUMjAwMDEwMDAwMDAxMDAwMDU4NjcwDQYJKoZIhvcNAQEFBQAwggFvMRgwFgYDVQQDDA9BLkMuIGRlIHBydWViYXMxLzAtBgNVBAoMJlNlcnZpY2lvIGRlIEFkbWluaXN0cmFjacOzbiBUcmlidXRhcmlhMTgwNgYDVQQLDC9BZG1pbmlzdHJhY2nDs24gZGUgU2VndXJpZGFkIGRlIGxhIEluZm9ybWFjacOzbjEpMCcGCSqGSIb3DQEJARYaYXNpc25ldEBwcnVlYmFzLnNhdC5nb2IubXgxJjAkBgNVBAkMHUF2LiBIaWRhbGdvIDc3LCBDb2wuIEd1ZXJyZXJvMQ4wDAYDVQQRDAUwNjMwMDELMAkGA1UEBhMCTVgxGTAXBgNVBAgMEERpc3RyaXRvIEZlZGVyYWwxEjAQBgNVBAcMCUNveW9hY8OhbjEVMBMGA1UELRMMU0FUOTcwNzAxTk4zMTIwMAYJKoZIhvcNAQkCDCNSZXNwb25zYWJsZTogSMOpY3RvciBPcm5lbGFzIEFyY2lnYTAeFw0xMjA3MjcxNzAyMDBaFw0xNjA3MjcxNzAyMDBaMIHbMSkwJwYDVQQDEyBBQ0NFTSBTRVJWSUNJT1MgRU1QUkVTQVJJQUxFUyBTQzEpMCcGA1UEKRMgQUNDRU0gU0VSVklDSU9TIEVNUFJFU0FSSUFMRVMgU0MxKTAnBgNVBAoTIEFDQ0VNIFNFUlZJQ0lPUyBFTVBSRVNBUklBTEVTIFNDMSUwIwYDVQQtExxBQUEwMTAxMDFBQUEgLyBIRUdUNzYxMDAzNFMyMR4wHAYDVQQFExUgLyBIRUdUNzYxMDAzTURGUk5OMDkxETAPBgNVBAsTCFVuaWRhZCAxMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2TTQSPONBOVxpXv9wLYo8jezBrb34i/tLx8jGdtyy27BcesOav2c1NS/Gdv10u9SkWtwdy34uRAVe7H0a3VMRLHAkvp2qMCHaZc4T8k47Jtb9wrOEh/XFS8LgT4y5OQYo6civfXXdlvxWU/gdM/e6I2lg6FGorP8H4GPAJ/qCNwIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQUFAAOCAQEATxMecTpMbdhSHo6KVUg4QVF4Op2IBhiMaOrtrXBdJgzGotUFcJgdBCMjtTZXSlq1S4DG1jr8p4NzQlzxsdTxaB8nSKJ4KEMgIT7E62xRUj15jI49qFz7f2uMttZLNThipunsN/NF1XtvESMTDwQFvas/Ugig6qwEfSZc0MDxMpKLEkEePmQwtZD+zXFSMVa6hmOu4M+FzGiRXbj4YJXn9Myjd8xbL/c+9UIcrYoZskxDvMxc6/6M3rNNDY3OFhBK+V/sPMzWWGt8S1yjmtPfXgFs1t65AZ2hcTwTAuHrKwDatJ1ZPfa482ZBROAAX1waz7WwXp0gso7sDCm2/yUVww==', 'emisor': {'rfc': 'AAA010101AAA', 'nombre': 'Empresa de Pruebas SA', 'regimen_fiscal': ['Regimen General de Ley Personas Morales de Prueba']}, 'receptor': {'rfc': 'E&Ñ831019M53', 'nombre': 'Exportadora de Ganado HOLSTEIN S.A.'}, 'conceptos': [{'no_identificacion': '', 'cantidad': '1', 'unidad': 'LTE', 'descripcion': 'Pago por cuenta de terceros', 'valor_unitario': '35000.00', 'importe': '35000.00', 'terceros': {'version': '1.1', 'rfc': 'AAA010101AAA', 'nombre': 'EMPRESA DE PRUEBA S.A. DE C.V.', 'informacionFiscal': {'calle': 'Finisterra', 'noExterior': '750', 'noInterior': '5-B', 'colonia': 'Centro', 'localidad': 'San Luisito', 'referencia': 'Esquina con Insurgentes', 'municipio': 'Monterrey', 'estado': 'Nuevo León', 'pais': 'México', 'codigoPostal': '64000'}, 'cuentaPredial': {'numero': '738212032FD271'}, 'informacionAduanera': {'numero': '', 'fecha': '', 'aduana': ''}, 'impuestos': {'traslados': [{'impuesto': 'IVA', 'tasa': '16.00', 'importe': '0.00'}], 'retenciones': [{'impuesto': 'IVA', 'importe': '0.00'}]}}}], 'impuestos': {'retenciones': [{'impuesto': 'ISR', 'importe': '0.00'}, {'impuesto': 'IVA', 'importe': '0.00'}], 'traslados': [{'impuesto': 'IVA', 'tasa': '16.00', 'importe': '5600.00'}], 'total_impuestos_traslados': '5600.00', 'total_impuestos_retenidos': '0.00'}, 'complementos': 'TimbreFiscalDigital', 'addendas': ''}, 'tfd10': [{'version': '1.0', 'no_certificado_sat': '20001000000100005761', 'uuid': '5D777512-F544-41CE-AA0C-4C36ED254FC8', 'fecha_timbrado': '2015-03-05T10:33:52', 'sello_cfd': 'YFS5JN8N9mgHA2XjQ7hdlbEiEUaBYAox4kKUsBHrwueUhbIPVww4KHRAmFhQQMLt7pQ/H+Ffvv4kwre/2bL9dZfA7+5YbFmVxWQw1m5QGem8iFCbrc1YoPh1b0aOBUgTzCMWfwGv2hVhSaYyGsrSHsQJ5kAMB+Xoy14sygBcBc0=', 'sello_sat': 'FtRoK4ZoBUaH0CPtku4fu5F3FQCevfzDmX+/ZVqzg8pjzf9GmEJgTY9H7BE0g5B4XV5moz30P9OaCVr9keB4lhdxW56JcObXCuOgU67HENVWZlxjRhX5RkLe+RQ4n5OHcbfyUm3ITtAtIZX+JJR0uvPc4jDuKioYRZjJoR4OuVk='}]}
         self.assertDictEqual(cfdi_data, expected_dict)
 
     def test_transform_file_safe_numerics(self):
@@ -445,7 +453,8 @@ class TestCFDI32SAXHandler(unittest.TestCase):
                         "unidad": "No Aplica",
                         "descripcion": "Este \ Detalle factura",
                         "valor_unitario": "1333",
-                        "importe": "1333.000000"
+                        "importe": "1333.000000",
+                        "terceros": {}
                     }
                 ],
                 "impuestos": {

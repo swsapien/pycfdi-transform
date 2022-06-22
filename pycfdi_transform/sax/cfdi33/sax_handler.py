@@ -5,6 +5,9 @@ from pycfdi_transform.helpers.string_helper import StringHelper
 from lxml import etree
 import logging
 
+from pycfdi_transform.sax.terceros11.sax_handler import Terceros11SAXHandler
+
+
 class CFDI33SAXHandler(BaseHandler):
     def __init__(self, empty_char='', safe_numerics=False, schema_validator:etree.XMLSchema = None,esc_delimiters:str = "") -> CFDI33SAXHandler:
         super().__init__(empty_char, safe_numerics,esc_delimiters)
@@ -109,8 +112,16 @@ class CFDI33SAXHandler(BaseHandler):
             'valor_unitario': element.attrib.get('ValorUnitario'),
             'importe': element.attrib.get('Importe'),
             'descuento': element.attrib.get('Descuento', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+            'terceros': self.__transform_terceros(element)
         }
         self._data['cfdi33']['conceptos'].append(concept)
+
+    def __transform_terceros(self, element: etree._Element):
+        terceros_data = dict()
+        for child in element.getchildren():
+            if child.tag == '{http://www.sat.gob.mx/cfd/3}ComplementoConcepto':
+                terceros_data = Terceros11SAXHandler(self._config['empty_char'], self._config['safe_numerics']).transform_from_string(etree.tostring(child, encoding='utf-8'))
+        return terceros_data
 
     def __transform_general_taxes(self, element:etree._Element) -> None:
         self._data['cfdi33']['impuestos']['total_impuestos_traslados'] = element.attrib.get('TotalImpuestosTrasladados', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])

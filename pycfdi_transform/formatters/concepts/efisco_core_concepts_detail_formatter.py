@@ -1,8 +1,9 @@
 from __future__ import annotations
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
 
+
 class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
-    def __init__(self, cfdi_data: dict, empty_char:str = '', safe_numerics:bool = False) -> EfiscoCoreConceptsDetailFormatter:
+    def __init__(self, cfdi_data: dict, empty_char: str = '', safe_numerics: bool = False) -> EfiscoCoreConceptsDetailFormatter:
         super().__init__(cfdi_data, empty_char, safe_numerics)
 
     def dict_to_columns(self) -> list[list]:
@@ -36,8 +37,7 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
                 tfd['fecha_timbrado'],
             ]
 
-            for  idx, concept in enumerate(self._cfdi_data[cfdi_version]['conceptos']):
-
+            for idx, concept in enumerate(self._cfdi_data[cfdi_version]['conceptos']):
                 concept_row = [
                     idx + 1,
                     concept.get('clave_prod_serv', self._config['empty_char']),
@@ -48,8 +48,11 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
                     concept.get('descripcion', self._config['empty_char']),
                     concept.get('valor_unitario', self._config['empty_char']),
                     concept.get('descuento', self._config['empty_char']),
-                    concept.get('importe', self._config['empty_char'])
+                    concept.get('importe', self._config['empty_char']),
+                    concept['terceros'].get('nombre', self._config['empty_char']),
+                    concept['terceros'].get('rfc', self._config['empty_char'])
                 ]
+
                 results.append(cfdi_row + concept_row)
         return results
 
@@ -59,7 +62,7 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
         elif 'cfdi40' in self._cfdi_data:
             return {'cfdi': 'cfdi40', 'tfd': 'tfd11'}
 
-        return {'cfdi': 'cfdi33', 'tfd': 'tfd11' }
+        return {'cfdi': 'cfdi33', 'tfd': 'tfd11'}
 
     def can_format(self) -> bool:
         version = self.get_version()
@@ -107,5 +110,7 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
             "C_DESCRIPCION",
             "C_VALORUNITARIO",
             "C_DESCUENTO",
-            "C_IMPORTE"
+            "C_IMPORTE",
+            "TERCERONOMBRE",
+            "TERCERORFC"
         ]
