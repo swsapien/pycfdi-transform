@@ -193,7 +193,8 @@ class TestCFDI33SAXHandler(unittest.TestCase):
                         "descripcion": "Detalle factura",
                         "valor_unitario": "10.0000",
                         "importe": "10.00",
-                        "descuento": ""
+                        "descuento": "",
+                        "terceros": {}
                     }
                 ],
                 "impuestos": {
@@ -340,6 +341,7 @@ class TestCFDI33SAXHandler(unittest.TestCase):
                         'valor_unitario': '10.0000',
                         'importe': '10.00',
                         'descuento': '',
+                        'terceros': {}
                     }
                 ],
                 'impuestos': {
@@ -418,6 +420,7 @@ class TestCFDI33SAXHandler(unittest.TestCase):
                         'valor_unitario': '10.0000',
                         'importe': '10.00',
                         'descuento': '',
+                        'terceros': {}
                     }
                 ],
                 'impuestos': {
@@ -518,6 +521,7 @@ class TestCFDI33SAXHandler(unittest.TestCase):
                         'valor_unitario': '10.0000',
                         'importe': '10.00',
                         'descuento': '',
+                        'terceros': {}
                     }
                 ],
                 'impuestos': {
