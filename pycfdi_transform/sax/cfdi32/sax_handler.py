@@ -60,7 +60,7 @@ class CFDI32SAXHandler(BaseHandler):
                     elem.clear()
                 elif elem.tag == '{http://www.sat.gob.mx/cfd/3}Impuestos' and not self._inside_concepts:
                     self.__transform_general_taxes(elem)
-                elif elem.tag in ['{http://www.sat.gob.mx/cfd/3}Complemento', '{http://www.sat.gob.mx/cfd/3}ComplementoConcepto']:
+                elif elem.tag == '{http://www.sat.gob.mx/cfd/3}Complemento':
                     self.__transform_complement(elem)
                 elif elem.tag == '{http://www.sat.gob.mx/cfd/3}Addenda':
                     self.__transform_addenda(elem)
