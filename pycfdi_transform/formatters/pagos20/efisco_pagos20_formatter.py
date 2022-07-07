@@ -27,6 +27,8 @@ class EfiscoPagos20Formatter(FormatterInterface):
                 if tax_classificated['impuesto_p'] == tax_type:
                     total = StringHelper.sum_strings(total, tax_classificated['importe_p'])
         return total
+    def _toDecimal(self,value) -> float:
+        return float(value)
 
     def _get_part_complement(self) -> list:
         count_complement_pago = 1
@@ -51,11 +53,20 @@ class EfiscoPagos20Formatter(FormatterInterface):
                 ]
 
                 if len(pago['impuestos_p']) > 0:
-                    row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'traslados_p', '002'))
-                    row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'traslados_p', '003'))
-                    row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'retenciones_p', '001'))
-                    row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'retenciones_p', '002'))
-                    row.append(self._get_total_taxes_by_type(pago['impuestos_p'], 'retenciones_p', '003'))
+                    total_tra_002 = self._get_total_taxes_by_type(pago['impuestos_p'], 'traslados_p', '002')
+                    total_tra_003 = self._get_total_taxes_by_type(pago['impuestos_p'], 'traslados_p', '003')
+                    total_tra = self._toDecimal(total_tra_002) + self._toDecimal(total_tra_003)
+                    total_ret_001 = self._get_total_taxes_by_type(pago['impuestos_p'], 'retenciones_p', '001')
+                    total_ret_002 = self._get_total_taxes_by_type(pago['impuestos_p'], 'retenciones_p', '002')
+                    total_ret_003 = self._get_total_taxes_by_type(pago['impuestos_p'], 'retenciones_p', '003')
+                    total_ret = self._toDecimal(total_ret_001) + self._toDecimal(total_ret_002) + self._toDecimal(total_ret_003) 
+                    row.append(total_tra_002)
+                    row.append(total_tra_003)
+                    row.append(str(total_tra))
+                    row.append(total_ret_001)
+                    row.append(total_ret_002)
+                    row.append(total_ret_003)
+                    row.append(str(total_ret))
                 else:
                     row.extend(
                         [
