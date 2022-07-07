@@ -148,6 +148,20 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
         first_row = ['4.0', 'Serie', 'Folio', '2021-12-16T15:40:21', '30001000000400002444', '0', '0.00', '0.0', 'XXX', '1.00', 'P', '-', '-', '-', '20008', 'XAXX010101000', 'PUBLICO GENERAL', '601', 'XAXX010101000', 'Nombre', 'G01', '080CF54E-F9DB-4470-BF0D-A8613DC10B24', '2022-02-08T21:58:56', 'SPR190613I52', 'WUCP5ykONZrtAg97dDf4bx/GIldE0diCw1LDmCUci3YI31ocsvAQJCRTrWJ9JNkr3UrD1CyO//vxhP65DvmuNGyK0+QrQn7FDvEX+vo0bslbMP+UprBevco4JYW3BLazIpU1rSmoiu1K0ViAZCpdRk+o13uV8be4SQGOPclLsTljUxcYdn2qHLlP+EhSyqEb7MNUTQvY44MpjPlRRfgHnhDVQZDGZyta1M5jHrQioIl625Ju6PFDNMMyt+VltFb9omWpa7QxWuIaQ/jpmtWxqVGZjjpNj6aT8g1gjnr+dqyBQ5FpRunDfj9YgQJAs5Dug4S6Mwzj474egKjLKYlUoQ==', 'CP1_P1_DR1', '2021-12-02T00:18:10', '01', 'USD', '1.00', '14000.00', '-', '-', '-', '-', '-', '-', '1488703.81', '0.00', '2.00', '0.00', '0.00', 'BEDC8964-7E57-4604-9968-7E01378E8706', 'Serie3', 'Folio3', 'MXN', '1.329310', '', '1', '5000.00', '2000.00', '3000.00']
         self.assertListEqual(first_row, row_list[0])
         self.assertLess(end_time, 0.01)
+    def test_rows_pagos20_impuestos(self):
+        start = time.time()
+        sax_handler = CFDI40SAXHandler().use_pagos20()
+        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pagos_impuesto.xml')
+        self.assertIsNotNone(cfdi_data)
+        formatter = EfiscoPagos20Formatter(cfdi_data, empty_char='-', safe_numerics=True)
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '', 'Errors obtained.')
+        row_list = formatter.dict_to_columns()
+        end_time = start - time.time()
+        self.assertEqual(len(row_list[0]), len(formatter.get_columns_names()), 'Different length of columns')
+        first_row = ['4.0','A','14','2022-05-30T08:19:02','30001000000400002335','0','0.00','0','XXX','1.00','P','-','-','-','06370','EKU9003173C9','ESCUELA KEMPER URGATE','601','URE180429TM6','UNIVERSIDAD ROBOTICA ESPAÑOLA','CP01','080CF54E-F9DB-4470-BF0D-A8613DC10B24','2022-02-08T21:58:56','SPR190613I52','WUCP5ykONZrtAg97dDf4bx/GIldE0diCw1LDmCUci3YI31ocsvAQJCRTrWJ9JNkr3UrD1CyO//vxhP65DvmuNGyK0+QrQn7FDvEX+vo0bslbMP+UprBevco4JYW3BLazIpU1rSmoiu1K0ViAZCpdRk+o13uV8be4SQGOPclLsTljUxcYdn2qHLlP+EhSyqEb7MNUTQvY44MpjPlRRfgHnhDVQZDGZyta1M5jHrQioIl625Ju6PFDNMMyt+VltFb9omWpa7QxWuIaQ/jpmtWxqVGZjjpNj6aT8g1gjnr+dqyBQ5FpRunDfj9YgQJAs5Dug4S6Mwzj474egKjLKYlUoQ==','CP1_P1_DR1','2022-05-26T12:00:00','03','MXN','1','98.75','-','-','-','-','-','-','0.00','0.00','0.0','0.00','1.25','0.00','1.25','a0476c1b-8829-448d-82ab-92d8b26be878','-','-','MXN','1','','1','98.75','98.75','0.00']
+        self.assertListEqual(first_row, row_list[0])
+        self.assertLess(end_time, 0.01)
 
     def test_rows_pagos20_multi_tfd(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
