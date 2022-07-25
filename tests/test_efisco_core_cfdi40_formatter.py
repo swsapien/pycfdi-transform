@@ -129,5 +129,5 @@ class TestEfiscoCoreCFDI40Formatter(unittest.TestCase):
         self.assertEqual(len(data_columns), 1)
         self.assertEqual(len(data_columns[0]), len(formatter.get_columns_names()))
         named_column = dict(zip(formatter.get_columns_names(), data_columns[0]))
-        self.assertEqual(named_column['CLAVEPRODSERV'], '51101903, 50321559, 50466301, 25174800, 10302150')
+        self.assertEqual(named_column['CLAVEPRODSERV'], '25174800,44102103,50321559,50466301,51101903')
         
