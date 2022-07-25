@@ -145,6 +145,24 @@ class TestEfiscoCorpCFDI40Formatter(unittest.TestCase):
         self.assertEqual(named_column['RECEPTORNOMBRE'], 'kghfhg~')
         self.assertEqual(named_column['COMPLEMENTOS'], 'TimbreFiscalDigital')
     
+    def test_formatter_concepts_cfdi40(self):
+        sax_handler = CFDI40SAXHandler().use_concepts_cfdi40()
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_01.xml')
+        formatter = EfiscoCorpCFDI40Formatter(cfdi_data)
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '')
+        data_columns = formatter.dict_to_columns()
+        self.assertEqual(len(data_columns), 1)
+        self.assertEqual(len(data_columns[0]), len(formatter.get_columns_names()))
+        named_column = dict(zip(formatter.get_columns_names(), data_columns[0]))
+        self.assertEqual(named_column['CONDICIONESDEPAGO'], 'NET15')
+        self.assertEqual(named_column['EMISORNOMBRE'], 'ESCUELÄ KEMPER ÚRGATE SA DE CV`}}}~')
+        self.assertEqual(named_column['RECEPTORNOMBRE'], 'kghfhg~')
+        self.assertEqual(named_column['COMPLEMENTOS'], 'TimbreFiscalDigital')
+        claveProdList = data_columns[0][23].split(",")
+        hasDuplicates = any(claveProdList.count(x) > 1 for x in claveProdList)
+        self.assertFalse(hasDuplicates)
+
     def test_formatter_cfdi40_addenda(self):
         sax_handler = CFDI40SAXHandler(safe_numerics=True, empty_char='-')
         cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_01_addenda.xml')

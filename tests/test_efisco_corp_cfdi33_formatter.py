@@ -105,6 +105,19 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
         self.assertEqual(data_columns[0][32],'-')
+    def test_formatter_cfdi33_concepts_group(self):
+        sax_handler = CFDI33SAXHandler().use_concepts_cfdi33()
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi33/cfdi33_01_conceptos.xml')
+        formatter = EfiscoCorpCFDI33Formatter(cfdi_data,empty_char='-',safe_numerics=False)
+        data_columns = formatter.dict_to_columns()
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(),'')
+        self.assertTrue(len(data_columns) == 1)
+        self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
+        self.assertEqual(data_columns[0][32],'-')
+        claveProdList = data_columns[0][23].split(",")
+        hasDuplicates = any(claveProdList.count(x) > 1 for x in claveProdList)
+        self.assertFalse(hasDuplicates)
     
     def test_formatter_cfdi33_implocal10_multiple_complements(self):
         sax_handler = CFDI33SAXHandler().use_implocal10()

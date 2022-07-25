@@ -63,7 +63,7 @@
       </cfdi:Parte>
       <cfdi:Parte ClaveProdServ="44102103" Cantidad="5521930.234907" Descripcion="]u" />
     </cfdi:Concepto>
-    <cfdi:Concepto ClaveProdServ="10302150" NoIdentificacion="}9}z~}" Cantidad="52990.234907" ClaveUnidad="XDC" Descripcion="dm~}~" ValorUnitario="8833520.234906" Importe="6441520.234906" ObjetoImp="00">
+    <cfdi:Concepto ClaveProdServ="44102103" NoIdentificacion="}9}z~}" Cantidad="52990.234907" ClaveUnidad="XDC" Descripcion="dm~}~" ValorUnitario="8833520.234906" Importe="6441520.234906" ObjetoImp="00">
       <cfdi:InformacionAduanera NumeroPedimento="18  44  3905  1602021" />
       <cfdi:CuentaPredial Numero="V" />
     </cfdi:Concepto>

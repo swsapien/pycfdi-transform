@@ -56,7 +56,7 @@ class EfiscoCorpCFDI33Formatter(BaseCFDI33Formatter):
                 # RECEPTORUSOCFDI
                 self._cfdi_data['cfdi33']['receptor']['uso_cfdi'],
                 # CLAVEPRODSERV
-                self._get_concept_value_by_key('clave_prod_serv'),
+                self._get_concept_value_by_key_concatenated('clave_prod_serv'),
                 # C_DESCRIPCION
                 self._get_concept_value_by_key('descripcion'),
                 # IVATRASLADO

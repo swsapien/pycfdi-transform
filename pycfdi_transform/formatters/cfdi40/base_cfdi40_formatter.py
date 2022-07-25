@@ -59,7 +59,10 @@ class BaseCFDI40Formatter(FormatterInterface, ABC):
     def _get_concept_value_by_key_concatenated(self, key: str) -> str:
         if self._cfdi_data['cfdi40']['conceptos'] and len(self._cfdi_data['cfdi40']['conceptos']) > 0:
             items = [d for d in self._cfdi_data['cfdi40']['conceptos'] if key in d.keys()]
-            return ', '.join(i[key] for i in items)
+            itemsList = list((i[key] for i in items))
+            itemsGroup = list(set(itemsList))
+            itemsGroup.sort()
+            return ','.join(itemsGroup)
         else:
             return self._config["empty_char"]
 
