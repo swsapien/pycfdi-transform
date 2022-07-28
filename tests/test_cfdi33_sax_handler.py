@@ -793,3 +793,84 @@ class TestCFDI33SAXHandler(unittest.TestCase):
             ]
         }
         self.assertDictEqual(cfdi_data, expected_dict)
+        
+    def test_transform_file_with_related_cfdis(self):
+        sax_handler = CFDI33SAXHandler().use_related_cfdis()
+        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33/cfdi33_related_cfdis.xml")
+        self.assertIsNotNone(cfdi_data)
+        expected_dict = {
+            "cfdi33": {
+                "version": "3.3",
+                "serie": "R4",
+                "folio": "339",
+                "fecha": "2021-12-23T21:30:21",
+                "no_certificado": "00001000000500000079",
+                "subtotal": "9731.42",
+                "descuento": "912.51",
+                "total": "8818.91",
+                "moneda": "MXN",
+                "tipo_cambio": "",
+                "tipo_comprobante": "N",
+                "metodo_pago": "PUE",
+                "forma_pago": "99",
+                "condiciones_pago": "",
+                "lugar_expedicion": "78395",
+                "sello": "SELLO",
+                "certificado": "CERTIFICADO",
+                "confirmacion": "",
+                "emisor": {
+                    "rfc": "EKU9003173C9",
+                    "nombre": "ESCUELA KEMPER URGATE",
+                    "regimen_fiscal": "601"
+                },
+                "receptor": {
+                    "rfc": "XAXX010101000",
+                    "nombre": "PUBLICO GENERAL",
+                    "residencia_fiscal": "",
+                    "num_reg_id_trib": "",
+                    "uso_cfdi": "P01"
+                },
+                "conceptos": [
+
+                ],
+                "impuestos": {
+                    "retenciones": [
+
+                    ],
+                    "traslados": [
+
+                    ],
+                    "total_impuestos_traslados": "",
+                    "total_impuestos_retenidos": ""
+                },
+                "complementos": "TimbreFiscalDigital",
+                "addendas": "",
+                "cfdis_relacionados": [
+                    {
+                        "uuid": "1D0EA245-9147-492F-83EF-A7DD8E5D7094",
+                        "tipo_relacion": "04"
+                    },
+                    {
+                        "uuid": "1D0EA245-9147-492F-83EF-A7DD8E5D7095",
+                        "tipo_relacion": "04"
+                    },
+                    {
+                        "uuid": "1D0EA245-9147-492F-83EF-A7DD8E5D7096",
+                        "tipo_relacion": "02"
+                    }
+                ]
+            },
+            "tfd11": [
+                {
+                    "version": "1.1",
+                    "no_certificado_sat": "00001000000509840000",
+                    "uuid": "48563590-F30B-4EFF-AE15-B2A900000000",
+                    "fecha_timbrado": "2021-12-23T21:39:57",
+                    "rfc_prov_cert": "EKU9003173C9",
+                    "sello_cfd": "SELLOCFD",
+                    "sello_sat": "6HgzXPhZg+ZlA/rlYwdv9nnrdAuEtIXsYF1dKm3gnfiJOQgE+wGXCw/XbcraITe3S++v50bqdNLbCkq9fNURXhtoP10Xm2xRSp8jMuTCWrGgziAgMzl22ao1Z44p2OjvvLSRHFYwgQUHwFGMwtyjz6qpEAa+AKzFerIzRm5zsntCJSk5ilPq/MSUmSF4N5CzAHaOk0rVknx8FLL6KZVp7kCCIeRsv/otBHc1L0TVG8sD28owMFl57Dcwe7BJ1zOg=="
+                }
+            ]
+        }
+
+        self.assertDictEqual(cfdi_data, expected_dict)

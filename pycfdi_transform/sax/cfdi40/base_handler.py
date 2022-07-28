@@ -21,6 +21,7 @@ class BaseHandler(ABC):
         super().__init__()
         self._config = {
             'concepts': False,
+            'cfdis_relacionados': False,
             'empty_char': empty_char,
             'safe_numerics': safe_numerics,
             'esc_delimiters': esc_delimiters
@@ -117,7 +118,11 @@ class BaseHandler(ABC):
         """
         self._config['concepts'] = True
         return self
-    
+
+    def use_related_cfdis(self) -> BaseHandler:
+        self._config['cfdis_relacionados'] = True
+        return self
+
     def use_implocal10(self) -> BaseHandler:
         """Activate the tranform in case of find complement implocal10 in invoice.
 
