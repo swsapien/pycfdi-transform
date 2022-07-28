@@ -26,6 +26,13 @@
                 </cfdi:Traslados>
             </cfdi:Impuestos>
         </cfdi:Concepto>
+     <cfdi:Concepto Cantidad="1.0000" ClaveProdServ="2300403" ClaveUnidad="3G" Descripcion="Detalle factura" Importe="10.00" NoIdentificacion="prodüctoInventarió" ValorUnitario="10.0000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="10.00" Importe="1.60" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
     </cfdi:Conceptos>
     <cfdi:Impuestos TotalImpuestosTrasladados="1.60">
         <cfdi:Traslados>

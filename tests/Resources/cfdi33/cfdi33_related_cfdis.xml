@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante Version="3.3"
+                  Sello="SELLO"
+                  Certificado="CERTIFICADO"
+                  NoCertificado="00001000000500000079"
+                  SubTotal="9731.42"
+                  Moneda="MXN"
+                  Total="8818.91"
+                  MetodoPago="PUE"
+                  Descuento="912.51"
+                  Serie="R4"
+                  Folio="339"
+                  Fecha="2021-12-23T21:30:21"
+                  FormaPago="99"
+                  TipoDeComprobante="N"
+                  LugarExpedicion="78395"
+                  xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd"
+                  xmlns:nomina12="http://www.sat.gob.mx/nomina12"
+                  xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<cfdi:CfdiRelacionados TipoRelacion="04">
+<cfdi:CfdiRelacionado UUID="1d0ea245-9147-492f-83ef-a7dd8e5d7094" />
+<cfdi:CfdiRelacionado UUID="1d0ea245-9147-492f-83ef-a7dd8e5d7095" />
+</cfdi:CfdiRelacionados>
+<cfdi:CfdiRelacionados TipoRelacion="02">
+<cfdi:CfdiRelacionado UUID="1d0ea245-9147-492f-83ef-a7dd8e5d7096" />
+</cfdi:CfdiRelacionados>
+<cfdi:Emisor Rfc="EKU9003173C9"
+             Nombre="ESCUELA KEMPER URGATE"
+             RegimenFiscal="601" />
+<cfdi:Receptor Nombre="PUBLICO GENERAL"
+               Rfc="XAXX010101000"
+               UsoCFDI="P01" />
+<cfdi:Conceptos>
+<cfdi:Concepto ClaveProdServ="84110505"
+               Cantidad="1"
+               ClaveUnidad="ACT"
+               Descripcion="Pago de nómina"
+               ValorUnitario="9731.42"
+               Importe="9731.42"
+               Descuento="912.51" />
+</cfdi:Conceptos>
+<cfdi:Complemento>
+<tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+                         Version="1.1"
+                         UUID="48563590-F30B-4EFF-AE15-B2A900000000"
+                         FechaTimbrado="2021-12-23T21:39:57"
+                         RfcProvCertif="EKU9003173C9"
+                         SelloCFD="SELLOCFD"
+                         NoCertificadoSAT="00001000000509840000"
+                         SelloSAT="6HgzXPhZg+ZlA/rlYwdv9nnrdAuEtIXsYF1dKm3gnfiJOQgE+wGXCw/XbcraITe3S++v50bqdNLbCkq9fNURXhtoP10Xm2xRSp8jMuTCWrGgziAgMzl22ao1Z44p2OjvvLSRHFYwgQUHwFGMwtyjz6qpEAa+AKzFerIzRm5zsntCJSk5ilPq/MSUmSF4N5CzAHaOk0rVknx8FLL6KZVp7kCCIeRsv/otBHc1L0TVG8sD28owMFl57Dcwe7BJ1zOg=="
+                         xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+</cfdi:Complemento>
+</cfdi:Comprobante>
