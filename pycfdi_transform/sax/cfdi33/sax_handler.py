@@ -56,6 +56,8 @@ class CFDI33SAXHandler(BaseHandler):
                 elif elem.tag == '{http://www.sat.gob.mx/cfd/3}Concepto' and self._config['concepts']:
                     self.__transform_concept(elem)
                     elem.clear()
+                elif elem.tag == '{http://www.sat.gob.mx/cfd/3}CfdiRelacionados' and self._config['cfdis_relacionados']:
+                    self.__transform_related_cfdi(elem)
                 elif elem.tag == '{http://www.sat.gob.mx/cfd/3}Impuestos' and not self._inside_concepts:
                     self.__transform_general_taxes(elem)
                 elif elem.tag == '{http://www.sat.gob.mx/cfd/3}Complemento':
@@ -187,3 +189,13 @@ class CFDI33SAXHandler(BaseHandler):
                 addendas.append(str(addenda.tag))
         if len(addendas) > 0:
             self._data['cfdi33']['addendas'] = ' '.join(addendas)
+
+    def __transform_related_cfdi(self, elem) -> None:
+        self._data['cfdi33']['cfdis_relacionados'] = [] if 'cfdis_relacionados' not in self._data['cfdi33'] else self._data['cfdi33']['cfdis_relacionados']
+        for related_cfdi in elem.getchildren():
+            self._data['cfdi33']['cfdis_relacionados'].append(
+                {
+                    'uuid': str(related_cfdi.attrib.get('UUID')).upper(),
+                    'tipo_relacion': elem.attrib.get('TipoRelacion')
+                }
+            )
