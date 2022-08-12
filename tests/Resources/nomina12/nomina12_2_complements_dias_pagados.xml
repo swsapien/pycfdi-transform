@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Descuento="2134.26" Fecha="2022-07-14T14:02:19" Folio="000220750002700001" FormaPago="99" LugarExpedicion="25900" MetodoPago="PUE" Moneda="MXN" SubTotal="3638.50" TipoDeComprobante="N" Total="1504.24" Version="3.3" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd"
+    xmlns:nomina12="http://www.sat.gob.mx/nomina12" NoCertificado="0101" Sello="mWcMIKzwl8XV+l1cqHvM4dVkh8a4PcNW/2bzQgOvvyUFHXFEEEjA6hqPEF0PBP2bWfrgTqo9goI3T4zDGQ8OBy9552LOxWQbQZTWkgp0WVrMAbwGLB9+L9k4S6ykFBEkeH2nDw5G/R4PLvdYNaUgTVWEBGp2w5izVzFMr/gCwMW3shkb70fNiwK+0+njec9IL29cKzPOotr+nLPBoge2s+wwgAOIaPnFef0M6wP8LdBQi09fcrSS2o8vwSMZyqKmSgJXZ4yhAzMyu7KcXmG4HA66Pne2DL4+xRZhc+C2oxXjL8TjgLRUuIC6gxpfbSiSF7+TYD8sbEsUqp2b9Q7cHg==" Certificado="XAXX010101000XAXX010101000">
+    <cfdi:Emisor Nombre="XAXX010101000" RegimenFiscal="601" Rfc="XAXX010101000" />
+    <cfdi:Receptor Nombre="XAXX010101000" Rfc="XAXX010101000" UsoCFDI="P01" />
+    <cfdi:Conceptos>
+        <cfdi:Concepto Cantidad="1" ClaveProdServ="84111505" ClaveUnidad="ACT" Descripcion="Pago de nómina" Descuento="2134.26" Importe="3638.50" ValorUnitario="3638.50" />
+    </cfdi:Conceptos>
+    <cfdi:Complemento>
+        <nomina12:Nomina FechaFinalPago="2022-07-10" FechaInicialPago="2022-07-04" FechaPago="2022-07-15" NumDiasPagados="7.000" TipoNomina="O" TotalDeducciones="2134.26" TotalOtrosPagos="45.55" TotalPercepciones="2833.95" Version="1.2">
+            <nomina12:Emisor RegistroPatronal="A3411099106" />
+            <nomina12:Receptor Antigüedad="P26W" Banco="002" ClaveEntFed="COA" CuentaBancaria="0101" Curp="XAXX010101000" FechaInicioRelLaboral="2022-01-05" NumEmpleado="22075" NumSeguridadSocial="32967695688" PeriodicidadPago="02" RiesgoPuesto="3" SalarioBaseCotApor="387.51" SalarioDiarioIntegrado="253.00" Sindicalizado="Sí" TipoContrato="01" TipoJornada="99" TipoRegimen="02" />
+            <nomina12:Percepciones TotalExento="1016.93" TotalGravado="1817.02" TotalSueldos="2833.95">
+                <nomina12:Percepcion Clave="1010" Concepto="Salario Semanal" ImporteExento="0.00" ImporteGravado="1771.00" TipoPercepcion="001" />
+                <nomina12:Percepcion Clave="5002" Concepto="Fondo de Ahorro Compañía" ImporteExento="56.93" ImporteGravado="0.00" TipoPercepcion="005" />
+                <nomina12:Percepcion Clave="_422" Concepto="ExImp previsión social" ImporteExento="960.00" ImporteGravado="0.00" TipoPercepcion="029" />
+                <nomina12:Percepcion Clave="2075" Concepto="Bono Producc Staff 1 y 2" ImporteExento="0.00" ImporteGravado="46.02" TipoPercepcion="038" />
+            </nomina12:Percepciones>
+            <nomina12:Deducciones TotalOtrasDeducciones="2134.26">
+                <nomina12:Deduccion Clave="_391" Concepto="Aportación trabaj  IMSS" Importe="28.81" TipoDeduccion="001" />
+                <nomina12:Deduccion Clave="5000" Concepto="Fondo de Ahorro Empleado" Importe="56.93" TipoDeduccion="004" />
+                <nomina12:Deduccion Clave="5004" Concepto="Ret Fondo Ahorro Compañia" Importe="56.93" TipoDeduccion="004" />
+                <nomina12:Deduccion Clave="6045" Concepto="Ded Vales de Despensa" Importe="960.00" TipoDeduccion="004" />
+                <nomina12:Deduccion Clave="6060" Concepto="Cuota Sindical" Importe="7.59" TipoDeduccion="004" />
+                <nomina12:Deduccion Clave="6062" Concepto="Fideicomiso Sindicato" Importe="10.00" TipoDeduccion="004" />
+                <nomina12:Deduccion Clave="7052" Concepto="Donación Teleton" Importe="2.00" TipoDeduccion="004" />
+                <nomina12:Deduccion Clave="5060" Concepto="Incapacidad General" Importe="1012.00" TipoDeduccion="006" />
+            </nomina12:Deducciones>
+            <nomina12:OtrosPagos>
+                <nomina12:OtroPago Clave="_481" Concepto="Subsidio al empleo efvo" Importe="45.55" TipoOtroPago="002">
+                    <nomina12:SubsidioAlEmpleo SubsidioCausado="90.44" />
+                </nomina12:OtroPago>
+            </nomina12:OtrosPagos>
+            <nomina12:Incapacidades>
+                <nomina12:Incapacidad DiasIncapacidad="4" ImporteMonetario="1012.00" TipoIncapacidad="02" />
+            </nomina12:Incapacidades>
+        </nomina12:Nomina>
+        <nomina12:Nomina FechaFinalPago="2022-07-10" FechaInicialPago="2022-07-04" FechaPago="2022-07-15" NumDiasPagados="0.001" TipoNomina="O" TotalOtrosPagos="0.00" TotalPercepciones="759.00" Version="1.2">
+            <nomina12:Emisor RegistroPatronal="A3411099106" />
+            <nomina12:Receptor Antigüedad="P26W" Banco="002" ClaveEntFed="COA" CuentaBancaria="0101" Curp="XAXX010101000" FechaInicioRelLaboral="2022-01-05" NumEmpleado="22075" NumSeguridadSocial="32967695688" PeriodicidadPago="02" RiesgoPuesto="3" SalarioBaseCotApor="387.51" SalarioDiarioIntegrado="253.00" Sindicalizado="Sí" TipoContrato="01" TipoJornada="99" TipoRegimen="02" />
+            <nomina12:Percepciones TotalExento="0.00" TotalGravado="759.00" TotalSueldos="759.00">
+                <nomina12:Percepcion Clave="3080" Concepto="Compe  subs Incapacidad" ImporteExento="0.00" ImporteGravado="759.00" TipoPercepcion="014" />
+            </nomina12:Percepciones>
+            <nomina12:OtrosPagos>
+                <nomina12:OtroPago Clave="_481" Concepto="Subsidio al empleo efvo" Importe="0.00" TipoOtroPago="002">
+                    <nomina12:SubsidioAlEmpleo SubsidioCausado="0.00" />
+                </nomina12:OtroPago>
+            </nomina12:OtrosPagos>
+            <nomina12:Incapacidades>
+                <nomina12:Incapacidad DiasIncapacidad="3" ImporteMonetario="759.00" TipoIncapacidad="02" />
+            </nomina12:Incapacidades>
+        </nomina12:Nomina>
+        <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="e9019775" FechaTimbrado="2022-07-14T15:15:48" RfcProvCertif="XXX" SelloCFD="mWcMIKzwl8XV+l1cqHvM4dVkh8a4PcNW/2bzQgOvvyUFHXFEEEjA6hqPEF0PBP2bWfrgTqo9goI3T4zDGQ8OBy9552LOxWQbQZTWkgp0WVrMAbwGLB9+L9k4S6ykFBEkeH2nDw5G/R4PLvdYNaUgTVWEBGp2w5izVzFMr/gCwMW3shkb70fNiwK+0+njec9IL29cKzPOotr+nLPBoge2s+wwgAOIaPnFef0M6wP8LdBQi09fcrSS2o8vwSMZyqKmSgJXZ4yhAzMyu7KcXmG4HA66Pne2DL4+xRZhc+C2oxXjL8TjgLRUuIC6gxpfbSiSF7+TYD8sbEsUqp2b9Q7cHg==" NoCertificadoSAT="0101" SelloSAT="d5r2dFjgHwMkccHvFFZtwWIp6do2PijgX0VzTCrwVT7TZ2bSMyYw4rDprDDX3mQb+ABbjFkniNu7HO/hEyPqg7irizqczumqwsAyU6ZCbQ5XEYHEZrPyEoAyfzqS9Oqmh+hV1KdRRkF10zgnKtzOzUifBvmkl6qPAw2WblQ8MHTJ935ohJ5A2w55gmeTQBw+V8/6aCfwCuhgWKr298G/iYCvWhbp9xtYCWHXAtnh2rIwmN7ojGBB1GEkzlUw+H2yfhSidNDi3BRBH+PXZ5RWoEnFhk5TLJMe8hv/KNukskWDp8eCF3fnp8jeiEp0rMjJ5YzWXRHWPjt6+FfkS/svRQ=="
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    </cfdi:Complemento>
+</cfdi:Comprobante>

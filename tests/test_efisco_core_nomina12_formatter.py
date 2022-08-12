@@ -482,8 +482,6 @@ class TestEfiscoNomina12Formatter(unittest.TestCase):
         end_time = time.time() - start
         self.assertListEqual(expected_columns, result_columns)
         self.assertLess(end_time, 0.01)
-
-
     def test_formatter_compatibility_legacy_version_01_ok(self):
         sax_handler = CFDI33SAXHandler().use_nomina12()
         cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina12/nomina12_efisco_core_formatter_legacy_01.xml')
