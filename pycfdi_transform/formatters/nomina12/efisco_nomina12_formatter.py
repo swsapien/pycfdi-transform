@@ -23,7 +23,8 @@ class EfiscoNomina12Formatter(FormatterInterface):
 
     def __get_total_percepciones(self):
         return self.__get_nomina_total_by_property('total_percepciones')
-
+    def __get_total_dias_pagados(self):
+        return self.__get_nomina_total_by_property('num_dias_pagados')
     def __get_total_deducciones(self):
         return self.__get_nomina_total_by_property('total_deducciones')
 
@@ -44,7 +45,7 @@ class EfiscoNomina12Formatter(FormatterInterface):
                 nomina12['fecha_pago'],
                 nomina12['fecha_inicial_pago'],
                 nomina12['fecha_final_pago'],
-                nomina12['num_dias_pagados'],
+                self.__get_total_dias_pagados(),
                 self.__get_total_percepciones(),
                 self.__get_total_deducciones(),
                 self.__get_total_otros_pagos(),
