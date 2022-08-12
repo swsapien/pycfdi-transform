@@ -568,7 +568,7 @@ class TestCFDI33SAXHandler(unittest.TestCase):
         sax_handler = CFDI33SAXHandler(schema_validator=schema_validator).use_concepts_cfdi33()
         cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi33/cfdi33_large_01.xml")
         total_seconds = time.time() - start_time
-        self.assertLessEqual(total_seconds, 2, 'Too much time to validate xsd')
+        self.assertLessEqual(total_seconds, 3, 'Too much time to validate xsd')
         self.assertIsNotNone(cfdi_data)
 
     def test_transform_file_validation_global(self):
