@@ -1,5 +1,4 @@
 from __future__ import annotations
-from decimal import Decimal
 from pycfdi_transform.formatters.catalogs import catalogs
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
 from pycfdi_transform.helpers.string_helper import StringHelper
@@ -57,16 +56,8 @@ class EfiscoCoreNomina12Formatter(FormatterInterface):
             self._set_otros_pagos(nomina12, row)
 
             results.append(row)
-        results = self._set_dias_pagados(results)
         return results
-    def _sum_by_index(self,index,results):
-        sum_index = 0
-        for row in results:
-            sum_index+= Decimal(row[index])
-        return str(sum_index)
-    def _set_dias_pagados(self,results):
-        results[0][4] = self._sum_by_index(4,results)
-        return results
+
     def _set_otros_pagos(self, nomina12, row):
         subsidio = self.get_subsidio_al_empleo(nomina12)
         compensacion = self.get_compensacion_saldo_a_favor(nomina12)
