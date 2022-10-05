@@ -33,8 +33,8 @@ class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
                 self._cfdi_data[cfdi_version]['receptor']['rfc'],
                 self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['nombre']),
                 self._cfdi_data[cfdi_version]['receptor'].get('uso_cfdi', self._config['empty_char']),
-                self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['domicilio_fiscal_receptor']) if 'domicilio_fiscal_receptor' in self._cfdi_data[cfdi_version]['receptor'] else self._config['empty_char'],
-                self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['regimen_fiscal_receptor']) if 'regimen_fiscal_receptor' in self._cfdi_data[cfdi_version]['receptor'] else self._config['empty_char'],
+                self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['domicilio_fiscal_receptor']) if 'domicilio_fiscal_receptor' in self._cfdi_data[cfdi_version]['receptor'] else "",
+                self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['regimen_fiscal_receptor']) if 'regimen_fiscal_receptor' in self._cfdi_data[cfdi_version]['receptor'] else "",
                 tfd['uuid'],
                 tfd['fecha_timbrado'],
             ]
