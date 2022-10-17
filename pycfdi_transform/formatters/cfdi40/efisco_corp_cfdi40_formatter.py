@@ -70,6 +70,10 @@ class EfiscoCorpCFDI40Formatter(BaseCFDI40Formatter):
                 self._get_str_value(self._cfdi_data['cfdi40']['receptor']['num_reg_id_trib']),
                 # RECEPTORUSOCFDI
                 self._cfdi_data['cfdi40']['receptor']['uso_cfdi'],
+                # DOMICILIOFISCALRECEPTOR
+                self._get_str_value(self._cfdi_data['cfdi40']['receptor']['domicilio_fiscal_receptor']),
+                # REGIMENFISCALRECEPTOR
+                self._get_str_value(self._cfdi_data['cfdi40']['receptor']['regimen_fiscal_receptor']),
                 # CLAVEPRODSERV
                 self._get_concept_value_by_key_concatenated('clave_prod_serv'),
                 # C_DESCRIPCION
@@ -140,6 +144,8 @@ class EfiscoCorpCFDI40Formatter(BaseCFDI40Formatter):
             'RESIDENCIAFISCAL',
             'NUMREGIDTRIB',
             'RECEPTORUSOCFDI',
+            'RECEPTORDOMICILIOFISCAL',
+            'RECEPTORREGIMENFISCAL',
             'CLAVEPRODSERV',
             'C_DESCRIPCION',
             'IVATRASLADO',
