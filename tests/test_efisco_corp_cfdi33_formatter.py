@@ -31,6 +31,8 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
             'RESIDENCIAFISCAL',
             'NUMREGIDTRIB',
             'RECEPTORUSOCFDI',
+            'RECEPTORDOMICILIOFISCAL',
+            'RECEPTORREGIMENFISCAL',
             'CLAVEPRODSERV',
             'C_DESCRIPCION',
             'IVATRASLADO',
@@ -81,8 +83,8 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][32],'0.000000')
-        self.assertEqual(data_columns[0][33],'77.400000')
+        self.assertEqual(data_columns[0][34],'0.000000')
+        self.assertEqual(data_columns[0][35],'77.400000')
     
     def test_formatter_cfdi33_implocal10_safe_numerics_1(self):
         sax_handler = CFDI33SAXHandler().use_implocal10()
@@ -104,7 +106,8 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][32],'-')
+        self.assertEqual(data_columns[0][34],'-')
+        
     def test_formatter_cfdi33_concepts_group(self):
         sax_handler = CFDI33SAXHandler().use_concepts_cfdi33()
         cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi33/cfdi33_01_conceptos.xml')
@@ -114,7 +117,7 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][32],'-')
+        self.assertEqual(data_columns[0][34],'-')
         claveProdList = data_columns[0][23].split(",")
         hasDuplicates = any(claveProdList.count(x) > 1 for x in claveProdList)
         self.assertFalse(hasDuplicates)
@@ -128,8 +131,8 @@ class TestEfiscoCorpCFDI33Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][32],'20.000000')
-        self.assertEqual(data_columns[0][33],'40.000000')
+        self.assertEqual(data_columns[0][34],'20.000000')
+        self.assertEqual(data_columns[0][35],'40.000000')
     
     def test_formatter_line_breaks_cfdi33(self):
         sax_handler = CFDI33SAXHandler().use_concepts_cfdi33()

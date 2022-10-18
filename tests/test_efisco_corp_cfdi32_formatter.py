@@ -34,6 +34,8 @@ class TestEfiscoCorpCFDI32Formatter(unittest.TestCase):
             'RESIDENCIAFISCAL',
             'NUMREGIDTRIB',
             'RECEPTORUSOCFDI',
+            'RECEPTORDOMICILIOFISCAL',
+            'RECEPTORREGIMENFISCAL',
             'CLAVEPRODSERV',
             'C_DESCRIPCION',
             'IVATRASLADO',
@@ -105,7 +107,7 @@ class TestEfiscoCorpCFDI32Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(), '')
         self.assertTrue(len(data_columns) == 2)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][32], '-')
+        self.assertEqual(data_columns[0][34], '-')
 
     def test_formatter_cfdi32_implocal10_multiple_complements(self):
         sax_handler = CFDI32SAXHandler().use_implocal10()
@@ -116,8 +118,8 @@ class TestEfiscoCorpCFDI32Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(), '')
         self.assertTrue(len(data_columns) == 2)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][32], '-')
-        self.assertEqual(data_columns[0][33], '-')
+        self.assertEqual(data_columns[0][34], '-')
+        self.assertEqual(data_columns[0][35], '-')
 
     def test_formatter_line_breaks_cfdi32(self):
         sax_handler = CFDI32SAXHandler().use_concepts_cfdi32()
