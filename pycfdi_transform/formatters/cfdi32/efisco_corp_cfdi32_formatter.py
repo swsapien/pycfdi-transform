@@ -69,6 +69,10 @@ class EfiscoCorpCFDI32Formatter(BaseCFDI32Formatter):
                 "",
                 # RECEPTORUSOCFDI
                 "",
+                # DOMICILIOFISCALRECEPTOR
+                "",
+                # REGIMENFISCALRECEPTOR
+                "",
                 # CLAVEPRODSERV
                 self._get_concept_value_by_key('clave_prod_serv'),
                 # C_DESCRIPCION
@@ -139,6 +143,8 @@ class EfiscoCorpCFDI32Formatter(BaseCFDI32Formatter):
             'RESIDENCIAFISCAL',
             'NUMREGIDTRIB',
             'RECEPTORUSOCFDI',
+            'RECEPTORDOMICILIOFISCAL',
+            'RECEPTORREGIMENFISCAL',
             'CLAVEPRODSERV',
             'C_DESCRIPCION',
             'IVATRASLADO',

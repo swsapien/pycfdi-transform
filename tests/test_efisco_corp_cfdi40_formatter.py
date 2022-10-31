@@ -31,6 +31,8 @@ class TestEfiscoCorpCFDI40Formatter(unittest.TestCase):
             'RESIDENCIAFISCAL',
             'NUMREGIDTRIB',
             'RECEPTORUSOCFDI',
+            'RECEPTORDOMICILIOFISCAL',
+            'RECEPTORREGIMENFISCAL',
             'CLAVEPRODSERV',
             'C_DESCRIPCION',
             'IVATRASLADO',
@@ -81,8 +83,8 @@ class TestEfiscoCorpCFDI40Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][30],'0.00')
-        self.assertEqual(data_columns[0][31],'')
+        self.assertEqual(data_columns[0][32],'0.00')
+        self.assertEqual(data_columns[0][33],'')
     
     def test_formatter_cfdi40_implocal10_safe_numerics_1(self):
         sax_handler = CFDI40SAXHandler(safe_numerics=True).use_implocal10()
@@ -127,8 +129,8 @@ class TestEfiscoCorpCFDI40Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][30],'0.00')
-        self.assertEqual(data_columns[0][31],'-')
+        self.assertEqual(data_columns[0][32],'0.00')
+        self.assertEqual(data_columns[0][33],'-')
     
     def test_formatter_line_breaks_cfdi40(self):
         sax_handler = CFDI40SAXHandler().use_concepts_cfdi40()

@@ -7,7 +7,7 @@ class TestEfiscoCoreCFDI33Formatter(unittest.TestCase):
 
     def test_columns_names_cfdi33(self):
         formatter = EfiscoCoreCFDI33Formatter({'cfdi33': {}})
-        columns_expected = ['VERSION', 'SERIE', 'FOLIO', 'FECHA', 'NOCERTIFICADO', 'SUBTOTAL', 'DESCUENTO', 'TOTAL', 'MONEDA', 'TIPOCAMBIO', 'TIPODECOMPROBANTE', 'METODOPAGO', 'FORMAPAGO', 'CONDICIONESDEPAGO', 'LUGAREXPEDICION', 'EMISORRFC', 'EMISORNOMBRE', 'EMISORREGIMENFISCAL', 'RECEPTORRFC', 'RECEPTORNOMBRE', 'RESIDENCIAFISCAL', 'NUMREGIDTRIB', 'RECEPTORUSOCFDI', 'CLAVEPRODSERV', 'IVATRASLADO', 'IEPSTRASLADO', 'TOTALIMPUESTOSTRASLADOS', 'ISRRETENIDO', 'IVARETENIDO', 'IEPSRETENIDO', 'TOTALIMPUESTOSRETENIDOS', 'TOTALTRASLADOSIMPUESTOSLOCALES', 'TOTALRETENCIONESIMPUESTOSLOCALES', 'COMPLEMENTOS', 'UUID', 'FECHATIMBRADO', 'RFCPROVCERTIF', 'SELLOCFD']
+        columns_expected = ['VERSION', 'SERIE', 'FOLIO', 'FECHA', 'NOCERTIFICADO', 'SUBTOTAL', 'DESCUENTO', 'TOTAL', 'MONEDA', 'TIPOCAMBIO', 'TIPODECOMPROBANTE', 'METODOPAGO', 'FORMAPAGO', 'CONDICIONESDEPAGO', 'LUGAREXPEDICION', 'EMISORRFC', 'EMISORNOMBRE', 'EMISORREGIMENFISCAL', 'RECEPTORRFC', 'RECEPTORNOMBRE', 'RESIDENCIAFISCAL', 'NUMREGIDTRIB', 'RECEPTORUSOCFDI', 'RECEPTORDOMICILIOFISCAL', 'RECEPTORREGIMENFISCAL', 'CLAVEPRODSERV', 'IVATRASLADO', 'IEPSTRASLADO', 'TOTALIMPUESTOSTRASLADOS', 'ISRRETENIDO', 'IVARETENIDO', 'IEPSRETENIDO', 'TOTALIMPUESTOSRETENIDOS', 'TOTALTRASLADOSIMPUESTOSLOCALES', 'TOTALRETENCIONESIMPUESTOSLOCALES', 'COMPLEMENTOS', 'UUID', 'FECHATIMBRADO', 'RFCPROVCERTIF', 'SELLOCFD']
         self.assertListEqual(columns_expected, formatter.get_columns_names())
     
     def test_initialize_class_error_cfdi33(self):
@@ -37,8 +37,8 @@ class TestEfiscoCoreCFDI33Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][31],'0.000000')
-        self.assertEqual(data_columns[0][32],'77.400000')
+        self.assertEqual(data_columns[0][33],'0.000000')
+        self.assertEqual(data_columns[0][34],'77.400000')
     
     def test_formatter_cfdi33_implocal10_safe_numerics_1(self):
         sax_handler = CFDI33SAXHandler().use_implocal10()
@@ -60,7 +60,7 @@ class TestEfiscoCoreCFDI33Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][31],'-')
+        self.assertEqual(data_columns[0][33],'-')
     
     def test_formatter_cfdi33_implocal10_multiple_complements(self):
         sax_handler = CFDI33SAXHandler().use_implocal10()
@@ -71,8 +71,8 @@ class TestEfiscoCoreCFDI33Formatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][31],'20.000000')
-        self.assertEqual(data_columns[0][32],'40.000000')
+        self.assertEqual(data_columns[0][33],'20.000000')
+        self.assertEqual(data_columns[0][34],'40.000000')
     
     def test_formatter_line_breaks_cfdi33(self):
         sax_handler = CFDI33SAXHandler().use_concepts_cfdi33()

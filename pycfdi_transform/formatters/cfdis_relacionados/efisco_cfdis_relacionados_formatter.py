@@ -18,10 +18,10 @@ class EfiscoCfdisRelacionadosFormatter(FormatterInterface):
 
             for idx, related_cfdi in enumerate(self._cfdi_data[cfdi_version]['cfdis_relacionados']):
                 related_cfdi_row = [
-                    related_cfdi.get('uuid', self._config['empty_char']),
-                    related_cfdi.get('tipo_relacion', self._config['empty_char'])
+                    related_cfdi.get('tipo_relacion', self._config['empty_char']),
+                    related_cfdi.get('uuid', self._config['empty_char'])
                 ]
-                results.append(related_cfdi_row + cfdi_row)
+                results.append(cfdi_row + related_cfdi_row)
 
         return results
 
