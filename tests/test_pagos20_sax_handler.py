@@ -1,11 +1,13 @@
+import os
+
 from pycfdi_transform import CFDI40SAXHandler, SchemaHelper
 import unittest
 
 class TestPagos20SAXHandler(unittest.TestCase):
-    
+
     def test_transform_file_pagos20_complete(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) +'/Resources/pagos20/pago_complete.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
            "cfdi40":{
@@ -240,10 +242,10 @@ class TestPagos20SAXHandler(unittest.TestCase):
            ]
         }
         self.assertDictEqual(cfdi_data, expected_dict)
-    
+
     def test_transform_file_pagos20_safenumerics(self):
         sax_handler = CFDI40SAXHandler(safe_numerics=True).use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_safe_numbers.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) +'/Resources/pagos20/pago_safe_numbers.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
          "cfdi40":{
@@ -486,10 +488,10 @@ class TestPagos20SAXHandler(unittest.TestCase):
          ]
       }
         self.assertDictEqual(cfdi_data, expected_dict)
-    
+
     def test_transform_file_pagos20_emptychar(self):
         sax_handler = CFDI40SAXHandler(empty_char='-').use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_empty_chars.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) +'/Resources/pagos20/pago_empty_chars.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
          "cfdi40":{
@@ -732,11 +734,17 @@ class TestPagos20SAXHandler(unittest.TestCase):
          ]
       }
         self.assertDictEqual(cfdi_data, expected_dict)
-        
+
     def test_trasnform_file_pagos20_bad_version(self):
          sax_handler = CFDI40SAXHandler().use_pagos20()
          with self.assertRaises(ValueError) as context:
-            sax_handler.transform_from_file("./tests/Resources/pagos20/pago_bad_version.xml")
+            sax_handler.transform_from_file(os.path.dirname(__file__) +"/Resources/pagos20/pago_bad_version.xml")
          exception = context.exception
          self.assertIn('Incorrect type of Pagos, this handler only support Pagos version 2.0', str(exception), 'Not expected error message')
-    
+
+    def test_transform_file_pagos20_version_spaces(self):
+        sax_handler = CFDI40SAXHandler().use_pagos20()
+        cfdi_data = sax_handler.transform_from_file(
+            os.path.dirname(__file__) + '/Resources/pagos20/pago_complete_with_version_spaces.xml')
+        self.assertIsNotNone(cfdi_data)
+        self.assertEqual('2.0', cfdi_data['pagos20'][0]['version'])

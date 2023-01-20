@@ -32,9 +32,9 @@ class Pagos20SAXHandler(BaseHandler):
 
     
     def __transform_pagos(self, element:etree._Element) -> None:
-        if not 'Version' in element.attrib or element.attrib['Version'] != '2.0':
+        if not 'Version' in element.attrib or element.attrib['Version'].strip() != '2.0':
             raise ValueError('Incorrect type of Pagos, this handler only support Pagos version 2.0')
-        self._data['version'] = element.attrib.get('Version')
+        self._data['version'] = element.attrib.get('Version').strip()
     
     def __transform_totales(self, element: etree._Element) -> None:
         totales = {
