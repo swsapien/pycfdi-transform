@@ -2,8 +2,8 @@ from __future__ import annotations
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
 
 
-class EfiscoCoreConceptsDetailFormatter(FormatterInterface):
-    def __init__(self, cfdi_data: dict, empty_char: str = '', safe_numerics: bool = False) -> EfiscoCoreConceptsDetailFormatter:
+class EfiscoConceptsDetailFormatter(FormatterInterface):
+    def __init__(self, cfdi_data: dict, empty_char: str = '', safe_numerics: bool = False) -> EfiscoConceptsDetailFormatter:
         super().__init__(cfdi_data, empty_char, safe_numerics)
 
     def dict_to_columns(self) -> list[list]:
