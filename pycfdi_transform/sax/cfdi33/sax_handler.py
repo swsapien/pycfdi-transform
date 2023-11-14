@@ -39,9 +39,7 @@ class CFDI33SAXHandler(BaseHandler):
     def __handle_events(self, context:etree.iterwalk) -> None:
         for action, elem in context:
             if action == 'start':
-                if elem.prefix != 'cfdi':
-                    context.skip_subtree()
-                elif elem.tag == '{http://www.sat.gob.mx/cfd/3}Comprobante':
+                if elem.tag == '{http://www.sat.gob.mx/cfd/3}Comprobante':
                     self.__transform_comprobante(elem)
                 elif elem.tag == '{http://www.sat.gob.mx/cfd/3}Emisor':
                     self.__transform_emisor(elem)
