@@ -54,7 +54,7 @@ class CFDI40SAXHandler(BaseHandler):
         """
         try:
             self._clean_data()
-            xml_parser = etree.XMLParser(encoding='utf-8', recover=True)
+            xml_parser = etree.XMLParser(encoding='utf-8', recover=True, huge_tree=True)
             tree = etree.XML(xml_str.encode(), parser=xml_parser)
             if not 'cfdi' in tree.nsmap or tree.nsmap['cfdi'] != 'http://www.sat.gob.mx/cfd/4':
                 raise ValueError('The CFDI does\'t have correct namespace for CFDI V4.0.')
@@ -78,14 +78,18 @@ class CFDI40SAXHandler(BaseHandler):
                     self.__transform_emisor(elem)
                 elif elem.tag == '{http://www.sat.gob.mx/cfd/4}Receptor':
                     self.__transform_receptor(elem)
-                elif elem.tag == '{http://www.sat.gob.mx/cfd/4}Conceptos':
+                elif elem.tag == '{http://www.sat.gob.mx/cfd/4}Conceptos' and not self._config['concepts']:
+                    context.skip_subtree()
+                elif elem.tag == '{http://www.sat.gob.mx/cfd/4}Conceptos' and self._config['concepts']:
                     self._inside_concepts = True
             elif action == 'end':
                 if elem.tag == '{http://www.sat.gob.mx/cfd/4}Conceptos':
                     self._inside_concepts = False
+                    # Clear the element to free up memory
                     elem.clear()
                 elif elem.tag == '{http://www.sat.gob.mx/cfd/4}Concepto' and self._config['concepts']:
                     self.__transform_concept(elem)
+                    # Clear the element to free up memory
                     elem.clear()
                 elif elem.tag == '{http://www.sat.gob.mx/cfd/4}CfdiRelacionados' and self._config['cfdis_relacionados']:
                     self.__transform_related_cfdi(elem)
