@@ -1,3 +1,5 @@
+import os
+
 from pycfdi_transform import CFDI33SAXHandler, SchemaHelper
 from lxml.etree import DocumentInvalid
 from lxml import etree
@@ -6,7 +8,7 @@ import unittest
 class TestImpLocal10SAXHandler(unittest.TestCase):
     def test_transform_file_implocal(self):
         sax_handler = CFDI33SAXHandler().use_implocal10()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/implocal/cfdi33_implocal01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/implocal/cfdi33_implocal01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -45,6 +47,7 @@ class TestImpLocal10SAXHandler(unittest.TestCase):
                     'retenciones': [], 
                     'traslados': [
                         {
+                            'base': '',
                             'impuesto': '002', 
                             'tipo_factor': 'Tasa', 
                             'tasa_o_cuota': '0.160000', 
@@ -70,7 +73,7 @@ class TestImpLocal10SAXHandler(unittest.TestCase):
     def test_transform_file_implocal_validation(self):
         schema_validator = SchemaHelper.get_schema_validator_cfdi33()
         sax_handler = CFDI33SAXHandler(schema_validator=schema_validator).use_implocal10()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/implocal/cfdi33_implocal01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/implocal/cfdi33_implocal01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -109,6 +112,7 @@ class TestImpLocal10SAXHandler(unittest.TestCase):
                     'retenciones': [], 
                     'traslados': [
                         {
+                            'base': '',
                             'impuesto': '002', 
                             'tipo_factor': 'Tasa', 
                             'tasa_o_cuota': '0.160000', 
@@ -133,7 +137,7 @@ class TestImpLocal10SAXHandler(unittest.TestCase):
     
     def test_transform_file_implocal_safe_numerics(self):
         sax_handler = CFDI33SAXHandler(safe_numerics=True).use_implocal10()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/implocal/cfdi33_implocal01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/implocal/cfdi33_implocal01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -172,6 +176,7 @@ class TestImpLocal10SAXHandler(unittest.TestCase):
                     'retenciones': [], 
                     'traslados': [
                         {
+                            'base': '0.00',
                             'impuesto': '002', 
                             'tipo_factor': 'Tasa', 
                             'tasa_o_cuota': '0.160000', 
@@ -198,7 +203,7 @@ class TestImpLocal10SAXHandler(unittest.TestCase):
         schema_validator = SchemaHelper.get_schema_validator_cfdi33()
         sax_handler = CFDI33SAXHandler(schema_validator=schema_validator).use_implocal10()
         with self.assertRaises(etree.DocumentInvalid) as ex:
-            cfdi_data = sax_handler.transform_from_file("./tests/Resources/implocal/cfdi33_implocal_broken.xml")
+            cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/implocal/cfdi33_implocal_broken.xml")
             print(cfdi_data)
         exception = ex.exception
         self.assertIn("Element '{http://www.sat.gob.mx/implocal}RetencionesLocales': Character content is not allowed, because the content type is empty", str(exception))

@@ -1,3 +1,5 @@
+import os
+
 from pycfdi_transform import CFDI33SAXHandler, SchemaHelper
 from lxml import etree
 import unittest
@@ -5,7 +7,7 @@ import unittest
 class TestPagos10SAXHandler(unittest.TestCase):
     def test_transform_file_pagos10_complete(self):
         sax_handler = CFDI33SAXHandler().use_pagos10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos10/pago_complete.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -57,6 +59,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
                     ],
                     'traslados': [
                         {
+                            'base': '',
                             'impuesto': '001',
                             'tipo_factor': 'Cuota',
                             'tasa_o_cuota': '5992320.234906',
@@ -304,7 +307,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
 
     def test_transform_file_pagos10_01(self):
         sax_handler = CFDI33SAXHandler().use_pagos10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_01.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos10/pago10_01.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi33": {
@@ -403,7 +406,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
     
     def test_transform_file_pagos10_safenumerics_01(self):
         sax_handler = CFDI33SAXHandler(safe_numerics=True).use_pagos10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_01.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos10/pago10_01.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi33": {
@@ -502,7 +505,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
     
     def test_transform_file_pagos10_emptychar_01(self):
         sax_handler = CFDI33SAXHandler(empty_char='-').use_pagos10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_01.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos10/pago10_01.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi33": {
@@ -602,20 +605,20 @@ class TestPagos10SAXHandler(unittest.TestCase):
     def test_transform_file_pagos10_complete_validation(self):
         schema_validator = SchemaHelper.get_schema_validator_cfdi33()
         sax_handler = CFDI33SAXHandler(schema_validator=schema_validator).use_pagos10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos10/pago_complete.xml')
         self.assertIsNotNone(cfdi_data)
     
     def test_transform_file_pagos10_broken_validation(self):
         schema_validator = SchemaHelper.get_schema_validator_cfdi33()
         sax_handler = CFDI33SAXHandler(schema_validator=schema_validator).use_pagos10()
         with self.assertRaises(etree.DocumentInvalid) as context:
-            sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_broken_01.xml')
+            sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos10/pago10_broken_01.xml')
         exception = context.exception
         self.assertIn("Element '{http://www.sat.gob.mx/TimbreFiscalDigital}TimbreFiscalDigital': This element is not expected. Expected is ( {http://www.sat.gob.mx/Pagos}Pago ).", str(exception), 'Different error expected.')
     
     def test_transform_file_pagos10_broken(self):
         sax_handler = CFDI33SAXHandler().use_pagos10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10_broken_01.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos10/pago10_broken_01.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi33": {
@@ -704,7 +707,7 @@ class TestPagos10SAXHandler(unittest.TestCase):
     
     def test_transform_file_pagos10_nondr(self):
         sax_handler = CFDI33SAXHandler().use_pagos10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos10/pago10NonDr.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos10/pago10NonDr.xml')
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi33": {

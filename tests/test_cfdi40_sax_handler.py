@@ -13,7 +13,7 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     
     def test_transform_file(self):
         sax_handler = CFDI40SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi40": {
@@ -113,9 +113,9 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     
     def test_transform_file_reusable(self):
         sax_handler = CFDI40SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01_large.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01_large.xml")
         self.assertIsNotNone(cfdi_data)
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi40": {
@@ -215,7 +215,7 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     
     def test_transform_file_safe_numerics(self):
         sax_handler = CFDI40SAXHandler(safe_numerics=True)
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01_minimal.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01_minimal.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
                 "cfdi40": {
@@ -279,7 +279,7 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     
     def test_transform_file_empty_char(self):
         sax_handler = CFDI40SAXHandler(empty_char='-')
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01_minimal.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01_minimal.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
                 "cfdi40": {
@@ -524,7 +524,7 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     def test_transform_file_global(self):
         start_time = time.time()
         sax_handler = CFDI40SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01_large.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01_large.xml")
         total_seconds = time.time() - start_time
         self.assertLessEqual(total_seconds, 1.0, 'Too much time to transform global cfdi')
         self.assertIsNotNone(cfdi_data)
@@ -532,7 +532,7 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     def test_transform_file_with_concepts_global(self):
         start_time = time.time()
         sax_handler = CFDI40SAXHandler().use_concepts_cfdi40()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01_large.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01_large.xml")
         total_seconds = time.time() - start_time
         self.assertLessEqual(total_seconds, 1.5, 'Too much time to transform global cfdi')
         self.assertIsNotNone(cfdi_data)
@@ -540,7 +540,7 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     
     def test_tranform_file_addenda(self):
         sax_handler = CFDI40SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01_addenda.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01_addenda.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
                 "cfdi40": {
@@ -604,7 +604,7 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     
     def test_transform_file_multi_tfd(self):
         sax_handler = CFDI40SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01_multiple_tfd.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01_multiple_tfd.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi40": {
@@ -705,7 +705,7 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     
     def test_cfdi40_sax_handler_with_break_lines_sellocfd(self):
         sax_handler = CFDI40SAXHandler()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi40/cfdi40_01.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_01.xml')
         self.assertIsNotNone(cfdi_data)
         # sello
         self.assertTrue('\n' not in str(cfdi_data['cfdi40']['sello']))
@@ -719,12 +719,12 @@ class TestCFDI40SAXHandler(unittest.TestCase):
     def test_transform_cfdi33(self):
         sax_handler = CFDI40SAXHandler(safe_numerics=True, empty_char='-')
         with self.assertRaises(ValueError) as context:
-            cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi33/cfdi33_01.xml')
+            cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi33/cfdi33_01.xml')
         self.assertTrue("does't have correct namespace for CFDI V4.0" in str(context.exception))
 
     def test_cfdi40_sax_handler_with_spaces(self):
         sax_handler = CFDI40SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_01_with_spaces.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_01_with_spaces.xml")
         self.assertIsNotNone(cfdi_data)
         # spaces
         self.assertTrue(' ' not in str(cfdi_data['cfdi40']['metodo_pago']))
@@ -828,7 +828,7 @@ class TestCFDI40SAXHandler(unittest.TestCase):
         
     def test_transform_file_with_related_cfdis(self):
         sax_handler = CFDI40SAXHandler().use_related_cfdis()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/cfdi40/cfdi40_related_cfdis.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/cfdi40/cfdi40_related_cfdis.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi40": {

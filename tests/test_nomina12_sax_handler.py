@@ -1,3 +1,5 @@
+import os
+
 from pycfdi_transform import CFDI33SAXHandler, SchemaHelper
 from lxml import etree
 import unittest
@@ -7,7 +9,7 @@ from pycfdi_transform.sax.cfdi32.sax_handler import CFDI32SAXHandler
 class TestNomina12SAXHandler(unittest.TestCase):
     def test_transform_file_complete_nom(self):
         sax_handler = CFDI33SAXHandler().use_nomina12()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/nom_complete.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/nom_complete.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -59,6 +61,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     ],
                     'traslados': [
                         {
+                            'base': '',
                             'impuesto': '001', 
                             'tipo_factor': 'Cuota', 
                             'tasa_o_cuota': '5992320.234906', 
@@ -336,7 +339,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
 
     def test_transform_file_complete_nom_safe_numerics(self):
         sax_handler = CFDI33SAXHandler(safe_numerics=True).use_nomina12()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/nom_complete.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/nom_complete.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -388,6 +391,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     ],
                     'traslados': [
                         {
+                            'base': '0.00',
                             'impuesto': '001', 
                             'tipo_factor': 'Cuota', 
                             'tasa_o_cuota': '5992320.234906', 
@@ -665,7 +669,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
     
     def test_transform_file_complete_nom_safe_numerics_empty_char(self):
         sax_handler = CFDI33SAXHandler(safe_numerics=True, empty_char='-').use_nomina12()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/nom_complete.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/nom_complete.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -717,6 +721,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     ],
                     'traslados': [
                         {
+                            'base': '0.00',
                             'impuesto': '001', 
                             'tipo_factor': 'Cuota', 
                             'tasa_o_cuota': '5992320.234906', 
@@ -994,7 +999,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
     
     def test_transform_file_double_nom(self):
         sax_handler = CFDI33SAXHandler().use_nomina12()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/double_nomina01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/double_nomina01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -1248,7 +1253,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
     
     def test_transform_file_double_nom_break_lines(self):
         sax_handler = CFDI33SAXHandler().use_nomina12()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/double_breaks_nomina01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/double_breaks_nomina01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -1533,7 +1538,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
     def test_transform_file_double_nom_break_lines_xsdvalidation(self):
         schema_validator = SchemaHelper.get_schema_validator_cfdi33()
         sax_handler = CFDI33SAXHandler(schema_validator=schema_validator).use_nomina12()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/double_breaks_nomina01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/double_breaks_nomina01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -1818,7 +1823,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
     def test_transform_file_complete_nom_validation(self):
         schema_validator = SchemaHelper.get_schema_validator_cfdi33()
         sax_handler = CFDI33SAXHandler(schema_validator=schema_validator).use_nomina12()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/nom_complete.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/nom_complete.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi33': {
@@ -1870,6 +1875,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
                     ],
                     'traslados': [
                         {
+                            'base': '',
                             'impuesto': '001', 
                             'tipo_factor': 'Cuota', 
                             'tasa_o_cuota': '5992320.234906', 
@@ -2148,7 +2154,7 @@ class TestNomina12SAXHandler(unittest.TestCase):
     def test_transform_file_bad_version(self):
         sax_handler = CFDI33SAXHandler().use_nomina12()
         with self.assertRaises(ValueError) as context:
-            sax_handler.transform_from_file("./tests/Resources/nomina12/bad_version_nomina01.xml")
+            sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/bad_version_nomina01.xml")
         exception = context.exception
         self.assertIn('Incorrect type of CFDI, this handler only support CFDI version 3.3', str(exception), 'Not expected error message')
     
@@ -2156,13 +2162,13 @@ class TestNomina12SAXHandler(unittest.TestCase):
         schema_validator = SchemaHelper.get_schema_validator_cfdi33()
         sax_handler = CFDI33SAXHandler(schema_validator=schema_validator).use_nomina12()
         with self.assertRaises(etree.DocumentInvalid) as context:
-            sax_handler.transform_from_file("./tests/Resources/nomina12/bad_version_nomina01.xml")
+            sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/bad_version_nomina01.xml")
         exception = context.exception
         self.assertIn("The value 'Zapopan, Jalisco' has a length of '16'; this differs from the allowed length of '5'", str(exception), 'Not expected error message')
     
     def test_transform_file_broken_xml(self):
         sax_handler = CFDI33SAXHandler().use_nomina12()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/broken_nomina12_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/broken_nomina12_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             "cfdi33": {
@@ -2364,13 +2370,13 @@ class TestNomina12SAXHandler(unittest.TestCase):
         schema_validator = SchemaHelper.get_schema_validator_cfdi33()
         sax_handler = CFDI33SAXHandler(schema_validator=schema_validator).use_nomina12()
         with self.assertRaises(etree.DocumentInvalid) as context:
-            sax_handler.transform_from_file("./tests/Resources/nomina12/broken_nomina12_01.xml")
+            sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/broken_nomina12_01.xml")
         exception = context.exception
         self.assertIn("Element '{http://www.sat.gob.mx/nomina12}Receptor': This element is not expected. Expected is ( {http://www.sat.gob.mx/nomina12}EntidadSNCF )., line 1", str(exception), 'Not expected error message')
     
     def test_transform_file_cfdi32_nomina12_01(self):
         sax_handler = CFDI32SAXHandler().use_nomina12()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/nomina12/cfdi32_nomina12_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/nomina12/cfdi32_nomina12_01.xml")
         self.assertIsNotNone(cfdi_data)
         expected_dict = {
             'cfdi32': {
