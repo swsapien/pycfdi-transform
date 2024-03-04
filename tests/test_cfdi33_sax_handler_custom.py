@@ -1,13 +1,11 @@
+import os
 import unittest
 from pycfdi_transform import CFDI33SAXHandler
-from lxml import etree
-import time
-
 class TestCFDI33SAXHandlerCustom(unittest.TestCase):
 
     def test_transform_file_custom_01(self):
         sax_handler = CFDI33SAXHandler()
-        cfdi_data = sax_handler.transform_from_file("./tests/Resources/custom/custom_01.xml")
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + "/Resources/custom/custom_01.xml")
         self.assertIsNotNone(cfdi_data)
         self.assertIsNotNone(cfdi_data)
         self.assertIsNotNone(cfdi_data['tfd11'])

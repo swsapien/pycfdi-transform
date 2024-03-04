@@ -1,9 +1,9 @@
+import os
 import random
 import string
 import xml.etree.ElementTree as ET
 from lxml import etree
 from datetime import datetime, timedelta
-from pycfdi_transform.helpers.string_helper import StringHelper
 
 def random_string(length):
     ''' Generate a random string of fixed length '''
@@ -157,17 +157,17 @@ def obfuscate_attributes_cfdi33(xml_path):
 
 if __name__ == "__main__":
     # Replace with your file path
-    xml_path = './tests/Resources/cfdi40/cfdi40_bigfile_1.xml'  # Replace with your file path
+    xml_path = os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_bigfile_1.xml'  # Replace with your file path
     obfuscate_attributes_cfdi40(xml_path)
 
-    xml_path = './tests/Resources/cfdi40/cfdi40_bigfile_2.xml'  # Replace with your file path
+    xml_path = os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_bigfile_2.xml'  # Replace with your file path
     obfuscate_attributes_cfdi40(xml_path)
 
-    xml_path = './tests/Resources/cfdi40/cfdi40_bigfile_3.xml'  # Replace with your file path
+    xml_path = os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_bigfile_3.xml'  # Replace with your file path
     obfuscate_attributes_cfdi40(xml_path)
 
-    xml_path = './tests/Resources/cfdi33/cfdi33_bigfile_1.xml'  # Replace with your file path
+    xml_path = os.path.dirname(__file__) + '/Resources/cfdi33/cfdi33_bigfile_1.xml'  # Replace with your file path
     obfuscate_attributes_cfdi33(xml_path)
 
-    xml_path = './tests/Resources/cfdi33/cfdi33_bigfile_2.xml'  # Replace with your file path
+    xml_path = os.path.dirname(__file__) + '/Resources/cfdi33/cfdi33_bigfile_2.xml'  # Replace with your file path
     obfuscate_attributes_cfdi33(xml_path)

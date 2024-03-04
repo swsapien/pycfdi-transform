@@ -1,3 +1,5 @@
+import os
+
 from pycfdi_transform import CFDI32SAXHandler
 from pycfdi_transform.formatters.nomina11.efisco_nomina11_formatter import EfiscoNomina11Formatter
 
@@ -91,7 +93,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_formatter_error_tfd_nomina11(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         cfdi_data.pop('nomina11')
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertFalse(formatter.can_format())
@@ -99,7 +101,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_formatter_error_tfdpagos_nomina11(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         cfdi_data.pop('nomina11')
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertFalse(formatter.can_format())
@@ -107,7 +109,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_rows_nomina11_01(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
@@ -137,7 +139,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_rows_nomina11_01_empty_char(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_empty_chars.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_empty_chars.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data, empty_char='-')
         self.assertTrue(formatter.can_format())
@@ -152,7 +154,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_rows_nomina11_01_safe_numerics(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_safe_numerics.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_safe_numerics.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data, safe_numerics=True)
         self.assertTrue(formatter.can_format())
@@ -169,7 +171,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_rows_nomina11_01_empty_char_safe_numerics(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_safe_numerics.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_safe_numerics.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data, empty_char='-', safe_numerics=True)
         self.assertTrue(formatter.can_format())
@@ -190,7 +192,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
     def test_rows_nomina11_02(self):
         start = time.time()
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
@@ -217,7 +219,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_nomina11_total_sueldos_ok(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
@@ -228,7 +230,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_nomina11_total_jubilacion_ok(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
@@ -239,7 +241,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_nomina11_total_separacion_ok(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
@@ -250,7 +252,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_nomina11_total_deducciones_ok(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
@@ -261,7 +263,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_nomina11_total_otras_deducciones_ok(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
@@ -272,7 +274,7 @@ class TestEfiscoNomina11Formatter(unittest.TestCase):
 
     def test_nomina11_total_percepciones_ok(self):
         sax_handler = CFDI32SAXHandler(safe_numerics=True).use_nomina11()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/nomina11/nom_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina11/nom_complete.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoNomina11Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
