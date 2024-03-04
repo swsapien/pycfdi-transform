@@ -33,3 +33,7 @@ class StringHelper:
             return Decimal(0.00)
         else:
             return Decimal(val)
+
+    @staticmethod
+    def get_numeric_value(value, empty_char='', enable_safe_numerics=False):
+        return value if value else StringHelper.DEFAULT_SAFE_NUMBER_CERO if enable_safe_numerics else empty_char

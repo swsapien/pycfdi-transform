@@ -1,3 +1,5 @@
+import os
+
 from pycfdi_transform import CFDI40SAXHandler
 from pycfdi_transform.formatters.cfdi40.cda_cfdi40_formatter import CDACFDI40Formatter
 import unittest
@@ -58,7 +60,7 @@ class TestCDACFDI40Formatter(unittest.TestCase):
     
     def test_formatter_error_tfd_cfdi40(self):
         sax_handler = CFDI40SAXHandler()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi40/cfdi40_01.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_01.xml')
         cfdi_data.pop('tfd11')
         formatter = CDACFDI40Formatter(cfdi_data)
         self.assertFalse(formatter.can_format())
@@ -66,7 +68,7 @@ class TestCDACFDI40Formatter(unittest.TestCase):
     
     def test_formatter_cfdi40_implocal10_ok(self):
         sax_handler = CFDI40SAXHandler().use_implocal10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/implocal/cfdi40_01_implocal.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/implocal/cfdi40_01_implocal.xml')
         formatter = CDACFDI40Formatter(cfdi_data)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
@@ -78,7 +80,7 @@ class TestCDACFDI40Formatter(unittest.TestCase):
     
     def test_formatter_cfdi40_implocal10_safe_numerics_1(self):
         sax_handler = CFDI40SAXHandler(safe_numerics=True).use_implocal10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/implocal/cfdi40_01_implocal.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/implocal/cfdi40_01_implocal.xml')
         formatter = CDACFDI40Formatter(cfdi_data,empty_char='',safe_numerics=True)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
@@ -97,7 +99,7 @@ class TestCDACFDI40Formatter(unittest.TestCase):
     
     def test_formatter_cfdi40_implocal10_safe_empty_char_1(self):
         sax_handler = CFDI40SAXHandler().use_implocal10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/implocal/cfdi40_01_implocal.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/implocal/cfdi40_01_implocal.xml')
         formatter = CDACFDI40Formatter(cfdi_data,empty_char='-',safe_numerics=False)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
@@ -112,7 +114,7 @@ class TestCDACFDI40Formatter(unittest.TestCase):
     
     def test_formatter_cfdi40_implocal10_multiple_complements(self):
         sax_handler = CFDI40SAXHandler().use_implocal10()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/implocal/cfdi40_01_implocal_multiple.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/implocal/cfdi40_01_implocal_multiple.xml')
         formatter = CDACFDI40Formatter(cfdi_data,empty_char='-',safe_numerics=False)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
@@ -124,7 +126,7 @@ class TestCDACFDI40Formatter(unittest.TestCase):
     
     def test_formatter_line_breaks_cfdi40(self):
         sax_handler = CFDI40SAXHandler().use_concepts_cfdi40()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi40/cfdi40_01.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_01.xml')
         formatter = CDACFDI40Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
         self.assertEqual(formatter.get_errors(), '')
@@ -139,7 +141,7 @@ class TestCDACFDI40Formatter(unittest.TestCase):
     
     def test_formatter_cfdi40_addenda(self):
         sax_handler = CFDI40SAXHandler(safe_numerics=True, empty_char='-')
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi40/cfdi40_01_addenda.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_01_addenda.xml')
         formatter = CDACFDI40Formatter(cfdi_data, safe_numerics=True, empty_char='-')
         self.assertTrue(formatter.can_format())
         self.assertEqual(formatter.get_errors(), '')
@@ -148,7 +150,7 @@ class TestCDACFDI40Formatter(unittest.TestCase):
     
     def test_formatter_cfdi40_not_addenda(self):
         sax_handler = CFDI40SAXHandler(safe_numerics=True, empty_char='-')
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/cfdi40/cfdi40_01.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_01.xml')
         formatter = CDACFDI40Formatter(cfdi_data, safe_numerics=True, empty_char='-')
         self.assertTrue(formatter.can_format())
         self.assertEqual(formatter.get_errors(), '')

@@ -1,3 +1,5 @@
+import os
+
 from pycfdi_transform import CFDI40SAXHandler
 from pycfdi_transform.formatters.pagos20.efisco_pagos20_formatter import  EfiscoPagos20Formatter
 import unittest
@@ -77,7 +79,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
     
     def test_formatter_error_tfd_pagos20(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_stamped.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pago_stamped.xml')
         cfdi_data.pop('tfd11')
         formatter = EfiscoPagos20Formatter(cfdi_data)
         self.assertFalse(formatter.can_format())
@@ -85,7 +87,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
     
     def test_formatter_error_tfdpagos_pagos20(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_stamped.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pago_stamped.xml')
         cfdi_data.pop('pagos20')
         formatter = EfiscoPagos20Formatter(cfdi_data)
         self.assertFalse(formatter.can_format())
@@ -93,7 +95,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
 
     def test_rows_pagos20_01(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_stamped.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pago_stamped.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoPagos20Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
@@ -108,7 +110,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
     def test_rows_pagos20_01_empty_char(self):
         start = time.time()
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_empty_chars.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pago_empty_chars.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoPagos20Formatter(cfdi_data, empty_char='-')
         self.assertTrue(formatter.can_format())
@@ -123,7 +125,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
     def test_rows_pagos20_01_safe_numerics(self):
         start = time.time()
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_safe_numbers.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pago_safe_numbers.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoPagos20Formatter(cfdi_data, safe_numerics=True)
         self.assertTrue(formatter.can_format())
@@ -138,7 +140,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
     def test_rows_pagos20_01_empty_char_safe_numerics(self):
         start = time.time()
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_safe_numbers.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pago_safe_numbers.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoPagos20Formatter(cfdi_data, empty_char='-', safe_numerics=True)
         self.assertTrue(formatter.can_format())
@@ -152,7 +154,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
     def test_rows_pagos20_impuestos(self):
         start = time.time()
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pagos_impuesto.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pagos_impuesto.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoPagos20Formatter(cfdi_data, empty_char='-', safe_numerics=True)
         self.assertTrue(formatter.can_format())
@@ -166,7 +168,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
 
     def test_rows_pagos20_multi_tfd(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_stamped_multiple_tfd.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pago_stamped_multiple_tfd.xml')
         self.assertIsNotNone(cfdi_data)
         formatter = EfiscoPagos20Formatter(cfdi_data)
         self.assertTrue(formatter.can_format())
@@ -183,7 +185,7 @@ class TestEfiscoPagos10Formatter(unittest.TestCase):
     
     def test_rows_pagos20_complete(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/pagos20/pago_stamped.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pago_stamped.xml')
         #Fix missing TFD in file.
         cfdi_data['tfd11'] = [{'version': '1.1', 'no_certificado_sat': '20001000000300022323', 'uuid': '9D81C696-0401-4F85-B703-6E0D3AFD6057', 'fecha_timbrado': '2019-03-29T17:42:38', 'rfc_prov_cert': 'AAA010101AAA', 'sello_cfd': 'G3knPza1r8hfxSb+46JBRAYoQIUTVU2Uqlw/qiMLbzKkqrUs2zs5GVRjf0DJEm5mIGZIC3/+q/FdU1A4zr9RCXWM66QmtK7AAlkT4HSrX9NlCoJylwRzRW6bxuchfy8ryFmWIetAOU2U1brWLSSYqCtc86m4iIBId6kDOSIr+/Tpz2Q3rDHhmtlJyJ2ovy1rjLO0mZpbwhwOKg6Mo1+NeEuGk4UfQu8gfRgv9mOnbiNkfiJHzvuRJnUXYrL/9D1gDQ6gjW8t75W/yYN+Gf2TmpyTnOkYZbFqrJ8udt7rZjXsODLapD7cV4bjsLIYxOWHgXEIgrTjB57m2POrfb72wQ==', 'sello_sat': 'ULW1tcO5xJKR9ZLcY9+ls9Zg8rPXROVvbVVTWOnOJ/H88Om4ZRXWdjrHzrPv+Zre4gS0mcDaxuzwNHRhU5YKvONbFgme31mgsadWubTQyh10JGzhuYIzsGhnFBuYmNaKVR/vYbd9X4RBRfiggRW+tSIv8qFZGZZ1RSznmxc3FUP//tR1uGKVVnivs590DQV5UxKAVKXtF0T/dPwncKuOHcheFP6PdL+ToJB9mRz8Xl9Ag7x+WuHOBwdzx2lpEj8yms1d/CKgxWGFOXUEhpKsQXGm1MYYMLCo5/wNG6oC6F9FkvcV5rNji3Qna/P4OHXduL0UIz2FqvIK65NeRxgilQ=='}]
         self.assertIsNotNone(cfdi_data)

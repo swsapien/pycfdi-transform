@@ -36,7 +36,7 @@ class TestEfiscoCorpTercerosFormatter(unittest.TestCase):
 
     def test_formatter_concepts_cfdi_40_terceros(self):
         sax_handler = CFDI40SAXHandler().use_concepts_cfdi40()
-        cfdi_data = sax_handler.transform_from_file('./tests/Resources/terceros/terceros_40.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/terceros/terceros_40.xml')
         formatter = EfiscoCorpTercerosFormatter(cfdi_data)
         result_columns = formatter.dict_to_columns()
         expected_columns = [

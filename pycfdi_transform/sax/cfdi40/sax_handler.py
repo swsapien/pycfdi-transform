@@ -182,11 +182,11 @@ class CFDI40SAXHandler(BaseHandler):
         for traslado in list_elements:
             self._data['cfdi40']['impuestos']['traslados'].append(
                 {
-                    'base': traslado.attrib.get('Base'),
-                    'impuesto': traslado.attrib.get('Impuesto'),
-                    'tipo_factor': traslado.attrib.get('TipoFactor'),
-                    'tasa_o_cuota': traslado.attrib.get('TasaOCuota'),
-                    'importe': traslado.attrib.get('Importe')
+                    'base': traslado.attrib.get('Base', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+                    'impuesto': StringHelper.compact_string(self._config['esc_delimiters'], traslado.attrib.get('Impuesto', self._config['empty_char'])),
+                    'tipo_factor': StringHelper.compact_string(self._config['esc_delimiters'], traslado.attrib.get('TipoFactor', self._config['empty_char'])),
+                    'tasa_o_cuota': traslado.attrib.get('TasaOCuota', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+                    'importe': traslado.attrib.get('Importe', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
                 }
             )
 
@@ -195,8 +195,8 @@ class CFDI40SAXHandler(BaseHandler):
         for retencion in list_elements:
             self._data['cfdi40']['impuestos']['retenciones'].append(
                 {
-                    'impuesto': retencion.attrib.get('Impuesto'),
-                    'importe': retencion.attrib.get('Importe')
+                    'impuesto': StringHelper.compact_string(self._config['esc_delimiters'], retencion.attrib.get('Impuesto', self._config['empty_char'])),
+                    'importe': retencion.attrib.get('Importe', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
                 }
             )
     
