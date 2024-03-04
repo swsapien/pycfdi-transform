@@ -61,15 +61,15 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
     def test_formatter_cfdi33_iva_desglosado_safe_numerics_ok(self):
         sax_handler = CFDI33SAXHandler()
         cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/implocal/cfdi33_implocal02_incorrect.xml')
-        formatter = EfiscoCorpIvaDesglosadoFormatter(cfdi_data,empty_char='',safe_numerics=True)
+        formatter = EfiscoCorpIvaDesglosadoFormatter(cfdi_data,empty_char='', safe_numerics=True)
         data_columns = formatter.dict_to_columns()
         self.assertTrue(formatter.can_format())
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][3], '206.400000')
-        self.assertEqual(data_columns[0][4], '0.00')
-        self.assertEqual(data_columns[0][6], '0.160000')
+        self.assertEqual('206.400000', data_columns[0][3])
+        self.assertEqual('0.00', data_columns[0][4])
+        self.assertEqual('0.160000', data_columns[0][6])
 
     
 

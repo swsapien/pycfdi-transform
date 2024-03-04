@@ -16,13 +16,13 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
             for tipo_impuesto, impuestos in (('Traslado', self._cfdi_data[cfdi_version]['impuestos']['traslados']), ('Retencion', self._cfdi_data[cfdi_version]['impuestos']['retenciones'])):
                 for impuesto in impuestos:
                     cfdi_row = [
-                        self._get_string_value(tfd['uuid']),
+                        tfd.get('uuid', self._config['empty_char']),
                         tipo_impuesto,
-                        self._get_string_value(impuesto.get('impuesto', '')),
-                        self._get_numeric_value(impuesto.get('importe', '')),
-                        self._get_numeric_value(impuesto.get('base', '')),
-                        self._get_string_value(impuesto.get('tipo_factor', '')),
-                        self._get_numeric_value(impuesto.get('tasa_o_cuota', ''))
+                        impuesto.get('impuesto', self._config['empty_char']),
+                        StringHelper.get_numeric_value(impuesto.get('importe'),  self._config['empty_char'], self._config['safe_numerics']),
+                        StringHelper.get_numeric_value(impuesto.get('base'), self._config['empty_char'], self._config['safe_numerics']),
+                        impuesto.get('tipo_factor', self._config['empty_char']),
+                        StringHelper.get_numeric_value(impuesto.get('tasa_o_cuota'), self._config['empty_char'], self._config['safe_numerics']),
                     ]
                     results.append(cfdi_row)
         return results
