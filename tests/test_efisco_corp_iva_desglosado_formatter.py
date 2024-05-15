@@ -11,6 +11,8 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
         formatter = EfiscoCorpIvaDesglosadoFormatter({'cfdi33': {}})
         columns_expected = [
             "UUID",
+            "UUID_DR",
+            "PARCIALIDAD",
             "TIPO_IMPUESTOS",
             "IMPUESTO",
             "IMPORTE",
@@ -32,10 +34,10 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
     
     def test_formatter_tipo_comprobante(self):
         sax_handler = CFDI40SAXHandler()
-        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pago_complete.xml')
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/nomina12/nomina12_40.xml')
         formatter = EfiscoCorpIvaDesglosadoFormatter(cfdi_data)
         self.assertFalse(formatter.can_format())
-        self.assertEqual(formatter.get_errors(), 'Este formatter solo puede formatear tipos de comprobante I y E.')
+        self.assertEqual(formatter.get_errors(), 'Este formatter solo puede formatear tipos de comprobante I, E y P.')
     
     def test_formatter_cfdi33_iva_desglosado_ok(self):
         sax_handler = CFDI33SAXHandler()
@@ -46,8 +48,8 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual(data_columns[0][3],'206.400000')
-        self.assertEqual(data_columns[0][6],'0.160000')
+        self.assertEqual(data_columns[0][5],'206.400000')
+        self.assertEqual(data_columns[0][8],'0.160000')
     def test_formatter_cfdi40_iva_desglosado_ok(self):
         sax_handler = CFDI40SAXHandler()
         cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/cfdi40/cfdi40_01.xml')
@@ -67,9 +69,23 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
-        self.assertEqual('206.400000', data_columns[0][3])
-        self.assertEqual('0.00', data_columns[0][4])
-        self.assertEqual('0.160000', data_columns[0][6])
+        self.assertEqual('206.400000', data_columns[0][5])
+        self.assertEqual('0.00', data_columns[0][6])
+        self.assertEqual('0.160000', data_columns[0][8])
 
+    def test_formatter_cfdi40_iva_desglosado_pagos_ok(self):
+        sax_handler = CFDI40SAXHandler().use_pagos20()
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pagos_impuesto.xml')
+        formatter = EfiscoCorpIvaDesglosadoFormatter(cfdi_data)
+        data_columns = formatter.dict_to_columns()
+        self.assertTrue(formatter.can_format())
+        self.assertEqual(formatter.get_errors(), '')
+        self.assertTrue(len(data_columns) == 2)
+        self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
+        self.assertEqual(data_columns[1][1], 'a0476c1b-8829-448d-82ab-92d8b26be878')
+        self.assertEqual(data_columns[1][2], '1')
+        self.assertEqual(data_columns[1][5], '1.25')
+        self.assertEqual(data_columns[1][6], '100.00')
+        self.assertEqual(data_columns[1][8], '0.012500')
     
 

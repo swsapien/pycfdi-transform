@@ -17,6 +17,8 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
                 for impuesto in impuestos:
                     cfdi_row = [
                         tfd.get('uuid', self._config['empty_char']),
+                        "",  # Field only required for CFDI type P
+                        "",  # Field only required for CFDI type P
                         tipo_impuesto,
                         impuesto.get('impuesto', self._config['empty_char']),
                         StringHelper.get_numeric_value(impuesto.get('importe'),  self._config['empty_char'], self._config['safe_numerics']),
@@ -25,7 +27,33 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
                         StringHelper.get_numeric_value(impuesto.get('tasa_o_cuota'), self._config['empty_char'], self._config['safe_numerics']),
                     ]
                     results.append(cfdi_row)
+            if 'pagos20' in self._cfdi_data:
+                results.extend(self._get_rows_from_payments(tfd.get('uuid', self._config['empty_char']), self._cfdi_data['pagos20']))
+
         return results
+
+    def _get_rows_from_payments(self, uuid, payments_node):
+        rows = []
+        for payment_node in payments_node:
+            for pago in payment_node['pago']:
+                for doc_relacionado in pago['docto_relacionado']:
+                    for nodo_impuesto in doc_relacionado['impuestos_dr']:
+                        for tipo_impuesto, impuestos_dr in (('TrasladoDR', nodo_impuesto['traslados_dr']), ('RetencionDR', nodo_impuesto['retenciones_dr'])):
+                            for impuesto_dr in impuestos_dr:
+                                row = [
+                                    uuid,
+                                    doc_relacionado.get('id_documento', self._config['empty_char']),
+                                    doc_relacionado.get('num_parcialidad', self._config['empty_char']),
+                                    tipo_impuesto,
+                                    impuesto_dr.get('impuesto_dr', self._config['empty_char']),
+                                    StringHelper.get_numeric_value(impuesto_dr.get('importe_dr'), self._config['empty_char'], self._config['safe_numerics']),
+                                    StringHelper.get_numeric_value(impuesto_dr.get('base_dr'), self._config['empty_char'], self._config['safe_numerics']),
+                                    impuesto_dr.get('tipo_factor_dr', self._config['empty_char']),
+                                    StringHelper.get_numeric_value(impuesto_dr.get('tasa_o_cuota_dr'), self._config['empty_char'], self._config['safe_numerics']),
+                                ]
+                                rows.append(row)
+        return rows
+
 
     def _get_string_value(self, value):
         return value if value else self._config['empty_char']
@@ -44,9 +72,9 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
     def can_format(self) -> bool:
         version = self.get_version()
         cfdi_version = version['cfdi']
-        if self._cfdi_data[cfdi_version]['tipo_comprobante'] in ('I', 'E'):
+        if self._cfdi_data[cfdi_version]['tipo_comprobante'] in ('I', 'E', 'P'):
             return True
-        self._errors.append('Este formatter solo puede formatear tipos de comprobante I y E.')
+        self._errors.append('Este formatter solo puede formatear tipos de comprobante I, E y P.')
         return False
 
     def get_errors(self) -> str:
@@ -56,6 +84,8 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
     def get_columns_names() -> list[str]:
         return [
             "UUID",
+            "UUID_DR",
+            "PARCIALIDAD",
             "TIPO_IMPUESTOS",
             "IMPUESTO",
             "IMPORTE",
