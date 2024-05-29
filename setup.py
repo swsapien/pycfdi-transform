@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pycfdi_transform",
-    version="0.1.12.0",
+    version="0.1.13.1",
     author="SW sapien",
     description="Cfdi Xml Transformation column format/csv",
     long_description=long_description,

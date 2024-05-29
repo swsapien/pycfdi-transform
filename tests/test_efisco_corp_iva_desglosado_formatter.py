@@ -19,6 +19,10 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
             "BASE",
             "TIPO_FACTOR",
             "TASA_O_CUOTA",
+            "MONEDA_DR",
+            "SERIE_DR",
+            "FOLIO_DR",
+            "EQUIVALENCIA_DR"
         ]
         self.assertListEqual(columns_expected, formatter.get_columns_names())
     
@@ -47,7 +51,7 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
         self.assertTrue(formatter.can_format())
         self.assertEqual(formatter.get_errors(),'')
         self.assertTrue(len(data_columns) == 1)
-        self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
+        self.assertEqual(len(data_columns[0]),len(formatter.get_columns_names()))
         self.assertEqual(data_columns[0][5],'206.400000')
         self.assertEqual(data_columns[0][8],'0.160000')
     def test_formatter_cfdi40_iva_desglosado_ok(self):
@@ -87,5 +91,7 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
         self.assertEqual(data_columns[1][5], '1.25')
         self.assertEqual(data_columns[1][6], '100.00')
         self.assertEqual(data_columns[1][8], '0.012500')
-    
-
+        self.assertEqual(data_columns[1][9], 'MXN')
+        self.assertEqual(data_columns[1][10], 'Serie3')
+        self.assertEqual(data_columns[1][11], 'Folio3')
+        self.assertEqual(data_columns[1][12], '1')

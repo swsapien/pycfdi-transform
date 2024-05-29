@@ -9,7 +9,7 @@
         <pago20:Pagos Version="2.0">
             <pago20:Totales MontoTotalPagos="98.75" TotalRetencionesISR="0" TotalTrasladosBaseIVAExento="100.00"  TotalRetencionesIVA="1"/>
             <pago20:Pago FechaPago="2022-05-26T12:00:00" FormaDePagoP="03" MonedaP="MXN" TipoCambioP="1" Monto="98.75" >
-                <pago20:DoctoRelacionado IdDocumento="a0476c1b-8829-448d-82ab-92d8b26be878" MonedaDR="MXN" NumParcialidad="1" ImpSaldoAnt="98.75"  ImpSaldoInsoluto="0.00" ImpPagado="98.75" ObjetoImpDR="02" EquivalenciaDR="1">
+                <pago20:DoctoRelacionado IdDocumento="a0476c1b-8829-448d-82ab-92d8b26be878" Serie="Serie3" Folio="Folio3" MonedaDR="MXN" NumParcialidad="1" ImpSaldoAnt="98.75"  ImpSaldoInsoluto="0.00" ImpPagado="98.75" ObjetoImpDR="02" EquivalenciaDR="1">
                     <pago20:ImpuestosDR>
                         <pago20:RetencionesDR>
                             <pago20:RetencionDR BaseDR="100.00" ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.012500" ImporteDR="1.25"/>
