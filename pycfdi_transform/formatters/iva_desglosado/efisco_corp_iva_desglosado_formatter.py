@@ -25,6 +25,10 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
                         StringHelper.get_numeric_value(impuesto.get('base'), self._config['empty_char'], self._config['safe_numerics']),
                         impuesto.get('tipo_factor', self._config['empty_char']),
                         StringHelper.get_numeric_value(impuesto.get('tasa_o_cuota'), self._config['empty_char'], self._config['safe_numerics']),
+                        "",  # Field only required for CFDI type P
+                        "",  # Field only required for CFDI type P
+                        "",  # Field only required for CFDI type P
+                        ""  # Field only required for CFDI type P
                     ]
                     results.append(cfdi_row)
             if 'pagos20' in self._cfdi_data:
@@ -50,6 +54,10 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
                                     StringHelper.get_numeric_value(impuesto_dr.get('base_dr'), self._config['empty_char'], self._config['safe_numerics']),
                                     impuesto_dr.get('tipo_factor_dr', self._config['empty_char']),
                                     StringHelper.get_numeric_value(impuesto_dr.get('tasa_o_cuota_dr'), self._config['empty_char'], self._config['safe_numerics']),
+                                    doc_relacionado.get('moneda_dr', self._config['empty_char']),
+                                    doc_relacionado.get('serie', self._config['empty_char']),
+                                    doc_relacionado.get('folio', self._config['empty_char']),
+                                    doc_relacionado.get('equivalencia_dr', self._config['empty_char'])
                                 ]
                                 rows.append(row)
         return rows
@@ -92,4 +100,8 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
             "BASE",
             "TIPO_FACTOR",
             "TASA_O_CUOTA",
+            "MONEDA_DR",
+            "SERIE_DR",
+            "FOLIO_DR",
+            "EQUIVALENCIA_DR"
         ]
