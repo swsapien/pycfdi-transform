@@ -19,9 +19,6 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
             "BASE",
             "TIPO_FACTOR",
             "TASA_O_CUOTA",
-            "MONEDA_DR",
-            "SERIE_DR",
-            "FOLIO_DR",
             "EQUIVALENCIA_DR"
         ]
         self.assertListEqual(columns_expected, formatter.get_columns_names())
@@ -79,19 +76,36 @@ class TestEfiscoCorpIvaDesglosadoFormatter(unittest.TestCase):
 
     def test_formatter_cfdi40_iva_desglosado_pagos_ok(self):
         sax_handler = CFDI40SAXHandler().use_pagos20()
-        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pagos_impuesto.xml')
-        formatter = EfiscoCorpIvaDesglosadoFormatter(cfdi_data)
+
+        # Asumiendo que el contenido XML se encuentra en un archivo llamado 'pagos_impuesto.xml'
+        cfdi_data = sax_handler.transform_from_file(os.path.dirname(__file__) + '/Resources/pagos20/pagos_impuesto_duplicado.xml')
+        formatter = EfiscoCorpIvaDesglosadoFormatter(cfdi_data, safe_numerics=True)
         data_columns = formatter.dict_to_columns()
+
         self.assertTrue(formatter.can_format())
         self.assertEqual(formatter.get_errors(), '')
         self.assertTrue(len(data_columns) == 2)
         self.assertTrue(len(data_columns[0]) == len(formatter.get_columns_names()))
+
+        self.assertEqual(data_columns[0][1], 'a0476c1b-8829-448d-82ab-92d8b26be878')
+        self.assertEqual(data_columns[0][2], '1')
+        self.assertEqual(data_columns[0][3], 'TrasladoDR')
+        self.assertEqual(data_columns[0][4], '002')
+        self.assertEqual(data_columns[0][5], '0.00')  # Asumiendo que no hay importe en 'Exento'
+        self.assertEqual(data_columns[0][6], '200.00')  # Sum of 2 * 100.00
+        self.assertEqual(data_columns[0][7], 'Exento')
+        self.assertEqual(data_columns[0][8], '0.00')  # Assuming 'Exento' has a tasa_o_cuota_dr of 0.0
+        self.assertEqual(data_columns[0][9], '1')
+
+        # Comprobación de las filas agrupadas y sumadas
         self.assertEqual(data_columns[1][1], 'a0476c1b-8829-448d-82ab-92d8b26be878')
         self.assertEqual(data_columns[1][2], '1')
-        self.assertEqual(data_columns[1][5], '1.25')
-        self.assertEqual(data_columns[1][6], '100.00')
+        self.assertEqual(data_columns[1][3], 'RetencionDR')
+        self.assertEqual(data_columns[1][4], '002')
+        self.assertEqual(data_columns[1][5], '5.00')  # Sum of 4 * 1.25
+        self.assertEqual(data_columns[1][6], '400.00')  # Sum of 4 * 100.00
+        self.assertEqual(data_columns[1][7], 'Tasa')
         self.assertEqual(data_columns[1][8], '0.012500')
-        self.assertEqual(data_columns[1][9], 'MXN')
-        self.assertEqual(data_columns[1][10], 'Serie3')
-        self.assertEqual(data_columns[1][11], 'Folio3')
-        self.assertEqual(data_columns[1][12], '1')
+        self.assertEqual(data_columns[1][9], '1')
+
+

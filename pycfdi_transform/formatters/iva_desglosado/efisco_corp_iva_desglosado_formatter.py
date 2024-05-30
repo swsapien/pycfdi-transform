@@ -1,6 +1,7 @@
 from __future__ import annotations
 from pycfdi_transform.formatters.formatter_interface import FormatterInterface
 from pycfdi_transform.helpers.string_helper import StringHelper
+from collections import defaultdict
 
 
 class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
@@ -26,9 +27,6 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
                         impuesto.get('tipo_factor', self._config['empty_char']),
                         StringHelper.get_numeric_value(impuesto.get('tasa_o_cuota'), self._config['empty_char'], self._config['safe_numerics']),
                         "",  # Field only required for CFDI type P
-                        "",  # Field only required for CFDI type P
-                        "",  # Field only required for CFDI type P
-                        ""  # Field only required for CFDI type P
                     ]
                     results.append(cfdi_row)
             if 'pagos20' in self._cfdi_data:
@@ -37,31 +35,38 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
         return results
 
     def _get_rows_from_payments(self, uuid, payments_node):
-        rows = []
+        row_dict = defaultdict(lambda: [uuid, '', '', '', '', '', '', '', '', ''])
+
         for payment_node in payments_node:
             for pago in payment_node['pago']:
                 for doc_relacionado in pago['docto_relacionado']:
                     for nodo_impuesto in doc_relacionado['impuestos_dr']:
                         for tipo_impuesto, impuestos_dr in (('TrasladoDR', nodo_impuesto['traslados_dr']), ('RetencionDR', nodo_impuesto['retenciones_dr'])):
                             for impuesto_dr in impuestos_dr:
-                                row = [
-                                    uuid,
+                                key = (
                                     doc_relacionado.get('id_documento', self._config['empty_char']),
                                     doc_relacionado.get('num_parcialidad', self._config['empty_char']),
                                     tipo_impuesto,
                                     impuesto_dr.get('impuesto_dr', self._config['empty_char']),
-                                    StringHelper.get_numeric_value(impuesto_dr.get('importe_dr'), self._config['empty_char'], self._config['safe_numerics']),
-                                    StringHelper.get_numeric_value(impuesto_dr.get('base_dr'), self._config['empty_char'], self._config['safe_numerics']),
                                     impuesto_dr.get('tipo_factor_dr', self._config['empty_char']),
                                     StringHelper.get_numeric_value(impuesto_dr.get('tasa_o_cuota_dr'), self._config['empty_char'], self._config['safe_numerics']),
-                                    doc_relacionado.get('moneda_dr', self._config['empty_char']),
-                                    doc_relacionado.get('serie', self._config['empty_char']),
-                                    doc_relacionado.get('folio', self._config['empty_char']),
-                                    doc_relacionado.get('equivalencia_dr', self._config['empty_char'])
-                                ]
-                                rows.append(row)
-        return rows
+                                )
 
+                                importe_dr = StringHelper.get_numeric_value(impuesto_dr.get('importe_dr'), self._config['empty_char'], self._config['safe_numerics'])
+                                base_dr = StringHelper.get_numeric_value(impuesto_dr.get('base_dr'), self._config['empty_char'], self._config['safe_numerics'])
+
+                                row = row_dict[key]
+                                row[1] = key[0]
+                                row[2] = key[1]
+                                row[3] = key[2]
+                                row[4] = key[3]
+                                row[5] = StringHelper.sum_strings(row[5], importe_dr)
+                                row[6] = StringHelper.sum_strings(row[6], base_dr)
+                                row[7] = key[4]
+                                row[8] = key[5]
+                                row[9] = doc_relacionado.get('equivalencia_dr', self._config['empty_char'])
+
+        return list(row_dict.values())
 
     def _get_string_value(self, value):
         return value if value else self._config['empty_char']
@@ -100,8 +105,5 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
             "BASE",
             "TIPO_FACTOR",
             "TASA_O_CUOTA",
-            "MONEDA_DR",
-            "SERIE_DR",
-            "FOLIO_DR",
-            "EQUIVALENCIA_DR"
+            "EQUIVALENCIA_DR",
         ]
