@@ -13,8 +13,8 @@
                     <pago20:ImpuestosDR>
                         <pago20:RetencionesDR>
                             <pago20:RetencionDR BaseDR="100.00" ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.012500" ImporteDR="1.25"/>
-                            <pago20:RetencionDR BaseDR="100.00" ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.012500" ImporteDR="1.25"/>
-                            <pago20:RetencionDR BaseDR="100.00" ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.012500" ImporteDR="1.25"/>
+                            <pago20:RetencionDR BaseDR="100.00" ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="000.012500" ImporteDR="1.25"/>
+                            <pago20:RetencionDR BaseDR="100.00" ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="000.012500" ImporteDR="1.25"/>
                             <pago20:RetencionDR BaseDR="100.00" ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.012500" ImporteDR="1.25"/>
                         </pago20:RetencionesDR>
                         <pago20:TrasladosDR>
