@@ -49,7 +49,8 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
                                     tipo_impuesto,
                                     impuesto_dr.get('impuesto_dr', self._config['empty_char']),
                                     impuesto_dr.get('tipo_factor_dr', self._config['empty_char']),
-                                    StringHelper.get_numeric_value(impuesto_dr.get('tasa_o_cuota_dr'), self._config['empty_char'], self._config['safe_numerics']),
+                                    StringHelper.try_parse_decimal(impuesto_dr.get('tasa_o_cuota_dr')),
+                                    doc_relacionado.get('equivalencia_dr', self._config['empty_char'])
                                 )
 
                                 importe_dr = StringHelper.get_numeric_value(impuesto_dr.get('importe_dr'), self._config['empty_char'], self._config['safe_numerics'])
@@ -62,9 +63,9 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
                                 row[4] = key[3]
                                 row[5] = StringHelper.sum_strings(row[5], importe_dr)
                                 row[6] = StringHelper.sum_strings(row[6], base_dr)
-                                row[7] = key[4]
-                                row[8] = key[5]
-                                row[9] = doc_relacionado.get('equivalencia_dr', self._config['empty_char'])
+                                row[7] = impuesto_dr.get('tipo_factor_dr', self._config['empty_char'])
+                                row[8] = StringHelper.get_numeric_value(impuesto_dr.get('tasa_o_cuota_dr'), self._config['empty_char'], self._config['safe_numerics'])
+                                row[9] = key[6]
 
         return list(row_dict.values())
 
