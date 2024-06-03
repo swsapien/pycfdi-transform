@@ -50,7 +50,7 @@ class EfiscoCorpIvaDesglosadoFormatter(FormatterInterface):
                                     impuesto_dr.get('impuesto_dr', self._config['empty_char']),
                                     impuesto_dr.get('tipo_factor_dr', self._config['empty_char']),
                                     StringHelper.try_parse_decimal(impuesto_dr.get('tasa_o_cuota_dr')),
-                                    doc_relacionado.get('equivalencia_dr', self._config['empty_char'])
+                                    doc_relacionado.get('equivalencia_dr') or '1'
                                 )
 
                                 importe_dr = StringHelper.get_numeric_value(impuesto_dr.get('importe_dr'), self._config['empty_char'], self._config['safe_numerics'])
