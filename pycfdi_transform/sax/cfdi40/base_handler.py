@@ -24,7 +24,8 @@ class BaseHandler(ABC):
             'cfdis_relacionados': False,
             'empty_char': empty_char,
             'safe_numerics': safe_numerics,
-            'esc_delimiters': esc_delimiters
+            'esc_delimiters': esc_delimiters,
+            'concepts_with_taxes': False
         }
         self._complements = {
             '{http://www.sat.gob.mx/TimbreFiscalDigital}TimbreFiscalDigital': {
@@ -117,6 +118,15 @@ class BaseHandler(ABC):
             BaseHandler: Instance of configured class.
         """
         self._config['concepts'] = True
+        return self
+    
+    def use_concepts_with_taxes(self) -> BaseHandler:
+        """Activate the tranform of concepts with taxes.
+
+        Returns:
+            BaseHandler: Instance of configured class.
+        """
+        self._config['concepts_with_taxes'] = True
         return self
 
     def use_related_cfdis(self) -> BaseHandler:

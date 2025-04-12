@@ -156,6 +156,14 @@ class CFDI40SAXHandler(BaseHandler):
             'objeto_imp': element.attrib.get('ObjetoImp'),
             'terceros': self.__transform_terceros(element)
         }
+        if self._config['concepts_with_taxes']:
+            for child in element.getchildren():
+                if child.tag == '{http://www.sat.gob.mx/cfd/4}Impuestos':
+                    for tax in child.getchildren():
+                        if tax.tag == '{http://www.sat.gob.mx/cfd/4}Traslados':
+                            concept['traslados'] = self.__transform_concepts_taxes_traslados(tax.getchildren())
+                        elif tax.tag == '{http://www.sat.gob.mx/cfd/4}Retenciones':
+                            concept['retenciones'] = self.__transform_concepts_taxes_retenciones(tax.getchildren())
         self._data['cfdi40']['conceptos'].append(concept)
 
     def __transform_terceros(self, element: etree._Element):
@@ -199,6 +207,31 @@ class CFDI40SAXHandler(BaseHandler):
                     'importe': retencion.attrib.get('Importe', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
                 }
             )
+            
+    def __transform_concepts_taxes_traslados(self, list_elements:list[etree._Element]) -> None:
+        concepts_traslados = []
+        for traslado in list_elements:
+            concepts_traslados.append(
+                {
+                    'base': traslado.attrib.get('Base', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+                    'impuesto': StringHelper.compact_string(self._config['esc_delimiters'], traslado.attrib.get('Impuesto', self._config['empty_char'])),
+                    'tipo_factor': StringHelper.compact_string(self._config['esc_delimiters'], traslado.attrib.get('TipoFactor', self._config['empty_char'])),
+                    'tasa_o_cuota': traslado.attrib.get('TasaOCuota', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char']),
+                    'importe': traslado.attrib.get('Importe', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
+                }
+            )
+        return concepts_traslados
+    
+    def __transform_concepts_taxes_retenciones(self, list_elements:list[etree._Element]) -> None:
+        concepts_retenciones = []
+        for retencion in list_elements:
+            concepts_retenciones.append(
+                {
+                    'impuesto': StringHelper.compact_string(self._config['esc_delimiters'], retencion.attrib.get('Impuesto', self._config['empty_char'])),
+                    'importe': retencion.attrib.get('Importe', StringHelper.DEFAULT_SAFE_NUMBER_CERO if self._config['safe_numerics'] else self._config['empty_char'])
+                }
+            )
+        return concepts_retenciones
     
     def __transform_complement(self, element:etree._Element) -> None:
         complements = []

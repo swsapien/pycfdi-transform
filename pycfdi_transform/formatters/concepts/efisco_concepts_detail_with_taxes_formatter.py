@@ -1,0 +1,147 @@
+from __future__ import annotations
+from pycfdi_transform.formatters.formatter_interface import FormatterInterface
+
+
+class EfiscoConceptsDetailWithTaxesFormatter(FormatterInterface):
+    def __init__(self, cfdi_data: dict, empty_char: str = '', safe_numerics: bool = False) -> EfiscoConceptsDetailWithTaxesFormatter:
+        super().__init__(cfdi_data, empty_char, safe_numerics)
+
+    def dict_to_columns(self) -> list[list]:
+        results = []
+        version = self.get_version()
+        cfdi_version = version['cfdi']
+        for tfd in self._cfdi_data[version['tfd']]:
+            cfdi_row = [
+                self._cfdi_data[cfdi_version]['version'],
+                self._get_str_value(self._cfdi_data[cfdi_version]['serie']),
+                self._get_str_value(self._cfdi_data[cfdi_version]['folio']),
+                self._cfdi_data[cfdi_version]['fecha'],
+                self._cfdi_data[cfdi_version]['no_certificado'],
+                self._cfdi_data[cfdi_version]['subtotal'],
+                self._get_numeric_value(self._cfdi_data[cfdi_version]['descuento']),
+                self._cfdi_data[cfdi_version]['total'],
+                self._cfdi_data[cfdi_version]['moneda'],
+                self._get_numeric_tipo_cambio_value(self._cfdi_data[cfdi_version]['tipo_cambio']),
+                self._cfdi_data[cfdi_version]['tipo_comprobante'],
+                self._get_str_value(self._cfdi_data[cfdi_version]['metodo_pago']),
+                self._get_str_value(self._cfdi_data[cfdi_version]['forma_pago']),
+                self._get_str_value(self._cfdi_data[cfdi_version]['condiciones_pago']),
+                self._cfdi_data[cfdi_version]['lugar_expedicion'],
+                self._cfdi_data[cfdi_version]['emisor']['rfc'],
+                self._get_str_value(self._cfdi_data[cfdi_version]['emisor']['nombre']),
+                self._cfdi_data[cfdi_version]['emisor']['regimen_fiscal'],
+                self._cfdi_data[cfdi_version]['receptor']['rfc'],
+                self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['nombre']),
+                self._cfdi_data[cfdi_version]['receptor'].get('uso_cfdi', self._config['empty_char']),
+                self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['domicilio_fiscal_receptor']) if 'domicilio_fiscal_receptor' in self._cfdi_data[cfdi_version]['receptor'] else "",
+                self._get_str_value(self._cfdi_data[cfdi_version]['receptor']['regimen_fiscal_receptor']) if 'regimen_fiscal_receptor' in self._cfdi_data[cfdi_version]['receptor'] else "",
+                tfd['uuid'],
+                tfd['fecha_timbrado'],
+            ]
+
+            for idx, concept in enumerate(self._cfdi_data[cfdi_version]['conceptos']):
+                total_impuestos_traslados = 0
+                total_impuestos_retenciones = 0
+                
+                # Process traslados if they exist
+                if 'traslados' in concept and concept['traslados']:
+                    for traslado in concept['traslados']:
+                        importe = traslado.get('importe', '')
+                        if importe and importe.strip():
+                            try:
+                                total_impuestos_traslados += float(importe)
+                            except (ValueError, TypeError):
+                                pass
+                
+                # Process retenciones if they exist
+                if 'retenciones' in concept and concept['retenciones']:
+                    for retencion in concept['retenciones']:
+                        importe = retencion.get('importe', '')
+                        if importe and importe.strip():
+                            try:
+                                total_impuestos_retenciones += float(importe)
+                            except (ValueError, TypeError):
+                                pass
+                
+                concept_row = [
+                    idx + 1,
+                    concept.get('clave_prod_serv', self._config['empty_char']),
+                    concept.get('no_identificacion', self._config['empty_char']),
+                    concept.get('cantidad', self._config['empty_char']),
+                    concept.get('clave_unidad', self._config['empty_char']),
+                    concept.get('unidad', self._config['empty_char']),
+                    concept.get('descripcion', self._config['empty_char']),
+                    concept.get('valor_unitario', self._config['empty_char']),
+                    concept.get('descuento', self._config['empty_char']),
+                    concept.get('importe', self._config['empty_char']),
+                    concept['terceros'].get('nombre', self._config['empty_char']),
+                    concept['terceros'].get('rfc', self._config['empty_char']),
+                    str(total_impuestos_traslados),
+                    str(total_impuestos_retenciones),
+                ]
+
+                results.append(cfdi_row + concept_row)
+        return results
+
+    def get_version(self):
+        if 'cfdi32' in self._cfdi_data:
+            return {'cfdi': 'cfdi32', 'tfd': 'tfd10'}
+        elif 'cfdi40' in self._cfdi_data:
+            return {'cfdi': 'cfdi40', 'tfd': 'tfd11'}
+
+        return {'cfdi': 'cfdi33', 'tfd': 'tfd11'}
+
+    def can_format(self) -> bool:
+        version = self.get_version()
+        cfdi_version = version['cfdi']
+        if 'conceptos' in self._cfdi_data[cfdi_version]:
+            return True
+        self._errors.append('No concepts key')
+        return False
+
+    def get_errors(self) -> str:
+        return '|'.join(self._errors)
+
+    @staticmethod
+    def get_columns_names() -> list[str]:
+        return [
+            "VERSION",
+            "SERIE",
+            "FOLIO",
+            "FECHA",
+            "NOCERTIFICADO",
+            "SUBTOTAL",
+            "DESCUENTO",
+            "TOTAL",
+            "MONEDA",
+            "TIPOCAMBIO",
+            "TIPODECOMPROBANTE",
+            "METODOPAGO",
+            "FORMAPAGO",
+            "CONDICIONESDEPAGO",
+            "LUGAREXPEDICION",
+            "EMISORRFC",
+            "EMISORNOMBRE",
+            "EMISORREGIMENFISCAL",
+            "RECEPTORRFC",
+            "RECEPTORNOMBRE",
+            "RECEPTORUSOCFDI",
+            "RECEPTORDOMICILIOFISCAL",
+            "RECEPTORREGIMENFISCAL",
+            "UUID",
+            "FECHATIMBRADO",
+            "C_ID",
+            "C_CLAVEPRODSERV",
+            "C_NOIDENTIFICACION",
+            "C_CANTIDAD",
+            "C_CLAVEUNIDAD",
+            "C_UNIDAD",
+            "C_DESCRIPCION",
+            "C_VALORUNITARIO",
+            "C_DESCUENTO",
+            "C_IMPORTE",
+            "TERCERONOMBRE",
+            "TERCERORFC",
+            "TOTAL_IMPUESTOS_TRASLADOS",
+            "TOTAL_IMPUESTOS_RETENCIONES",
+        ]
