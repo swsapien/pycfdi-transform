@@ -26,8 +26,10 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      python -m pip install -U setuptools wheel
-      python setup.py sdist bdist_wheel --dist-dir=$(Build.ArtifactStagingDirectory)/dist
+      python -m pip install --upgrade pip
+      python -m pip install "setuptools<58.0.0" --upgrade wheel build
+      rm -rf dist build *.egg-info
+      python -m build --outdir $(Build.ArtifactStagingDirectory)/dist
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist'
