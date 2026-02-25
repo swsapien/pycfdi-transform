@@ -27,7 +27,7 @@ steps:
   inputs:
     script: |
       python -m pip install --upgrade pip
-      python -m pip install --upgrade setuptools wheel build
+      python -m pip install "setuptools<58.0.0" --upgrade wheel build
       rm -rf dist build *.egg-info
       python -m build --outdir $(Build.ArtifactStagingDirectory)/dist
 - task: PublishBuildArtifacts@1
