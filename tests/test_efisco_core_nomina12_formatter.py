@@ -1,6 +1,7 @@
 import os
 
 from pycfdi_transform import CFDI33SAXHandler
+from pycfdi_transform.formatters.catalogs import catalogs
 from pycfdi_transform.formatters.nomina12.efisco_core_nomina12_formatter import EfiscoCoreNomina12Formatter
 import unittest
 import time
@@ -516,3 +517,36 @@ class TestEfiscoNomina12Formatter(unittest.TestCase):
         data_result = formatter.dict_to_columns()
         self.assertEqual(data_result[0][30], "9786.15")
         self.assertEqual(data_result[1][30], "64156.64")
+
+    # SWSMTR-2601: guard against regression where PERCEPCIONES catalog entries
+    # had leading spaces (' 046', ' 047') which silently broke the equality
+    # match against the XML-reported TipoPercepcion value.
+    def test_percepciones_catalog_entries_have_no_leading_or_trailing_whitespace(self):
+        for code in catalogs.PERCEPCIONES:
+            self.assertEqual(code, code.strip(), f"entry {code!r} has surrounding whitespace")
+
+    def test_formatter_populates_p046_when_tipo_percepcion_is_046(self):
+        sax_handler = CFDI33SAXHandler().use_nomina12()
+        cfdi_data = sax_handler.transform_from_file(
+            os.path.dirname(__file__) + '/Resources/nomina12/nomina12_tipo_percepcion_046.xml'
+        )
+        formatter = EfiscoCoreNomina12Formatter(cfdi_data, empty_char='-', safe_numerics=True)
+        row = formatter.dict_to_columns()[0]
+
+        # Locate the P_046 triple (tipo, importe_exento, importe_gravado).
+        # The formatter emits ['046', '0.00', '16953.21'] contiguously when the
+        # catalog entry matches the XML-reported TipoPercepcion="046".
+        self.assertIn('046', row, "P_046 triple missing — catalog probably has ' 046' with leading space")
+        idx = row.index('046')
+        self.assertEqual(row[idx:idx + 3], ['046', '0.00', '16953.21'])
+
+    def test_formatter_populates_p047_when_tipo_percepcion_is_047(self):
+        sax_handler = CFDI33SAXHandler().use_nomina12()
+        cfdi_data = sax_handler.transform_from_file(
+            os.path.dirname(__file__) + '/Resources/nomina12/nomina12_tipo_percepcion_047.xml'
+        )
+        formatter = EfiscoCoreNomina12Formatter(cfdi_data, empty_char='-', safe_numerics=True)
+        row = formatter.dict_to_columns()[0]
+        self.assertIn('047', row, "P_047 triple missing — catalog probably has ' 047' with leading space")
+        idx = row.index('047')
+        self.assertEqual(row[idx:idx + 3], ['047', '0.00', '16953.21'])
